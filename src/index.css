@@ -1,0 +1,208 @@
+@import "tailwindcss";
+@import "./styles/colors.css";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--color-text-main);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+@layer base {
+  :root {
+    /* Light Theme - Default */
+    --color-background: #ffffff;
+    --color-surface: #f5f7fa;
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-border: #e5e7eb;
+    --color-text-main: #1f2937;
+    --color-text-muted: #6b7280;
+
+    /* Semantic Colors - Light */
+    --color-success: #10b981;
+    --color-success-light: #d1fae5;
+    --color-success-dark: #047857;
+    --color-warning: #f59e0b;
+    --color-warning-light: #fef3c7;
+    --color-warning-dark: #d97706;
+    --color-error: #ef4444;
+    --color-error-light: #fee2e2;
+    --color-error-dark: #dc2626;
+    --color-info: #0ea5e9;
+    --color-info-light: #cffafe;
+    --color-info-dark: #0369a1;
+
+    /* Extended Palette for Advanced Use Cases */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+
+    /* Tailwind Spacing Scale Reference */
+    --spacing-unit: 0.25rem; /* 4px */
+  }
+
+  /* Dark Theme */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #0f172a;
+      --color-surface: #1e293b;
+      --color-primary: #3b82f6;
+      --color-primary-hover: #60a5fa;
+      --color-border: #334155;
+      --color-text-main: #f1f5f9;
+      --color-text-muted: #94a3b8;
+
+      /* Semantic Colors - Dark */
+      --color-success: #34d399;
+      --color-success-light: #1f2937;
+      --color-success-dark: #6ee7b7;
+      --color-warning: #fbbf24;
+      --color-warning-light: #3f3316;
+      --color-warning-dark: #fcd34d;
+      --color-error: #f87171;
+      --color-error-light: #3f1f1f;
+      --color-error-dark: #fca5a5;
+      --color-info: #38bdf8;
+      --color-info-light: #082f49;
+      --color-info-dark: #7dd3fc;
+
+      /* Extended Palette - Dark */
+      --color-gray-50: #f9fafb;
+      --color-gray-100: #f3f4f6;
+      --color-gray-200: #e5e7eb;
+      --color-gray-300: #d1d5db;
+      --color-gray-400: #9ca3af;
+      --color-gray-500: #6b7280;
+      --color-gray-600: #4b5563;
+      --color-gray-700: #374151;
+      --color-gray-800: #1f2937;
+      --color-gray-900: #111827;
+    }
+  }
+
+  /* Explicit Dark Theme Class Support */
+  .dark {
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-border: #334155;
+    --color-text-main: #f1f5f9;
+    --color-text-muted: #94a3b8;
+
+    --color-success: #34d399;
+    --color-success-light: #1f2937;
+    --color-success-dark: #6ee7b7;
+    --color-warning: #fbbf24;
+    --color-warning-light: #3f3316;
+    --color-warning-dark: #fcd34d;
+    --color-error: #f87171;
+    --color-error-light: #3f1f1f;
+    --color-error-dark: #fca5a5;
+    --color-info: #38bdf8;
+    --color-info-light: #082f49;
+    --color-info-dark: #7dd3fc;
+  }
+}
+
+/* Utility Classes for Direct Color Access */
+@layer utilities {
+  .bg-primary {
+    @apply bg-(--color-primary);
+  }
+
+  .bg-primary-hover {
+    @apply bg-(--color-primary-hover) hover:bg-(--color-primary-hover);
+  }
+
+  .text-primary {
+    @apply text-(--color-primary);
+  }
+
+  .border-primary {
+    @apply border-(--color-primary);
+  }
+
+  .text-success {
+    @apply text-(--color-success);
+  }
+
+  .bg-success {
+    @apply bg-(--color-success);
+  }
+
+  .text-error {
+    @apply text-(--color-error);
+  }
+
+  .bg-error {
+    @apply bg-(--color-error);
+  }
+
+  .text-warning {
+    @apply text-(--color-warning);
+  }
+
+  .bg-warning {
+    @apply bg-(--color-warning);
+  }
+
+  .text-info {
+    @apply text-(--color-info);
+  }
+
+  .bg-info {
+    @apply bg-(--color-info);
+  }
+
+  /* Accessibility Utilities */
+  .high-contrast {
+    --color-text-main: #000000;
+    --color-background: #ffffff;
+  }
+
+  .high-contrast.dark {
+    --color-text-main: #ffffff;
+    --color-background: #000000;
+  }
+
+  .reduce-motion {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Focus Visible States - Critical for Accessibility */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .dark :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

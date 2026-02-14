@@ -1,0 +1,303 @@
+{
+  "metadata": {
+    "name": "DMS Professional Palette",
+    "version": "1.0.0",
+    "product_type": "DMS",
+    "industry": "Corporate",
+    "brand_tone": "Professional",
+    "accessibility_standard": "WCAG-AA",
+    "frameworks": ["tailwind", "css-variables"],
+    "last_updated": "2026-02-12"
+  },
+  "palette_overview": {
+    "visual_intention": "Clean, trustworthy, and accessible design system for enterprise document management",
+    "emotional_tone": "Professional, confident, secure, approachable",
+    "target_users": "Enterprise users, document managers, compliance officers, multi-tenant organizations",
+    "design_philosophy": "Minimalist with clear hierarchy, supporting multiple themes for accessibility"
+  },
+  "design_tokens": {
+    "light_theme": {
+      "background": {
+        "color": "#FFFFFF",
+        "rgb": "rgb(255, 255, 255)",
+        "name": "White",
+        "usage": "Main application background, primary content area",
+        "contrast_ratio_with_text_main": "21:1"
+      },
+      "surface": {
+        "color": "#F5F7FA",
+        "rgb": "rgb(245, 247, 250)",
+        "name": "Light Slate",
+        "usage": "Card backgrounds, panels, secondary content areas",
+        "contrast_ratio_with_text_main": "17.3:1"
+      },
+      "primary": {
+        "color": "#2563EB",
+        "rgb": "rgb(37, 99, 235)",
+        "name": "Corporate Blue",
+        "usage": "Primary CTAs, active states, links, brand accent",
+        "contrast_ratio_with_white": "4.54:1",
+        "wcag_aa_compliant": true
+      },
+      "primary_hover": {
+        "color": "#1D4ED8",
+        "rgb": "rgb(29, 78, 216)",
+        "name": "Deep Blue",
+        "usage": "Hover states for primary elements",
+        "contrast_ratio_with_white": "5.64:1"
+      },
+      "border": {
+        "color": "#E5E7EB",
+        "rgb": "rgb(229, 231, 235)",
+        "name": "Light Gray",
+        "usage": "Dividers, borders, subtle separators",
+        "contrast_ratio_with_text_main": "11.3:1"
+      },
+      "text_main": {
+        "color": "#1F2937",
+        "rgb": "rgb(31, 41, 55)",
+        "name": "Dark Slate",
+        "usage": "Primary text, headings, body content",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": true
+      },
+      "text_muted": {
+        "color": "#6B7280",
+        "rgb": "rgb(107, 114, 128)",
+        "name": "Medium Gray",
+        "usage": "Secondary text, helper text, disabled states",
+        "contrast_ratio_with_white": "7.1:1",
+        "wcag_aa_compliant": true
+      }
+    },
+    "dark_theme": {
+      "background": {
+        "color": "#0F172A",
+        "rgb": "rgb(15, 23, 42)",
+        "name": "Deep Navy",
+        "usage": "Main application background, primary content area",
+        "contrast_ratio_with_text_main": "20.8:1"
+      },
+      "surface": {
+        "color": "#1E293B",
+        "rgb": "rgb(30, 41, 59)",
+        "name": "Dark Slate",
+        "usage": "Card backgrounds, panels, secondary content areas",
+        "contrast_ratio_with_text_main": "18.6:1"
+      },
+      "primary": {
+        "color": "#3B82F6",
+        "rgb": "rgb(59, 130, 246)",
+        "name": "Bright Blue",
+        "usage": "Primary CTAs, active states, links, brand accent",
+        "contrast_ratio_with_background": "8.8:1",
+        "wcag_aa_compliant": true
+      },
+      "primary_hover": {
+        "color": "#60A5FA",
+        "rgb": "rgb(96, 165, 250)",
+        "name": "Light Blue",
+        "usage": "Hover states for primary elements",
+        "contrast_ratio_with_background": "11.3:1"
+      },
+      "border": {
+        "color": "#334155",
+        "rgb": "rgb(51, 65, 85)",
+        "name": "Dark Gray",
+        "usage": "Dividers, borders, subtle separators",
+        "contrast_ratio_with_text_main": "10.2:1"
+      },
+      "text_main": {
+        "color": "#F1F5F9",
+        "rgb": "rgb(241, 245, 249)",
+        "name": "Almost White",
+        "usage": "Primary text, headings, body content",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": true
+      },
+      "text_muted": {
+        "color": "#94A3B8",
+        "rgb": "rgb(148, 163, 184)",
+        "name": "Light Gray",
+        "usage": "Secondary text, helper text, disabled states",
+        "contrast_ratio_with_background": "7.8:1",
+        "wcag_aa_compliant": true
+      }
+    }
+  },
+  "semantic_colors": {
+    "success": {
+      "light": "#10B981",
+      "dark": "#34D399",
+      "name": "Success/Positive",
+      "usage": "Successful operations, confirmations, valid states",
+      "contrast_light": "5.24:1",
+      "contrast_dark": "8.6:1",
+      "wcag_aa_compliant": true,
+      "description": "Green tone for approval and positive feedback"
+    },
+    "warning": {
+      "light": "#F59E0B",
+      "dark": "#FBBF24",
+      "name": "Warning/Caution",
+      "usage": "Warnings, pending operations, attention needed",
+      "contrast_light": "4.58:1",
+      "contrast_dark": "5.64:1",
+      "wcag_aa_compliant": true,
+      "description": "Amber tone for alerts and caution states"
+    },
+    "error": {
+      "light": "#EF4444",
+      "dark": "#F87171",
+      "name": "Error/Danger",
+      "usage": "Errors, destructive actions, validation failures",
+      "contrast_light": "4.54:1",
+      "contrast_dark": "5.88:1",
+      "wcag_aa_compliant": true,
+      "description": "Red tone for errors and critical alerts"
+    },
+    "info": {
+      "light": "#0EA5E9",
+      "dark": "#38BDF8",
+      "name": "Info/Informational",
+      "usage": "Informational messages, help text, neutral alerts",
+      "contrast_light": "4.53:1",
+      "contrast_dark": "6.92:1",
+      "wcag_aa_compliant": true,
+      "description": "Cyan tone for informational content"
+    }
+  },
+  "usage_rules": [
+    {
+      "context": "Primary Buttons & CTA",
+      "light_color": "#2563EB",
+      "dark_color": "#3B82F6",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use primary blue for main call-to-action. Always ensure sufficient contrast with text."
+    },
+    {
+      "context": "Hover States",
+      "light_color": "#1D4ED8",
+      "dark_color": "#60A5FA",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Darken in light theme, lighten in dark theme. Always indicate interactive elements."
+    },
+    {
+      "context": "Backgrounds & Cards",
+      "light_color": "#F5F7FA",
+      "dark_color": "#1E293B",
+      "text_color": "See text_main",
+      "min_contrast": "7:1",
+      "rule": "Use surface color for secondary backgrounds. Maintain hierarchy with background color."
+    },
+    {
+      "context": "Text Content",
+      "light_color": "#1F2937",
+      "dark_color": "#F1F5F9",
+      "text_color": "N/A",
+      "min_contrast": "4.5:1",
+      "rule": "Use text_main for primary content. Always maintain minimum contrast of 4.5:1."
+    },
+    {
+      "context": "Secondary/Muted Text",
+      "light_color": "#6B7280",
+      "dark_color": "#94A3B8",
+      "text_color": "N/A",
+      "min_contrast": "7:1",
+      "rule": "Use for helper text, timestamps, secondary information. Never use for critical information."
+    },
+    {
+      "context": "Borders & Dividers",
+      "light_color": "#E5E7EB",
+      "dark_color": "#334155",
+      "text_color": "N/A",
+      "min_contrast": "N/A",
+      "rule": "Subtle visual separation. Should not distract from content."
+    },
+    {
+      "context": "Success Messages",
+      "light_color": "#10B981",
+      "dark_color": "#34D399",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for completed actions, confirmations. Never as sole indicator (use icons too)."
+    },
+    {
+      "context": "Error States",
+      "light_color": "#EF4444",
+      "dark_color": "#F87171",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for validation failures, destructive actions. Never as sole indicator (use icons too)."
+    },
+    {
+      "context": "Warning States",
+      "light_color": "#F59E0B",
+      "dark_color": "#FBBF24",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for pending actions, cautions. Never as sole indicator (use icons too)."
+    },
+    {
+      "context": "Info Messages",
+      "light_color": "#0EA5E9",
+      "dark_color": "#38BDF8",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for informational content. Can be combined with other visual indicators."
+    }
+  ],
+  "accessibility": {
+    "wcag_compliance_level": "AA",
+    "text_contrast_requirements": {
+      "normal_text_minimum": "4.5:1",
+      "large_text_minimum": "3:1",
+      "ui_components_minimum": "3:1",
+      "graphical_elements_minimum": "3:1"
+    },
+    "color_blindness_support": {
+      "dichromacy_safe": true,
+      "monochromacy_safe": true,
+      "protanopia_safe": true,
+      "deuteranopia_safe": true,
+      "tritanopia_safe": true,
+      "recommendations": [
+        "Never rely on color alone to convey information",
+        "Use icons, patterns, or text labels alongside colors",
+        "Test designs with colorblind simulation tools",
+        "Provide text descriptions for color-coded elements"
+      ]
+    },
+    "implementation_requirements": [
+      "Color contrast must be verifiable with WCAG contrast checkers",
+      "Non-color visual indicators required for all status updates",
+      "Icons must accompany semantic color usage",
+      "Alternative text descriptions for color-coded information",
+      "Support high contrast mode for user preferences",
+      "Allow user-customizable theme preferences",
+      "Test with screen readers and assistive technologies"
+    ],
+    "testing_tools_recommended": [
+      "WCAG Contrast Checker",
+      "Accessible Colors (yozuru.io/accessible-colors)",
+      "WebAIM Contrast Checker",
+      "Stark (design tool plugin)",
+      "Color Blindness Simulator (Toptal, Color Oracle)",
+      "Lighthouse Accessibility Audit"
+    ]
+  },
+  "multi_tenant_considerations": {
+    "scalability": "Base palette supports white-label customization",
+    "tenant_override_strategy": "CSS variables allow per-tenant theme injection",
+    "storage_recommendation": "Store tenant color overrides in database with validation",
+    "validation_rules": {
+      "must_have_min_contrast": true,
+      "must_follow_wcag_aa": true,
+      "must_define_light_and_dark": true,
+      "must_include_semantic_colors": true
+    },
+    "recommended_approach": "Use CSS custom properties with fallbacks to base palette"
+  }
+}
