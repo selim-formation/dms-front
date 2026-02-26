@@ -1,42 +1,52 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Ramadan Decorative Styles */
+
+/* Lantern Glow Effects - Outside Hero Card */
+.ramadan-lantern-left {
+  filter: drop-shadow(0 0 15px rgba(230, 179, 37, 0.7)) 
+          drop-shadow(0 0 30px rgba(230, 179, 37, 0.5)) 
+          drop-shadow(0 0 45px rgba(230, 179, 37, 0.3));
+  animation: lanternGlow 2.8s ease-in-out infinite;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ramadan-lantern-right {
+  filter: drop-shadow(0 0 15px rgba(230, 179, 37, 0.7)) 
+          drop-shadow(0 0 30px rgba(230, 179, 37, 0.5)) 
+          drop-shadow(0 0 45px rgba(230, 179, 37, 0.3));
+  animation: lanternGlow 3.2s ease-in-out infinite;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Moon Glow Effect - Inside Hero Card */
+.ramadan-moon {
+  filter: drop-shadow(0 0 12px rgba(230, 179, 37, 0.9)) 
+          drop-shadow(0 0 25px rgba(230, 179, 37, 0.6));
+  animation: moonGlow 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes lanternGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(230, 179, 37, 0.7)) 
+            drop-shadow(0 0 30px rgba(230, 179, 37, 0.5)) 
+            drop-shadow(0 0 45px rgba(230, 179, 37, 0.3));
+    opacity: 0.9;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    filter: drop-shadow(0 0 20px rgba(230, 179, 37, 0.9)) 
+            drop-shadow(0 0 40px rgba(230, 179, 37, 0.7)) 
+            drop-shadow(0 0 60px rgba(230, 179, 37, 0.5));
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes moonGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(230, 179, 37, 0.9)) 
+            drop-shadow(0 0 25px rgba(230, 179, 37, 0.6));
+    opacity: 0.95;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  50% {
+    filter: drop-shadow(0 0 16px rgba(230, 179, 37, 1)) 
+            drop-shadow(0 0 32px rgba(230, 179, 37, 0.8));
+    opacity: 1;
+  }
 }

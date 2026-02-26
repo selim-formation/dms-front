@@ -3,7 +3,7 @@
  * Configured with tenant-scoped cache keys
  */
 
-import { QueryClient } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query";
 import { createQueryClient } from "@/shared/lib/react-query";
 import { logger } from "@/shared/utils/logger";
 

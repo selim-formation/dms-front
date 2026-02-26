@@ -1,208 +1,185 @@
 @import "tailwindcss";
-@import "./styles/colors.css";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* 1. Define the Theme 
+  Map your CSS variables to Tailwind utilities here.
+*/
+@theme {
+  /* Colors - Wrapping variable channels in hsl() */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-  color-scheme: light dark;
-  color: var(--color-text-main);
-  background-color: var(--color-background);
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-dark: hsl(var(--card-dark));
+  --color-card-dark-foreground: hsl(var(--card-dark-foreground));
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Sidebar Specific Colors */
+  --color-sidebar-background: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --color-sidebar-muted: hsl(var(--sidebar-muted));
+
+  /* Fonts */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  /* Border Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
+/* 2. CSS Variables
+  Keep the raw HSL channel values here for dynamic switching.
+*/
 @layer base {
   :root {
-    /* Light Theme - Default */
-    --color-background: #ffffff;
-    --color-surface: #f5f7fa;
-    --color-primary: #2563eb;
-    --color-primary-hover: #1d4ed8;
-    --color-border: #e5e7eb;
-    --color-text-main: #1f2937;
-    --color-text-muted: #6b7280;
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
 
-    /* Semantic Colors - Light */
-    --color-success: #10b981;
-    --color-success-light: #d1fae5;
-    --color-success-dark: #047857;
-    --color-warning: #f59e0b;
-    --color-warning-light: #fef3c7;
-    --color-warning-dark: #d97706;
-    --color-error: #ef4444;
-    --color-error-light: #fee2e2;
-    --color-error-dark: #dc2626;
-    --color-info: #0ea5e9;
-    --color-info-light: #cffafe;
-    --color-info-dark: #0369a1;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    /* Extended Palette for Advanced Use Cases */
-    --color-gray-50: #f9fafb;
-    --color-gray-100: #f3f4f6;
-    --color-gray-200: #e5e7eb;
-    --color-gray-300: #d1d5db;
-    --color-gray-400: #9ca3af;
-    --color-gray-500: #6b7280;
-    --color-gray-600: #4b5563;
-    --color-gray-700: #374151;
-    --color-gray-800: #1f2937;
-    --color-gray-900: #111827;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Tailwind Spacing Scale Reference */
-    --spacing-unit: 0.25rem; /* 4px */
+    --primary: 356 82% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 43 100% 58%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 72% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 11%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 356 82% 50%;
+
+    --radius: 0.75rem;
+
+    --card-dark: 222 47% 11%;
+    --card-dark-foreground: 210 20% 98%;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 20% 96%;
+    --sidebar-primary: 356 82% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 356 82% 50%;
+    --sidebar-muted: 215 16% 47%;
   }
 
-  /* Dark Theme */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-background: #0f172a;
-      --color-surface: #1e293b;
-      --color-primary: #3b82f6;
-      --color-primary-hover: #60a5fa;
-      --color-border: #334155;
-      --color-text-main: #f1f5f9;
-      --color-text-muted: #94a3b8;
-
-      /* Semantic Colors - Dark */
-      --color-success: #34d399;
-      --color-success-light: #1f2937;
-      --color-success-dark: #6ee7b7;
-      --color-warning: #fbbf24;
-      --color-warning-light: #3f3316;
-      --color-warning-dark: #fcd34d;
-      --color-error: #f87171;
-      --color-error-light: #3f1f1f;
-      --color-error-dark: #fca5a5;
-      --color-info: #38bdf8;
-      --color-info-light: #082f49;
-      --color-info-dark: #7dd3fc;
-
-      /* Extended Palette - Dark */
-      --color-gray-50: #f9fafb;
-      --color-gray-100: #f3f4f6;
-      --color-gray-200: #e5e7eb;
-      --color-gray-300: #d1d5db;
-      --color-gray-400: #9ca3af;
-      --color-gray-500: #6b7280;
-      --color-gray-600: #4b5563;
-      --color-gray-700: #374151;
-      --color-gray-800: #1f2937;
-      --color-gray-900: #111827;
-    }
-  }
-
-  /* Explicit Dark Theme Class Support */
   .dark {
-    --color-background: #0f172a;
-    --color-surface: #1e293b;
-    --color-primary: #3b82f6;
-    --color-primary-hover: #60a5fa;
-    --color-border: #334155;
-    --color-text-main: #f1f5f9;
-    --color-text-muted: #94a3b8;
+    --background: 222 47% 6%;
+    --foreground: 210 20% 96%;
 
-    --color-success: #34d399;
-    --color-success-light: #1f2937;
-    --color-success-dark: #6ee7b7;
-    --color-warning: #fbbf24;
-    --color-warning-light: #3f3316;
-    --color-warning-dark: #fcd34d;
-    --color-error: #f87171;
-    --color-error-light: #3f1f1f;
-    --color-error-dark: #fca5a5;
-    --color-info: #38bdf8;
-    --color-info-light: #082f49;
-    --color-info-dark: #7dd3fc;
-  }
-}
+    --card: 222 47% 11%;
+    --card-foreground: 210 20% 96%;
 
-/* Utility Classes for Direct Color Access */
-@layer utilities {
-  .bg-primary {
-    @apply bg-(--color-primary);
-  }
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 20% 96%;
 
-  .bg-primary-hover {
-    @apply bg-(--color-primary-hover) hover:bg-(--color-primary-hover);
-  }
+    --primary: 356 82% 50%;
+    --primary-foreground: 0 0% 100%;
 
-  .text-primary {
-    @apply text-(--color-primary);
-  }
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 20% 96%;
 
-  .border-primary {
-    @apply border-(--color-primary);
-  }
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 55%;
 
-  .text-success {
-    @apply text-(--color-success);
-  }
+    --accent: 43 100% 50%;
+    --accent-foreground: 222 47% 11%;
 
-  .bg-success {
-    @apply bg-(--color-success);
-  }
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
 
-  .text-error {
-    @apply text-(--color-error);
+    --success: 142 71% 35%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 40%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 199 89% 38%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 356 82% 45%;
+
+    --card-dark: 222 47% 6%;
+    --card-dark-foreground: 210 20% 96%;
+
+    --sidebar-background: 222 47% 4%;
+    --sidebar-foreground: 210 20% 96%;
+    --sidebar-primary: 356 82% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 11%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 222 47% 11%;
+    --sidebar-ring: 356 82% 50%;
+    --sidebar-muted: 215 16% 46%;
   }
 
-  .bg-error {
-    @apply bg-(--color-error);
+  * {
+    @apply border-border;
   }
 
-  .text-warning {
-    @apply text-(--color-warning);
-  }
-
-  .bg-warning {
-    @apply bg-(--color-warning);
-  }
-
-  .text-info {
-    @apply text-(--color-info);
-  }
-
-  .bg-info {
-    @apply bg-(--color-info);
-  }
-
-  /* Accessibility Utilities */
-  .high-contrast {
-    --color-text-main: #000000;
-    --color-background: #ffffff;
-  }
-
-  .high-contrast.dark {
-    --color-text-main: #ffffff;
-    --color-background: #000000;
-  }
-
-  .reduce-motion {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Focus Visible States - Critical for Accessibility */
-@layer base {
-  :focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
-  .dark :focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }

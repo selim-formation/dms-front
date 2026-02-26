@@ -4,7 +4,7 @@
  */
 
 import { createContext } from "react";
-import { AuthContextValue } from "../types";
+import { type AuthContextValue } from "../types";
 
 /**
  * Default context value

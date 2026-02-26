@@ -7,7 +7,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LoginPage } from "@/features/auth";
 import { requireGuest } from "@/core/router";
 
-export const Route = createFileRoute("/$tenant/login")({
+export const Route = createFileRoute("/login")({
   beforeLoad: async (ctx) => {
     await requireGuest(ctx);
   },

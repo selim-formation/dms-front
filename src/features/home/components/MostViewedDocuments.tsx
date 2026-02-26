@@ -1,0 +1,30 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { FileText } from 'lucide-react';
+const docs = [
+  { name: 'IT-Strategy Plan', type: '1%', score: '2.05' },
+  { name: 'Company Handbook', type: 'H1', score: '2.00' },
+  { name: 'Annual Budget Report', type: '1%', score: '1.20' },
+  { name: 'Customer Survey Results', type: '1%', score: '1.20' },
+  { name: 'Equipment Inspection', type: '1%', score: '1.05' },
+];
+export default function MostViewedDocuments() {
+  return (
+    <Card className="border-border rounded-xl">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-base font-bold">Most Viewed Documents</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          {docs.map((doc, i) => (
+            <div key={i} className="flex items-center gap-3 text-sm">
+              <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+              <span className="flex-1 text-foreground truncate">{doc.name}</span>
+              <span className="text-xs text-muted-foreground">{doc.type}</span>
+              <span className="text-xs font-semibold text-foreground">{doc.score}</span>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

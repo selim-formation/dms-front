@@ -2,7 +2,7 @@
  * React Query configuration and utilities
  */
 
-import { QueryClient, DefaultOptions } from "@tanstack/react-query";
+import { QueryClient, type DefaultOptions } from "@tanstack/react-query";
 import { appConfig } from "@/config/app.config";
 import { logger } from "../utils/logger";
 
