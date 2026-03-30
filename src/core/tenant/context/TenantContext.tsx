@@ -4,7 +4,7 @@
  */
 
 import { createContext } from "react";
-import { TenantContextValue } from "../types";
+import type { TenantContextValue } from "../types";
 
 /**
  * Default context value
@@ -12,6 +12,7 @@ import { TenantContextValue } from "../types";
 const defaultValue: TenantContextValue = {
   tenantId: null,
   tenant: null,
+  current: null,
   isValidating: false,
   isValid: false,
   error: null,

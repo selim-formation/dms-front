@@ -2,7 +2,8 @@
  * Core API types and interfaces
  */
 
-import { AxiosError, AxiosRequestConfig } from "axios";
+import { AxiosError } from "axios";
+import type { AxiosRequestConfig } from "axios";
 import type { ApiError as SharedApiError } from "@/shared/types/api.types";
 
 /**

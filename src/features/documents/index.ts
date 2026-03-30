@@ -7,6 +7,11 @@
  * - Document versioning
  * - Document sharing and permissions
  * - Document preview
+ * - Reminders and notifications
+
+
+
+* - Pinned documents
  *
  * Structure:
  * - api/: API service functions and query/mutation hooks
@@ -16,6 +21,37 @@
  * - types/: TypeScript types for documents
  * - utils/: Utility functions for document operations
  */
+
+// Export hooks for reminders
+export { useReminders } from './hooks/useReminders';
+export { useActiveReminders } from './hooks/useActiveReminders';
+export { useNotifications } from './hooks/useNotifications';
+
+// Export hooks for pinned documents
+export { useLastPinnedDocuments } from './hooks/useLastPinnedDocuments';
+export { usePinnedDocuments } from './hooks/usePinnedDocuments';
+
+// Export components
+export { default as RemindersDrawer } from './components/RemindersDrawer';
+
+// Export types for reminders
+export type {
+  ReminderDocument,
+  DisplayReminder,
+  Notification,
+  ReminderUser,
+  ReminderEntity,
+  ReminderDepartment,
+  ReminderDocumentType,
+} from './types/reminder.types';
+
+// Export types for pinned documents
+export type {
+  PinnedDocumentData,
+  PinnedDocumentInfo,
+  PinnedDocumentUser,
+  DisplayPinnedDocument,
+} from './types/pinned.types';
 
 export const DOCUMENTS_FEATURE = {
   name: "documents",

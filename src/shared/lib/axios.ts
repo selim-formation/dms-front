@@ -18,7 +18,8 @@ export function createAxiosInstance(): AxiosInstance {
   const instance = axios.create({
     baseURL: appConfig.api.baseUrl,
     timeout: appConfig.api.timeout,
-    withCredentials: appConfig.api.withCredentials,
+    // withCredentials: appConfig.api.withCredentials,
+    withCredentials: true,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

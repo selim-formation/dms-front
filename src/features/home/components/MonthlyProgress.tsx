@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { Link } from '@tanstack/react-router';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 const data = [
   { month: 'Aug', approvals: 8, details: 4, pending: 3 },

@@ -25,7 +25,7 @@ export default function RecentDocuments({ tenant }: Props) {
           <Clock className="h-5 w-5 text-primary" />
           <h2 className="text-lg font-bold text-foreground">Recent Documents</h2>
         </div>
-        <Link to={`/${tenant}/documents`} className="text-sm text-primary font-medium hover:underline">View All ›</Link>
+        <Link to="/$tenant/documents" params={{ tenant }} className="text-sm text-primary font-medium hover:underline">View All ›</Link>
       </div>
       <Card>
         <CardContent className="p-0 divide-y divide-border">

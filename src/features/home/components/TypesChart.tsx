@@ -1,13 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
-
-const data = [
-    { name: 'تراخيص', value: 42 },
-    { name: 'تصاريح', value: 31 },
-    { name: 'بطاقات', value: 18 },
-    { name: 'الآلات', value: 14 },
-    { name: 'أذونات', value: 22 },
-];
+import type { StatisticsData } from '../types/statistics.types';
 
 const COLORS = [
     'hsl(var(--primary))',
@@ -17,7 +10,12 @@ const COLORS = [
     'hsl(var(--warning))',
 ];
 
-export default function TypesChart() {
+export default function TypesChart({ data }: { data: StatisticsData | undefined }) {
+    const chartData = data?.total_documents_by_types?.map((type: { type: string; total_documents: number }) => ({
+        name: type.type,
+        value: type.total_documents,
+    })) || [];
+
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
@@ -29,7 +27,7 @@ export default function TypesChart() {
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
-                                data={data}
+                                data={chartData}
                                 cx="50%"
                                 cy="50%"
                                 innerRadius={50}
@@ -38,7 +36,7 @@ export default function TypesChart() {
                                 dataKey="value"
                                 strokeWidth={0}
                             >
-                                {data.map((_, i) => (
+                                {chartData.map((_: unknown, i: number) => (
                                     <Cell key={i} fill={COLORS[i % COLORS.length]} />
                                 ))}
                             </Pie>

@@ -107,6 +107,43 @@ export const apiEndpoints = {
     recentActivity: "/{tenant}/api/dashboard/recent-activity",
     recentDocuments: "/{tenant}/api/dashboard/recent-documents",
   },
+
+  /**
+   * Task endpoints
+   */
+  tasks: {
+    list: "api/{tenant}/tasks",
+    detail: "api/{tenant}/tasks/{id}",
+    create: "api/{tenant}/tasks",
+    update: "api/{tenant}/tasks/{id}",
+    delete: "api/{tenant}/tasks/{id}",
+    last: "api/{tenant}/tasks/last",
+  },
+
+  /**
+   * Reminders endpoints
+   */
+  reminders: {
+    all: "api/{tenant}/documents/reminder",
+    active: "api/{tenant}/documents/active-reminders",
+  },
+
+  /**
+   * Notifications endpoints
+   */
+  notifications: {
+    list: "api/{tenant}/notifications",
+  },
+
+  /**
+   * Pinned Documents endpoints
+   */
+  pinnedDocuments: {
+    list: "api/{tenant}/pinned-documents",
+    last: "api/{tenant}/pinned-documents/last",
+    pin: "api/{tenant}/pinned-documents/pin",
+    unpin: "api/{tenant}/pinned-documents/{id}/unpin",
+  },
 } as const;
 
 /**

@@ -1,7 +1,5 @@
 import { useParams, Link } from '@tanstack/react-router';
-import { useQuery } from '@tanstack/react-query';
-import { documentKeys } from '../api/documentKeys';
-import { getDocument } from '../api/documentApi';
+import { useDocument } from '../hooks/useDocument';
 import { useTenant } from '@/core/tenant/hooks/useTenant';
 import Navbar from '@/shared/components/layout/Navbar';
 import { Button } from '@/shared/components/ui/button';
@@ -15,10 +13,13 @@ import DocumentDetailsContent from '../components/DocumentDetailsContent';
 import DocumentCommentsCard from '../components/DocumentCommentsCard';
 import DocumentTabsContainer from '../components/DocumentTabsContainer';
 
-function formatFileSize(bytes: number): string {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+function formatFileSize(bytes: string | number | null): string {
+    if (!bytes) return 'N/A';
+    const numBytes = typeof bytes === 'string' ? parseInt(bytes, 10) : bytes;
+    if (isNaN(numBytes)) return 'N/A';
+    if (numBytes < 1024) return `${numBytes} B`;
+    if (numBytes < 1024 * 1024) return `${(numBytes / 1024).toFixed(1)} KB`;
+    return `${(numBytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 const fileTypeIcons: Record<string, typeof FileText> = {
@@ -31,6 +32,7 @@ const fileTypeIcons: Record<string, typeof FileText> = {
     jpg: FileImage,
     jpeg: FileImage,
     md: FileText,
+    sdf: File,
 };
 
 const fileTypeColors: Record<string, string> = {
@@ -41,6 +43,7 @@ const fileTypeColors: Record<string, string> = {
     xls: 'bg-success/10 text-success',
     md: 'bg-muted text-muted-foreground',
     zip: 'bg-warning/10 text-warning',
+    sdf: 'bg-muted text-muted-foreground',
 };
 
 const comments = [
@@ -78,25 +81,32 @@ const comments = [
 
 export default function DocumentViewPage() {
     const tenant = useTenant();
-    const { id } = useParams({ from: `/$tenant/documents/$id` });
+    const { id } = useParams({ from: '/_protected/$tenant/documents/$id' });
     const numId = Number(id);
 
-    const { data: doc, isLoading, isError } = useQuery({
-        queryKey: documentKeys.detail(tenant?.tenantId ?? '', numId),
-        queryFn: () => getDocument(tenant?.tenantId ?? '', numId),
+    const { data: doc, isLoading, isError, error } = useDocument(numId, {
         enabled: !!numId && !!tenant?.tenantId,
     });
 
     if (isLoading) return <DocumentViewSkeleton />;
 
     if (isError || !doc) {
+        const errorMessage = error?.message || 'Document not found';
+        const isPermissionError = errorMessage.includes('Permission');
+
         return (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
                 <AlertTriangle className="h-12 w-12 text-muted-foreground" />
-                <h2 className="text-xl font-semibold text-foreground">Document not found</h2>
-                <p className="text-muted-foreground">The document you're looking for doesn't exist or has been removed.</p>
+                <h2 className="text-xl font-semibold text-foreground">
+                    {isPermissionError ? "Access Denied" : "Document not found"}
+                </h2>
+                <p className="text-muted-foreground">
+                    {isPermissionError
+                        ? "You don't have permission to view this document."
+                        : "The document you're looking for doesn't exist or has been removed."}
+                </p>
                 <Button variant="outline" asChild>
-                    <Link to={`/${tenant?.tenantId}/documents`}  params={{ tenant: tenant.tenantId ?? '' }}>
+                    <Link to="/$tenant/documents" params={{ tenant: tenant?.tenantId ?? '' }}>
                         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Documents
                     </Link>
                 </Button>
@@ -104,8 +114,11 @@ export default function DocumentViewPage() {
         );
     }
 
-    const FileIcon = fileTypeIcons[doc.file_type] || File;
-    const fileColorClass = fileTypeColors[doc.file_type] || 'bg-muted text-muted-foreground';
+    const fileExt = (doc.extension || '').toLowerCase();
+    const FileIcon = fileTypeIcons[fileExt] || File;
+    const fileColorClass = fileTypeColors[fileExt] || 'bg-muted text-muted-foreground';
+
+    console.log('Document data:', doc);
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -114,22 +127,22 @@ export default function DocumentViewPage() {
                 <div className="space-y-6">
                     {/* Breadcrumb */}
                     <DocumentPageBreadcrumb
-                        tenantId={tenant.tenantId ?? ''}
+                        tenantId={tenant?.tenantId ?? ''}
                         documentTitle={doc.title}
                     />
 
                     {/* Header Card */}
                     <Card className="overflow-hidden border-border/60">
-                        <div className="bg-gradient-to-r from-primary/5 via-primary/3 to-transparent p-6 pb-0">
+                        <div className="bg-linear-to-r from-primary/5 via-primary/3 to-transparent p-6 pb-0">
                             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                                 <DocumentHeaderMeta
                                     title={doc.title}
                                     fileIcon={<FileIcon className="h-7 w-7" />}
                                     fileColorClass={fileColorClass}
-                                    status={doc.status}
+                                    status="active"
                                     importance={doc.importance}
-                                    fileType={doc.file_type}
-                                    fileSize={formatFileSize(doc.file_size)}
+                                    fileType={fileExt}
+                                    fileSize={formatFileSize(doc.size)}
                                 />
 
                                 <DocumentHeaderActions
@@ -147,7 +160,6 @@ export default function DocumentViewPage() {
                         <div className="px-6">
                             <DocumentTabsContainer
                                 doc={doc}
-                                fileTypeColors={fileTypeColors}
                                 comments={comments}
                                 onDetailsRender={() => { }}
                             />
@@ -160,7 +172,6 @@ export default function DocumentViewPage() {
                             doc={doc}
                             fileIcon={<FileIcon className="h-8 w-8" />}
                             fileColorClass={fileColorClass}
-                            fileTypeColors={fileTypeColors}
                         />
                     </div>
 

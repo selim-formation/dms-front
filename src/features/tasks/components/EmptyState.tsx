@@ -4,8 +4,6 @@
  * Displays a friendly message when no tasks are available or match current filters
  */
 
-import React from 'react'
-
 interface EmptyStateProps {
     hasFiltersApplied?: boolean
     hasSearchQuery?: boolean

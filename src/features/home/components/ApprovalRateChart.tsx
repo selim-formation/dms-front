@@ -32,7 +32,7 @@ export default function ApprovalRateChart() {
                                     border: '1px solid hsl(var(--border))',
                                     background: 'hsl(var(--background))',
                                 }}
-                                formatter={(value: number) => [`${value}%`, 'Approval Rate']}
+                                formatter={(value: number | undefined) => [`${value ?? ''}%`, 'Approval Rate'] as [string, string]}
                             />
                             <Line
                                 type="monotone"

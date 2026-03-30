@@ -1,6 +1,8 @@
 import { Download, MoreVertical } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
+import { useTenantId } from '@/core/tenant/hooks/useTenant';
+import { useCreatePinnedDocument } from '../hooks/useCreatePinnedDocument';
 
 interface DocumentCardGridProps {
     id: string;
@@ -56,6 +58,27 @@ export default function DocumentCardGrid({
     const [showMenu, setShowMenu] = useState(false);
     const importanceMode = importanceStyles[importance];
     const navigate = useNavigate();
+    const tenant = useTenantId();
+    const { mutate: pinDoc, isPending: isPinning } = useCreatePinnedDocument({
+        onSuccess: (data) => {
+            if (data) {
+                // Document was successfully pinned
+                setShowMenu(false);
+            } else {
+                // Document is already pinned
+                setShowMenu(false);
+            }
+        },
+        onError: (error) => {
+            console.error('Failed to pin document:', error);
+        },
+    });
+
+    const handlePin = () => {
+        const documentId = parseInt(id, 10);
+        pinDoc(documentId);
+    };
+
 
     return (
         <div
@@ -72,14 +95,12 @@ export default function DocumentCardGrid({
                 </button>
                 {showMenu && (
                     <div className="absolute top-10 right-0 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-20">
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            Preview
-                        </button>
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            Share
-                        </button>
-                        <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100">
-                            Delete
+                        <button
+                            onClick={handlePin}
+                            disabled={isPinning}
+                            className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {isPinning ? 'Pinning...' : 'Pin'}
                         </button>
                     </div>
                 )}
@@ -137,7 +158,7 @@ export default function DocumentCardGrid({
 
                 {/* Action Buttons */}
                 <div className="pt-2 flex gap-2">
-                    <button onClick={() => navigate({ to: `/asd/documents/${id}` })} className="flex-1 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm">
+                    <button onClick={() => navigate({ to: `/${tenant}/documents/${id}` })} className="flex-1 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm">
                         View
                     </button>
                     <button className="flex-1 px-3 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium text-sm flex items-center justify-center gap-1.5">

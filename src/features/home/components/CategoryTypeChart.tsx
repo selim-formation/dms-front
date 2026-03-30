@@ -1,17 +1,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import type { StatisticsData } from '../types/statistics.types';
 
-const data = [
-    { name: 'Operational', value: 68 },
-    { name: 'Establishment', value: 45 },
-];
+// const data = [
+//     { name: 'Operational', value: 68 },
+//     { name: 'Establishment', value: 45 },
+// ];
 
 const COLORS = [
     'hsl(var(--primary))',
     'hsl(var(--info))',
 ];
 
-export default function CategoryTypeChart() {
+export default function CategoryTypeChart({ data }: { data: StatisticsData | undefined }) {
+
+    const chartData = [
+        { name: 'Operational', value: data?.total_operational_by_percentage || 0 },
+        { name: 'Establishment', value: data?.total_establishment_by_percentage || 0 },
+    ];
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
@@ -23,7 +29,7 @@ export default function CategoryTypeChart() {
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
-                                data={data}
+                                data={chartData}
                                 cx="50%"
                                 cy="50%"
                                 innerRadius={55}
@@ -32,7 +38,7 @@ export default function CategoryTypeChart() {
                                 dataKey="value"
                                 strokeWidth={0}
                             >
-                                {data.map((_, i) => (
+                                {chartData.map((_, i) => (
                                     <Cell key={i} fill={COLORS[i]} />
                                 ))}
                             </Pie>

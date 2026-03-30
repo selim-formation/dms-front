@@ -10,15 +10,16 @@ import { logger } from "@/shared/utils/logger";
 const log = logger.createScoped("Query Client");
 
 /**
- * Create and configure query client
+ * Query client singleton instance
+ * Shared across the entire application
  */
-export function createAppQueryClient(): QueryClient {
-  const queryClient = createQueryClient();
+export const queryClient = (() => {
+  const client = createQueryClient();
 
   // Log cache events in development
   if (import.meta.env.DEV) {
     // Subscribe to query cache updates
-    const queryCache = (queryClient as any).cache;
+    const queryCache = (client as any).cache;
     if (queryCache && typeof queryCache.subscribe === "function") {
       queryCache.subscribe((event: any) => {
         if (event.type === "updated") {
@@ -30,7 +31,7 @@ export function createAppQueryClient(): QueryClient {
     }
 
     // Subscribe to mutation cache updates  
-    const mutationCache = (queryClient as any).mutationCache;
+    const mutationCache = (client as any).mutationCache;
     if (mutationCache && typeof mutationCache.subscribe === "function") {
       mutationCache.subscribe((event: any) => {
         if (event.type === "updated") {
@@ -42,6 +43,14 @@ export function createAppQueryClient(): QueryClient {
     }
   }
 
+  return client;
+})();
+
+/**
+ * Create and configure query client
+ * @deprecated Use `queryClient` singleton export instead
+ */
+export function createAppQueryClient(): QueryClient {
   return queryClient;
 }
 

@@ -1,4 +1,4 @@
-import { Search, Filter, Calendar, FileType, MoreHorizontal } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import { useState } from 'react';
 
 interface DocumentsFilterProps {
@@ -50,11 +50,10 @@ export default function DocumentsFilter({ onSearch, onFilterChange }: DocumentsF
 
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
-            showAdvanced
-              ? 'bg-blue-100 text-blue-700 border border-blue-300'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-          }`}
+          className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${showAdvanced
+            ? 'bg-blue-100 text-blue-700 border border-blue-300'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+            }`}
         >
           <Filter size={18} />
           <span className="hidden sm:inline">Filters</span>

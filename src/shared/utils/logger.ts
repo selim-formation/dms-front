@@ -117,10 +117,13 @@ class Logger {
  * Scoped logger with pre-set context
  */
 class ScopedLogger {
-  constructor(
-    private logger: Logger,
-    private context: string,
-  ) {}
+  logger: Logger;
+  context: string;
+
+  constructor(logger: Logger, context: string) {
+    this.logger = logger;
+    this.context = context;
+  }
 
   debug(message: string, data?: unknown): void {
     this.logger.debug(message, { context: this.context, data });

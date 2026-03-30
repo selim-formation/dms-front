@@ -3,7 +3,7 @@
  * Manages authentication token persistence
  */
 
-import { StoredAuth } from "../types/api.types";
+import type { StoredAuth } from "../types/api.types";
 import { logger } from "@/shared/utils/logger";
 
 const log = logger.createScoped("Token Storage");

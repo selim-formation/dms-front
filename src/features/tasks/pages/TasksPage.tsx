@@ -1,25 +1,33 @@
 /**
  * TasksPage Component
  * 
- * Main page component for the tasks feature
- * Integrates navbar, task list, filters, sorting, loading/error states, and empty state
- * Implements React.memo and useMemo for performance
+ * Main page component for the tasks feature.
+ * Integrates task search, filtering, sorting, and display with intelligent API routing.
+ * 
+ * Architecture:
+ * - useTask hook: Intelligently routes to search or regular fetch endpoint
+ * - useTaskFilters: Manages all filter state (status, priority, assignee, dates, sort)
+ * - Single source of truth for task data via useTask
+ * 
+ * Performance optimizations:
+ * - useMemo for sorted tasks and selected task lookup
+ * - useCallback for event handlers (prevents unnecessary re-renders)
+ * - keepPreviousData in useTask to smooth UX during searches
  */
 
 import React, { useMemo, useCallback, useState } from 'react'
-import { useTasks } from '../hooks/useTasks'
+import { useTask } from '../hooks/useTask'
 import { useTaskFilters } from '../hooks/useTaskFilters'
 import { TasksList } from '../components/TasksList'
-import { TaskFilters } from '../components/TaskFilters'
-import { TaskSort } from '../components/TaskSort'
 import { FilterSidebar } from '../components/FilterSidebar'
 import { TaskDetailsDrawer } from '../components/TaskDetailsDrawer'
+import { TaskSearchInput } from '../components/search/TaskSearchInput'
 import { DEFAULT_SORT } from '../types/task.types'
+import type { SortConfig, Task } from '../types/task.types'
 import { sortTasks } from '../utils/taskSort'
 import { hasActiveFilters } from '../utils/taskFilters'
 import Navbar from '@/shared/components/layout/Navbar'
-import type { SortConfig, SortField, SortDirection } from '../types/task.types'
-
+import { useDebounce } from "@/shared/hooks/useDebounce"
 /**
  * Loading skeleton component
  */
@@ -30,7 +38,7 @@ function LoadingState() {
                 {[...Array(6)].map((_, i) => (
                     <div
                         key={i}
-                        className="h-40 bg-gradient-to-r from-gray-200 to-gray-100 rounded-lg animate-pulse"
+                        className="h-40 bg-linear-to-r from-gray-200 to-gray-100 rounded-lg animate-pulse"
                     />
                 ))}
             </div>
@@ -63,6 +71,8 @@ export function TasksPage() {
     // State for sidebar and task drawer
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null)
+    const [searchValue, setSearchValue] = useState('')
+    const debouncedSearch = useDebounce(searchValue, 500)
 
     // Manage filters
     const {
@@ -70,16 +80,30 @@ export function TasksPage() {
         setStatusFilter,
         setPriorityFilter,
         setAssigneeFilter,
+        setTaskTypeFilter,
+        setDepartmentFilter,
         setDueDateRange,
-        setCustomDateRange,
         resetFilters,
     } = useTaskFilters()
 
     // Manage sort
-    const [sortConfig, setSortConfig] = React.useState<SortConfig>(DEFAULT_SORT)
+    const [sortConfig] = React.useState<SortConfig>(DEFAULT_SORT)
 
-    // Fetch tasks with filters applied
-    const { tasks, isLoading, isError, error, refetch } = useTasks({ filters })
+    // Fetch tasks with search and filters - uses proper TaskFilters transformation
+    const { data: tasks = [], isLoading, isError, error, refetch } = useTask({
+        search: debouncedSearch,
+        filters: {
+            status: filters.status,
+            priority: filters.priority,
+            assignee_id: filters.assignee_id ?? null,
+            task_type: filters.task_type,
+            department_id: filters.department_id,
+            due_date_from: filters.due_date_from,
+            due_date_to: filters.due_date_to,
+            sort_by: filters.sort_by,
+            sort_order: filters.sort_order,
+        },
+    })
 
     // Sort the filtered tasks using useMemo
     const displayTasks = useMemo(() => {
@@ -89,42 +113,7 @@ export function TasksPage() {
     // Check if any filters are active
     const filtersActive = hasActiveFilters(filters)
 
-    // Callbacks for sort changes (useCallback for performance)
-    const handleSortFieldChange = useCallback((field: SortField) => {
-        setSortConfig((prev) => ({
-            ...prev,
-            field,
-        }))
-    }, [])
-
-    const handleSortDirectionChange = useCallback((direction: SortDirection) => {
-        setSortConfig((prev) => ({
-            ...prev,
-            direction,
-        }))
-    }, [])
-
-    // Callbacks for filter changes (useCallback for performance)
-    const handleStatusChange = useCallback((statuses) => {
-        setStatusFilter(statuses)
-    }, [setStatusFilter])
-
-    const handlePriorityChange = useCallback((priorities) => {
-        setPriorityFilter(priorities)
-    }, [setPriorityFilter])
-
-    const handleAssigneeChange = useCallback((assigneeIds) => {
-        setAssigneeFilter(assigneeIds)
-    }, [setAssigneeFilter])
-
-    const handleDueDateRangeChange = useCallback((range) => {
-        setDueDateRange(range)
-    }, [setDueDateRange])
-
-    const handleCustomDateRangeChange = useCallback((range) => {
-        setCustomDateRange(range)
-    }, [setCustomDateRange])
-
+    // Handle reset filters
     const handleResetFilters = useCallback(() => {
         resetFilters()
         setIsSidebarOpen(false)
@@ -133,7 +122,7 @@ export function TasksPage() {
     // Find selected task from tasks array
     const selectedTask = useMemo(() => {
         if (!selectedTaskId) return null
-        return tasks.find((task) => task.id === selectedTaskId) || null
+        return tasks.find((task: Task) => task.id === selectedTaskId) || null
     }, [selectedTaskId, tasks])
 
     // Handler for task click
@@ -170,6 +159,7 @@ export function TasksPage() {
         )
     }
 
+    console.log('TasksPage - fetched tasks:', tasks)
     // Main content
     return (
         <div className="min-h-screen bg-background">
@@ -180,50 +170,59 @@ export function TasksPage() {
                     <div className="flex-1">
                         <div className="flex flex-col h-full">
                             {/* Header with Filter Button */}
-                            <div className="sticky top-0 z-10  p-4 mb-4 rounded-lg">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h1 className="text-2xl font-bold text-gray-900">Tasks</h1>
-                                    <button
-                                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isSidebarOpen
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                            }`}
-                                        aria-label="Toggle filter sidebar"
-                                    >
-                                        <svg
-                                            className="w-5 h-5"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                                            />
-                                        </svg>
-                                        <span>Filter</span>
-                                        {filtersActive && (
-                                            <span className="ml-1 px-2 py-0.5 bg-white text-blue-600 rounded-full text-xs font-semibold">
-                                                {filters.status.length + filters.priority.length + filters.assigneeIds.length + (filters.dueDateRange ? 1 : 0)}
-                                            </span>
-                                        )}
-                                    </button>
-                                </div>
-                                <p className="text-sm text-gray-600">
-                                    {displayTasks.length} of {tasks.length} task{tasks.length !== 1 ? 's' : ''}
-                                    {filtersActive && ' (filtered)'}
-                                </p>
-                            </div>
+                            <h1 className="text-2xl font-bold text-gray-900 mb-4">Tasks</h1>
 
-                            {/* <TaskSort
-                                sortField={sortConfig.field}
-                                sortDirection={sortConfig.direction}
-                                onSortFieldChange={handleSortFieldChange}
-                                onSortDirectionChange={handleSortDirectionChange}
-                            /> */}
+
+                            <div className="grid grid-cols-[1fr_auto] items-center gap-4 mb-4">
+
+                                {/* Search Input */}
+                                <div>
+                                    <TaskSearchInput
+                                        value={searchValue}
+                                        onChange={setSearchValue}
+                                        onClear={() => setSearchValue('')}
+                                        placeholder="Search tasks by title or description..."
+                                    />
+                                </div>
+
+                                <button
+                                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isSidebarOpen
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        }`}
+                                    aria-label="Toggle filter sidebar"
+                                >
+                                    <svg
+                                        className="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                                        />
+                                    </svg>
+
+                                    <span>Filter</span>
+
+                                    {filtersActive && (
+                                        <span className="ml-1 px-2 py-0.5 bg-white text-blue-600 rounded-full text-xs font-semibold">
+                                            {filters.status.length +
+                                                filters.priority.length +
+                                                (filters.assignee_id ? 1 : 0) +
+                                                (filters.task_type ? 1 : 0) +
+                                                (filters.department_id ? 1 : 0) +
+                                                (filters.due_date_from ? 1 : 0) +
+                                                (filters.due_date_to ? 1 : 0)}
+                                        </span>
+                                    )}
+                                </button>
+
+                            </div>
 
                             {/* Content */}
                             <div className="flex-1 overflow-auto">
@@ -232,7 +231,7 @@ export function TasksPage() {
                                     selectedTaskId={selectedTaskId}
                                     onTaskClick={handleTaskClick}
                                     hasFiltersApplied={filtersActive}
-                                    hasSearchQuery={filters.search.length > 0}
+                                    hasSearchQuery={searchValue.length > 0}
                                 />
                             </div>
                         </div>
@@ -245,14 +244,17 @@ export function TasksPage() {
                                 tasks={tasks}
                                 selectedStatuses={filters.status}
                                 selectedPriorities={filters.priority}
-                                selectedAssigneeIds={filters.assigneeIds}
-                                selectedDueDateRange={filters.dueDateRange}
-                                customDateRange={filters.customDateRange}
-                                onStatusChange={handleStatusChange}
-                                onPriorityChange={handlePriorityChange}
-                                onAssigneeChange={handleAssigneeChange}
-                                onDueDateRangeChange={handleDueDateRangeChange}
-                                onCustomDateRangeChange={handleCustomDateRangeChange}
+                                selectedAssigneeId={filters.assignee_id}
+                                selectedTaskType={filters.task_type}
+                                selectedDepartmentId={filters.department_id}
+                                selectedDueDateFrom={filters.due_date_from}
+                                selectedDueDateTo={filters.due_date_to}
+                                onStatusChange={setStatusFilter}
+                                onPriorityChange={setPriorityFilter}
+                                onAssigneeChange={setAssigneeFilter}
+                                onTaskTypeChange={setTaskTypeFilter}
+                                onDepartmentChange={setDepartmentFilter}
+                                onDueDateRangeChange={setDueDateRange}
                                 onReset={handleResetFilters}
                             />
                         </div>

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Plus } from 'lucide-react';
 
 interface DocumentListHeaderProps {
     onUploadClick?: () => void;
 }
 
-const DocumentListHeader: React.FC<DocumentListHeaderProps> = ({ onUploadClick }) => {
+const DocumentListHeader: React.FC<DocumentListHeaderProps> = () => {
     return (
         <div className="flex items-start justify-between mb-6">
             <div>

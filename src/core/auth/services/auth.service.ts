@@ -3,10 +3,10 @@
  * Handles authentication API calls
  */
 
-import { axios } from "@/core/api/client";
+import { apiClient } from "@/core/api/client";
 import { buildApiUrl } from "@/config/api.config";
-import { User } from "@/shared/types/common.types";
-import { LoginCredentials, RegisterData } from "../types";
+import type { AuthPayload, User } from "@/shared/types/common.types";
+import type { LoginCredentials, RegisterData } from "../types";
 import { initializeSanctum } from "./sanctum.service";
 import { logger } from "@/shared/utils/logger";
 
@@ -27,10 +27,10 @@ export async function login(
 
     // Login request
     const url = buildApiUrl("/{tenant}/login", { tenant: tenantId });
-    const response = await axios.post<{ data: User }>(url, credentials);
+    const response = await apiClient.post<{ data: User }>(url, credentials);
 
     log.info("Login successful");
-    return response.data.data;
+    return response.data;
   } catch (error) {
     log.error("Login failed", { data: error });
     throw error;
@@ -45,7 +45,7 @@ export async function logout(tenantId: string): Promise<void> {
     log.debug("Attempting logout");
 
     const url = buildApiUrl("/{tenant}/logout", { tenant: tenantId });
-    await axios.post(url);
+    await apiClient.post(url);
 
     log.info("Logout successful");
   } catch (error) {
@@ -68,10 +68,10 @@ export async function register(
     await initializeSanctum();
 
     const url = buildApiUrl("/{tenant}/register", { tenant: tenantId });
-    const response = await axios.post<{ data: User }>(url, data);
+    const response = await apiClient.post<{ data: User }>(url, data);
 
     log.info("Registration successful");
-    return response.data.data;
+    return response.data;
   } catch (error) {
     log.error("Registration failed", { data: error });
     throw error;
@@ -81,34 +81,30 @@ export async function register(
 /**
  * Get authenticated user
  */
-export async function getUser(tenantId: string): Promise<User> {
-  try {
-    const url = buildApiUrl("/{tenant}/api/user", { tenant: tenantId });
-    const response = await axios.get<{ data: User }>(url);
+export async function getUser(tenantId: string): Promise<AuthPayload> {
+  const url = buildApiUrl("/api/me", { tenant: tenantId });
 
-    return response.data.data;
-  } catch (error) {
-    log.error("Failed to fetch user", { data: error });
-    throw error;
-  }
+  const response = await apiClient.get<{ data: AuthPayload }>(url, {
+    withCredentials: true,
+  });
+
+  return response.data;
 }
 
 /**
  * Get user permissions
  */
-export async function getUserPermissions(tenantId: string): Promise<string[]> {
-  try {
-    const url = buildApiUrl("/{tenant}/api/user/permissions", {
-      tenant: tenantId,
-    });
-    const response = await axios.get<{ data: string[] }>(url);
+// export async function getUserPermissions(tenantId: string): Promise<string[]> {
+//   try {
+//     const url = buildApiUrl("/me/permissions", { tenant: tenantId });
+//     const response = await apiClient.get<{ data: string[] }>(url);
 
-    return response.data.data;
-  } catch (error) {
-    log.error("Failed to fetch permissions", { data: error });
-    throw error;
-  }
-}
+//     return response.data.data;
+//   } catch (error) {
+//     log.error("Failed to fetch permissions", { data: error });
+//     throw error;
+//   }
+// }
 
 /**
  * Check if user is authenticated

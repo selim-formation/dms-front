@@ -6,7 +6,7 @@ This guide explains how the login system now authenticates with your actual API 
 
 ### Endpoint
 
-- **URL**: `POST http://dms.test/api/login`
+- **URL**: `POST https://dms.test/api/login`
 - **Base URL**: Configured in `src/config/app.config.ts` via `VITE_API_BASE_URL`
 
 ### Request Payload
@@ -181,7 +181,7 @@ Token is cleared on:
 Set in `.env`:
 
 ```bash
-VITE_API_BASE_URL=http://dms.test
+VITE_API_BASE_URL=https://dms.test
 ```
 
 ### CSRF vs Bearer Token

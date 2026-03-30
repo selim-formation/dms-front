@@ -1,18 +1,15 @@
-import { Upload, FolderPlus, FileText } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/shared/components/ui/button';
-import SearchInput from '@/shared/components/ui/SearchInput';
-import crescentImage from '@/assets/ramadan_crescent_transparent.png';
 import patternImage from '@/assets/ramadan_pattern_transparent.png';
 
 interface Props {
   greeting: string;
   firstName: string;
-  logo: string;
   tenant: string;
 }
 
-export default function HeroSection({ greeting, firstName, logo, tenant }: Props) {
+export default function HeroSection({ greeting, firstName, tenant }: Props) {
   return (
     <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-10 text-primary-foreground z-10">
       {/* Decorative circles */}
@@ -31,27 +28,27 @@ export default function HeroSection({ greeting, firstName, logo, tenant }: Props
         }}
       />
 
-      
+
 
       <div className="relative z-10 space-y-5">
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <img src={logo} alt="Logo" className="h-16 w-16 object-contain drop-shadow-lg" />
           <h2 className="text-3xl font-bold tracking-tight">Bisco Misr</h2>
-        </div>
+        </div> */}
 
         <div>
           <h1 className="text-2xl md:text-3xl font-bold">
-            {greeting}, {firstName} 🌙
+            {greeting}, {firstName}
           </h1>
           <p className="mt-1 text-primary-foreground/80">
-            Welcome back. Your document management system is ready to help you organize, review, and manage your files efficiently.          </p>
+            Your document management system is ready to help you organize, review, and manage your files efficiently.          </p>
           <p className="mt-1 text-sm text-primary-foreground/60">
             Marketing Department · 24 Documents · 3 Pending
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Link to={`/${tenant}/documents`}>
+          <Link to="/$tenant/documents" params={{ tenant }}>
             <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
               <Upload className="h-4 w-4" /> Upload Document
             </Button>

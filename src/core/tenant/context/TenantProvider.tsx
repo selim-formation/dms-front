@@ -5,8 +5,9 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { TenantContext } from "./TenantContext";
-import { Tenant } from "../types";
+import type { Tenant } from "../types";
 import { validateTenant } from "../services/tenant.service";
+import { getTenantCookie } from "../services/tenant-cookie.service";
 import { apiClient } from "@/core/api/client";
 import { logger } from "@/shared/utils/logger";
 
@@ -20,12 +21,16 @@ interface TenantProviderProps {
 /**
  * Tenant Provider Component
  * Validates tenant and provides context to children
+ * Restores tenant from cookie if not provided as prop
  */
 export function TenantProvider({
   children,
   initialTenantId = null,
 }: TenantProviderProps) {
-  const [tenantId, setTenantId] = useState<string | null>(initialTenantId);
+  // Use initialTenantId if provided, otherwise check cookie
+  const [tenantId, setTenantId] = useState<string | null>(
+    initialTenantId || getTenantCookie(),
+  );
   const [tenant, setTenant] = useState<Tenant | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [isValid, setIsValid] = useState(false);

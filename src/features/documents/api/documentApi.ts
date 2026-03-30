@@ -1,4 +1,4 @@
-import type { ApiResponse } from '@/api/types';
+import type { ApiResponse } from '@/features/tasks/types/task.types';
 import type { Document, DocumentFilters } from '../types';
 
 // ── Mock data (replace with real API calls) ──────────────────────────
@@ -67,11 +67,11 @@ export async function getDocuments(
 
   return {
     data: paginated,
+    success: true,
     meta: {
-      current_page: page,
-      last_page: Math.ceil(total / perPage),
-      per_page: perPage,
       total,
+      page,
+      pageSize: perPage,
     },
   };
 }

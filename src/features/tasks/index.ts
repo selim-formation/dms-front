@@ -37,3 +37,16 @@ export {
   isSortField,
   isSortDirection,
 } from './types/task.types'
+// Export API service (OOP)
+export { TaskApiService, taskApiService } from './api/TaskApiService'
+
+// Export transformer for data mapping
+export { TaskTransformer, taskTransformer } from './utils/TaskTransformer'
+
+// Export hooks
+export { useTasks } from './hooks/useTasks'
+export { useTaskFilters } from './hooks/useTaskFilters'
+export { useLastTasks } from './hooks/useLastTasks'
+
+// Export page component
+export { TasksPage } from './pages/TasksPage'

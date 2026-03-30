@@ -1,16 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
+import type { StatisticsData } from '../types/statistics.types';
 
-const data = [
-    { name: 'Finance', count: 38 },
-    { name: 'Legal', count: 27 },
-    { name: 'HR', count: 21 },
-    { name: 'Engineering', count: 34 },
-    { name: 'Marketing', count: 16 },
-    { name: 'Operations', count: 29 },
-];
+export default function DepartmentsChart({ data }: { data: StatisticsData | undefined }) {
+    const chartData = (data as any)?.totalDocumentsByDepartment?.map((dept: any) => ({
+        name: dept.department,
+        count: dept.total_documents,
+    })) || [];
 
-export default function DepartmentsChart() {
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
@@ -20,7 +17,7 @@ export default function DepartmentsChart() {
             <CardContent>
                 <div className="h-56">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={data} barSize={24} layout="vertical">
+                        <BarChart data={chartData} barSize={24} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />
                             <XAxis type="number" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
                             <YAxis dataKey="name" type="category" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} width={80} />

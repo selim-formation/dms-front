@@ -4,7 +4,7 @@
  */
 
 import { useAuth } from "./useAuth";
-import { AbilityAction, AbilitySubject } from "@/shared/types/permission.types";
+import type { AbilityAction, AbilitySubject } from "@/shared/types/permission.types";
 
 interface AbilityHook {
   /** Check if user can perform action on subject */

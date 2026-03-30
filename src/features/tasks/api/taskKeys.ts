@@ -10,4 +10,6 @@ export const taskKeys = {
     list: (filters: Record<string, unknown>) => [...taskKeys.lists(), { filters }] as const,
     details: () => [...taskKeys.all, 'detail'] as const,
     detail: (id: number) => [...taskKeys.details(), id] as const,
+    lasts: () => [...taskKeys.all, 'last'] as const,
+    last: () => [...taskKeys.lasts()] as const,
 }

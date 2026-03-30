@@ -3,9 +3,9 @@
  * Handles tenant validation and retrieval
  */
 
-import { axios } from "@/core/api/client";
+import { apiClient } from "@/core/api/client";
 import { buildApiUrl } from "@/config/api.config";
-import { Tenant, TenantValidation } from "../types";
+import type { Tenant, TenantValidation } from "../types";
 import { logger } from "@/shared/utils/logger";
 
 const log = logger.createScoped("Tenant Service");
@@ -24,7 +24,7 @@ export async function validateTenant(
     });
 
     // Skip tenant injection for this specific endpoint
-    const response = await axios.get<{ data: Tenant }>(url, {
+    const response = await apiClient.get<{ data: Tenant }>(url, {
       skipTenantInjection: true,
     } as any);
 
@@ -32,7 +32,7 @@ export async function validateTenant(
 
     return {
       valid: true,
-      tenant: response.data.data,
+      tenant: response.data,
     };
   } catch (error: any) {
     log.error(`Tenant validation failed: ${tenantSlug}`, { data: error });
@@ -53,9 +53,9 @@ export async function getCurrentTenant(tenantSlug: string): Promise<Tenant> {
     log.debug(`Fetching tenant details: ${tenantSlug}`);
 
     const url = buildApiUrl("/{tenant}/api/tenant", { tenant: tenantSlug });
-    const response = await axios.get<{ data: Tenant }>(url);
+    const response = await apiClient.get<{ data: Tenant }>(url);
 
-    return response.data.data;
+    return response.data;
   } catch (error) {
     log.error(`Failed to fetch tenant: ${tenantSlug}`, { data: error });
     throw error;
@@ -70,9 +70,9 @@ export async function getTenantSettings(tenantSlug: string): Promise<any> {
     const url = buildApiUrl("/{tenant}/api/tenant/settings", {
       tenant: tenantSlug,
     });
-    const response = await axios.get(url);
+    const response = await apiClient.get<{ data: Tenant }>(url);
 
-    return response.data.data;
+    return (response as { data: Tenant }).data;
   } catch (error) {
     log.error(`Failed to fetch tenant settings: ${tenantSlug}`, {
       data: error,

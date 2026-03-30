@@ -333,13 +333,13 @@ export default function TeamPage() {
 
                                     {/* Action Buttons */}
                                     <div className="mt-5 flex gap-2">
-                                        <Link to={`/${tenant}/documents?owner=${member.id}`} className="flex-1">
+                                        <Link to="/$tenant/documents" params={{ tenant: tenant?.tenantId ?? '' }} search={{ owner: member.id } as never} className="flex-1">
                                             <Button variant="outline" className="w-full gap-2 text-sm">
                                                 <FileText className="h-4 w-4" />
                                                 Documents
                                             </Button>
                                         </Link>
-                                        <Link to={`/${tenant}/documents?shared_by=${member.id}`} className="flex-1">
+                                        <Link to="/$tenant/documents" params={{ tenant: tenant?.tenantId ?? '' }} search={{ shared_by: member.id } as never} className="flex-1">
                                             <Button
                                                 variant="outline"
                                                 className="w-full gap-2 text-sm border-primary/20 text-primary hover:bg-primary/5"

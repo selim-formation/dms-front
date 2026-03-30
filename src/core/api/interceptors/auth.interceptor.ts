@@ -47,13 +47,14 @@ export function resetCsrf(): void {
 
 /**
  * Auth request interceptor
- * Adds Bearer token and ensures CSRF token for state-changing requests
+ * Adds Bearer token and ensures CSRF token for protected requests
+ * For HTTP-only cookie auth, CSRF must be initialized for all protected endpoints
  */
 export async function authRequestInterceptor(
   config: InternalAxiosRequestConfig,
   axiosInstance: AxiosInstance,
 ): Promise<InternalAxiosRequestConfig> {
-  const method = config.method?.toLowerCase();
+  const url = config.url || "";
 
   // Add Bearer token if available
   const token = getToken();
@@ -62,15 +63,16 @@ export async function authRequestInterceptor(
     log.debug("Bearer token added to request");
   }
 
-  // Initialize CSRF for state-changing requests (if not using Bearer token)
-  if (method && ["post", "put", "patch", "delete"].includes(method)) {
-    if (!token && !csrfInitialized) {
-      try {
-        await initializeCsrf(axiosInstance);
-      } catch (error) {
-        log.error("CSRF initialization failed", { data: error });
-        // Continue anyway - Sanctum will reject if needed
-      }
+  // For HTTP-only cookie authentication, initialize CSRF for all API requests
+  // This ensures the CSRF token is available for all protected endpoints
+  const isApiRequest = url.includes("/api/");
+
+  if (isApiRequest && !csrfInitialized) {
+    try {
+      await initializeCsrf(axiosInstance);
+    } catch (error) {
+      log.error("CSRF initialization failed", { data: error });
+      // Continue anyway - it might work without CSRF
     }
   }
 

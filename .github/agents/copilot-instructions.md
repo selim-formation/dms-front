@@ -23,6 +23,7 @@ npm test && npm run lint
 TypeScript 5.x with React 19.2: Follow standard conventions
 
 ## Recent Changes
+- 001-task-search: Added TypeScript 5.x
 
 - 001-tasks-page-design: Added TypeScript 5.x with React 19.2 + TanStack Query 5.90, TanStack Router 1.159, Radix UI (shadcn/ui), Tailwind CSS 4.1, Axios 1.13, Zod 4.3
 

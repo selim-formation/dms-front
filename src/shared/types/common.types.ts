@@ -2,6 +2,13 @@
  * Common domain types used across the application
  */
 
+export interface AuthPayload {
+  user: User;
+  permissions: string[];
+  roles: string[];
+  companies: any[];
+}
+
 /**
  * User type
  */

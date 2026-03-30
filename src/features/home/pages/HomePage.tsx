@@ -1,8 +1,4 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import armaLogo from '@/assets/bisco-logo.png';
-import lanternLeftImage from '@/assets/ramadan_lantern_left_transparent.png';
-import lanternRightImage from '@/assets/ramadan_lantern_right_transparent.png';
 import HeroSection from '../components/HeroSection';
 import StatsRow from '../components/StatsRow';
 import RecentDocumentsSidebar from '../components/RecentDocumentsSidebar';
@@ -19,74 +15,75 @@ import ImportanceChart from '../components/ImportanceChart';
 import ExpiryRiskOverview2 from '../components/ExpiryRiskOverview2';
 import DocumentsByStatusChart from '../components/DocumentsByStatusChart';
 import ExpiredByDeptChart from '../components/ExpiredByDeptChart';
+import { useStatistics } from '../hooks/useStatistics';
+
 export default function HomePage() {
   const { user } = useAuth();
   const tenant = useTenant();
+  const { data } = useStatistics();
 
   const firstName = user?.name?.split(' ')[0] ?? 'Ahmed';
-  const greeting = 'Ramadan Kareem';
+  const greeting = 'Welcome back';
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8 relative">
-       
-        {/* Ramadan Lanterns */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden xl:block">
 
-          {/* Left Lantern */}
-          <img
+        {/* Ramadan Lanterns */}
+        {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden xl:block"> */}
+
+        {/* Left Lantern */}
+        {/* <img
             src={lanternLeftImage}
             alt="Ramadan Lantern Left"
             className="absolute -left-52 w-52 h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)]"
-          />
+          /> */}
 
-          {/* Right Lantern */}
-          <img
+        {/* Right Lantern */}
+        {/* <img
             src={lanternRightImage}
             alt="Ramadan Lantern Right"
             className="absolute -right-52 w-52 h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)]"
-          />
+          /> */}
 
-        </div>
+        {/* </div> */}
 
         <div className="space-y-8">
           {/* Hero */}
           <HeroSection
             greeting={greeting}
             firstName={firstName}
-            logo={armaLogo}
-            tenant={tenant}
+            tenant={tenant.tenantId ?? ''}
           />
           {/* KPI Stats */}
-          <StatsRow />
+          <StatsRow data={data} />
           {/* Pinned + Review + Analytics */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-8">
-              <PinnedDocuments tenant={tenant} />
+              <PinnedDocuments />
             </div>
             <div className="space-y-6">
               <NeedsReview tenant={tenant} />
-              <RecentDocumentsSidebar tenant={tenant} />
+              <RecentDocumentsSidebar tenant={tenant.tenantId ?? ''} />
             </div>
 
 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TypesChart />
-            <DepartmentsChart />
-            <CategoryTypeChart />
+            <TypesChart data={data} />
+            <DepartmentsChart data={data} />
+            <CategoryTypeChart data={data} />
             <RenewalChart />
-            <ImportanceChart />
-
+            <ImportanceChart data={data} />
           </div>
 
           {/* Row 1: Status + Created per Month + Expired by Dept */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ExpiredByDeptChart />
-            <DocumentsByStatusChart />
+            <ExpiredByDeptChart data={data} />
+            <DocumentsByStatusChart data={data} />
             <ExpiryRiskOverview2 />
 
             {/* <DocumentsCreatedPerMonthChart /> */}

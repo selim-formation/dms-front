@@ -18,7 +18,7 @@ export function LoginPage({
 
   const handleSocialLogin = (method: string, url: string) => {
     setItem(method)
-    window.location.href = `http://127.0.0.1:8000${url}`
+    window.location.href = `https://dms.test${url}`
   }
 
   return (

@@ -1,4 +1,4 @@
-import { FileText, Share2, Download, MoreVertical, Star, Lock } from 'lucide-react';
+import { Share2, Download, MoreVertical, Star, Lock } from 'lucide-react';
 import { useState } from 'react';
 
 interface DocumentCardProps {
@@ -23,14 +23,12 @@ const statusConfig = {
 };
 
 export default function DocumentCard({
-  id,
   title,
   description,
   type,
   size,
   dateModified,
   status,
-  department,
   author,
   icon,
   color,
@@ -66,9 +64,8 @@ export default function DocumentCard({
             >
               <Star
                 size={16}
-                className={`transition-colors ${
-                  isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'
-                }`}
+                className={`transition-colors ${isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'
+                  }`}
               />
             </button>
             <div className="relative">
@@ -81,13 +78,7 @@ export default function DocumentCard({
               {showMenu && (
                 <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                   <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors">
-                    Preview
-                  </button>
-                  <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors">
-                    Share
-                  </button>
-                  <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors border-t border-gray-200 text-red-600">
-                    Delete
+                    Pin
                   </button>
                 </div>
               )}
@@ -101,9 +92,8 @@ export default function DocumentCard({
         {/* Status and Type */}
         <div className="flex items-center gap-2 mb-3">
           <span
-            className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${
-              statusConfig[status].bg
-            } ${statusConfig[status].text} ${statusConfig[status].border}`}
+            className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${statusConfig[status].bg
+              } ${statusConfig[status].text} ${statusConfig[status].border}`}
           >
             {status}
           </span>

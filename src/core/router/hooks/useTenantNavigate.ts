@@ -19,16 +19,12 @@ export function useTenantNavigate() {
   const { tenantId } = useTenant();
 
   return (options: NavigateOptions) => {
-    // If params doesn't include tenant, add it
-    const params = options.params || {};
-    const enhancedParams = {
-      ...params,
-      tenant: tenantId || (params as any).tenant,
-    };
-
     return navigate({
       ...options,
-      params: enhancedParams,
+      params: ((prev: Record<string, unknown>) => ({
+        ...prev,
+        tenant: tenantId || (prev as any).tenant,
+      })) as any,
     });
   };
 }

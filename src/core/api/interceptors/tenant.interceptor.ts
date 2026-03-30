@@ -3,9 +3,9 @@
  * Automatically injects tenant ID into API requests
  */
 
-import { InternalAxiosRequestConfig } from "axios";
+import type { InternalAxiosRequestConfig } from "axios";
 import { logger } from "@/shared/utils/logger";
-import { ApiRequestConfig } from "../types";
+import type { ApiRequestConfig } from "../types";
 
 const log = logger.createScoped("Tenant Interceptor");
 

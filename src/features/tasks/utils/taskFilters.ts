@@ -7,98 +7,6 @@
 import type { Task, TaskFilters } from '../types/task.types'
 
 /**
- * Get date for "today"
- */
-function getToday(): Date {
-    return new Date()
-}
-
-/**
- * Get start of this week (Monday)
- */
-function getStartOfWeek(): Date {
-    const today = new Date()
-    const day = today.getDay()
-    const diff = today.getDate() - day + (day === 0 ? -6 : 1) // Adjust when day is Sunday
-    return new Date(today.setDate(diff))
-}
-
-/**
- * Get end of this week (Sunday)
- */
-function getEndOfWeek(): Date {
-    const startOfWeek = getStartOfWeek()
-    const date = new Date(startOfWeek)
-    date.setDate(date.getDate() + 6)
-    return date
-}
-
-/**
- * Get start of this month
- */
-function getStartOfMonth(): Date {
-    const today = new Date()
-    return new Date(today.getFullYear(), today.getMonth(), 1)
-}
-
-/**
- * Get end of this month
- */
-function getEndOfMonth(): Date {
-    const today = new Date()
-    return new Date(today.getFullYear(), today.getMonth() + 1, 0)
-}
-
-/**
- * Check if a date falls within a due date range
- */
-function checkDueDateRange(dueDate: string | null, range: string, customFrom: string | null, customTo: string | null): boolean {
-    if (!dueDate || !range) {
-        return true // No date filter applied
-    }
-
-    const taskDate = new Date(dueDate)
-    taskDate.setHours(0, 0, 0, 0)
-
-    switch (range) {
-        case 'today': {
-            const today = getToday()
-            today.setHours(0, 0, 0, 0)
-            return taskDate.getTime() === today.getTime()
-        }
-
-        case 'thisWeek': {
-            const startOfWeek = getStartOfWeek()
-            const endOfWeek = getEndOfWeek()
-            return taskDate >= startOfWeek && taskDate <= endOfWeek
-        }
-
-        case 'thisMonth': {
-            const startOfMonth = getStartOfMonth()
-            const endOfMonth = getEndOfMonth()
-            return taskDate >= startOfMonth && taskDate <= endOfMonth
-        }
-
-        case 'custom': {
-            if (customFrom) {
-                const fromDate = new Date(customFrom)
-                fromDate.setHours(0, 0, 0, 0)
-                if (taskDate < fromDate) return false
-            }
-            if (customTo) {
-                const toDate = new Date(customTo)
-                toDate.setHours(23, 59, 59, 999)
-                if (taskDate > toDate) return false
-            }
-            return true
-        }
-
-        default:
-            return true
-    }
-}
-
-/**
  * Filter tasks based on active filter criteria
  * 
  * Rules:
@@ -118,22 +26,33 @@ export function filterTasks(tasks: Task[], filters: TaskFilters): Task[] {
             return false
         }
 
-        // Assignee filter: empty = all, otherwise match if task has one of the selected assignees
-        if (filters.assigneeIds.length > 0) {
-            if (!task.assignee || !filters.assigneeIds.includes(task.assignee.id)) {
+        // Assignee filter: null = all, otherwise match if task has the selected assignee
+        if (filters.assignee_id !== null) {
+            if (!task.assignee || task.assignee.id !== filters.assignee_id) {
                 return false
             }
         }
 
         // Due date range filter
-        if (filters.dueDateRange) {
-            const dateRangeMatch = checkDueDateRange(
-                task.dueDate,
-                filters.dueDateRange,
-                filters.customDateRange.from,
-                filters.customDateRange.to
-            )
-            if (!dateRangeMatch) {
+        if (filters.due_date_from !== null || filters.due_date_to !== null) {
+            const taskDueDate = task.dueDate ? new Date(task.dueDate) : null
+
+            if (taskDueDate) {
+                if (filters.due_date_from) {
+                    const fromDate = new Date(filters.due_date_from)
+                    if (taskDueDate < fromDate) {
+                        return false
+                    }
+                }
+
+                if (filters.due_date_to) {
+                    const toDate = new Date(filters.due_date_to)
+                    if (taskDueDate > toDate) {
+                        return false
+                    }
+                }
+            } else {
+                // If dates are filtered but task has no due date, exclude it
                 return false
             }
         }
@@ -161,8 +80,11 @@ export function hasActiveFilters(filters: TaskFilters): boolean {
         filters.status.length > 0 ||
         filters.priority.length > 0 ||
         filters.search.trim().length > 0 ||
-        filters.assigneeIds.length > 0 ||
-        filters.dueDateRange.length > 0
+        filters.assignee_id !== null ||
+        filters.task_type !== null ||
+        filters.department_id !== null ||
+        filters.due_date_from !== null ||
+        filters.due_date_to !== null
     )
 }
 
@@ -181,12 +103,13 @@ export function resetFilters(): TaskFilters {
         status: [],
         priority: [],
         search: '',
-        assigneeIds: [],
-        dueDateRange: '',
-        customDateRange: {
-            from: null,
-            to: null,
-        },
+        assignee_id: null,
+        task_type: null,
+        department_id: null,
+        due_date_from: null,
+        due_date_to: null,
+        sort_by: 'created_at',
+        sort_order: 'desc',
     }
 }
 

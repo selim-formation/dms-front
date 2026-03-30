@@ -93,12 +93,20 @@ export interface TaskFilters {
     priority: TaskPriority[]
     /** Search query for title/description (case-insensitive, empty string = no filter) */
     search: string
-    /** Filter by assignee user IDs (empty array = no filter) */
-    assigneeIds: number[]
-    /** Filter by due date range */
-    dueDateRange: DueDateRange
-    /** Custom date range for due date filtering */
-    customDateRange: CustomDateRange
+    /** Filter by assignee user ID (0 = no filter) */
+    assignee_id: number | null
+    /** Filter by task type (empty string = no filter) */
+    task_type: string | null
+    /** Filter by department ID (0 = no filter) */
+    department_id: number | null
+    /** Filter by due date from (ISO8601: YYYY-MM-DD, null = no filter) */
+    due_date_from: string | null
+    /** Filter by due date to (ISO8601: YYYY-MM-DD, null = no filter) */
+    due_date_to: string | null
+    /** Field to sort by */
+    sort_by: 'created_at' | 'due_date' | 'priority' | 'status'
+    /** Sort direction */
+    sort_order: 'asc' | 'desc'
 }
 
 /**
@@ -217,12 +225,13 @@ export const DEFAULT_FILTERS: TaskFilters = {
     status: [],
     priority: [],
     search: '',
-    assigneeIds: [],
-    dueDateRange: '',
-    customDateRange: {
-        from: null,
-        to: null,
-    },
+    assignee_id: null,
+    task_type: null,
+    department_id: null,
+    due_date_from: null,
+    due_date_to: null,
+    sort_by: 'created_at',
+    sort_order: 'desc',
 }
 
 /**

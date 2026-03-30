@@ -5,7 +5,7 @@
 
 import { useContext } from "react";
 import { TenantContext } from "../context/TenantContext";
-import { TenantContextValue } from "../types";
+import { type TenantContextValue } from "../types";
 
 /**
  * Hook to access tenant context

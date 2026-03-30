@@ -18,7 +18,7 @@ export default function RecentDocumentsSidebar({ tenant }: Props) {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base font-bold">Recent Documents</CardTitle>
-          <Link to={`/${tenant}/documents`} className="text-xs text-primary font-medium hover:underline">View All ›</Link>
+          <Link to="/$tenant/documents" params={{ tenant }} className="text-xs text-primary font-medium hover:underline">View All ›</Link>
         </div>
       </CardHeader>
       <CardContent className="p-0 divide-y divide-border">

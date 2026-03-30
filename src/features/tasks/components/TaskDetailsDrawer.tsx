@@ -5,13 +5,11 @@
  * Shown when a task is selected from the task list
  */
 
-import React from 'react'
 import {
     Drawer,
     DrawerContent,
     DrawerHeader,
     DrawerTitle,
-    DrawerDescription,
     DrawerClose,
     DrawerFooter,
 } from '@/shared/components/ui/drawer'
@@ -200,11 +198,11 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                     </div>
 
                     {/* Tags Section */}
-                    {task.tags.length > 0 && (
+                    {task?.tags?.length > 0 && (
                         <div className="mb-6">
                             <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Tags</p>
                             <div className="flex flex-wrap gap-2">
-                                {task.tags.map((tag) => (
+                                {task?.tags?.map((tag) => (
                                     <span
                                         key={tag}
                                         className="px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200"

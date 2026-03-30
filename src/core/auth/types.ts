@@ -2,8 +2,8 @@
  * Authentication-related types
  */
 
-import { User } from "@/shared/types/common.types";
-import { PermissionString } from "@/shared/types/permission.types";
+import type { User } from "@/shared/types/common.types";
+import type { PermissionString } from "@/shared/types/permission.types";
 
 /**
  * Login credentials

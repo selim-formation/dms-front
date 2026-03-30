@@ -1,12 +1,19 @@
 /**
  * useTaskFilters Hook
  * 
- * Manages task filter state (status, priority, search, assignee, due date)
- * Provides functions to update individual filters and reset to defaults
+ * Manages task filter state matching backend API specification.
+ * Provides functions to update individual filters and reset to defaults.
+ * 
+ * Filters supported:
+ * - status, priority, task_type (string filters)
+ * - assignee_id, department_id (entity filters)
+ * - due_date_from, due_date_to (date range filters)
+ * - search (full-text search)
+ * - sort_by, sort_order (sorting)
  */
 
 import { useState, useCallback } from 'react'
-import type { TaskFilters, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
+import type { TaskFilters, TaskStatus, TaskPriority } from '../types/task.types'
 import { DEFAULT_FILTERS } from '../types/task.types'
 
 interface UseTaskFiltersReturn {
@@ -14,12 +21,14 @@ interface UseTaskFiltersReturn {
     setStatusFilter: (statuses: TaskStatus[]) => void
     setPriorityFilter: (priorities: TaskPriority[]) => void
     setSearchFilter: (search: string) => void
-    setAssigneeFilter: (assigneeIds: number[]) => void
-    setDueDateRange: (range: DueDateRange) => void
-    setCustomDateRange: (range: CustomDateRange) => void
+    setAssigneeFilter: (assigneeId: number | null) => void
+    setTaskTypeFilter: (taskType: string | null) => void
+    setDepartmentFilter: (departmentId: number | null) => void
+    setDueDateRange: (from: string | null, to: string | null) => void
+    setSortBy: (field: 'created_at' | 'due_date' | 'priority' | 'status') => void
+    setSortOrder: (order: 'asc' | 'desc') => void
     toggleStatus: (status: TaskStatus) => void
     togglePriority: (priority: TaskPriority) => void
-    toggleAssignee: (assigneeId: number) => void
     resetFilters: () => void
 }
 
@@ -27,7 +36,7 @@ interface UseTaskFiltersReturn {
  * Custom hook for managing task filters
  * 
  * Features:
- * - Manages status, priority, search, assignee, and due date filters
+ * - Manages all backend-supported filters
  * - Provides both batch and individual filter update methods
  * - useCallback ensures stable function references for performance
  */
@@ -59,26 +68,51 @@ export function useTaskFilters(): UseTaskFiltersReturn {
     }, [])
 
     // Set assignee filter
-    const setAssigneeFilter = useCallback((assigneeIds: number[]) => {
+    const setAssigneeFilter = useCallback((assigneeId: number | null) => {
         setFilters((prev) => ({
             ...prev,
-            assigneeIds,
+            assignee_id: assigneeId,
+        }))
+    }, [])
+
+    // Set task type filter
+    const setTaskTypeFilter = useCallback((taskType: string | null) => {
+        setFilters((prev) => ({
+            ...prev,
+            task_type: taskType,
+        }))
+    }, [])
+
+    // Set department filter
+    const setDepartmentFilter = useCallback((departmentId: number | null) => {
+        setFilters((prev) => ({
+            ...prev,
+            department_id: departmentId,
         }))
     }, [])
 
     // Set due date range
-    const setDueDateRange = useCallback((range: DueDateRange) => {
+    const setDueDateRange = useCallback((from: string | null, to: string | null) => {
         setFilters((prev) => ({
             ...prev,
-            dueDateRange: range,
+            due_date_from: from,
+            due_date_to: to,
         }))
     }, [])
 
-    // Set custom date range
-    const setCustomDateRange = useCallback((range: CustomDateRange) => {
+    // Set sort field
+    const setSortBy = useCallback((field: 'created_at' | 'due_date' | 'priority' | 'status') => {
         setFilters((prev) => ({
             ...prev,
-            customDateRange: range,
+            sort_by: field,
+        }))
+    }, [])
+
+    // Set sort direction
+    const setSortOrder = useCallback((order: 'asc' | 'desc') => {
+        setFilters((prev) => ({
+            ...prev,
+            sort_order: order,
         }))
     }, [])
 
@@ -112,21 +146,6 @@ export function useTaskFilters(): UseTaskFiltersReturn {
         })
     }, [])
 
-    // Toggle an assignee in/out of the filter
-    const toggleAssignee = useCallback((assigneeId: number) => {
-        setFilters((prev) => {
-            const currentAssignees = prev.assigneeIds
-            const isSelected = currentAssignees.includes(assigneeId)
-
-            return {
-                ...prev,
-                assigneeIds: isSelected
-                    ? currentAssignees.filter((id) => id !== assigneeId)
-                    : [...currentAssignees, assigneeId],
-            }
-        })
-    }, [])
-
     // Reset all filters to default state
     const resetFiltersCallback = useCallback(() => {
         setFilters(DEFAULT_FILTERS)
@@ -138,11 +157,13 @@ export function useTaskFilters(): UseTaskFiltersReturn {
         setPriorityFilter,
         setSearchFilter,
         setAssigneeFilter,
+        setTaskTypeFilter,
+        setDepartmentFilter,
         setDueDateRange,
-        setCustomDateRange,
+        setSortBy,
+        setSortOrder,
         toggleStatus,
         togglePriority,
-        toggleAssignee,
         resetFilters: resetFiltersCallback,
     }
 }

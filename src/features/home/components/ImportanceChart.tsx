@@ -1,13 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
-const data = [
-    { name: 'Critical', count: 24 },
-    { name: 'High', count: 42 },
-    { name: 'Medium', count: 35 },
-    { name: 'Low', count: 18 },
-];
-
 const COLORS: Record<string, string> = {
     Critical: 'hsl(var(--destructive))',
     High: 'hsl(var(--warning))',
@@ -15,7 +8,12 @@ const COLORS: Record<string, string> = {
     Low: 'hsl(var(--success))',
 };
 
-export default function ImportanceChart() {
+export default function ImportanceChart({ data }: { data: any }) {
+    const chartData = data?.total_documents_by_importance?.map((item: any) => ({
+        name: item.importance,
+        count: item.total_documents,
+    })) || [];
+
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
@@ -25,7 +23,7 @@ export default function ImportanceChart() {
             <CardContent>
                 <div className="h-56">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={data} barSize={32}>
+                        <BarChart data={chartData} barSize={32}>
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
                             <XAxis dataKey="name" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
                             <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />

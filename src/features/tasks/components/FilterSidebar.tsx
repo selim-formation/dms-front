@@ -5,65 +5,54 @@
  * - Status
  * - Priority
  * - Assignee
- * - Due Date
+ * - Task Type
+ * - Department
+ * - Due Date Range
  */
 
-import React, { useState, useMemo } from 'react'
-import type { Task, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
+import { useState } from 'react'
+import type { Task, TaskStatus, TaskPriority } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 
 interface FilterSidebarProps {
     tasks: Task[]
     selectedStatuses: TaskStatus[]
     selectedPriorities: TaskPriority[]
-    selectedAssigneeIds: number[]
-    selectedDueDateRange: DueDateRange
-    customDateRange: CustomDateRange
+    selectedAssigneeId: number | null
+    selectedTaskType: string | null
+    selectedDepartmentId: number | null
+    selectedDueDateFrom: string | null
+    selectedDueDateTo: string | null
     onStatusChange: (statuses: TaskStatus[]) => void
     onPriorityChange: (priorities: TaskPriority[]) => void
-    onAssigneeChange: (assigneeIds: number[]) => void
-    onDueDateRangeChange: (range: DueDateRange) => void
-    onCustomDateRangeChange: (range: CustomDateRange) => void
+    onAssigneeChange: (assigneeId: number | null) => void
+    onTaskTypeChange: (taskType: string | null) => void
+    onDepartmentChange: (departmentId: number | null) => void
+    onDueDateRangeChange: (from: string | null, to: string | null) => void
     onReset: () => void
-}
-
-/**
- * Get unique assignees from tasks
- */
-function getUniqueAssignees(tasks: Task[]) {
-    const assigneeMap = new Map<number, { id: number; name: string; avatar: string | null }>()
-
-    tasks.forEach((task) => {
-        if (task.assignee) {
-            assigneeMap.set(task.assignee.id, task.assignee)
-        }
-    })
-
-    return Array.from(assigneeMap.values()).sort((a, b) => a.name.localeCompare(b.name))
 }
 
 /**
  * FilterSidebar Component
  */
 export function FilterSidebar({
-    tasks,
+    tasks: _tasks,
     selectedStatuses,
     selectedPriorities,
-    selectedAssigneeIds,
-    selectedDueDateRange,
-    customDateRange,
+    selectedAssigneeId,
+    selectedTaskType,
+    selectedDepartmentId,
+    selectedDueDateFrom,
+    selectedDueDateTo,
     onStatusChange,
     onPriorityChange,
-    onAssigneeChange,
+    onAssigneeChange: _onAssigneeChange,
     onDueDateRangeChange,
-    onCustomDateRangeChange,
     onReset,
 }: FilterSidebarProps) {
     const [expandedSections, setExpandedSections] = useState<Set<string>>(
         new Set(['status', 'priority', 'dueDate'])
     )
-
-    const assignees = useMemo(() => getUniqueAssignees(tasks), [tasks])
 
     const statusOptions: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED']
     const priorityOptions: TaskPriority[] = ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
@@ -92,15 +81,14 @@ export function FilterSidebar({
         onPriorityChange(newPriorities)
     }
 
-    const handleAssigneeToggle = (assigneeId: number) => {
-        const newAssignees = selectedAssigneeIds.includes(assigneeId)
-            ? selectedAssigneeIds.filter((id) => id !== assigneeId)
-            : [...selectedAssigneeIds, assigneeId]
-        onAssigneeChange(newAssignees)
-    }
-
     const activeFiltersCount =
-        selectedStatuses.length + selectedPriorities.length + selectedAssigneeIds.length + (selectedDueDateRange ? 1 : 0)
+        selectedStatuses.length +
+        selectedPriorities.length +
+        (selectedAssigneeId ? 1 : 0) +
+        (selectedTaskType ? 1 : 0) +
+        (selectedDepartmentId ? 1 : 0) +
+        (selectedDueDateFrom ? 1 : 0) +
+        (selectedDueDateTo ? 1 : 0)
 
     return (
         <div className="w-80 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden flex flex-col max-h-[calc(100vh-120px)]">
@@ -211,108 +199,33 @@ export function FilterSidebar({
                     </button>
 
                     {expandedSections.has('dueDate') && (
-                        <div className="px-6 py-3 space-y-2">
-                            <label className="flex items-center gap-3 cursor-pointer group">
+                        <div className="px-6 py-3 space-y-3">
+                            <div>
+                                <label className="text-xs font-semibold text-gray-700 block mb-1">
+                                    From Date
+                                </label>
                                 <input
-                                    type="radio"
-                                    name="dueDateRange"
-                                    value="today"
-                                    checked={selectedDueDateRange === 'today'}
-                                    onChange={() => onDueDateRangeChange('today')}
-                                    className="w-4 h-4 text-blue-600 cursor-pointer"
+                                    type="date"
+                                    value={selectedDueDateFrom || ''}
+                                    onChange={(e) =>
+                                        onDueDateRangeChange(e.target.value || null, selectedDueDateTo)
+                                    }
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900">Today</span>
-                                <span className="text-xs text-gray-500">(اليوم)</span>
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer group">
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-700 block mb-1">
+                                    To Date
+                                </label>
                                 <input
-                                    type="radio"
-                                    name="dueDateRange"
-                                    value="thisWeek"
-                                    checked={selectedDueDateRange === 'thisWeek'}
-                                    onChange={() => onDueDateRangeChange('thisWeek')}
-                                    className="w-4 h-4 text-blue-600 cursor-pointer"
+                                    type="date"
+                                    value={selectedDueDateTo || ''}
+                                    onChange={(e) =>
+                                        onDueDateRangeChange(selectedDueDateFrom, e.target.value || null)
+                                    }
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900">This Week</span>
-                                <span className="text-xs text-gray-500">(هذا الأسبوع)</span>
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="dueDateRange"
-                                    value="thisMonth"
-                                    checked={selectedDueDateRange === 'thisMonth'}
-                                    onChange={() => onDueDateRangeChange('thisMonth')}
-                                    className="w-4 h-4 text-blue-600 cursor-pointer"
-                                />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900">This Month</span>
-                                <span className="text-xs text-gray-500">(هذا الشهر)</span>
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="dueDateRange"
-                                    value="custom"
-                                    checked={selectedDueDateRange === 'custom'}
-                                    onChange={() => onDueDateRangeChange('custom')}
-                                    className="w-4 h-4 text-blue-600 cursor-pointer"
-                                />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900">Custom Range</span>
-                                <span className="text-xs text-gray-500">(نطاق مخصص)</span>
-                            </label>
-
-                            {/* Custom Date Range Inputs */}
-                            {selectedDueDateRange === 'custom' && (
-                                <div className="pt-3 border-t border-gray-100 space-y-3">
-                                    <div>
-                                        <label className="text-xs font-semibold text-gray-700 block mb-1">
-                                            From Date
-                                        </label>
-                                        <input
-                                            type="date"
-                                            value={customDateRange.from || ''}
-                                            onChange={(e) =>
-                                                onCustomDateRangeChange({
-                                                    ...customDateRange,
-                                                    from: e.target.value || null,
-                                                })
-                                            }
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="text-xs font-semibold text-gray-700 block mb-1">
-                                            To Date
-                                        </label>
-                                        <input
-                                            type="date"
-                                            value={customDateRange.to || ''}
-                                            onChange={(e) =>
-                                                onCustomDateRangeChange({
-                                                    ...customDateRange,
-                                                    to: e.target.value || null,
-                                                })
-                                            }
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        />
-                                    </div>
-                                </div>
-                            )}
-
-                            <label className="flex items-center gap-3 cursor-pointer group pt-2">
-                                <input
-                                    type="radio"
-                                    name="dueDateRange"
-                                    value=""
-                                    checked={selectedDueDateRange === ''}
-                                    onChange={() => onDueDateRangeChange('')}
-                                    className="w-4 h-4 text-blue-600 cursor-pointer"
-                                />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900">All Dates</span>
-                            </label>
+                            </div>
                         </div>
                     )}
                 </div>

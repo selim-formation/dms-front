@@ -53,7 +53,6 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
   const onSubmit = async (data: LoginFormData) => {
     await submitLogin(data);
-    // alert("Login successful! Navigating to dashboard...");
     onSuccess?.();
   };
 

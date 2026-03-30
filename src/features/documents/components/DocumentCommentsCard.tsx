@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { Card } from '@/shared/components/ui/card';
-import { Button } from '@/shared/components/ui/button';
 import { MessageSquare, Heart } from 'lucide-react';
 
 interface Comment {

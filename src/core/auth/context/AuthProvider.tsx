@@ -1,18 +1,15 @@
-/**
- * Auth Provider
- * Manages authentication state and operations
- */
-
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import { User } from "@/shared/types/common.types";
-import { PermissionString } from "@/shared/types/permission.types";
-import { LoginCredentials, RegisterData } from "../types";
+import type { PermissionString } from "@/shared/types/permission.types";
+import type { LoginCredentials, RegisterData } from "../types";
 import * as authService from "../services/auth.service";
 import { resetSanctum } from "../services/sanctum.service";
+import { clearTenantCookie } from "@/core/tenant/services/tenant-cookie.service";
 import { useTenant } from "@/core/tenant/hooks/useTenant";
 import { apiClient } from "@/core/api/client";
 import { logger } from "@/shared/utils/logger";
+import { useAuthUser } from "../hooks/useAuthUser";
+import { useQueryClient } from "@tanstack/react-query";
 
 const log = logger.createScoped("AuthProvider");
 
@@ -20,69 +17,34 @@ interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-/**
- * Auth Provider Component
- */
 export function AuthProvider({ children }: AuthProviderProps) {
-  const { tenantId, isValid: isTenantValid } = useTenant();
-
-  const [user, setUser] = useState<User | null>(null);
-  const [permissions, setPermissions] = useState<PermissionString[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { tenantId, setTenantId } = useTenant();
+  const queryClient = useQueryClient();
 
   /**
-   * Load user on mount and tenant change
+   * Fetch user via TanStack Query
    */
-  useEffect(() => {
-    if (tenantId && isTenantValid) {
-      loadUser();
-    } else {
-      setUser(null);
-      setPermissions([]);
-      setIsLoading(false);
-    }
-  }, [tenantId, isTenantValid]);
+  const { data, isLoading, refetch } = useAuthUser(tenantId);
+
+
+  const user = data?.user ?? null;
+  const permissions = data?.permissions ?? [];
 
   /**
-   * Setup unauthorized callback
+   * Handle unauthorized responses globally
    */
   useEffect(() => {
     apiClient.onUnauthorized(() => {
-      log.info("Unauthorized detected, clearing auth state");
-      setUser(null);
-      setPermissions([]);
+      log.info("Unauthorized detected, clearing auth cache");
+
+      queryClient.removeQueries({
+        queryKey: ["auth"],
+      });
     });
-  }, []);
+  }, [queryClient]);
 
   /**
-   * Load user and permissions
-   */
-  const loadUser = useCallback(async () => {
-    if (!tenantId) return;
-
-    try {
-      setIsLoading(true);
-
-      const [userData, userPermissions] = await Promise.all([
-        authService.getUser(tenantId),
-        authService.getUserPermissions(tenantId),
-      ]);
-
-      setUser(userData);
-      setPermissions(userPermissions);
-
-      log.info("User loaded successfully");
-    } catch (error) {
-      log.debug("No authenticated user");
-      setUser(null);
-      setPermissions([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [tenantId]);
-
-  /**
-   * Login handler
+   * Login
    */
   const login = useCallback(
     async (credentials: LoginCredentials) => {
@@ -90,26 +52,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
         throw new Error("Tenant ID not available");
       }
 
-      try {
-        const userData = await authService.login(tenantId, credentials);
+      await authService.login(tenantId, credentials);
 
-        // Fetch permissions
-        const userPermissions = await authService.getUserPermissions(tenantId);
+      await refetch();
 
-        setUser(userData);
-        setPermissions(userPermissions);
-
-        log.info("Login successful");
-      } catch (error) {
-        log.error("Login failed", { data: error });
-        throw error;
-      }
+      log.info("Login successful");
     },
-    [tenantId],
+    [tenantId, refetch],
   );
 
   /**
-   * Logout handler
+   * Logout
    */
   const logout = useCallback(async () => {
     if (!tenantId) return;
@@ -119,17 +72,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } catch (error) {
       log.error("Logout API call failed", { data: error });
     } finally {
-      // Clear state regardless of API call success
-      setUser(null);
-      setPermissions([]);
+      queryClient.removeQueries({
+        queryKey: ["auth"],
+      });
+
       resetSanctum();
+      clearTenantCookie();
+      setTenantId(null);
 
       log.info("Logout successful");
     }
-  }, [tenantId]);
+  }, [tenantId, queryClient, setTenantId]);
 
   /**
-   * Register handler
+   * Register
    */
   const register = useCallback(
     async (data: RegisterData) => {
@@ -137,67 +93,41 @@ export function AuthProvider({ children }: AuthProviderProps) {
         throw new Error("Tenant ID not available");
       }
 
-      try {
-        const userData = await authService.register(tenantId, data);
+      await authService.register(tenantId, data);
 
-        // Fetch permissions
-        const userPermissions = await authService.getUserPermissions(tenantId);
+      await refetch();
 
-        setUser(userData);
-        setPermissions(userPermissions);
-
-        log.info("Registration successful");
-      } catch (error) {
-        log.error("Registration failed", { data: error });
-        throw error;
-      }
+      log.info("Registration successful");
     },
-    [tenantId],
+    [tenantId, refetch],
   );
 
   /**
-   * Refetch user data
-   */
-  const refetchUser = useCallback(async () => {
-    await loadUser();
-  }, [loadUser]);
-
-  /**
-   * Check if user has permission
+   * Permissions helpers
    */
   const can = useCallback(
-    (permission: PermissionString): boolean => {
-      return permissions.includes(permission);
-    },
+    (permission: PermissionString) => permissions.includes(permission),
     [permissions],
   );
 
-  /**
-   * Check if user has any of the permissions
-   */
   const canAny = useCallback(
-    (requiredPermissions: PermissionString[]): boolean => {
-      return requiredPermissions.some((permission) =>
+    (requiredPermissions: PermissionString[]) =>
+      requiredPermissions.some((permission) =>
         permissions.includes(permission),
-      );
-    },
+      ),
     [permissions],
   );
 
-  /**
-   * Check if user has all permissions
-   */
   const canAll = useCallback(
-    (requiredPermissions: PermissionString[]): boolean => {
-      return requiredPermissions.every((permission) =>
+    (requiredPermissions: PermissionString[]) =>
+      requiredPermissions.every((permission) =>
         permissions.includes(permission),
-      );
-    },
+      ),
     [permissions],
   );
 
   /**
-   * Memoized context value
+   * Context value
    */
   const contextValue = useMemo(
     () => ({
@@ -208,7 +138,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       login,
       logout,
       register,
-      refetchUser,
+      refetchUser: async () => { await refetch(); },
       can,
       canAny,
       canAll,
@@ -220,14 +150,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       login,
       logout,
       register,
-      refetchUser,
-      can,
-      canAny,
+      refetch,
+      can, canAny,
       canAll,
     ],
   );
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
   );
 }

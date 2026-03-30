@@ -5,7 +5,6 @@
  * Grid layout: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
  */
 
-import React from 'react'
 import type { Task } from '../types/task.types'
 import { TaskCard } from './TaskCard'
 import { EmptyState } from './EmptyState'

@@ -3,7 +3,7 @@
  * Handles Laravel Sanctum CSRF cookie
  */
 
-import { axios, apiClient } from "@/core/api/client";
+import { apiClient } from "@/core/api/client";
 import { logger } from "@/shared/utils/logger";
 
 const log = logger.createScoped("Sanctum Service");

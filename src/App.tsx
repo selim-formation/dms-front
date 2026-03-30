@@ -7,24 +7,25 @@ import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router";
 import { useAuth } from "./core/auth/hooks/useAuth";
 import { useTenant } from "./core/tenant/hooks/useTenant";
-import { queryClient } from "./core/providers/AppProviders";
 import "./App.css";
+import { apiClient } from "./core/api/client";
+import { useEffect } from "react";
 
 function App() {
   const auth = useAuth();
   const tenant = useTenant();
 
+  useEffect(() => {
+    apiClient.initializeCsrf();
+  }, []);
+
   return (
     <RouterProvider
       router={router}
       context={{
+        queryClient: router.options.context.queryClient,
         auth,
         tenant,
-        queryClient,
-        location: {
-          pathname: window.location.pathname,
-          search: {},
-        },
       }}
     />
   );

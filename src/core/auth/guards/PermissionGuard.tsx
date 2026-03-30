@@ -5,7 +5,7 @@
 
 import React from "react";
 import { usePermissions } from "../hooks/usePermissions";
-import { PermissionString } from "@/shared/types/permission.types";
+import type { PermissionString } from "@/shared/types/permission.types";
 
 interface PermissionGuardProps {
   children: React.ReactNode;
