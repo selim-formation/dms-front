@@ -31,19 +31,19 @@ export default defineConfig({
     proxy: {
       // Proxy all API requests to the backend
       '/api': {
-        target: 'https://dms.test',
+        target: 'https://dms.formation-obs.com',
         changeOrigin: true,
         rewrite: (path) => path,
       },
       // Proxy tenant-specific routes
       '/:tenant/api': {
-        target: 'https://dms.test',
+        target: 'https://dms.formation-obs.com',
         changeOrigin: true,
         rewrite: (path) => path,
       },
       // Proxy sanctum cookie endpoint
       '/sanctum': {
-        target: 'https://dms.test',
+        target: 'https://dms.formation-obs.com',
         changeOrigin: true,
         rewrite: (path) => path,
       },

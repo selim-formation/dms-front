@@ -18,7 +18,7 @@ export function LoginPage({
 
   const handleSocialLogin = (method: string, url: string) => {
     setItem(method)
-    window.location.href = `https://dms.test${url}`
+    window.location.href = `https://dms.formation-obs.com${url}`
   }
 
   return (

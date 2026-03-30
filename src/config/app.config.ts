@@ -18,7 +18,7 @@ export const appConfig = {
    * API configuration
    */
   api: {
-    baseUrl: import.meta.env.VITE_API_BASE_URL || "https://dms.test",
+    baseUrl: import.meta.env.VITE_API_BASE_URL || "https://dms.formation-obs.com",
     timeout: 30000, // 30 seconds
     withCredentials: true, // Required for Sanctum cookies
   },

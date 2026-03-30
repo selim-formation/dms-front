@@ -50,7 +50,7 @@ export function useDocumentsByTypes(): UseQueryResult<
             if (!tenant) throw new Error('Tenant is not available');
             const raw = await documentApiService.getDocumentsByTypes(tenant);
             const grouped = DocumentTransformer.transformByTypes(raw.data);
-
+            console.log('Fetched documents by types for tenant:', grouped);
             return { raw, grouped };
         },
         enabled: !!tenant,

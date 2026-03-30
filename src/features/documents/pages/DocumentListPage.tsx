@@ -71,6 +71,8 @@ export default function DocumentListPageRefactored(): React.ReactElement {
     keyField: 'name',
   });
 
+  console.log('Type Tabs:', typeData, 'Selected Type Tab:', selectedTypeTab);
+
   const { tabs: deptTabs, selectedGroup: selectedDeptGroup, hasData: hasDeptData } = useDocumentTabs({
     groups: deptData?.grouped,
     selectedTab: selectedDeptTab,

@@ -72,9 +72,9 @@ export interface RenewalDocuments {
 }
 
 export interface DocumentsByTypeResponse {
-    entity: string;
-    establishment: RenewalDocuments;
-    operational: RenewalDocuments;
+    type: string;
+    one_time: ApiDocument[];
+    renewal: ApiDocument[];
 }
 
 export interface DocumentsByTypeApiResponse {

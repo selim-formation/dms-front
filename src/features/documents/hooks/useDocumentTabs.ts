@@ -25,6 +25,8 @@ export function useDocumentTabs({
     keyField,
 }: UseDocumentTabsParams) {
     const tabs = useMemo(() => {
+
+        console.log('Calculating tabs with groups:', groups, keyField);
         if (!groups || groups.length === 0) return [];
         return groups.map((group) => ({
             id: group[keyField] || '',

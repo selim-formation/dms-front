@@ -42,45 +42,30 @@ export class DocumentTransformer {
      * Each document has a `category` field: "establishment" or "operational"
      */
     static transformByTypes(data: DocumentsByTypeResponse[]): GroupedDocuments[] {
+        console.log('Transforming documents by types with data:', data);
         return data.map((typeGroup) => {
-            console.log('Transforming type group:', typeGroup); // Debug log
+            const oneTime = typeGroup.one_time || [];
+            const renewal = typeGroup.renewal || [];
 
-            // Get all documents from both establishment and operational
-            const allEstablishmentDocs = [
-                ...(typeGroup.establishment?.renewal || []),
-                ...(typeGroup.establishment?.one_time || []),
-            ];
-            const allOperationalDocs = [
-                ...(typeGroup.operational?.renewal || []),
-                ...(typeGroup.operational?.one_time || []),
-            ];
-            const allDocs = [...allEstablishmentDocs, ...allOperationalDocs];
+            const estOneTime = oneTime.filter((doc) => doc.category === 'establishment');
+            const estRenewal = renewal.filter((doc) => doc.category === 'establishment');
+            const opOneTime = oneTime.filter((doc) => doc.category === 'operational');
+            const opRenewal = renewal.filter((doc) => doc.category === 'operational');
 
             return {
-                name: (typeGroup as any).entity || 'Unknown',
+                name: typeGroup.type,
                 establishment: {
-                    renewal: (typeGroup.establishment?.renewal || []).map((doc) =>
-                        this.toUIDocument(doc, false)
-                    ),
-                    oneTime: (typeGroup.establishment?.one_time || []).map((doc) =>
-                        this.toUIDocument(doc, true)
-                    ),
+                    renewal: estRenewal.map((doc) => this.toUIDocument(doc, false)),
+                    oneTime: estOneTime.map((doc) => this.toUIDocument(doc, true)),
                 },
                 operational: {
-                    renewal: (typeGroup.operational?.renewal || []).map((doc) =>
-                        this.toUIDocument(doc, false)
-                    ),
-                    oneTime: (typeGroup.operational?.one_time || []).map((doc) =>
-                        this.toUIDocument(doc, true)
-                    ),
+                    renewal: opRenewal.map((doc) => this.toUIDocument(doc, false)),
+                    oneTime: opOneTime.map((doc) => this.toUIDocument(doc, true)),
                 },
-                allDocuments: allDocs.map((doc) => {
-                    const isOneTime = [
-                        ...(typeGroup.establishment?.one_time || []),
-                        ...(typeGroup.operational?.one_time || []),
-                    ].some((d) => d.id === doc.id);
-                    return this.toUIDocument(doc, isOneTime);
-                }),
+                allDocuments: [
+                    ...oneTime.map((doc) => this.toUIDocument(doc, true)),
+                    ...renewal.map((doc) => this.toUIDocument(doc, false)),
+                ],
             };
         });
     }
