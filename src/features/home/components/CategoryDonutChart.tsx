@@ -1,12 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
-
-const data = [
-    { name: 'Contracts', value: 47 },
-    { name: 'Reports', value: 26 },
-    { name: 'Legal', value: 13 },
-    { name: 'Certificates', value: 14 },
-];
 
 const COLORS = [
     'hsl(var(--primary))',
@@ -16,11 +10,18 @@ const COLORS = [
 ];
 
 export default function CategoryDonutChart() {
+    const { t } = useTranslation(['home', 'common']);
+    const data = [
+        { name: t('home:categoryDonutChart.categories.contracts'), value: 47 },
+        { name: t('home:categoryDonutChart.categories.reports'), value: 26 },
+        { name: t('home:categoryDonutChart.categories.legal'), value: 13 },
+        { name: t('home:categoryDonutChart.categories.certificates'), value: 14 },
+    ];
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents by Category</CardTitle>
-                <p className="text-xs text-muted-foreground">Distribution across categories</p>
+                <CardTitle className="text-base font-bold">{t('home:categoryDonutChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:categoryDonutChart.subtitle')}</p>
             </CardHeader>
             <CardContent>
                 <div className="h-56">

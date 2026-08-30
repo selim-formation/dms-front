@@ -59,54 +59,139 @@ export const apiEndpoints = {
    * User endpoints
    */
   users: {
-    list: "/{tenant}/api/users",
-    create: "/{tenant}/api/users",
-    detail: "/{tenant}/api/users/{id}",
-    update: "/{tenant}/api/users/{id}",
-    delete: "/{tenant}/api/users/{id}",
-    permissions: "/{tenant}/api/users/{id}/permissions",
-    roles: "/{tenant}/api/users/{id}/roles",
+    list: "/api/{tenant}/users",
+    create: "/api/{tenant}/users",
+    detail: "/api/{tenant}/users/{id}",
+    update: "/api/{tenant}/users/{id}",
+    delete: "/api/{tenant}/users/{id}",
+    permissions: "/api/{tenant}/users/{id}/permissions",
+    roles: "/api/{tenant}/users/{id}/roles",
   },
 
   /**
    * Team endpoints
    */
   teams: {
-    list: "/{tenant}/api/teams",
-    create: "/{tenant}/api/teams",
-    detail: "/{tenant}/api/teams/{id}",
-    update: "/{tenant}/api/teams/{id}",
-    delete: "/{tenant}/api/teams/{id}",
-    members: "/{tenant}/api/teams/{id}/members",
+    list: "/api/{tenant}/teams",
+    create: "/api/{tenant}/teams",
+    detail: "/api/{tenant}/teams/{id}",
+    update: "/api/{tenant}/teams/{id}",
+    delete: "/api/{tenant}/teams/{id}",
+    members: "/api/{tenant}/teams/{id}/members",
   },
 
   /**
    * Audit log endpoints
    */
   audit: {
-    list: "/{tenant}/api/audit-logs",
-    detail: "/{tenant}/api/audit-logs/{id}",
-    export: "/{tenant}/api/audit-logs/export",
+    list: "/api/{tenant}/audit-logs",
+    detail: "/api/{tenant}/audit-logs/{id}",
+    export: "/api/{tenant}/audit-logs/export",
   },
 
   /**
    * Settings endpoints
    */
   settings: {
-    profile: "/{tenant}/api/settings/profile",
-    security: "/{tenant}/api/settings/security",
-    preferences: "/{tenant}/api/settings/preferences",
-    notifications: "/{tenant}/api/settings/notifications",
+    profile: "/api/{tenant}/settings/profile",
+    security: "/api/{tenant}/settings/security",
+    preferences: "/api/{tenant}/settings/preferences",
+    notifications: "/api/{tenant}/settings/notifications",
   },
 
   /**
    * Dashboard endpoints
    */
   dashboard: {
-    stats: "/{tenant}/api/dashboard/stats",
-    recentActivity: "/{tenant}/api/dashboard/recent-activity",
-    recentDocuments: "/{tenant}/api/dashboard/recent-documents",
+    stats: "/api/{tenant}/dashboard/stats",
+    recentActivity: "/api/{tenant}/dashboard/recent-activity",
+    recentDocuments: "/api/{tenant}/dashboard/recent-documents",
   },
+<<<<<<< Updated upstream
+=======
+
+  /**
+   * Task endpoints
+   */
+  tasks: {
+    list: "api/{tenant}/tasks",
+    detail: "api/{tenant}/tasks/{id}",
+    create: "api/{tenant}/tasks",
+    update: "api/{tenant}/tasks/{id}",
+    delete: "api/{tenant}/tasks/{id}",
+    last: "api/{tenant}/tasks/last",
+  },
+
+  /**
+   * Reminders endpoints
+   */
+  reminders: {
+    all: "api/{tenant}/documents/reminder",
+    active: "api/{tenant}/documents/active-reminders",
+  },
+
+  /**
+   * Notifications endpoints
+   */
+  notifications: {
+    list: "api/{tenant}/notifications",
+  },
+
+  /**
+   * Pinned Documents endpoints
+   */
+  pinnedDocuments: {
+    list: "api/{tenant}/pinned-documents",
+    last: "api/{tenant}/pinned-documents/last",
+    pin: "api/{tenant}/pinned-documents/pin",
+    unpin: "api/{tenant}/pinned-documents/{id}/unpin",
+  },
+
+  /**
+   * Profile endpoint (aggregate: user + stats + recent documents/favorites/pinned/tasks)
+   */
+  profile: {
+    get: "api/{tenant}/profile",
+  },
+
+  /**
+   * Favorites endpoints
+   */
+  favorites: {
+    list: "api/{tenant}/favorites",
+    last: "api/{tenant}/favorites/last",
+    view: "api/{tenant}/favorites/{id}/view",
+    create: "api/{tenant}/favorites",
+    update: "api/{tenant}/favorites/{id}",
+    delete: "api/{tenant}/favorites/{id}",
+  },
+
+  /**
+   * Document shares endpoints
+   */
+  documentShares: {
+    given: "api/{tenant}/document-shares/given",
+    received: "api/{tenant}/document-shares/received",
+    view: "api/{tenant}/document-shares/{id}",
+    create: "api/{tenant}/document-shares",
+    update: "api/{tenant}/document-shares/{id}",
+    delete: "api/{tenant}/document-shares/{id}",
+  },
+
+  /**
+   * Document comments & reactions endpoints
+   */
+  comments: {
+    byDocument: "api/{tenant}/comments/document/{documentId}",
+    byVersion: "api/{tenant}/comments/document/{documentId}/version/{versionId}",
+    thread: "api/{tenant}/comments/{commentId}/thread",
+    store: "api/{tenant}/comments/store",
+    update: "api/{tenant}/comments/{commentId}/update",
+    delete: "api/{tenant}/comments/{commentId}/delete",
+    reactions: "api/{tenant}/comments/{commentId}/reactions",
+    toggleReaction: "api/{tenant}/comments/{commentId}/reactions/toggle",
+  },
+>>>>>>> Stashed changes
 } as const;
 
 /**

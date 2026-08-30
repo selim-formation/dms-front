@@ -1,5 +1,6 @@
 import { Search, Filter, Calendar, FileType, MoreHorizontal } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DocumentsFilterProps {
   onSearch: (query: string) => void;
@@ -13,6 +14,7 @@ interface FilterState {
 }
 
 export default function DocumentsFilter({ onSearch, onFilterChange }: DocumentsFilterProps) {
+  const { t } = useTranslation(['home', 'common']);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
@@ -34,89 +36,96 @@ export default function DocumentsFilter({ onSearch, onFilterChange }: DocumentsF
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8 shadow-sm">
+    <div className="bg-card rounded-xl border border-border p-6 mb-8 shadow-sm">
       {/* Search Bar */}
       <div className="flex items-center gap-3 mb-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Search className="absolute start-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
           <input
             type="text"
-            placeholder="Search documents by name, keyword, or category..."
+            placeholder={t('home:documentsFilter.searchPlaceholder')}
             value={searchQuery}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+            className="w-full ps-10 pe-4 py-3 border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
           />
         </div>
 
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
+<<<<<<< Updated upstream
           className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${
             showAdvanced
               ? 'bg-blue-100 text-blue-700 border border-blue-300'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
           }`}
+=======
+          className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${showAdvanced
+              ? 'bg-primary/10 text-primary border border-primary/30'
+              : 'bg-muted text-muted-foreground hover:bg-accent border border-border'
+            }`}
+>>>>>>> Stashed changes
         >
           <Filter size={18} />
-          <span className="hidden sm:inline">Filters</span>
+          <span className="hidden sm:inline">{t('common:actions.filters')}</span>
         </button>
       </div>
 
       {/* Advanced Filters */}
       {showAdvanced && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-border">
           {/* Document Type */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
-              Document Type
+            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+              {t('home:documentsFilter.documentType')}
             </label>
             <select
               value={filters.type}
               onChange={(e) => handleFilterChange('type', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors appearance-none bg-white cursor-pointer"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-primary transition-colors appearance-none bg-card cursor-pointer"
             >
-              <option value="all">All Types</option>
-              <option value="pdf">PDF</option>
-              <option value="doc">Documents</option>
-              <option value="sheet">Spreadsheets</option>
-              <option value="presentation">Presentations</option>
-              <option value="image">Images</option>
+              <option value="all">{t('home:documentsFilter.types.all')}</option>
+              <option value="pdf">{t('home:documentsFilter.types.pdf')}</option>
+              <option value="doc">{t('common:common.documents')}</option>
+              <option value="sheet">{t('home:documentsFilter.types.sheet')}</option>
+              <option value="presentation">{t('home:documentsFilter.types.presentation')}</option>
+              <option value="image">{t('home:documentsFilter.types.image')}</option>
             </select>
           </div>
 
           {/* Date Range */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
-              Date Range
+            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+              {t('home:documentsFilter.dateRange')}
             </label>
             <select
               value={filters.dateRange}
               onChange={(e) => handleFilterChange('dateRange', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors appearance-none bg-white cursor-pointer"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-primary transition-colors appearance-none bg-card cursor-pointer"
             >
-              <option value="all">All Time</option>
-              <option value="today">Today</option>
-              <option value="week">This Week</option>
-              <option value="month">This Month</option>
-              <option value="quarter">This Quarter</option>
-              <option value="year">This Year</option>
+              <option value="all">{t('home:documentsFilter.dateRanges.all')}</option>
+              <option value="today">{t('home:documentsFilter.dateRanges.today')}</option>
+              <option value="week">{t('home:documentsFilter.dateRanges.week')}</option>
+              <option value="month">{t('home:documentsFilter.dateRanges.month')}</option>
+              <option value="quarter">{t('home:documentsFilter.dateRanges.quarter')}</option>
+              <option value="year">{t('home:documentsFilter.dateRanges.year')}</option>
             </select>
           </div>
 
           {/* Status */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
-              Status
+            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+              {t('home:documentsFilter.status')}
             </label>
             <select
               value={filters.status}
               onChange={(e) => handleFilterChange('status', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors appearance-none bg-white cursor-pointer"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:border-primary transition-colors appearance-none bg-card cursor-pointer"
             >
-              <option value="all">All Statuses</option>
-              <option value="active">Active</option>
-              <option value="review">Under Review</option>
-              <option value="draft">Draft</option>
-              <option value="archived">Archived</option>
+              <option value="all">{t('home:documentsFilter.statuses.all')}</option>
+              <option value="active">{t('common:status.active')}</option>
+              <option value="review">{t('home:documentsFilter.statuses.review')}</option>
+              <option value="draft">{t('common:status.draft')}</option>
+              <option value="archived">{t('common:status.archived')}</option>
             </select>
           </div>
         </div>
@@ -126,33 +135,33 @@ export default function DocumentsFilter({ onSearch, onFilterChange }: DocumentsF
       {(filters.type !== 'all' || filters.dateRange !== 'all' || filters.status !== 'all') && (
         <div className="mt-4 flex flex-wrap gap-2">
           {filters.type !== 'all' && (
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
-              Type: {filters.type}
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-chart-1/10 text-chart-1 rounded-full text-xs font-medium">
+              {t('home:documentsFilter.tagType', { value: filters.type })}
               <button
                 onClick={() => handleFilterChange('type', 'all')}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:opacity-70 transition-colors"
               >
                 ✕
               </button>
             </span>
           )}
           {filters.dateRange !== 'all' && (
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-              Date: {filters.dateRange}
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-chart-2/10 text-chart-2 rounded-full text-xs font-medium">
+              {t('home:documentsFilter.tagDate', { value: filters.dateRange })}
               <button
                 onClick={() => handleFilterChange('dateRange', 'all')}
-                className="hover:text-green-900 transition-colors"
+                className="hover:opacity-70 transition-colors"
               >
                 ✕
               </button>
             </span>
           )}
           {filters.status !== 'all' && (
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">
-              Status: {filters.status}
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-chart-3/10 text-chart-3 rounded-full text-xs font-medium">
+              {t('home:documentsFilter.tagStatus', { value: filters.status })}
               <button
                 onClick={() => handleFilterChange('status', 'all')}
-                className="hover:text-orange-900 transition-colors"
+                className="hover:opacity-70 transition-colors"
               >
                 ✕
               </button>

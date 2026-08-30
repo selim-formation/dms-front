@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid, Legend } from 'recharts';
 
@@ -10,14 +11,15 @@ const data = [
 ];
 
 export default function RenewalChart() {
+    const { t } = useTranslation(['home', 'common']);
     return (
-        <Card className="border-border rounded-xl">
+        <Card className="border-border rounded-xl h-full flex flex-col">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents By Renewal & One-Time</CardTitle>
-                <p className="text-xs text-muted-foreground">Document renewal classification</p>
+                <CardTitle className="text-base font-bold">{t('renewalChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('renewalChart.subtitle')}</p>
             </CardHeader>
-            <CardContent>
-                <div className="h-56">
+            <CardContent className="flex-1 flex flex-col justify-center">
+                <div className="h-56 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data} barSize={16}>
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
@@ -35,7 +37,7 @@ export default function RenewalChart() {
                                 iconType="circle"
                                 iconSize={8}
                                 formatter={(value) => (
-                                    <span className="text-xs text-muted-foreground">{value === 'renewal' ? 'Renewal' : 'One-Time'}</span>
+                                    <span className="text-xs text-muted-foreground">{value === 'renewal' ? t('renewalChart.renewal') : t('renewalChart.oneTime')}</span>
                                 )}
                             />
                             <Bar dataKey="renewal" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />

@@ -7,27 +7,30 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 import { type LoginFormData } from "../types";
 import { useLoginForm } from "../hooks/useLoginForm";
-
-// Validation schema
-const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(6, "Password must be at least 6 characters"),
-  remember: z.boolean().optional(),
-});
 
 interface LoginFormProps {
   onSuccess?: () => void;
 }
 
 export function LoginForm({ onSuccess }: LoginFormProps) {
+  const { t } = useTranslation(['auth', 'common']);
+
+  // Validation schema
+  const loginSchema = z.object({
+    email: z
+      .string()
+      .min(1, t('auth:loginForm.emailRequired'))
+      .email(t('auth:loginForm.emailInvalid')),
+    password: z
+      .string()
+      .min(1, t('auth:loginForm.passwordRequired'))
+      .min(6, t('auth:loginForm.passwordMinLength')),
+    remember: z.boolean().optional(),
+  });
+
   const {
     register,
     handleSubmit,
@@ -61,8 +64,8 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       {/* Error Alert */}
       {error && (
-        <div className="rounded-lg border border-(--color-error) bg-[color:var(--color-error-light) p-4">
-          <p className="text-sm font-medium text-(--color-error-dark)">
+        <div className="rounded-lg border border-destructive bg-destructive/10 p-4">
+          <p className="text-sm font-medium text-destructive">
             {error}
           </p>
         </div>
@@ -72,23 +75,23 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-(--color-text-main) mb-2">
-          Email Address
+          className="block text-sm font-medium text-foreground mb-2">
+          {t('auth:loginForm.emailAddress')}
         </label>
         <input
           id="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder={t('auth:loginForm.emailPlaceholder')}
           {...register("email")}
           className={`w-full px-4 py-2.5 rounded-lg border transition-colors ${
             errors.email
-              ? "border-(--color-error) focus:ring-2 focus:ring-(--color-error-light)"
-              : "border-(--color-border) focus:ring-2 focus:ring-(--color-primary) focus:border-transparent"
-          } bg-(--color-surface) text-(--color-text-main) placeholder-(--color-text-muted)`}
+              ? "border-destructive focus:ring-2 focus:ring-destructive/20"
+              : "border-border focus:ring-2 focus:ring-primary focus:border-transparent"
+          } bg-card text-foreground placeholder:text-muted-foreground`}
           disabled={isLoading}
         />
         {errors.email && (
-          <p className="mt-1 text-sm text-(--color-error)">
+          <p className="mt-1 text-sm text-destructive">
             {errors.email.message}
           </p>
         )}
@@ -98,26 +101,26 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       <div>
         <label
           htmlFor="password"
-          className="block text-sm font-medium text-(--color-text-main) mb-2">
-          Password
+          className="block text-sm font-medium text-foreground mb-2">
+          {t('auth:loginForm.password')}
         </label>
         <div className="relative">
           <input
             id="password"
             type={showPassword ? "text" : "password"}
-            placeholder="Enter your password"
+            placeholder={t('auth:loginForm.passwordPlaceholder')}
             {...register("password")}
             className={`w-full px-4 py-2.5 rounded-lg border transition-colors ${
               errors.password
-                ? "border-(--color-error) focus:ring-2 focus:ring-(--color-error-light)"
-                : "border-(--color-border) focus:ring-2 focus:ring-(--color-primary) focus:border-transparent"
-            } bg-(--color-surface) text-(--color-text-main) placeholder-(--color-text-muted) pr-10`}
+                ? "border-destructive focus:ring-2 focus:ring-destructive/20"
+                : "border-border focus:ring-2 focus:ring-primary focus:border-transparent"
+            } bg-card text-foreground placeholder:text-muted-foreground pe-10`}
             disabled={isLoading}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-(--color-text-muted) hover:text-(--color-text-main) transition-colors"
+            className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
             tabIndex={-1}>
             {showPassword ? (
               <svg
@@ -155,7 +158,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
           </button>
         </div>
         {errors.password && (
-          <p className="mt-1 text-sm text-(--color-error)">
+          <p className="mt-1 text-sm text-destructive">
             {errors.password.message}
           </p>
         )}
@@ -167,15 +170,15 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
           <input
             type="checkbox"
             {...register("remember")}
-            className="w-4 h-4 rounded border-(--color-border) accent-(--color-primary)"
+            className="w-4 h-4 rounded border-border accent-primary"
             disabled={isLoading}
           />
-          <span className="text-sm text-(--color-text-muted)">Remember me</span>
+          <span className="text-sm text-muted-foreground">{t('auth:loginForm.rememberMe')}</span>
         </label>
         <a
           href="#"
-          className="text-sm text-(--color-primary) hover:text-(--color-primary-hover) transition-colors font-medium">
-          Forgot password?
+          className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">
+          {t('auth:loginForm.forgotPassword')}
         </a>
       </div>
 
@@ -183,7 +186,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-(--color-primary) hover:bg-(--color-primary-hover) text-white font-semibold py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
         {isLoading ? (
           <span className="flex items-center justify-center gap-2">
             <svg
@@ -204,10 +207,10 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-            Signing in...
+            {t('auth:loginForm.signingIn')}
           </span>
         ) : (
-          "Sign In"
+          t('auth:loginForm.signIn')
         )}
       </button>
     </form>

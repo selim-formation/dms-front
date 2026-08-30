@@ -25,7 +25,7 @@ const DocumentMetaRow: React.FC<DocumentMetaRowProps> = ({
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                         {label}
                     </p>
-                    <p className={`text-sm font-medium truncate ${highlight ? 'text-amber-600' : 'text-foreground'}`}>
+                    <p className={`text-sm font-medium truncate ${highlight ? 'text-warning' : 'text-foreground'}`}>
                         {value}
                     </p>
                 </div>

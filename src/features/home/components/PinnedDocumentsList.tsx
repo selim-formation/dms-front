@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { FileText, MoreHorizontal, Target } from 'lucide-react';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { Link } from '@tanstack/react-router';
@@ -17,15 +18,24 @@ const statusStyle: Record<string, string> = {
 interface Props { tenant: string }
 
 export default function PinnedDocumentsList({ tenant }: Props) {
+  const { t } = useTranslation(['home', 'common']);
+  const statusLabel: Record<string, string> = {
+    Approved: t('common:status.approved'),
+    Draft: t('common:status.draft'),
+  };
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Target className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-bold text-foreground">Pinned Documents</h2>
+          <h2 className="text-lg font-bold text-foreground">{t('pinnedDocumentsList.title')}</h2>
         </div>
         <Link
+<<<<<<< Updated upstream
          to={`/${tenant}/documents`} className="text-sm text-primary font-medium hover:underline">View All ›</Link>
+=======
+          to="/$tenant/documents" params={{ tenant }} className="text-sm text-primary font-medium hover:underline">{t('pinnedDocumentsList.viewAll')}</Link>
+>>>>>>> Stashed changes
       </div>
       <Card>
         <CardContent className="p-0 divide-y divide-border">
@@ -38,7 +48,7 @@ export default function PinnedDocumentsList({ tenant }: Props) {
                 <p className="text-sm font-medium text-foreground truncate">{doc.name}</p>
                 <p className="text-xs text-muted-foreground">{doc.meta}</p>
               </div>
-              <span className={`text-xs font-semibold ${statusStyle[doc.status] ?? 'text-muted-foreground'}`}>{doc.status}</span>
+              <span className={`text-xs font-semibold ${statusStyle[doc.status] ?? 'text-muted-foreground'}`}>{statusLabel[doc.status] ?? doc.status}</span>
               <button className="text-muted-foreground hover:text-foreground"><MoreHorizontal className="h-4 w-4" /></button>
             </div>
           ))}

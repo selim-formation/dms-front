@@ -44,6 +44,14 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
+  /* Categorical colors for charts/tags/legends - not status-semantic */
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-chart-6: hsl(var(--chart-6));
+
   /* Sidebar Specific Colors */
   --color-sidebar-background: hsl(var(--sidebar-background));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));
@@ -65,7 +73,11 @@
 }
 
 /* 2. CSS Variables
-  Keep the raw HSL channel values here for dynamic switching.
+  Fallback values only, used for the instant before src/core/theme/
+  applyColorPalette.ts runs (called from main.tsx) and before any JS loads.
+  The active palette (src/config/color-palette*.json, selected via the
+  COLOR_PALETTE env var in vite.config.ts) is the real source of truth and
+  overrides all of these at runtime - edit the palette JSON, not this file.
 */
 @layer base {
   :root {
@@ -120,6 +132,13 @@
     --sidebar-border: 217 33% 17%;
     --sidebar-ring: 356 82% 50%;
     --sidebar-muted: 215 16% 47%;
+
+    --chart-1: 356 82% 50%;
+    --chart-2: 43 100% 58%;
+    --chart-3: 142 72% 36%;
+    --chart-4: 199 89% 48%;
+    --chart-5: 271 82% 56%;
+    --chart-6: 313 82% 56%;
   }
 
   .dark {
@@ -172,6 +191,13 @@
     --sidebar-border: 222 47% 11%;
     --sidebar-ring: 356 82% 50%;
     --sidebar-muted: 215 16% 46%;
+
+    --chart-1: 356 82% 55%;
+    --chart-2: 43 100% 60%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 199 89% 55%;
+    --chart-5: 271 82% 65%;
+    --chart-6: 313 82% 65%;
   }
 
   * {

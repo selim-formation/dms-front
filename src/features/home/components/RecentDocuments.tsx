@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { FileText, MoreHorizontal, Clock } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { Card, CardContent } from '@/shared/components/ui/card';
@@ -18,14 +19,23 @@ const statusStyle: Record<string, string> = {
 interface Props { tenant: string }
 
 export default function RecentDocuments({ tenant }: Props) {
+  const { t } = useTranslation(['home', 'common']);
+  const statusLabel: Record<string, string> = {
+    Approved: t('common:status.approved'),
+    Draft: t('common:status.draft'),
+  };
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Clock className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-bold text-foreground">Recent Documents</h2>
+          <h2 className="text-lg font-bold text-foreground">{t('recentDocuments.title')}</h2>
         </div>
+<<<<<<< Updated upstream
         <Link to={`/${tenant}/documents`} className="text-sm text-primary font-medium hover:underline">View All ›</Link>
+=======
+        <Link to="/$tenant/documents" params={{ tenant }} className="text-sm text-primary font-medium hover:underline">{t('recentDocuments.viewAll')}</Link>
+>>>>>>> Stashed changes
       </div>
       <Card>
         <CardContent className="p-0 divide-y divide-border">
@@ -38,7 +48,7 @@ export default function RecentDocuments({ tenant }: Props) {
                 <p className="text-sm font-medium text-foreground truncate">{doc.name}</p>
                 <p className="text-xs text-muted-foreground">{doc.meta}</p>
               </div>
-              <span className={`text-xs font-semibold ${statusStyle[doc.status] ?? 'text-muted-foreground'}`}>{doc.status}</span>
+              <span className={`text-xs font-semibold ${statusStyle[doc.status] ?? 'text-muted-foreground'}`}>{statusLabel[doc.status] ?? doc.status}</span>
               <button className="text-muted-foreground hover:text-foreground"><MoreHorizontal className="h-4 w-4" /></button>
             </div>
           ))}

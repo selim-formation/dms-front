@@ -1,0 +1,18 @@
+{
+  "teamPage": {
+    "title": "الفريق",
+    "subtitle": "إدارة أعضاء فريقك وصلاحيات وصولهم إلى المستندات",
+    "inviteMember": "دعوة عضو",
+    "totalMembers": "إجمالي الأعضاء",
+    "activeNow": "نشط الآن",
+    "administrators": "المسؤولون",
+    "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني أو القسم...",
+    "all": "الكل",
+    "editMember": "تعديل العضو",
+    "changeRole": "تغيير الدور",
+    "remove": "إزالة",
+    "documents": "المستندات",
+    "shared": "مشترك",
+    "noTeamMembersFound": "لم يتم العثور على أعضاء في الفريق"
+  }
+}

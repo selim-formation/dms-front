@@ -25,6 +25,7 @@ export const DOCUMENTS_FEATURE = {
     "/$tenant/documents/$documentId",
     "/$tenant/documents/$documentId/edit",
     "/$tenant/documents/new",
+    "/$tenant/document-shares",
   ],
   permissions: [
     "documents.view",
@@ -34,5 +35,9 @@ export const DOCUMENTS_FEATURE = {
     "documents.delete.own",
     "documents.delete.any",
     "documents.share",
+    "read_document_shares",
+    "create_document_shares",
+    "update_document_shares",
+    "delete_document_shares",
   ],
 } as const;

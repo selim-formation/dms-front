@@ -64,6 +64,91 @@ export function hexToRgb(hex: string): [number, number, number] {
 }
 
 /**
+ * Convert RGB to HSL
+ * @example rgbToHsl(37, 99, 235) // returns { h: 220, s: 83, l: 53 }
+ */
+export function rgbToHsl(
+  r: number,
+  g: number,
+  b: number,
+): { h: number; s: number; l: number } {
+  const rs = r / 255;
+  const gs = g / 255;
+  const bs = b / 255;
+  const max = Math.max(rs, gs, bs);
+  const min = Math.min(rs, gs, bs);
+  const l = (max + min) / 2;
+
+  if (max === min) return { h: 0, s: 0, l: Math.round(l * 100) };
+
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h: number;
+  switch (max) {
+    case rs:
+      h = ((gs - bs) / d + (gs < bs ? 6 : 0)) * 60;
+      break;
+    case gs:
+      h = ((bs - rs) / d + 2) * 60;
+      break;
+    default:
+      h = ((rs - gs) / d + 4) * 60;
+  }
+
+  return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+/**
+ * Convert a hex color to an HSL channel string matching this project's
+ * `--css-var: H S% L%` convention (consumed as `hsl(var(--css-var))`)
+ * @example hexToHslString('#2563EB') // returns '220 83% 53%'
+ */
+export function hexToHslString(hex: string): string {
+  const [r, g, b] = hexToRgb(hex);
+  const { h, s, l } = rgbToHsl(r, g, b);
+  return `${h} ${s}% ${l}%`;
+}
+
+/**
+ * Rotate a color's hue by a number of degrees, keeping saturation/lightness.
+ * Used to derive a harmonious categorical (chart/tag) palette from a single
+ * brand color instead of hand-picking unrelated hex values.
+ * @example rotateHue('#2563EB', 60)
+ */
+export function rotateHue(hex: string, degrees: number): string {
+  const [r, g, b] = hexToRgb(hex);
+  const { h, s, l } = rgbToHsl(r, g, b);
+  const newHue = (((h + degrees) % 360) + 360) % 360;
+  return hslToHex(newHue, s, l);
+}
+
+/**
+ * Convert HSL to hex
+ * @example hslToHex(220, 83, 53) // returns '#2563EB'
+ */
+export function hslToHex(h: number, s: number, l: number): string {
+  const sNorm = s / 100;
+  const lNorm = l / 100;
+  const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = lNorm - c / 2;
+
+  let [r, g, b] = [0, 0, 0];
+  if (h < 60) [r, g, b] = [c, x, 0];
+  else if (h < 120) [r, g, b] = [x, c, 0];
+  else if (h < 180) [r, g, b] = [0, c, x];
+  else if (h < 240) [r, g, b] = [0, x, c];
+  else if (h < 300) [r, g, b] = [x, 0, c];
+  else [r, g, b] = [c, 0, x];
+
+  return rgbToHex(
+    Math.round((r + m) * 255),
+    Math.round((g + m) * 255),
+    Math.round((b + m) * 255),
+  );
+}
+
+/**
  * Convert RGB to hex
  * @example rgbToHex(37, 99, 235) // returns '#2563EB'
  */

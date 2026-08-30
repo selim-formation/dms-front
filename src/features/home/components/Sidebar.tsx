@@ -1,8 +1,10 @@
 import { Bell, } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function Sidebar() {
+    const { t } = useTranslation(['home', 'common']);
     const upcomingReminders = [
         { title: 'Contract Renewal', date: 'Feb 15, 2026', time: '09:00' },
         { title: 'Policy Review Deadline', date: 'Feb 18, 2026', time: '14:00' },
@@ -11,11 +13,11 @@ export default function Sidebar() {
 
     return (
         <div className="space-y-6">
-            <div className="bg-gray-900 text-white rounded-xl p-6">
+            <div className="bg-foreground text-background rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold">Assigned to Me</h3>
+                    <h3 className="font-semibold">{t('sidebar.assignedToMe')}</h3>
                     <span className="text-xs font-medium bg-primary text-primary-foreground rounded-full px-2.5 py-0.5">
-                        {upcomingReminders.length} tasks
+                        {t('sidebar.tasksCount', { count: upcomingReminders.length })}
                     </span>
                 </div>
 

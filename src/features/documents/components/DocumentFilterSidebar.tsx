@@ -1,5 +1,6 @@
 import { ChevronDown, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface FilterSidebarProps {
     onFiltersChange: (filters: Filters) => void;
@@ -24,6 +25,7 @@ export default function DocumentFilterSidebar({
     onFiltersChange,
     onClearFilters,
 }: FilterSidebarProps) {
+    const { t } = useTranslation(['documents', 'common']);
     const [expandedSections, setExpandedSections] = useState<Set<string>>(
         new Set(['types', 'departments'])
     );
@@ -37,40 +39,40 @@ export default function DocumentFilterSidebar({
 
     const filterSections: Record<string, FilterSection> = {
         types: {
-            label: 'Type',
-            labelArabic: 'نوع المستند',
+            label: t('documentFilterSidebar.sections.type'),
+            labelArabic: t('documentFilterSidebar.sections.typeArabic'),
             items: [
-                { label: 'Licenses (تراخيص)', id: 'licenses' },
-                { label: 'Permits (تصاريح)', id: 'permits' },
-                { label: 'Authorizations (تفويضات)', id: 'authorizations' },
-                { label: 'Cards (بطاقات)', id: 'cards' },
-                { label: 'Approvals (اذونات)', id: 'approvals' },
-                { label: 'Equipment (الات)', id: 'equipment' },
+                { label: t('documentFilterSidebar.types.licenses'), id: 'licenses' },
+                { label: t('documentFilterSidebar.types.permits'), id: 'permits' },
+                { label: t('documentFilterSidebar.types.authorizations'), id: 'authorizations' },
+                { label: t('documentFilterSidebar.types.cards'), id: 'cards' },
+                { label: t('documentFilterSidebar.types.approvals'), id: 'approvals' },
+                { label: t('documentFilterSidebar.types.equipment'), id: 'equipment' },
             ],
         },
         entities: {
-            label: 'Entity',
-            labelArabic: 'الكيان',
+            label: t('documentFilterSidebar.sections.entity'),
+            labelArabic: t('documentFilterSidebar.sections.entityArabic'),
             items: [
-                { label: 'Operational', id: 'operational' },
-                { label: 'Establishment', id: 'establishment' },
+                { label: t('entityType.operational'), id: 'operational' },
+                { label: t('entityType.establishment'), id: 'establishment' },
             ],
         },
         renewals: {
-            label: 'Renewal',
-            labelArabic: 'التجديد',
+            label: t('documentFilterSidebar.sections.renewal'),
+            labelArabic: t('documentFilterSidebar.sections.renewalArabic'),
             items: [
-                { label: 'One-Time', id: 'one-time' },
-                { label: 'Renewable', id: 'renewable' },
+                { label: t('renewalType.oneTime'), id: 'one-time' },
+                { label: t('renewalType.renewable'), id: 'renewable' },
             ],
         },
         importances: {
-            label: 'Importance',
-            labelArabic: 'الأهمية',
+            label: t('documentFilterSidebar.sections.importance'),
+            labelArabic: t('documentFilterSidebar.sections.importanceArabic'),
             items: [
-                { label: 'Critical', id: 'critical' },
-                { label: 'High', id: 'high' },
-                { label: 'Medium', id: 'medium' },
+                { label: t('common:priority.critical'), id: 'critical' },
+                { label: t('common:priority.high'), id: 'high' },
+                { label: t('common:priority.medium'), id: 'medium' },
             ],
         },
     };
@@ -114,38 +116,38 @@ export default function DocumentFilterSidebar({
     const hasActiveFilters = Object.values(filters).some((arr) => arr.length > 0);
 
     return (
-        <div className="w-80 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col h-fit sticky top-6">
+        <div className="w-80 bg-card rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col h-fit sticky top-6">
             {/* Header */}
-            <div className="px-6 py-4 border-b border-gray-100 bg-gray-50">
-                <h3 className="text-sm font-bold text-gray-900">Advanced Filters</h3>
-                <p className="text-xs text-gray-500 mt-0.5">تصفية متقدمة</p>
+            <div className="px-6 py-4 border-b border-border bg-muted">
+                <h3 className="text-sm font-bold text-foreground">{t('documentFilterSidebar.title')}</h3>
+                <p className="text-xs text-muted-foreground mt-0.5">{t('documentFilterSidebar.titleArabic')}</p>
             </div>
 
             {/* Filter Sections */}
             <div className="flex-1 overflow-y-auto">
                 {Object.entries(filterSections).map(([key, section]) => (
-                    <div key={key} className="border-b border-gray-100 last:border-b-0">
+                    <div key={key} className="border-b border-border last:border-b-0">
                         {/* Section Header */}
                         <button
                             onClick={() => toggleSection(key)}
-                            className="w-full flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors"
+                            className="w-full flex items-center justify-between px-6 py-3 hover:bg-muted transition-colors"
                         >
-                            <div className="text-left">
-                                <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide">
+                            <div className="text-start">
+                                <p className="text-xs font-semibold text-foreground uppercase tracking-wide">
                                     {section.label}
                                 </p>
-                                <p className="text-xs text-gray-500 mt-0.5">{section.labelArabic}</p>
+                                <p className="text-xs text-muted-foreground mt-0.5">{section.labelArabic}</p>
                             </div>
                             <ChevronDown
                                 size={16}
-                                className={`text-gray-400 transition-transform ${expandedSections.has(key) ? '' : '-rotate-90'
+                                className={`text-muted-foreground transition-transform ${expandedSections.has(key) ? '' : '-rotate-90'
                                     }`}
                             />
                         </button>
 
                         {/* Section Content */}
                         {expandedSections.has(key) && (
-                            <div className="px-6 py-3 bg-gray-50 space-y-2.5">
+                            <div className="px-6 py-3 bg-muted space-y-2.5">
                                 {section.items.map((item) => {
                                     const isChecked =
                                         filters[key as keyof Filters]?.includes(item.id) || false;
@@ -165,13 +167,13 @@ export default function DocumentFilterSidebar({
                                                         e.target.checked
                                                     )
                                                 }
-                                                className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+                                                className="w-4 h-4 rounded border-border text-primary focus:ring-primary cursor-pointer"
                                             />
-                                            <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                                                 {item.label}
                                             </span>
                                             {isChecked && (
-                                                <span className="ml-auto px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full font-medium">
+                                                <span className="ms-auto px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full font-medium">
                                                     ✓
                                                 </span>
                                             )}
@@ -186,13 +188,13 @@ export default function DocumentFilterSidebar({
 
             {/* Footer */}
             {hasActiveFilters && (
-                <div className="px-6 py-4 border-t border-gray-100 bg-gray-50">
+                <div className="px-6 py-4 border-t border-border bg-muted">
                     <button
                         onClick={handleClearFilters}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors font-medium text-sm"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-card border border-border text-muted-foreground hover:bg-muted transition-colors font-medium text-sm"
                     >
                         <X size={16} />
-                        Clear All Filters
+                        {t('documentFilterSidebar.clearAllFilters')}
                     </button>
                 </div>
             )}

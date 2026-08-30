@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 import { Progress } from '@/shared/components/ui/progress';
@@ -10,10 +11,11 @@ const data = [
   { month: 'Apr', risk: 50 },
 ];
 export default function ExpiryRiskOverview2() {
+  const { t } = useTranslation(['home', 'common']);
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Expiry Risk Overview</CardTitle>
+        <CardTitle className="text-base font-bold">{t('home:expiryRiskOverview2.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="h-44">
@@ -29,14 +31,14 @@ export default function ExpiryRiskOverview2() {
         </div>
         <div className="mt-3 grid grid-cols-2 gap-3">
           <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">Missing deadline</p>
+            <p className="text-xs text-muted-foreground">{t('home:expiryRiskOverview2.missingDeadline')}</p>
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold text-destructive">5%</span>
               <Progress value={5} className="h-2 flex-1 [&>div]:bg-destructive" />
             </div>
           </div>
           <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">Renewal Compliance Rate</p>
+            <p className="text-xs text-muted-foreground">{t('home:expiryRiskOverview2.renewalComplianceRate')}</p>
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold text-foreground">78%</span>
               <Progress value={78} className="h-2 flex-1" />

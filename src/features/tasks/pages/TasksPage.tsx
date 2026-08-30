@@ -7,7 +7,12 @@
  */
 
 import React, { useMemo, useCallback, useState } from 'react'
+<<<<<<< Updated upstream
 import { useTasks } from '../hooks/useTasks'
+=======
+import { useTranslation } from 'react-i18next'
+import { useTask } from '../hooks/useTask'
+>>>>>>> Stashed changes
 import { useTaskFilters } from '../hooks/useTaskFilters'
 import { TasksList } from '../components/TasksList'
 import { TaskFilters } from '../components/TaskFilters'
@@ -30,7 +35,11 @@ function LoadingState() {
                 {[...Array(6)].map((_, i) => (
                     <div
                         key={i}
+<<<<<<< Updated upstream
                         className="h-40 bg-gradient-to-r from-gray-200 to-gray-100 rounded-lg animate-pulse"
+=======
+                        className="h-40 bg-linear-to-r from-secondary to-muted rounded-lg animate-pulse"
+>>>>>>> Stashed changes
                     />
                 ))}
             </div>
@@ -42,24 +51,26 @@ function LoadingState() {
  * Error state component
  */
 function ErrorState({ error, onRetry }: { error: Error | null; onRetry: () => void }) {
+    const { t } = useTranslation(['tasks', 'common'])
     return (
         <div className="flex flex-col items-center justify-center min-h-64 py-12 px-4">
             <div className="text-4xl mb-4">⚠️</div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Failed to load tasks</h3>
-            <p className="text-gray-600 text-center max-w-sm mb-4">
-                {error?.message || 'An error occurred while fetching tasks'}
+            <h3 className="text-lg font-semibold text-foreground mb-2">{t('tasks:tasksPage.failedToLoad')}</h3>
+            <p className="text-muted-foreground text-center max-w-sm mb-4">
+                {error?.message || t('tasks:tasksPage.fetchError')}
             </p>
             <button
                 onClick={onRetry}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
-                Try Again
+                {t('tasks:tasksPage.tryAgain')}
             </button>
         </div>
     )
 }
 
 export function TasksPage() {
+    const { t } = useTranslation(['tasks', 'common'])
     // State for sidebar and task drawer
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null)
@@ -150,8 +161,8 @@ export function TasksPage() {
     if (isLoading) {
         return (
             <div className="flex flex-col h-full">
-                <div className="sticky top-0 z-10 bg-white border-b border-gray-200 p-4">
-                    <h1 className="text-2xl font-bold text-gray-900">Tasks</h1>
+                <div className="sticky top-0 z-10 bg-card border-b border-border p-4">
+                    <h1 className="text-2xl font-bold text-foreground">{t('tasks:tasksPage.title')}</h1>
                 </div>
                 <LoadingState />
             </div>
@@ -163,7 +174,7 @@ export function TasksPage() {
         return (
             <div className="flex flex-col h-full">
                 <div className="sticky top-0 z-10  p-4">
-                    <h1 className="text-2xl font-bold text-gray-900">Tasks</h1>
+                    <h1 className="text-2xl font-bold text-foreground">{t('tasks:tasksPage.title')}</h1>
                 </div>
                 <ErrorState error={error as Error} onRetry={() => refetch()} />
             </div>
@@ -180,6 +191,7 @@ export function TasksPage() {
                     <div className="flex-1">
                         <div className="flex flex-col h-full">
                             {/* Header with Filter Button */}
+<<<<<<< Updated upstream
                             <div className="sticky top-0 z-10  p-4 mb-4 rounded-lg">
                                 <div className="flex items-center justify-between mb-2">
                                     <h1 className="text-2xl font-bold text-gray-900">Tasks</h1>
@@ -216,6 +228,60 @@ export function TasksPage() {
                                     {displayTasks.length} of {tasks.length} task{tasks.length !== 1 ? 's' : ''}
                                     {filtersActive && ' (filtered)'}
                                 </p>
+=======
+                            <h1 className="text-2xl font-bold text-foreground mb-4">{t('tasks:tasksPage.title')}</h1>
+
+
+                            <div className="grid grid-cols-[1fr_auto] items-center gap-4 mb-4">
+
+                                {/* Search Input */}
+                                <div>
+                                    <TaskSearchInput
+                                        value={searchValue}
+                                        onChange={setSearchValue}
+                                        onClear={() => setSearchValue('')}
+                                        placeholder={t('tasks:tasksPage.searchPlaceholder')}
+                                    />
+                                </div>
+
+                                <button
+                                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isSidebarOpen
+                                        ? 'bg-primary text-primary-foreground'
+                                        : 'bg-muted text-muted-foreground hover:bg-accent'
+                                        }`}
+                                    aria-label={t('tasks:tasksPage.toggleFilterSidebar')}
+                                >
+                                    <svg
+                                        className="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                                        />
+                                    </svg>
+
+                                    <span>{t('tasks:tasksPage.filter')}</span>
+
+                                    {filtersActive && (
+                                        <span className="ms-1 px-2 py-0.5 bg-primary-foreground text-primary rounded-full text-xs font-semibold">
+                                            {filters.status.length +
+                                                filters.priority.length +
+                                                (filters.assignee_id ? 1 : 0) +
+                                                (filters.task_type ? 1 : 0) +
+                                                (filters.department_id ? 1 : 0) +
+                                                (filters.due_date_from ? 1 : 0) +
+                                                (filters.due_date_to ? 1 : 0)}
+                                        </span>
+                                    )}
+                                </button>
+
+>>>>>>> Stashed changes
                             </div>
 
                             {/* <TaskSort

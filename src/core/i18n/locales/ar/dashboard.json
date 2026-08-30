@@ -1,0 +1,23 @@
+{
+  "title": "لوحة التحكم",
+  "tenant": "المستأجر:",
+  "stats": {
+    "documents": "المستندات",
+    "workspaces": "مساحات العمل",
+    "users": "المستخدمون",
+    "storage": "التخزين"
+  },
+  "quickActions": {
+    "title": "إجراءات سريعة",
+    "uploadDocument": "رفع مستند",
+    "createWorkspace": "إنشاء مساحة عمل",
+    "inviteUser": "دعوة مستخدم"
+  },
+  "recentActivity": {
+    "title": "النشاط الأخير",
+    "uploaded": "رفع",
+    "created": "أنشأ",
+    "edited": "عدّل",
+    "shared": "شارك"
+  }
+}

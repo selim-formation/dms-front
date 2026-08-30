@@ -1,5 +1,6 @@
 import { Plus, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentRow from './DocumentRow';
 
 interface GroupedDocument {
@@ -30,66 +31,67 @@ export default function DocumentGroupCard({
     onAddNew,
 }: DocumentGroupCardProps) {
     const [isExpanded, setIsExpanded] = useState(true);
+    const { t } = useTranslation(['documents', 'common']);
 
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div className="bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             {/* Group Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer"
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted hover:bg-accent transition-colors cursor-pointer"
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 <div className="flex items-center gap-4 flex-1">
-                    <button className="text-gray-500 hover:text-gray-700 transition-colors">
+                    <button className="text-muted-foreground hover:text-foreground transition-colors">
                         <ChevronDown
                             size={20}
                             className={`transition-transform duration-300 ${isExpanded ? '' : '-rotate-90'}`}
                         />
                     </button>
                     <div>
-                        <h3 className="text-sm font-bold text-gray-900">{typeNameArabic}</h3>
-                        <p className="text-xs text-gray-500 mt-0.5">{typeNameEnglish}</p>
+                        <h3 className="text-sm font-bold text-foreground">{typeNameArabic}</h3>
+                        <p className="text-xs text-muted-foreground mt-0.5">{typeNameEnglish}</p>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <div className="bg-white rounded-full px-3 py-1 border border-gray-200">
-                        <span className="text-xs font-semibold text-gray-700">{count} documents</span>
+                    <div className="bg-card rounded-full px-3 py-1 border border-border">
+                        <span className="text-xs font-semibold text-muted-foreground">{t('documentGroupCard.documentsCount', { count })}</span>
                     </div>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             onAddNew();
                         }}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors font-medium text-sm"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium text-sm"
                     >
                         <Plus size={16} />
-                        <span className="hidden sm:inline">Add</span>
+                        <span className="hidden sm:inline">{t('documentGroupCard.add')}</span>
                     </button>
                 </div>
             </div>
 
             {/* Group Content */}
             {isExpanded && (
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-border">
                     {/* Header Row */}
-                    <div className="hidden lg:flex items-center gap-4 px-6 py-3 bg-gray-50 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <div className="hidden lg:flex items-center gap-4 px-6 py-3 bg-muted text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                         <div className="w-6">
                             <input
                                 type="checkbox"
-                                className="w-4 h-4 rounded border-gray-300"
+                                className="w-4 h-4 rounded border-border"
                                 onChange={(e) => {
                                     // Handle select all
                                     console.log('Select all:', e.target.checked);
                                 }}
                             />
                         </div>
-                        <div className="flex-1">Document Name</div>
-                        <div className="w-28">Department</div>
-                        <div className="w-28">Entity</div>
-                        <div className="w-24">Renewal</div>
-                        <div className="w-20">Importance</div>
-                        <div className="w-32">Expiry Date</div>
-                        <div className="w-20">Status</div>
-                        <div className="w-20">Actions</div>
+                        <div className="flex-1">{t('documentGroupCard.columnName')}</div>
+                        <div className="w-28">{t('documentGroupCard.columnDepartment')}</div>
+                        <div className="w-28">{t('documentGroupCard.columnEntity')}</div>
+                        <div className="w-24">{t('documentGroupCard.columnRenewal')}</div>
+                        <div className="w-20">{t('documentGroupCard.columnImportance')}</div>
+                        <div className="w-32">{t('documentGroupCard.columnExpiryDate')}</div>
+                        <div className="w-20">{t('documentGroupCard.columnStatus')}</div>
+                        <div className="w-20">{t('documentGroupCard.columnActions')}</div>
                     </div>
 
                     {/* Document Rows */}
@@ -102,14 +104,14 @@ export default function DocumentGroupCard({
             {/* Empty State */}
             {isExpanded && documents.length === 0 && (
                 <div className="px-6 py-12 text-center">
-                    <div className="text-gray-400 text-4xl mb-4">📄</div>
-                    <p className="text-gray-500 text-sm mb-4">No documents in this category</p>
+                    <div className="text-muted-foreground text-4xl mb-4">📄</div>
+                    <p className="text-muted-foreground text-sm mb-4">{t('documentEmptyState.withoutQuery')}</p>
                     <button
                         onClick={onAddNew}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium text-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
                     >
                         <Plus size={16} />
-                        Add Your First Document
+                        {t('documentGroupCard.addFirstDocument')}
                     </button>
                 </div>
             )}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 import { Progress } from '@/shared/components/ui/progress';
@@ -8,11 +9,22 @@ const data = [
   { dept: 'IT', count: 2 },
 ];
 const COLORS = ['hsl(var(--warning))', 'hsl(var(--success))', 'hsl(var(--primary))', 'hsl(var(--info))'];
+<<<<<<< Updated upstream
 export default function ExpiredByDeptChart() {
+=======
+
+export default function ExpiredByDeptChart({ data }: { data: any }) {
+  const { t } = useTranslation(['home', 'common']);
+  const chartData = data?.total_expired_documents_by_departments?.map((item: any) => ({
+    dept: item.department,
+    count: item.total_documents,
+  })) || [];
+
+>>>>>>> Stashed changes
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Expired Documents by Department</CardTitle>
+        <CardTitle className="text-base font-bold">{t('home:expiredByDeptChart.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="h-44">

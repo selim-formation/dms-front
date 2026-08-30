@@ -1,0 +1,343 @@
+{
+  "comments": {
+    "title": "Comments",
+    "submitComment": "Comment",
+    "you": "You",
+    "placeholder": "Add a comment...",
+    "replyPlaceholder": "Write a reply...",
+    "posting": "Posting...",
+    "deleting": "Deleting...",
+    "failedToLoad": "Failed to load comments.",
+    "loadMore": "Load more comments",
+    "noComments": "No comments yet. Start the discussion.",
+    "deleted": "This comment was deleted.",
+    "deleteConfirm": "Delete this comment?"
+  },
+  "reactions": {
+    "like": "Like",
+    "approve": "Approve",
+    "reject": "Reject",
+    "helpful": "Helpful",
+    "commentActions": "Comment actions"
+  },
+  "departmentTabs": {
+    "all": "All Documents",
+    "engineering": "Engineering",
+    "product": "Product",
+    "marketing": "Marketing",
+    "hr": "Human Resources",
+    "legal": "Legal & Compliance"
+  },
+  "documentCard": {
+    "statusReview": "Review",
+    "byAuthor": "By {{author}}",
+    "modified": "Modified",
+    "size": "Size"
+  },
+  "documentCardGrid": {
+    "pinning": "Pinning...",
+    "expiry": "Expiry",
+    "statusLabel": "Status",
+    "view": "View"
+  },
+  "documentDescription": {
+    "title": "Description"
+  },
+  "documentDetails": {
+    "notAvailable": "N/A",
+    "preview": "Document preview",
+    "openInViewer": "Open in viewer",
+    "noDescription": "No description available for this document.",
+    "documentTypes": "Document Types",
+    "information": "Information",
+    "category": "Category",
+    "department": "Department",
+    "entity": "Entity",
+    "uploadedBy": "Uploaded by",
+    "created": "Created",
+    "lastModified": "Last modified",
+    "documentOwner": "Document Owner",
+    "unknown": "Unknown",
+    "shareDocument": "Share Document"
+  },
+  "documentEmptyState": {
+    "title": "No documents found",
+    "withQuery": "Try adjusting your search or filters",
+    "withoutQuery": "No documents in this category"
+  },
+  "documentEngagement": {
+    "title": "Engagement",
+    "views": "Views",
+    "downloads": "Downloads",
+    "collaborators": "Collaborators",
+    "moreCollaborators": "+2 more",
+    "addCollaborator": "Add Collaborator",
+    "manageAccess": "Manage Access",
+    "duplicate": "Duplicate"
+  },
+  "documentErrorState": {
+    "title": "Document not found",
+    "description": "The document you're looking for doesn't exist or has been removed.",
+    "backToDocuments": "Back to Documents"
+  },
+  "documentFilterSidebar": {
+    "title": "Advanced Filters",
+    "titleArabic": "تصفية متقدمة",
+    "sections": {
+      "type": "Type",
+      "typeArabic": "نوع المستند",
+      "entity": "Entity",
+      "entityArabic": "الكيان",
+      "renewal": "Renewal",
+      "renewalArabic": "التجديد",
+      "importance": "Importance",
+      "importanceArabic": "الأهمية"
+    },
+    "types": {
+      "licenses": "Licenses (تراخيص)",
+      "permits": "Permits (تصاريح)",
+      "authorizations": "Authorizations (تفويضات)",
+      "cards": "Cards (بطاقات)",
+      "approvals": "Approvals (اذونات)",
+      "equipment": "Equipment (الات)"
+    },
+    "clearAllFilters": "Clear All Filters"
+  },
+  "documentGroupCard": {
+    "documentsCount": "{{count}} documents",
+    "add": "Add",
+    "columnName": "Document Name",
+    "columnDepartment": "Department",
+    "columnEntity": "Entity",
+    "columnRenewal": "Renewal",
+    "columnImportance": "Importance",
+    "columnExpiryDate": "Expiry Date",
+    "columnStatus": "Status",
+    "columnActions": "Actions",
+    "addFirstDocument": "Add Your First Document"
+  },
+  "entityType": {
+    "operational": "Operational",
+    "establishment": "Establishment"
+  },
+  "renewalType": {
+    "renewable": "Renewable",
+    "oneTime": "One-Time"
+  },
+  "documentInfoSection": {
+    "title": "Information",
+    "category": "Category",
+    "department": "Department",
+    "entity": "Entity",
+    "createdBy": "Created by",
+    "created": "Created",
+    "lastModified": "Last modified",
+    "reminder": "Reminder"
+  },
+  "documentListHeader": {
+    "subtitle": "Browse and manage your business documents"
+  },
+  "documentPermissions": {
+    "title": "Access Control",
+    "addPeople": "Add People"
+  },
+  "documentPreview": {
+    "label": "Document preview",
+    "openInViewer": "Open in viewer"
+  },
+  "documentRelated": {
+    "title": "Related Documents"
+  },
+  "documentResultsSummary": {
+    "count_one": "{{count}} document",
+    "count_other": "{{count}} documents"
+  },
+  "documentRow": {
+    "new": "New",
+    "renewable": "Renewable",
+    "oneTime": "One-Time"
+  },
+  "documentSearchBar": {
+    "searchPlaceholder": "Search documents..."
+  },
+  "documentTabsContainer": {
+    "notAvailable": "N/A",
+    "userLabel": "User {{id}}",
+    "unknownUser": "Unknown",
+    "roleOwner": "Owner",
+    "roleViewer": "Viewer",
+    "tabs": {
+      "details": "Details",
+      "activity": "Activity",
+      "versions": "Versions",
+      "permissions": "Permissions"
+    }
+  },
+  "documentVersions": {
+    "versionLabel": "v{{version}}",
+    "current": "Current"
+  },
+  "documentViewModeTabs": {
+    "types": "Types"
+  },
+  "documentsFilter": {
+    "searchPlaceholder": "Search documents by name, keyword, or category...",
+    "documentType": "Document Type",
+    "allTypes": "All Types",
+    "pdf": "PDF",
+    "spreadsheets": "Spreadsheets",
+    "presentations": "Presentations",
+    "images": "Images",
+    "dateRange": "Date Range",
+    "allTime": "All Time",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "thisQuarter": "This Quarter",
+    "thisYear": "This Year",
+    "status": "Status",
+    "allStatuses": "All Statuses",
+    "underReview": "Under Review",
+    "typePrefix": "Type:",
+    "datePrefix": "Date:",
+    "statusPrefix": "Status:"
+  },
+  "remindersDrawer": {
+    "due": "Due: {{date}}",
+    "by": "by {{name}}",
+    "responsible": "Responsible: {{name}}",
+    "createdAt": "Created: {{date}}",
+    "updatedAt": "Updated: {{date}}",
+    "notification": "Notification",
+    "failedToLoad": "Failed to load",
+    "noRemindersTitle": "No reminders",
+    "noRemindersDescription": "You don't have any pending reminders",
+    "noNotificationsTitle": "No notifications",
+    "noNotificationsDescription": "You're all caught up",
+    "failedToFetchReminders": "Failed to fetch reminders",
+    "failedToFetchNotifications": "Failed to fetch notifications",
+    "openAriaLabel": "Open reminders and notifications",
+    "closeAriaLabel": "Close drawer",
+    "title": "Reminders & Notifications",
+    "notificationsTab": "Notifications"
+  },
+  "departmentView": {
+    "emptyState": "No documents found in this department",
+    "renewableDocuments": "Renewable Documents ({{count}})",
+    "renewableDescription": "Documents that require periodic renewal",
+    "oneTimeDocuments": "One-Time Documents ({{count}})",
+    "oneTimeDescription": "One-time documents that don't require renewal"
+  },
+  "typeView": {
+    "emptyState": "No documents found for this type",
+    "establishmentDocuments": "Establishment Documents",
+    "operationalDocuments": "Operational Documents",
+    "renewable": "Renewable",
+    "oneTime": "One-Time",
+    "establishmentRenewableDescription": "Establishment documents requiring renewal",
+    "establishmentOneTimeDescription": "One-time establishment documents",
+    "operationalRenewableDescription": "Operational documents requiring renewal",
+    "operationalOneTimeDescription": "One-time operational documents"
+  },
+  "documentListPage": {
+    "loadingDocuments": "Loading documents...",
+    "unknownError": "Unknown error occurred",
+    "error403": "You do not have permission to access documents in this view.",
+    "error401": "Your session has expired. Please login again.",
+    "error404": "The requested endpoint was not found.",
+    "errorUnauthenticated": "You are not authenticated. Please ensure you are logged in.",
+    "errorLoadingDocuments": "Error Loading Documents",
+    "goToAllView": "Go to All View",
+    "entityTypes": "Entity Types",
+    "searching": "Searching..."
+  },
+  "documentViewPage": {
+    "notAvailable": "N/A",
+    "documentNotFound": "Document not found",
+    "noPermission": "You don't have permission to view this document.",
+    "documentNotFoundDescription": "The document you're looking for doesn't exist or has been removed.",
+    "backToDocuments": "Back to Documents"
+  },
+  "favoritesPage": {
+    "title": "Favorites",
+    "subtitle": "Documents you've marked as favorites, with your personal notes.",
+    "loading": "Loading favorites...",
+    "errorTitle": "Failed to load favorites",
+    "emptyTitle": "No favorites yet",
+    "emptyDescription": "Documents you mark as favorite will show up here.",
+    "browseDocuments": "Browse Documents",
+    "favoritedOn": "Favorited on",
+    "view": "View",
+    "unfavorite": "Remove from favorites",
+    "unfavoriting": "Removing...",
+    "noteLabel": "Note",
+    "notePlaceholder": "Add a note...",
+    "noteEmpty": "No note added",
+    "noteSave": "Save",
+    "noteSaving": "Saving...",
+    "noteCancel": "Cancel",
+    "noteEdit": "Edit note",
+    "pageOf": "Page {{current}} of {{last}}"
+  },
+  "documentShares": {
+    "pageTitle": "Document Shares",
+    "pageSubtitle": "Manage documents you've shared with other users, and see what's been shared with you.",
+    "errorTitle": "Failed to load shares",
+    "sharedWith": "Shared with {{name}}",
+    "sharedBy": "Shared by {{name}}",
+    "startsOn": "Starts {{date}}",
+    "expiresOn": "Expires {{date}}",
+    "neverExpires": "Never expires",
+    "tabs": {
+      "given": "Shared by me",
+      "received": "Shared with me"
+    },
+    "status": {
+      "active": "Active",
+      "pending": "Pending",
+      "expired": "Expired",
+      "revoked": "Revoked"
+    },
+    "access": {
+      "view": "View",
+      "download": "Download",
+      "none": "No access"
+    },
+    "empty": {
+      "givenTitle": "You haven't shared any documents",
+      "givenDescription": "Share a document from its detail page to grant view or download access to someone outside your department.",
+      "receivedTitle": "Nothing has been shared with you",
+      "receivedDescription": "Documents other people share with you will show up here."
+    },
+    "form": {
+      "createTitle": "Share document",
+      "createDescription": "Grant another user view or download access to this document.",
+      "createDescriptionWithTitle": "Grant another user view or download access to \"{{title}}\".",
+      "editTitle": "Edit share",
+      "editDescription": "Update access for {{name}} on \"{{title}}\".",
+      "recipientLabel": "Share with",
+      "recipientPlaceholder": "Select a user...",
+      "recipientSearchPlaceholder": "Search by name or email...",
+      "recipientTypeToSearch": "Type at least 2 characters to search",
+      "recipientNoResults": "No users found",
+      "recipientSearchError": "Couldn't search users. Try again.",
+      "recipientRequired": "Choose who to share with",
+      "accessLabel": "Access",
+      "canView": "Can view",
+      "canDownload": "Can download",
+      "downloadImpliesView": "Download access automatically grants view access.",
+      "startsAt": "Starts at",
+      "expiresAt": "Expires at",
+      "expiresAtHint": "Leave empty to never expire until revoked.",
+      "expiresAfterStarts": "Expiry date must be after the start date.",
+      "submitShare": "Share"
+    },
+    "revoke": {
+      "action": "Revoke",
+      "title": "Revoke this share?",
+      "description": "{{name}} will immediately lose access to \"{{title}}\". This can't be undone, but you can share the document again later.",
+      "confirm": "Revoke access"
+    },
+    "downloadFailed": "Couldn't download this file. Try again."
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
@@ -18,6 +19,7 @@ interface DocumentVersionsProps {
 }
 
 const DocumentVersions: React.FC<DocumentVersionsProps> = ({ versions }) => {
+    const { t } = useTranslation(['documents', 'common']);
     return (
         <Card>
             <CardContent className="pt-6 space-y-4">
@@ -29,7 +31,7 @@ const DocumentVersions: React.FC<DocumentVersionsProps> = ({ versions }) => {
                     >
                         <div className={`flex-shrink-0 h-10 w-10 rounded-lg flex items-center justify-center text-sm font-bold ${i === 0 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                             }`}>
-                            v{v.version}
+                            {t('documentVersions.versionLabel', { version: v.version })}
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-foreground">{v.note}</p>
@@ -39,7 +41,7 @@ const DocumentVersions: React.FC<DocumentVersionsProps> = ({ versions }) => {
                         </div>
                         <div className="flex items-center gap-2">
                             {i === 0 && (
-                                <Badge className="bg-primary/10 text-primary border-0">Current</Badge>
+                                <Badge className="bg-primary/10 text-primary border-0">{t('documentVersions.current')}</Badge>
                             )}
                             <Button variant="ghost" size="sm">
                                 <Download className="h-4 w-4" />

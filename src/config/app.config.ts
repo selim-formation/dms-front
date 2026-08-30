@@ -18,7 +18,11 @@ export const appConfig = {
    * API configuration
    */
   api: {
+<<<<<<< Updated upstream
     baseUrl: import.meta.env.VITE_API_BASE_URL || "http://dms.test",
+=======
+    baseUrl: import.meta.env.VITE_API_BASE_URL || "https://dms.test",
+>>>>>>> Stashed changes
     timeout: 30000, // 30 seconds
     withCredentials: true, // Required for Sanctum cookies
   },

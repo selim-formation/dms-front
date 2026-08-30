@@ -1,10 +1,14 @@
 /**
  * EmptyState Component
- * 
+ *
  * Displays a friendly message when no tasks are available or match current filters
  */
 
+<<<<<<< Updated upstream
 import React from 'react'
+=======
+import { useTranslation } from 'react-i18next'
+>>>>>>> Stashed changes
 
 interface EmptyStateProps {
     hasFiltersApplied?: boolean
@@ -12,29 +16,31 @@ interface EmptyStateProps {
 }
 
 export function EmptyState({ hasFiltersApplied = false, hasSearchQuery = false }: EmptyStateProps) {
-    let title = 'No tasks yet'
-    let message = 'Get started by creating your first task'
+    const { t } = useTranslation(['tasks', 'common'])
+
+    let title = t('tasks:emptyState.noTasksTitle')
+    let message = t('tasks:emptyState.noTasksMessage')
     let icon = '📝'
 
     if (hasFiltersApplied && hasSearchQuery) {
-        title = 'No matching tasks'
-        message = 'Try adjusting your filters or search query'
+        title = t('tasks:emptyState.noMatchingTitle')
+        message = t('tasks:emptyState.noMatchingMessage')
         icon = '🔍'
     } else if (hasFiltersApplied) {
-        title = 'No tasks with these filters'
-        message = 'Try selecting different filter options'
+        title = t('tasks:emptyState.noFilteredTitle')
+        message = t('tasks:emptyState.noFilteredMessage')
         icon = '⏳'
     } else if (hasSearchQuery) {
-        title = 'No tasks match your search'
-        message = 'Try searching with different keywords'
+        title = t('tasks:emptyState.noSearchTitle')
+        message = t('tasks:emptyState.noSearchMessage')
         icon = '🔍'
     }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-64 py-12 px-4">
             <div className="text-6xl mb-4">{icon}</div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-            <p className="text-gray-600 text-center max-w-sm">{message}</p>
+            <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+            <p className="text-muted-foreground text-center max-w-sm">{message}</p>
         </div>
     )
 }

@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 import { FileText, FolderOpen, Clock, CheckCircle } from 'lucide-react';
+=======
+import { useTranslation } from 'react-i18next';
+import { FileText, FolderOpen, Clock } from 'lucide-react';
+>>>>>>> Stashed changes
 import { Card, CardContent } from '@/shared/components/ui/card';
 
 const STATS = [
@@ -8,7 +13,41 @@ const STATS = [
   { label: 'Approval Rate', value: '94%', icon: CheckCircle, iconBg: 'bg-success/10', iconColor: 'text-success', change: '+2.4% vs last month' },
 ];
 
+<<<<<<< Updated upstream
 export default function StatsRow() {
+=======
+export default function StatsRow({ data }: { data: StatisticsData | undefined }) {
+  const { t } = useTranslation(['home', 'common']);
+
+  const STATS = [
+    {
+      label: t('statsRow.totalDocuments'),
+      value: data?.total_documents ?? 0,
+      icon: FileText,
+      iconBg: 'bg-primary/10',
+      iconColor: 'text-primary',
+      change: '+12 this week'
+    },
+    {
+      label: t('common:common.users'),
+      value: data?.total_users ?? 0,
+      icon: FolderOpen,
+      iconBg: 'bg-info/10',
+      iconColor: 'text-info',
+      change: '4 active'
+    },
+    {
+      label: t('statsRow.totalTasks'),
+      value: data?.total_tasks ?? 0,
+      icon: Clock,
+      iconBg: 'bg-accent/10',
+      iconColor: 'text-accent',
+      change: '3 urgent'
+    },
+    // { label: 'Approval Rate', value: data?.approval_rate ?? '0%', icon: CheckCircle, iconBg: 'bg-success/10', iconColor: 'text-success', change: '+2.4% vs last month' },
+  ];
+
+>>>>>>> Stashed changes
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {STATS.map((s) => (

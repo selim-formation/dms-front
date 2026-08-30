@@ -1,18 +1,20 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { CheckCircle } from 'lucide-react';
-const data = [
-  { name: 'Operations', value: 30, color: 'hsl(var(--success))' },
-  { name: 'Finance', value: 25, color: 'hsl(var(--warning))' },
-  { name: 'HR', value: 20, color: 'hsl(var(--primary))' },
-  { name: 'Sales', value: 15, color: 'hsl(var(--destructive))' },
-  { name: 'IT', value: 10, color: 'hsl(var(--info))' },
-];
 export default function DownloadActivityChart() {
+  const { t } = useTranslation(['home', 'common']);
+  const data = [
+    { name: t('home:downloadActivityChart.departments.operations'), value: 30, color: 'hsl(var(--success))' },
+    { name: t('home:downloadActivityChart.departments.finance'), value: 25, color: 'hsl(var(--warning))' },
+    { name: t('home:downloadActivityChart.departments.hr'), value: 20, color: 'hsl(var(--primary))' },
+    { name: t('home:downloadActivityChart.departments.sales'), value: 15, color: 'hsl(var(--destructive))' },
+    { name: t('home:downloadActivityChart.departments.it'), value: 10, color: 'hsl(var(--info))' },
+  ];
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Download Activity by Department</CardTitle>
+        <CardTitle className="text-base font-bold">{t('home:downloadActivityChart.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-4">
@@ -52,7 +54,7 @@ export default function DownloadActivityChart() {
         <div className="mt-2 flex items-center gap-2 text-xs">
           <CheckCircle className="h-4 w-4 text-success" />
           <span className="font-semibold text-foreground">78%</span>
-          <span className="text-muted-foreground">Renewal Compliant</span>
+          <span className="text-muted-foreground">{t('home:downloadActivityChart.renewalCompliant')}</span>
         </div>
       </CardContent>
     </Card>

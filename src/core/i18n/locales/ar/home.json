@@ -1,0 +1,283 @@
+{
+  "activityList": {
+    "activity": "النشاط",
+    "viewedRecently": "المُشاهدة مؤخرًا",
+    "modifiedRecently": "المعدَّلة مؤخرًا"
+  },
+  "approvalRateChart": {
+    "title": "معدل الموافقة",
+    "subtitle": "الاتجاه خلال آخر 7 أشهر"
+  },
+  "assignedList": {
+    "title": "المُسندة إليّ",
+    "pendingCount": "{{count}} معلقة",
+    "due": "الاستحقاق {{date}}",
+    "review": "مراجعة"
+  },
+  "averageRenewalDelayChart": {
+    "title": "متوسط تأخير التجديد حسب القسم",
+    "legend": {
+      "sales": "المبيعات",
+      "estates": "الممتلكات",
+      "itOps": "عمليات تقنية المعلومات"
+    }
+  },
+  "categoryDonutChart": {
+    "title": "المستندات حسب الفئة",
+    "subtitle": "التوزيع عبر الفئات",
+    "categories": {
+      "contracts": "العقود",
+      "reports": "التقارير",
+      "legal": "الشؤون القانونية",
+      "certificates": "الشهادات"
+    }
+  },
+  "categoryTypeChart": {
+    "title": "المستندات حسب التأسيسي والتشغيلي",
+    "subtitle": "تشغيلي مقابل تأسيسي",
+    "operational": "تشغيلي",
+    "establishment": "تأسيسي"
+  },
+  "departmentTabs": {
+    "heading": "الأقسام",
+    "all": "جميع المستندات",
+    "engineering": "الهندسة",
+    "product": "المنتج",
+    "marketing": "التسويق",
+    "hr": "الموارد البشرية",
+    "legal": "الشؤون القانونية والامتثال"
+  },
+  "departmentsChart": {
+    "title": "المستندات حسب القسم",
+    "subtitle": "التوزيع عبر الأقسام"
+  },
+  "documentCard": {
+    "by": "بواسطة {{author}}",
+    "modified": "تاريخ التعديل",
+    "size": "الحجم",
+    "status": {
+      "review": "قيد المراجعة"
+    }
+  },
+  "documentStatistics": {
+    "title": "إحصاءات المستندات",
+    "subtitle": "حسب الفئة",
+    "categories": {
+      "contracts": "العقود",
+      "reports": "التقارير",
+      "legal": "الشؤون القانونية",
+      "certificates": "الشهادات"
+    }
+  },
+  "documentsByStatusChart": {
+    "title": "المستندات حسب الحالة",
+    "unit": "مستندات"
+  },
+  "documentsCreatedPerMonthChart": {
+    "title": "المستندات المُنشأة شهريًا",
+    "legend": {
+      "may": "مايو",
+      "june": "يونيو",
+      "feb": "فبراير"
+    },
+    "caption": "المستندات المُنشأة شهريًا"
+  },
+  "documentsFilter": {
+    "searchPlaceholder": "ابحث عن المستندات بالاسم أو الكلمة المفتاحية أو الفئة...",
+    "documentType": "نوع المستند",
+    "dateRange": "النطاق الزمني",
+    "status": "الحالة",
+    "types": {
+      "all": "جميع الأنواع",
+      "pdf": "PDF",
+      "sheet": "جداول البيانات",
+      "presentation": "العروض التقديمية",
+      "image": "الصور"
+    },
+    "dateRanges": {
+      "all": "كل الأوقات",
+      "today": "اليوم",
+      "week": "هذا الأسبوع",
+      "month": "هذا الشهر",
+      "quarter": "هذا الربع",
+      "year": "هذا العام"
+    },
+    "statuses": {
+      "all": "جميع الحالات",
+      "review": "قيد المراجعة"
+    },
+    "tagType": "النوع: {{value}}",
+    "tagDate": "التاريخ: {{value}}",
+    "tagStatus": "الحالة: {{value}}"
+  },
+  "downloadActivityChart": {
+    "title": "نشاط التنزيل حسب القسم",
+    "departments": {
+      "operations": "العمليات",
+      "finance": "المالية",
+      "hr": "الموارد البشرية",
+      "sales": "المبيعات",
+      "it": "تقنية المعلومات"
+    },
+    "renewalCompliant": "ملتزم بالتجديد"
+  },
+  "expiredByDeptChart": {
+    "title": "المستندات المنتهية حسب القسم"
+  },
+  "expiredByDeptGroupedChart": {
+    "title": "المستندات المنتهية حسب القسم",
+    "legend": {
+      "estates": "الممتلكات",
+      "sheets": "الجداول",
+      "others": "أخرى"
+    }
+  },
+  "expiredByDeptStackedChart": {
+    "title": "المستندات المنتهية حسب القسم",
+    "legend": {
+      "expired": "منتهية",
+      "renewed": "مُجددة",
+      "others": "أخرى"
+    }
+  },
+  "expiryRiskOverview": {
+    "title": "نظرة عامة على مخاطر انتهاء الصلاحية",
+    "itemsExpiring": "العناصر التي ستنتهي صلاحيتها",
+    "renewalRate": "معدل التجديد"
+  },
+  "expiryRiskOverview2": {
+    "title": "نظرة عامة على مخاطر انتهاء الصلاحية",
+    "missingDeadline": "تجاوز الموعد النهائي",
+    "renewalComplianceRate": "معدل الالتزام بالتجديد"
+  },
+  "heroSection": {
+    "greeting": "{{greeting}}، {{firstName}}",
+    "description": "نظام إدارة المستندات لديك جاهز لمساعدتك على تنظيم ملفاتك ومراجعتها وإدارتها بكفاءة.",
+    "meta": "قسم التسويق · 24 مستندًا · 3 معلقة"
+  },
+  "homeHero": {
+    "title": "عمّا تبحث؟",
+    "subtitle": "ابحث في المستندات والقوالب وأدوات التتبع والمزيد",
+    "searchPlaceholder": "ابحث بالاسم أو الوسم أو الفئة..."
+  },
+  "importanceChart": {
+    "title": "المستندات حسب الأهمية والسرية",
+    "subtitle": "توزيع درجة الأهمية"
+  },
+  "monthlyProgress": {
+    "title": "التقدم الشهري",
+    "viewAll": "عرض الكل ›",
+    "approvals": "الموافقات",
+    "details": "التفاصيل",
+    "pending": "قيد الانتظار"
+  },
+  "monthlyUploadsChart": {
+    "title": "الرفع الشهري",
+    "subtitle": "المستندات المرفوعة شهريًا"
+  },
+  "mostViewedDocuments": {
+    "title": "الأكثر مشاهدة من المستندات"
+  },
+  "deadNavbar": {
+    "brand": "أكمي",
+    "reminders": "التذكيرات",
+    "notifications": "الإشعارات",
+    "profile": "الملف الشخصي"
+  },
+  "needsReview": {
+    "untitledTask": "مهمة بلا عنوان",
+    "failedToLoad": "فشل تحميل المهام",
+    "fetchError": "حدث خطأ أثناء جلب المهام",
+    "loadingTasks": "جارٍ تحميل المهام...",
+    "title": "بحاجة إلى مراجعتك",
+    "noTasksPending": "لا توجد مهام بانتظار المراجعة",
+    "reviewAll": "مراجعة الكل"
+  },
+  "pinnedDocuments": {
+    "moreOptions": "خيارات إضافية",
+    "unpinning": "جارٍ إلغاء التثبيت...",
+    "pinnedBy": "تم التثبيت بواسطة:",
+    "noPinnedDocuments": "لا توجد مستندات مثبتة بعد",
+    "title": "المستندات المثبتة",
+    "subtitle": "المستندات المهمة أو الأكثر استخدامًا اليوم.",
+    "failedToLoad": "فشل تحميل المستندات المثبتة"
+  },
+  "pinnedDocumentsList": {
+    "title": "المستندات المثبتة",
+    "viewAll": "عرض الكل ›"
+  },
+  "favoriteDocuments": {
+    "moreOptions": "خيارات إضافية",
+    "unfavoriting": "جارٍ الإزالة...",
+    "favoritedBy": "أضيف للمفضلة بواسطة:",
+    "noFavoriteDocuments": "لا توجد مستندات مفضلة بعد",
+    "title": "المستندات المفضلة",
+    "subtitle": "المستندات التي أضفتها إلى المفضلة.",
+    "failedToLoad": "فشل تحميل المستندات المفضلة"
+  },
+  "profileCard": {
+    "profileAlt": "الملف الشخصي"
+  },
+  "quickActions": {
+    "title": "إجراءات سريعة",
+    "browseDocuments": "تصفح المستندات",
+    "viewStatistics": "عرض الإحصائيات"
+  },
+  "recentDocuments": {
+    "title": "المستندات الأخيرة",
+    "viewAll": "عرض الكل ›"
+  },
+  "recentDocumentsSidebar": {
+    "title": "المستندات الأخيرة",
+    "viewAll": "عرض الكل ›"
+  },
+  "renewalChart": {
+    "title": "المستندات حسب التجديد والمرة الواحدة",
+    "subtitle": "تصنيف تجديد المستندات",
+    "renewal": "قابل للتجديد",
+    "oneTime": "لمرة واحدة"
+  },
+  "sidebar": {
+    "assignedToMe": "المسندة إليّ",
+    "tasksCount": "{{count}} مهام"
+  },
+  "statisticsPanel": {
+    "title": "إحصائيات المستندات",
+    "last30Days": "آخر 30 يومًا",
+    "thisYear": "هذا العام",
+    "allTime": "كل الأوقات",
+    "byCategory": "حسب الفئة",
+    "byDocumentType": "حسب نوع المستند",
+    "monthlyProgress": "التقدم الشهري"
+  },
+  "statsRow": {
+    "totalDocuments": "إجمالي المستندات",
+    "totalTasks": "إجمالي المهام"
+  },
+  "statusDistributionChart": {
+    "title": "توزيع الحالة",
+    "subtitle": "حالات المستندات الحالية"
+  },
+  "topActiveUsers": {
+    "title": "أكثر المستخدمين نشاطًا"
+  },
+  "topExpiringDocuments": {
+    "title": "المستندات الأقرب لانتهاء الصلاحية",
+    "daysCount": "{{count}} يوم"
+  },
+  "typesChart": {
+    "title": "المستندات حسب النوع",
+    "subtitle": "التوزيع عبر أنواع المستندات"
+  },
+  "welcomeCard": {
+    "totalDocuments": "إجمالي المستندات",
+    "folders": "المجلدات",
+    "sharedDocs": "المستندات المشتركة",
+    "documentsInReview": "المستندات قيد المراجعة",
+    "greeting": "مرحبًا بعودتك، {{name}}",
+    "subtitle": "إليك آخر ما يحدث مع مستنداتك اليوم"
+  },
+  "homePage": {
+    "greeting": "مرحبًا بعودتك"
+  }
+}

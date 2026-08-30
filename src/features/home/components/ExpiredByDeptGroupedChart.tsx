@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid, Legend } from 'recharts';
 const data = [
@@ -7,10 +8,16 @@ const data = [
   { dept: 'IT', estates: 6, sheets: 4, others: 5 },
 ];
 export default function ExpiredByDeptGroupedChart() {
+  const { t } = useTranslation(['home', 'common']);
+  const legendLabels: Record<string, string> = {
+    estates: t('home:expiredByDeptGroupedChart.legend.estates'),
+    sheets: t('home:expiredByDeptGroupedChart.legend.sheets'),
+    others: t('home:expiredByDeptGroupedChart.legend.others'),
+  };
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Expired Documents by Dept.</CardTitle>
+        <CardTitle className="text-base font-bold">{t('home:expiredByDeptGroupedChart.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="h-52">
@@ -20,7 +27,7 @@ export default function ExpiredByDeptGroupedChart() {
               <XAxis dataKey="dept" tick={{ fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ borderRadius: '0.5rem', fontSize: '0.7rem', border: '1px solid hsl(var(--border))', background: 'hsl(var(--background))' }} />
-              <Legend iconType="circle" iconSize={6} formatter={(v) => <span className="text-[10px] text-muted-foreground capitalize">{v}</span>} />
+              <Legend iconType="circle" iconSize={6} formatter={(v) => <span className="text-[10px] text-muted-foreground capitalize">{legendLabels[v] ?? v}</span>} />
               <Bar dataKey="estates" fill="hsl(var(--destructive))" radius={[2, 2, 0, 0]} />
               <Bar dataKey="sheets" fill="hsl(var(--success))" radius={[2, 2, 0, 0]} />
               <Bar dataKey="others" fill="hsl(var(--info))" radius={[2, 2, 0, 0]} />

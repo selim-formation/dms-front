@@ -57,7 +57,7 @@ export default function DynamicSliderTabs({
     return (
         <div className="mb-6">
             {label && (
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-3">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
                     {label}
                 </p>
             )}
@@ -67,9 +67,9 @@ export default function DynamicSliderTabs({
                 {showLeftArrow && (
                     <button
                         onClick={() => scroll('left')}
-                        className="absolute left-0 z-10 p-1.5 rounded-full bg-white border border-gray-200 hover:bg-gray-50 shadow-sm transition-colors"
+                        className="absolute start-0 z-10 p-1.5 rounded-full bg-card border border-border hover:bg-accent shadow-sm transition-colors"
                     >
-                        <ChevronLeft size={18} className="text-gray-600" />
+                        <ChevronLeft size={18} className="text-muted-foreground rtl:rotate-180" />
                     </button>
                 )}
 
@@ -89,15 +89,15 @@ export default function DynamicSliderTabs({
                                     onClick={() => onTabChange(tab.id)}
                                     className={`flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap transition-all font-medium text-sm flex-shrink-0 ${isActive
                                         ? 'bg-primary text-primary-foreground shadow-md'
-                                        : 'bg-white border border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
+                                        : 'bg-card border border-border text-muted-foreground hover:border-border hover:bg-accent'
                                         }`}
                                 >
                                     <span>{tab.label}</span>
                                     {tab.count !== undefined && (
                                         <span
                                             className={`px-2 py-0.5 rounded-full text-xs font-semibold ${isActive
-                                                ? 'bg-white/20 text-white'
-                                                : 'bg-gray-100 text-gray-600'
+                                                ? 'bg-primary-foreground/20 text-primary-foreground'
+                                                : 'bg-muted text-muted-foreground'
                                                 }`}
                                         >
                                             {tab.count}
@@ -113,9 +113,9 @@ export default function DynamicSliderTabs({
                 {showRightArrow && (
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute right-0 z-10 p-1.5 rounded-full bg-white border border-gray-200 hover:bg-gray-50 shadow-sm transition-colors"
+                        className="absolute end-0 z-10 p-1.5 rounded-full bg-card border border-border hover:bg-accent shadow-sm transition-colors"
                     >
-                        <ChevronRight size={18} className="text-gray-600" />
+                        <ChevronRight size={18} className="text-muted-foreground rtl:rotate-180" />
                     </button>
                 )}
             </div>

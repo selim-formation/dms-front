@@ -1,0 +1,283 @@
+{
+  "activityList": {
+    "activity": "Activity",
+    "viewedRecently": "Viewed Recently",
+    "modifiedRecently": "Modified Recently"
+  },
+  "approvalRateChart": {
+    "title": "Approval Rate",
+    "subtitle": "Trend over last 7 months"
+  },
+  "assignedList": {
+    "title": "Assigned to Me",
+    "pendingCount": "{{count}} pending",
+    "due": "Due {{date}}",
+    "review": "Review"
+  },
+  "averageRenewalDelayChart": {
+    "title": "Average Renewal Delay by Dept.",
+    "legend": {
+      "sales": "Sales",
+      "estates": "Estates",
+      "itOps": "IT Ops"
+    }
+  },
+  "categoryDonutChart": {
+    "title": "Documents by Category",
+    "subtitle": "Distribution across categories",
+    "categories": {
+      "contracts": "Contracts",
+      "reports": "Reports",
+      "legal": "Legal",
+      "certificates": "Certificates"
+    }
+  },
+  "categoryTypeChart": {
+    "title": "Documents by Establishment & Operational",
+    "subtitle": "Operational vs Establishment",
+    "operational": "Operational",
+    "establishment": "Establishment"
+  },
+  "departmentTabs": {
+    "heading": "Departments",
+    "all": "All Documents",
+    "engineering": "Engineering",
+    "product": "Product",
+    "marketing": "Marketing",
+    "hr": "Human Resources",
+    "legal": "Legal & Compliance"
+  },
+  "departmentsChart": {
+    "title": "Documents by Department",
+    "subtitle": "Distribution across departments"
+  },
+  "documentCard": {
+    "by": "By {{author}}",
+    "modified": "Modified",
+    "size": "Size",
+    "status": {
+      "review": "Review"
+    }
+  },
+  "documentStatistics": {
+    "title": "Document Statistics",
+    "subtitle": "By Category",
+    "categories": {
+      "contracts": "Contracts",
+      "reports": "Reports",
+      "legal": "Legal",
+      "certificates": "Certificates"
+    }
+  },
+  "documentsByStatusChart": {
+    "title": "Documents by Status",
+    "unit": "documents"
+  },
+  "documentsCreatedPerMonthChart": {
+    "title": "Documents Created per Month",
+    "legend": {
+      "may": "May",
+      "june": "June",
+      "feb": "Feb"
+    },
+    "caption": "Document Created per Month"
+  },
+  "documentsFilter": {
+    "searchPlaceholder": "Search documents by name, keyword, or category...",
+    "documentType": "Document Type",
+    "dateRange": "Date Range",
+    "status": "Status",
+    "types": {
+      "all": "All Types",
+      "pdf": "PDF",
+      "sheet": "Spreadsheets",
+      "presentation": "Presentations",
+      "image": "Images"
+    },
+    "dateRanges": {
+      "all": "All Time",
+      "today": "Today",
+      "week": "This Week",
+      "month": "This Month",
+      "quarter": "This Quarter",
+      "year": "This Year"
+    },
+    "statuses": {
+      "all": "All Statuses",
+      "review": "Under Review"
+    },
+    "tagType": "Type: {{value}}",
+    "tagDate": "Date: {{value}}",
+    "tagStatus": "Status: {{value}}"
+  },
+  "downloadActivityChart": {
+    "title": "Download Activity by Department",
+    "departments": {
+      "operations": "Operations",
+      "finance": "Finance",
+      "hr": "HR",
+      "sales": "Sales",
+      "it": "IT"
+    },
+    "renewalCompliant": "Renewal Compliant"
+  },
+  "expiredByDeptChart": {
+    "title": "Expired Documents by Department"
+  },
+  "expiredByDeptGroupedChart": {
+    "title": "Expired Documents by Dept.",
+    "legend": {
+      "estates": "Estates",
+      "sheets": "Sheets",
+      "others": "Others"
+    }
+  },
+  "expiredByDeptStackedChart": {
+    "title": "Expired Documents by Dept.",
+    "legend": {
+      "expired": "Expired",
+      "renewed": "Renewed",
+      "others": "Others"
+    }
+  },
+  "expiryRiskOverview": {
+    "title": "Expiry Risk Overview",
+    "itemsExpiring": "Items Expiring to",
+    "renewalRate": "Renewal Rate"
+  },
+  "expiryRiskOverview2": {
+    "title": "Expiry Risk Overview",
+    "missingDeadline": "Missing deadline",
+    "renewalComplianceRate": "Renewal Compliance Rate"
+  },
+  "heroSection": {
+    "greeting": "{{greeting}}, {{firstName}}",
+    "description": "Your document management system is ready to help you organize, review, and manage your files efficiently.",
+    "meta": "Marketing Department · 24 Documents · 3 Pending"
+  },
+  "homeHero": {
+    "title": "What are you looking for?",
+    "subtitle": "Search documents, templates, trackers and more",
+    "searchPlaceholder": "Search by name, tag, or category..."
+  },
+  "importanceChart": {
+    "title": "Documents By Importance & Confidentiality",
+    "subtitle": "Degree of importance distribution"
+  },
+  "monthlyProgress": {
+    "title": "Monthly Progress",
+    "viewAll": "View all ›",
+    "approvals": "Approvals",
+    "details": "Details",
+    "pending": "Pending"
+  },
+  "monthlyUploadsChart": {
+    "title": "Monthly Uploads",
+    "subtitle": "Documents uploaded per month"
+  },
+  "mostViewedDocuments": {
+    "title": "Most Viewed Documents"
+  },
+  "deadNavbar": {
+    "brand": "Acme",
+    "reminders": "Reminders",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  },
+  "needsReview": {
+    "untitledTask": "Untitled Task",
+    "failedToLoad": "Failed to load tasks",
+    "fetchError": "An error occurred while fetching tasks",
+    "loadingTasks": "Loading tasks...",
+    "title": "Needs your review",
+    "noTasksPending": "No tasks pending review",
+    "reviewAll": "Review All"
+  },
+  "pinnedDocuments": {
+    "moreOptions": "More options",
+    "unpinning": "Unpinning...",
+    "pinnedBy": "Pinned by:",
+    "noPinnedDocuments": "No pinned documents yet",
+    "title": "Pinned Documents",
+    "subtitle": "Important or frequently-used documents today.",
+    "failedToLoad": "Failed to load pinned documents"
+  },
+  "pinnedDocumentsList": {
+    "title": "Pinned Documents",
+    "viewAll": "View All ›"
+  },
+  "favoriteDocuments": {
+    "moreOptions": "More options",
+    "unfavoriting": "Removing...",
+    "favoritedBy": "Favorited by:",
+    "noFavoriteDocuments": "No favorite documents yet",
+    "title": "Favorite Documents",
+    "subtitle": "Documents you've marked as favorites.",
+    "failedToLoad": "Failed to load favorite documents"
+  },
+  "profileCard": {
+    "profileAlt": "Profile"
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "browseDocuments": "Browse Documents",
+    "viewStatistics": "View Statistics"
+  },
+  "recentDocuments": {
+    "title": "Recent Documents",
+    "viewAll": "View All ›"
+  },
+  "recentDocumentsSidebar": {
+    "title": "Recent Documents",
+    "viewAll": "View All ›"
+  },
+  "renewalChart": {
+    "title": "Documents By Renewal & One-Time",
+    "subtitle": "Document renewal classification",
+    "renewal": "Renewal",
+    "oneTime": "One-Time"
+  },
+  "sidebar": {
+    "assignedToMe": "Assigned to Me",
+    "tasksCount": "{{count}} tasks"
+  },
+  "statisticsPanel": {
+    "title": "Document Statistics",
+    "last30Days": "Last 30 Days",
+    "thisYear": "This Year",
+    "allTime": "All Time",
+    "byCategory": "By Category",
+    "byDocumentType": "By Document Type",
+    "monthlyProgress": "Monthly Progress"
+  },
+  "statsRow": {
+    "totalDocuments": "Total Documents",
+    "totalTasks": "Total Tasks"
+  },
+  "statusDistributionChart": {
+    "title": "Status Distribution",
+    "subtitle": "Current document statuses"
+  },
+  "topActiveUsers": {
+    "title": "Top Active Users"
+  },
+  "topExpiringDocuments": {
+    "title": "Top Expiring Documents",
+    "daysCount": "{{count}} days"
+  },
+  "typesChart": {
+    "title": "Documents by Type",
+    "subtitle": "Distribution across document types"
+  },
+  "welcomeCard": {
+    "totalDocuments": "Total documents",
+    "folders": "Folders",
+    "sharedDocs": "Shared docs",
+    "documentsInReview": "Documents in review",
+    "greeting": "Welcome back, {{name}}",
+    "subtitle": "Here's what's happening with your documents today"
+  },
+  "homePage": {
+    "greeting": "Welcome back"
+  }
+}

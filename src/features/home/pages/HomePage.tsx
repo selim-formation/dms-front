@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import armaLogo from '@/assets/bisco-logo.png';
@@ -19,19 +20,50 @@ import ImportanceChart from '../components/ImportanceChart';
 import ExpiryRiskOverview2 from '../components/ExpiryRiskOverview2';
 import DocumentsByStatusChart from '../components/DocumentsByStatusChart';
 import ExpiredByDeptChart from '../components/ExpiredByDeptChart';
+=======
+import { useTranslation } from "react-i18next";
+import HeroSection from "../components/HeroSection";
+import StatsRow from "../components/StatsRow";
+import RecentDocumentsSidebar from "../components/RecentDocumentsSidebar";
+import NeedsReview from "../components/NeedsReview";
+import PinnedDocuments from "../components/PinnedDocuments";
+// import FavoriteDocuments from "../components/FavoriteDocuments";
+import { useAuth } from "@/core/auth/hooks/useAuth";
+import { useTenant } from "@/core/tenant/hooks/useTenant";
+import Navbar from "@/shared/components/layout/Navbar";
+import TypesChart from "../components/TypesChart";
+import DepartmentsChart from "../components/DepartmentsChart";
+import CategoryTypeChart from "../components/CategoryTypeChart";
+import RenewalChart from "../components/RenewalChart";
+import ImportanceChart from "../components/ImportanceChart";
+import ExpiryRiskOverview2 from "../components/ExpiryRiskOverview2";
+import DocumentsByStatusChart from "../components/DocumentsByStatusChart";
+import ExpiredByDeptChart from "../components/ExpiredByDeptChart";
+import { useStatistics } from "../hooks/useStatistics";
+
+>>>>>>> Stashed changes
 export default function HomePage() {
+  const { t } = useTranslation(["home", "common"]);
   const { user } = useAuth();
   const tenant = useTenant();
 
+<<<<<<< Updated upstream
   const firstName = user?.name?.split(' ')[0] ?? 'Ahmed';
   const greeting = 'Ramadan Kareem';
+=======
+  const firstName = user?.name?.split(" ")[0] ?? "Ahmed";
+  const greeting = t("homePage.greeting");
+>>>>>>> Stashed changes
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8 relative">
+<<<<<<< Updated upstream
        
+=======
+>>>>>>> Stashed changes
         {/* Ramadan Lanterns */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden xl:block">
 
@@ -56,28 +88,50 @@ export default function HomePage() {
           <HeroSection
             greeting={greeting}
             firstName={firstName}
+<<<<<<< Updated upstream
             logo={armaLogo}
             tenant={tenant}
+=======
+            tenant={tenant.tenantId ?? ""}
+>>>>>>> Stashed changes
           />
           {/* KPI Stats */}
           <StatsRow />
           {/* Pinned + Review + Analytics */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-8">
+<<<<<<< Updated upstream
               <PinnedDocuments tenant={tenant} />
             </div>
             <div className="space-y-6">
               <NeedsReview tenant={tenant} />
               <RecentDocumentsSidebar tenant={tenant} />
+=======
+              <PinnedDocuments />
+              {/* <FavoriteDocuments /> */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <TypesChart data={data} />
+                <DepartmentsChart data={data} />
+              </div>
             </div>
-
-
+            <div className="space-y-6">
+              <NeedsReview tenant={tenant} />
+              <RecentDocumentsSidebar tenant={tenant.tenantId ?? ""} />
+>>>>>>> Stashed changes
+            </div>
           </div>
 
+<<<<<<< Updated upstream
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <TypesChart />
             <DepartmentsChart />
             <CategoryTypeChart />
+=======
+          {/* Charts */}
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <CategoryTypeChart data={data} />
+>>>>>>> Stashed changes
             <RenewalChart />
             <ImportanceChart />
 
@@ -109,9 +163,8 @@ export default function HomePage() {
             <AverageRenewalDelayChart />
             <TopExpiringDocuments /> */}
           </div>
-
         </div>
       </main>
-    </div >
+    </div>
   );
 }

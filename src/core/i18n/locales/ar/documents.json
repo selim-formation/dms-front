@@ -1,0 +1,343 @@
+{
+  "comments": {
+    "title": "التعليقات",
+    "submitComment": "تعليق",
+    "you": "أنت",
+    "placeholder": "أضف تعليقًا...",
+    "replyPlaceholder": "اكتب ردًا...",
+    "posting": "جارٍ النشر...",
+    "deleting": "جارٍ الحذف...",
+    "failedToLoad": "تعذر تحميل التعليقات.",
+    "loadMore": "تحميل المزيد من التعليقات",
+    "noComments": "لا توجد تعليقات بعد. ابدأ النقاش.",
+    "deleted": "تم حذف هذا التعليق.",
+    "deleteConfirm": "هل تريد حذف هذا التعليق؟"
+  },
+  "reactions": {
+    "like": "إعجاب",
+    "approve": "موافقة",
+    "reject": "رفض",
+    "helpful": "مفيد",
+    "commentActions": "إجراءات التعليق"
+  },
+  "departmentTabs": {
+    "all": "جميع المستندات",
+    "engineering": "الهندسة",
+    "product": "المنتج",
+    "marketing": "التسويق",
+    "hr": "الموارد البشرية",
+    "legal": "الشؤون القانونية والامتثال"
+  },
+  "documentCard": {
+    "statusReview": "قيد المراجعة",
+    "byAuthor": "بواسطة {{author}}",
+    "modified": "آخر تعديل",
+    "size": "الحجم"
+  },
+  "documentCardGrid": {
+    "pinning": "جارٍ التثبيت...",
+    "expiry": "تاريخ الانتهاء",
+    "statusLabel": "الحالة",
+    "view": "عرض"
+  },
+  "documentDescription": {
+    "title": "الوصف"
+  },
+  "documentDetails": {
+    "notAvailable": "غير متاح",
+    "preview": "معاينة المستند",
+    "openInViewer": "فتح في العارض",
+    "noDescription": "لا يوجد وصف متاح لهذا المستند.",
+    "documentTypes": "أنواع المستندات",
+    "information": "معلومات",
+    "category": "الفئة",
+    "department": "القسم",
+    "entity": "الكيان",
+    "uploadedBy": "رفع بواسطة",
+    "created": "تاريخ الإنشاء",
+    "lastModified": "آخر تعديل",
+    "documentOwner": "مالك المستند",
+    "unknown": "غير معروف",
+    "shareDocument": "مشاركة المستند"
+  },
+  "documentEmptyState": {
+    "title": "لم يتم العثور على مستندات",
+    "withQuery": "حاول تعديل بحثك أو عوامل التصفية",
+    "withoutQuery": "لا توجد مستندات في هذه الفئة"
+  },
+  "documentEngagement": {
+    "title": "التفاعل",
+    "views": "المشاهدات",
+    "downloads": "التنزيلات",
+    "collaborators": "المتعاونون",
+    "moreCollaborators": "+2 آخرين",
+    "addCollaborator": "إضافة متعاون",
+    "manageAccess": "إدارة الوصول",
+    "duplicate": "نسخ"
+  },
+  "documentErrorState": {
+    "title": "المستند غير موجود",
+    "description": "المستند الذي تبحث عنه غير موجود أو تم حذفه.",
+    "backToDocuments": "العودة إلى المستندات"
+  },
+  "documentFilterSidebar": {
+    "title": "فلاتر متقدمة",
+    "titleArabic": "تصفية متقدمة",
+    "sections": {
+      "type": "النوع",
+      "typeArabic": "نوع المستند",
+      "entity": "الكيان",
+      "entityArabic": "الكيان",
+      "renewal": "التجديد",
+      "renewalArabic": "التجديد",
+      "importance": "الأهمية",
+      "importanceArabic": "الأهمية"
+    },
+    "types": {
+      "licenses": "التراخيص",
+      "permits": "التصاريح",
+      "authorizations": "التفويضات",
+      "cards": "البطاقات",
+      "approvals": "الموافقات",
+      "equipment": "المعدات"
+    },
+    "clearAllFilters": "مسح جميع الفلاتر"
+  },
+  "documentGroupCard": {
+    "documentsCount": "{{count}} مستند",
+    "add": "إضافة",
+    "columnName": "اسم المستند",
+    "columnDepartment": "القسم",
+    "columnEntity": "الكيان",
+    "columnRenewal": "التجديد",
+    "columnImportance": "الأهمية",
+    "columnExpiryDate": "تاريخ الانتهاء",
+    "columnStatus": "الحالة",
+    "columnActions": "الإجراءات",
+    "addFirstDocument": "أضف أول مستند لك"
+  },
+  "entityType": {
+    "operational": "تشغيلي",
+    "establishment": "تأسيسي"
+  },
+  "renewalType": {
+    "renewable": "قابل للتجديد",
+    "oneTime": "لمرة واحدة"
+  },
+  "documentInfoSection": {
+    "title": "المعلومات",
+    "category": "الفئة",
+    "department": "القسم",
+    "entity": "الجهة",
+    "createdBy": "أنشأه",
+    "created": "تاريخ الإنشاء",
+    "lastModified": "آخر تعديل",
+    "reminder": "تذكير"
+  },
+  "documentListHeader": {
+    "subtitle": "تصفح وإدارة مستندات عملك"
+  },
+  "documentPermissions": {
+    "title": "التحكم في الوصول",
+    "addPeople": "إضافة أشخاص"
+  },
+  "documentPreview": {
+    "label": "معاينة المستند",
+    "openInViewer": "فتح في العارض"
+  },
+  "documentRelated": {
+    "title": "مستندات ذات صلة"
+  },
+  "documentResultsSummary": {
+    "count_one": "{{count}} مستند",
+    "count_other": "{{count}} مستندات"
+  },
+  "documentRow": {
+    "new": "جديد",
+    "renewable": "قابل للتجديد",
+    "oneTime": "لمرة واحدة"
+  },
+  "documentSearchBar": {
+    "searchPlaceholder": "ابحث في المستندات..."
+  },
+  "documentTabsContainer": {
+    "notAvailable": "غير متوفر",
+    "userLabel": "المستخدم {{id}}",
+    "unknownUser": "غير معروف",
+    "roleOwner": "المالك",
+    "roleViewer": "مشاهد",
+    "tabs": {
+      "details": "التفاصيل",
+      "activity": "النشاط",
+      "versions": "الإصدارات",
+      "permissions": "الصلاحيات"
+    }
+  },
+  "documentVersions": {
+    "versionLabel": "الإصدار {{version}}",
+    "current": "الحالي"
+  },
+  "documentViewModeTabs": {
+    "types": "الأنواع"
+  },
+  "documentsFilter": {
+    "searchPlaceholder": "ابحث في المستندات بالاسم أو الكلمة المفتاحية أو الفئة...",
+    "documentType": "نوع المستند",
+    "allTypes": "جميع الأنواع",
+    "pdf": "PDF",
+    "spreadsheets": "جداول البيانات",
+    "presentations": "العروض التقديمية",
+    "images": "الصور",
+    "dateRange": "النطاق الزمني",
+    "allTime": "كل الأوقات",
+    "today": "اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "thisQuarter": "هذا الربع",
+    "thisYear": "هذه السنة",
+    "status": "الحالة",
+    "allStatuses": "جميع الحالات",
+    "underReview": "قيد المراجعة",
+    "typePrefix": "النوع:",
+    "datePrefix": "التاريخ:",
+    "statusPrefix": "الحالة:"
+  },
+  "remindersDrawer": {
+    "due": "تاريخ الاستحقاق: {{date}}",
+    "by": "بواسطة {{name}}",
+    "responsible": "المسؤول: {{name}}",
+    "createdAt": "أُنشئ: {{date}}",
+    "updatedAt": "حُدّث: {{date}}",
+    "notification": "إشعار",
+    "failedToLoad": "فشل التحميل",
+    "noRemindersTitle": "لا توجد تذكيرات",
+    "noRemindersDescription": "ليس لديك أي تذكيرات معلّقة",
+    "noNotificationsTitle": "لا توجد إشعارات",
+    "noNotificationsDescription": "أنت على اطلاع بكل شيء",
+    "failedToFetchReminders": "فشل في جلب التذكيرات",
+    "failedToFetchNotifications": "فشل في جلب الإشعارات",
+    "openAriaLabel": "فتح التذكيرات والإشعارات",
+    "closeAriaLabel": "إغلاق اللوحة",
+    "title": "التذكيرات والإشعارات",
+    "notificationsTab": "الإشعارات"
+  },
+  "departmentView": {
+    "emptyState": "لم يتم العثور على مستندات في هذا القسم",
+    "renewableDocuments": "المستندات القابلة للتجديد ({{count}})",
+    "renewableDescription": "مستندات تتطلب تجديدًا دوريًا",
+    "oneTimeDocuments": "المستندات لمرة واحدة ({{count}})",
+    "oneTimeDescription": "مستندات لمرة واحدة لا تتطلب تجديدًا"
+  },
+  "typeView": {
+    "emptyState": "لم يتم العثور على مستندات لهذا النوع",
+    "establishmentDocuments": "مستندات التأسيس",
+    "operationalDocuments": "المستندات التشغيلية",
+    "renewable": "قابل للتجديد",
+    "oneTime": "لمرة واحدة",
+    "establishmentRenewableDescription": "مستندات التأسيس التي تتطلب تجديدًا",
+    "establishmentOneTimeDescription": "مستندات تأسيس لمرة واحدة",
+    "operationalRenewableDescription": "مستندات تشغيلية تتطلب تجديدًا",
+    "operationalOneTimeDescription": "مستندات تشغيلية لمرة واحدة"
+  },
+  "documentListPage": {
+    "loadingDocuments": "جارٍ تحميل المستندات...",
+    "unknownError": "حدث خطأ غير معروف",
+    "error403": "ليس لديك إذن للوصول إلى المستندات في هذا العرض.",
+    "error401": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.",
+    "error404": "لم يتم العثور على نقطة النهاية المطلوبة.",
+    "errorUnauthenticated": "أنت غير مصادَق عليك. يرجى التأكد من تسجيل الدخول.",
+    "errorLoadingDocuments": "خطأ في تحميل المستندات",
+    "goToAllView": "الانتقال إلى عرض الكل",
+    "entityTypes": "أنواع الجهات",
+    "searching": "جارٍ البحث..."
+  },
+  "documentViewPage": {
+    "notAvailable": "غير متاح",
+    "documentNotFound": "المستند غير موجود",
+    "noPermission": "ليس لديك إذن لعرض هذا المستند.",
+    "documentNotFoundDescription": "المستند الذي تبحث عنه غير موجود أو تمت إزالته.",
+    "backToDocuments": "العودة إلى المستندات"
+  },
+  "favoritesPage": {
+    "title": "المفضلة",
+    "subtitle": "المستندات التي أضفتها إلى المفضلة، مع ملاحظاتك الخاصة.",
+    "loading": "جارٍ تحميل المفضلة...",
+    "errorTitle": "فشل تحميل المفضلة",
+    "emptyTitle": "لا توجد مستندات مفضلة بعد",
+    "emptyDescription": "المستندات التي تضيفها إلى المفضلة ستظهر هنا.",
+    "browseDocuments": "تصفح المستندات",
+    "favoritedOn": "أضيف للمفضلة في",
+    "view": "عرض",
+    "unfavorite": "إزالة من المفضلة",
+    "unfavoriting": "جارٍ الإزالة...",
+    "noteLabel": "ملاحظة",
+    "notePlaceholder": "أضف ملاحظة...",
+    "noteEmpty": "لا توجد ملاحظة",
+    "noteSave": "حفظ",
+    "noteSaving": "جارٍ الحفظ...",
+    "noteCancel": "إلغاء",
+    "noteEdit": "تعديل الملاحظة",
+    "pageOf": "صفحة {{current}} من {{last}}"
+  },
+  "documentShares": {
+    "pageTitle": "مشاركات المستندات",
+    "pageSubtitle": "إدارة المستندات التي شاركتها مع مستخدمين آخرين، ومعرفة ما تمت مشاركته معك.",
+    "errorTitle": "فشل تحميل المشاركات",
+    "sharedWith": "تمت المشاركة مع {{name}}",
+    "sharedBy": "شاركه {{name}}",
+    "startsOn": "يبدأ في {{date}}",
+    "expiresOn": "ينتهي في {{date}}",
+    "neverExpires": "لا ينتهي أبدًا",
+    "tabs": {
+      "given": "مشاركاتي",
+      "received": "مُشارك معي"
+    },
+    "status": {
+      "active": "نشط",
+      "pending": "قيد الانتظار",
+      "expired": "منتهي",
+      "revoked": "ملغى"
+    },
+    "access": {
+      "view": "عرض",
+      "download": "تنزيل",
+      "none": "لا صلاحيات"
+    },
+    "empty": {
+      "givenTitle": "لم تشارك أي مستندات بعد",
+      "givenDescription": "شارك مستندًا من صفحة تفاصيله لمنح شخص خارج قسمك حق العرض أو التنزيل.",
+      "receivedTitle": "لم تتم مشاركة أي شيء معك",
+      "receivedDescription": "ستظهر هنا المستندات التي يشاركها معك الآخرون."
+    },
+    "form": {
+      "createTitle": "مشاركة المستند",
+      "createDescription": "امنح مستخدمًا آخر حق العرض أو التنزيل لهذا المستند.",
+      "createDescriptionWithTitle": "امنح مستخدمًا آخر حق العرض أو التنزيل لـ \"{{title}}\".",
+      "editTitle": "تعديل المشاركة",
+      "editDescription": "تحديث صلاحيات {{name}} على \"{{title}}\".",
+      "recipientLabel": "المشاركة مع",
+      "recipientPlaceholder": "اختر مستخدمًا...",
+      "recipientSearchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
+      "recipientTypeToSearch": "اكتب حرفين على الأقل للبحث",
+      "recipientNoResults": "لا يوجد مستخدمون",
+      "recipientSearchError": "تعذر البحث عن المستخدمين. حاول مرة أخرى.",
+      "recipientRequired": "اختر من تريد المشاركة معه",
+      "accessLabel": "الصلاحيات",
+      "canView": "يمكنه العرض",
+      "canDownload": "يمكنه التنزيل",
+      "downloadImpliesView": "صلاحية التنزيل تمنح صلاحية العرض تلقائيًا.",
+      "startsAt": "تاريخ البدء",
+      "expiresAt": "تاريخ الانتهاء",
+      "expiresAtHint": "اتركه فارغًا حتى لا ينتهي إلا بالإلغاء.",
+      "expiresAfterStarts": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.",
+      "submitShare": "مشاركة"
+    },
+    "revoke": {
+      "action": "إلغاء",
+      "title": "إلغاء هذه المشاركة؟",
+      "description": "سيفقد {{name}} الوصول فورًا إلى \"{{title}}\". لا يمكن التراجع عن هذا، لكن يمكنك مشاركة المستند مرة أخرى لاحقًا.",
+      "confirm": "إلغاء الوصول"
+    },
+    "downloadFailed": "تعذر تنزيل هذا الملف. حاول مرة أخرى."
+  }
+}

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { FileText, MoreVertical, Shield, BarChart3, ClipboardList, BookOpen, CheckSquare, Users } from 'lucide-react';
 import { Card, CardContent } from '@/shared/components/ui/card';
 
@@ -11,11 +12,51 @@ const PINNED = [
 ];
 
 interface Props { tenant: string }
+=======
+import { useMemo, memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FileText } from 'lucide-react';
+import { useLastPinnedDocuments } from '@/features/documents/hooks/useLastPinnedDocuments';
+import PinnedDocumentGridCard from './PinnedDocumentGridCard';
+import {
+  DocumentCardSkeleton,
+  DocumentListErrorState,
+  DocumentListEmptyState,
+} from './shared/DocumentListStates';
+
+/**
+ * PinnedDocuments Component
+ *
+ * Fetches and displays last pinned documents with:
+ * - Real-time data from API
+ * - TanStack Query caching
+ * - React.memo optimization
+ * - Loading, error, and empty states
+ */
+const PinnedDocumentsComponent = memo(function PinnedDocuments() {
+  const { t } = useTranslation(['home', 'common']);
+  // Fetch last pinned documents
+  const {
+    pinnedDocuments,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useLastPinnedDocuments();
+
+  // Memoize documents for rendering
+  const displayDocuments = useMemo(
+    () =>
+      pinnedDocuments.sort((a, b) => a.order - b.order).slice(0, 6),
+    [pinnedDocuments]
+  );
+>>>>>>> Stashed changes
 
 export default function PinnedDocuments({ tenant }: Props) {
   return (
     <div className="space-y-3">
       <div>
+<<<<<<< Updated upstream
         <h2 className="text-xl font-bold text-foreground">Pinned Documents</h2>
         <p className="text-sm text-muted-foreground">Important or frequently-used documents today.</p>
       </div>
@@ -45,6 +86,36 @@ export default function PinnedDocuments({ tenant }: Props) {
           </Card>
         ))}
       </div>
+=======
+        <h2 className="text-xl font-bold text-foreground">
+          {t('pinnedDocuments.title')}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {t('pinnedDocuments.subtitle')}
+        </p>
+      </div>
+
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[...Array(3)].map((_, i) => (
+            <DocumentCardSkeleton key={i} />
+          ))}
+        </div>
+      ) : isError ? (
+        <DocumentListErrorState
+          message={error?.message || t('pinnedDocuments.failedToLoad')}
+          onRetry={() => refetch()}
+        />
+      ) : displayDocuments.length === 0 ? (
+        <DocumentListEmptyState icon={FileText} message={t('pinnedDocuments.noPinnedDocuments')} />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {displayDocuments.map((doc) => (
+            <PinnedDocumentGridCard key={doc.id} pinned={doc} />
+          ))}
+        </div>
+      )}
+>>>>>>> Stashed changes
     </div>
   );
 }

@@ -1,5 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
+<<<<<<< Updated upstream
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+=======
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import TypesChartLegendItem from './TypesChartLegendItem';
+import type { StatisticsData } from '../types/statistics.types';
+>>>>>>> Stashed changes
 
 const data = [
     { name: 'Operational', value: 68 },
@@ -11,15 +18,25 @@ const COLORS = [
     'hsl(var(--info))',
 ];
 
+<<<<<<< Updated upstream
 export default function CategoryTypeChart() {
+=======
+export default function CategoryTypeChart({ data }: { data: StatisticsData | undefined }) {
+    const { t } = useTranslation(['home', 'common']);
+
+    const chartData = [
+        { name: t('home:categoryTypeChart.operational'), value: data?.total_operational_by_percentage || 0 },
+        { name: t('home:categoryTypeChart.establishment'), value: data?.total_establishment_by_percentage || 0 },
+    ];
+>>>>>>> Stashed changes
     return (
-        <Card className="border-border rounded-xl">
+        <Card className="border-border rounded-xl h-full flex flex-col">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents by Establishment & Operational</CardTitle>
-                <p className="text-xs text-muted-foreground">Operational vs Establishment</p>
+                <CardTitle className="text-base font-bold">{t('home:categoryTypeChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:categoryTypeChart.subtitle')}</p>
             </CardHeader>
-            <CardContent>
-                <div className="h-56">
+            <CardContent className="flex-1 flex flex-col justify-center space-y-4">
+                <div className="h-48 flex items-center justify-center">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
@@ -30,6 +47,7 @@ export default function CategoryTypeChart() {
                                 outerRadius={85}
                                 paddingAngle={4}
                                 dataKey="value"
+                                nameKey="name"
                                 strokeWidth={0}
                             >
                                 {data.map((_, i) => (
@@ -44,15 +62,19 @@ export default function CategoryTypeChart() {
                                     background: 'hsl(var(--background))',
                                 }}
                             />
-                            <Legend
-                                iconType="circle"
-                                iconSize={8}
-                                formatter={(value) => (
-                                    <span className="text-xs text-muted-foreground">{value}</span>
-                                )}
-                            />
                         </PieChart>
                     </ResponsiveContainer>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                    {chartData.map((entry, i) => (
+                        <TypesChartLegendItem
+                            key={entry.name}
+                            color={COLORS[i]}
+                            name={entry.name}
+                            value={entry.value}
+                        />
+                    ))}
                 </div>
             </CardContent>
         </Card>

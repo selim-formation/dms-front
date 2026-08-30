@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Download, Share2, Pencil, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 
@@ -15,6 +16,8 @@ const DocumentActionButtons: React.FC<DocumentActionButtonsProps> = ({
     onEdit,
     onMore,
 }) => {
+    const { t } = useTranslation(['documents', 'common']);
+
     const handleClick = useCallback((callback?: () => void) => {
         callback?.();
     }, []);
@@ -26,20 +29,20 @@ const DocumentActionButtons: React.FC<DocumentActionButtonsProps> = ({
                 size="sm"
                 onClick={() => handleClick(onShare)}
             >
-                <Share2 className="mr-2 h-4 w-4" /> Share
+                <Share2 className="me-2 h-4 w-4" /> {t('common:actions.share')}
             </Button>
             <Button
                 variant="outline"
                 size="sm"
                 onClick={() => handleClick(onDownload)}
             >
-                <Download className="mr-2 h-4 w-4" /> Download
+                <Download className="me-2 h-4 w-4" /> {t('common:actions.download')}
             </Button>
             <Button
                 size="sm"
                 onClick={() => handleClick(onEdit)}
             >
-                <Pencil className="mr-2 h-4 w-4" /> Edit
+                <Pencil className="me-2 h-4 w-4" /> {t('common:actions.edit')}
             </Button>
             <Button
                 variant="ghost"

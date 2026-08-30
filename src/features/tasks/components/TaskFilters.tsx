@@ -5,7 +5,11 @@
  * Uses shadcn Select component from Radix UI
  */
 
+<<<<<<< Updated upstream
 import React from 'react'
+=======
+import { useTranslation } from 'react-i18next'
+>>>>>>> Stashed changes
 import type { TaskStatus, TaskPriority } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 
@@ -29,6 +33,7 @@ export function TaskFilters({
     onStatusChange,
     onPriorityChange,
 }: TaskFiltersProps) {
+    const { t } = useTranslation(['tasks', 'common'])
     const statusOptions: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED']
     const priorityOptions: TaskPriority[] = ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
 
@@ -47,21 +52,26 @@ export function TaskFilters({
     }
 
     return (
-        <div className="flex flex-col gap-4 p-4 bg-white border-b border-gray-200">
+        <div className="flex flex-col gap-4 p-4 bg-card border-b border-border">
             {/* Status Filter */}
             <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-900">Status</label>
+                <label className="text-sm font-semibold text-foreground">{t('tasks:taskFilters.status')}</label>
                 <div className="flex flex-wrap gap-2">
                     {statusOptions.map((status) => (
                         <button
                             key={status}
                             onClick={() => handleStatusToggle(status)}
                             className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedStatuses.includes(status)
+<<<<<<< Updated upstream
                                     ? 'bg-blue-600 text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+=======
+                                ? 'bg-primary text-primary-foreground'
+                                : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+>>>>>>> Stashed changes
                                 }`}
                             aria-pressed={selectedStatuses.includes(status)}
-                            aria-label={`Filter by status: ${TASK_STATUS_LABELS[status]}`}
+                            aria-label={t('tasks:taskFilters.filterByStatus', { status: TASK_STATUS_LABELS[status] })}
                         >
                             {TASK_STATUS_LABELS[status]}
                         </button>
@@ -71,18 +81,23 @@ export function TaskFilters({
 
             {/* Priority Filter */}
             <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-900">Priority</label>
+                <label className="text-sm font-semibold text-foreground">{t('tasks:taskFilters.priority')}</label>
                 <div className="flex flex-wrap gap-2">
                     {priorityOptions.map((priority) => (
                         <button
                             key={priority}
                             onClick={() => handlePriorityToggle(priority)}
                             className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedPriorities.includes(priority)
+<<<<<<< Updated upstream
                                     ? 'bg-blue-600 text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+=======
+                                ? 'bg-primary text-primary-foreground'
+                                : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+>>>>>>> Stashed changes
                                 }`}
                             aria-pressed={selectedPriorities.includes(priority)}
-                            aria-label={`Filter by priority: ${TASK_PRIORITY_LABELS[priority]}`}
+                            aria-label={t('tasks:taskFilters.filterByPriority', { priority: TASK_PRIORITY_LABELS[priority] })}
                         >
                             {TASK_PRIORITY_LABELS[priority]}
                         </button>
@@ -97,10 +112,10 @@ export function TaskFilters({
                         onStatusChange([])
                         onPriorityChange([])
                     }}
-                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors self-start"
-                    aria-label="Clear all filters"
+                    className="px-3 py-2 text-sm font-medium text-secondary-foreground bg-secondary rounded-md hover:bg-secondary/80 transition-colors self-start"
+                    aria-label={t('tasks:taskFilters.clearAllFilters')}
                 >
-                    Clear Filters
+                    {t('tasks:taskFilters.clearFilters')}
                 </button>
             )}
         </div>

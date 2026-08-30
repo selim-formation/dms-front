@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentCardGrid from './DocumentCardGrid';
 
 interface Document {
@@ -26,12 +27,13 @@ const DocumentsGridSection: React.FC<DocumentsGridSectionProps> = ({
     searchQuery,
     onUploadClick,
 }) => {
+    const { t } = useTranslation(['documents', 'common']);
     // Lazy import empty state component
     const DocumentEmptyState = React.lazy(() => import('./DocumentEmptyState'));
 
     if (documents.length === 0) {
         return (
-            <React.Suspense fallback={<div className="text-center py-12">Loading...</div>}>
+            <React.Suspense fallback={<div className="text-center py-12">{t('common:common.loading')}</div>}>
                 <DocumentEmptyState searchQuery={searchQuery} onUploadClick={onUploadClick} />
             </React.Suspense>
         );

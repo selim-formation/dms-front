@@ -1,0 +1,116 @@
+{
+  "emptyState": {
+    "noTasksTitle": "No tasks yet",
+    "noTasksMessage": "Get started by creating your first task",
+    "noMatchingTitle": "No matching tasks",
+    "noMatchingMessage": "Try adjusting your filters or search query",
+    "noFilteredTitle": "No tasks with these filters",
+    "noFilteredMessage": "Try selecting different filter options",
+    "noSearchTitle": "No tasks match your search",
+    "noSearchMessage": "Try searching with different keywords"
+  },
+  "filterSidebar": {
+    "title": "Advanced Filters",
+    "statusLabel": "Status",
+    "priorityLabel": "Priority",
+    "dueDateLabel": "Due Date",
+    "fromDate": "From Date",
+    "toDate": "To Date",
+    "clearAllFilters": "Clear All Filters"
+  },
+  "taskCard": {
+    "unassigned": "Unassigned"
+  },
+  "taskDetailsDrawer": {
+    "description": "Description",
+    "dueDate": "Due Date",
+    "noDueDate": "No due date",
+    "priority": "Priority",
+    "status": "Status",
+    "department": "Department",
+    "assignedTo": "Assigned To",
+    "assignee": "Assignee",
+    "unassigned": "Unassigned",
+    "createdBy": "Created By",
+    "creator": "Creator",
+    "tags": "Tags",
+    "relatedDocuments": "Related Documents",
+    "documentsAttached_one": "{{count}} document attached",
+    "documentsAttached_other": "{{count}} documents attached",
+    "activity": "Activity",
+    "created": "Created",
+    "lastUpdated": "Last Updated"
+  },
+  "taskFilters": {
+    "status": "Status",
+    "priority": "Priority",
+    "filterByStatus": "Filter by status: {{status}}",
+    "filterByPriority": "Filter by priority: {{priority}}",
+    "clearAllFilters": "Clear all filters",
+    "clearFilters": "Clear Filters"
+  },
+  "taskSort": {
+    "sortBy": "Sort by:",
+    "direction": "Direction:",
+    "sortByField": "Sort by field",
+    "sortDirection": "Sort direction: {{direction}}",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "asc": "↑ Asc",
+    "desc": "↓ Desc",
+    "dueDate": "Due Date",
+    "priority": "Priority",
+    "createdDate": "Created Date",
+    "title": "Title"
+  },
+  "searchCard": {
+    "taskLabel": "Task: {{title}}",
+    "dueLabel": "Due: {{date}}",
+    "docCount_one": "{{count}} doc",
+    "docCount_other": "{{count}} docs"
+  },
+  "resultsList": {
+    "noResultsFound": "No results found",
+    "showingResults": "Showing results {{from}} to {{to}} of {{total}}",
+    "pageOf": " (Page {{current}} of {{last}})",
+    "noTasksFound": "No tasks found",
+    "tryAdjustingSearch": "Try adjusting your search or filters"
+  },
+  "searchError": {
+    "title": "Search Failed",
+    "defaultMessage": "Failed to load tasks. Please try again.",
+    "retrying": "Retrying...",
+    "retry": "Retry",
+    "closeError": "Close error message"
+  },
+  "searchInput": {
+    "placeholder": "Search tasks by title or description...",
+    "searchTasks": "Search tasks",
+    "clearSearch": "Clear search",
+    "debounceInfo": "Results will appear after you stop typing for 300 milliseconds"
+  },
+  "searchPage": {
+    "title": "Tasks",
+    "subtitle": "Search and filter your tasks by status, priority, and more",
+    "searchTasksLabel": "Search Tasks",
+    "searchPlaceholder": "Search by title or description...",
+    "debounceHint": "Results will appear as you type (300ms delay)",
+    "activeFilters": "Active filters:",
+    "clearAll": "Clear all",
+    "defaultErrorMessage": "Failed to fetch tasks. Please try again.",
+    "emptyWithFilters": "No tasks match your search and filters.",
+    "emptyNoFilters": "No tasks found. Create a new task to get started.",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{last}}"
+  },
+  "tasksPage": {
+    "title": "Tasks",
+    "failedToLoad": "Failed to load tasks",
+    "fetchError": "An error occurred while fetching tasks",
+    "tryAgain": "Try Again",
+    "searchPlaceholder": "Search tasks by title or description...",
+    "toggleFilterSidebar": "Toggle filter sidebar",
+    "filter": "Filter"
+  }
+}

@@ -5,7 +5,11 @@
  * Shown when a task is selected from the task list
  */
 
+<<<<<<< Updated upstream
 import React from 'react'
+=======
+import { useTranslation } from 'react-i18next'
+>>>>>>> Stashed changes
 import {
     Drawer,
     DrawerContent,
@@ -30,24 +34,24 @@ interface TaskDetailsDrawerProps {
  */
 const STATUS_COLORS: Record<Task['status'], { bg: string; icon: string; text: string }> = {
     TODO: {
-        bg: 'bg-slate-100',
+        bg: 'bg-muted',
         icon: '📝',
-        text: 'text-slate-700',
+        text: 'text-muted-foreground',
     },
     IN_PROGRESS: {
-        bg: 'bg-blue-100',
+        bg: 'bg-info/10',
         icon: '⚙️',
-        text: 'text-blue-700',
+        text: 'text-info',
     },
     COMPLETED: {
-        bg: 'bg-green-100',
+        bg: 'bg-success/10',
         icon: '✓',
-        text: 'text-green-700',
+        text: 'text-success',
     },
     BLOCKED: {
-        bg: 'bg-red-100',
+        bg: 'bg-destructive/10',
         icon: '⛔',
-        text: 'text-red-700',
+        text: 'text-destructive',
     },
 }
 
@@ -56,24 +60,26 @@ const STATUS_COLORS: Record<Task['status'], { bg: string; icon: string; text: st
  */
 const PRIORITY_COLORS: Record<Task['priority'], { bg: string; text: string }> = {
     LOW: {
-        bg: 'bg-slate-100',
-        text: 'text-slate-700',
+        bg: 'bg-secondary',
+        text: 'text-secondary-foreground',
     },
     MEDIUM: {
-        bg: 'bg-yellow-100',
-        text: 'text-yellow-800',
+        bg: 'bg-warning/10',
+        text: 'text-warning',
     },
     HIGH: {
-        bg: 'bg-orange-100',
-        text: 'text-orange-800',
+        bg: 'bg-warning/20',
+        text: 'text-warning',
     },
     URGENT: {
-        bg: 'bg-red-100',
-        text: 'text-red-800',
+        bg: 'bg-destructive/10',
+        text: 'text-destructive',
     },
 }
 
 export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerProps) {
+    const { t } = useTranslation(['tasks', 'common'])
+
     if (!task) {
         return null
     }
@@ -85,7 +91,7 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
         <Drawer open={isOpen} onOpenChange={onClose}>
             <DrawerContent side="right" className="max-w-md max-h-screen flex flex-col">
                 {/* Header */}
-                <DrawerHeader className="border-b border-gray-200 pb-4">
+                <DrawerHeader className="border-b border-border pb-4">
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
                             <DrawerTitle className="text-2xl mb-2">{task.title}</DrawerTitle>
@@ -98,7 +104,7 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                                 </span>
                             </div>
                         </div>
-                        <DrawerClose className="text-gray-500 hover:text-gray-700" />
+                        <DrawerClose className="text-muted-foreground hover:text-foreground" />
                     </div>
                 </DrawerHeader>
 
@@ -107,8 +113,8 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                     {/* Description Section */}
                     {task.description && (
                         <div className="mb-6">
-                            <h3 className="text-sm font-semibold text-gray-900 mb-2">Description</h3>
-                            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+                            <h3 className="text-sm font-semibold text-foreground mb-2">{t('tasks:taskDetailsDrawer.description')}</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
                                 {task.description}
                             </p>
                         </div>
@@ -118,15 +124,15 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         {/* Due Date */}
                         <div className="col-span-2 sm:col-span-1">
-                            <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Due Date</p>
-                            <p className="text-sm text-gray-900">
-                                {task.dueDate ? formatDate(task.dueDate) : 'No due date'}
+                            <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">{t('tasks:taskDetailsDrawer.dueDate')}</p>
+                            <p className="text-sm text-foreground">
+                                {task.dueDate ? formatDate(task.dueDate) : t('tasks:taskDetailsDrawer.noDueDate')}
                             </p>
                         </div>
 
                         {/* Priority */}
                         <div className="col-span-2 sm:col-span-1">
-                            <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Priority</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">{t('tasks:taskDetailsDrawer.priority')}</p>
                             <p className={`text-sm font-medium ${priorityColors.text}`}>
                                 {TASK_PRIORITY_LABELS[task.priority]}
                             </p>
@@ -134,7 +140,7 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
 
                         {/* Status */}
                         <div className="col-span-2 sm:col-span-1">
-                            <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Status</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">{t('tasks:taskDetailsDrawer.status')}</p>
                             <p className={`text-sm font-medium ${statusColors.text}`}>
                                 {TASK_STATUS_LABELS[task.status]}
                             </p>
@@ -143,17 +149,17 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                         {/* Department */}
                         {task.department && (
                             <div className="col-span-2 sm:col-span-1">
-                                <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Department</p>
-                                <p className="text-sm text-gray-900">{task.department}</p>
+                                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">{t('tasks:taskDetailsDrawer.department')}</p>
+                                <p className="text-sm text-foreground">{task.department}</p>
                             </div>
                         )}
                     </div>
 
                     {/* Assignee Section */}
                     <div className="mb-6">
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Assigned To</p>
+                        <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">{t('tasks:taskDetailsDrawer.assignedTo')}</p>
                         {task.assignee ? (
-                            <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-muted">
                                 {task.assignee.avatar ? (
                                     <img
                                         src={task.assignee.avatar}
@@ -161,26 +167,26 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                                         className="w-10 h-10 rounded-full object-cover"
                                     />
                                 ) : (
-                                    <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
+                                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
                                         {task.assignee.name.charAt(0).toUpperCase()}
                                     </div>
                                 )}
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-900">{task.assignee.name}</p>
-                                    <p className="text-xs text-gray-600">Assignee</p>
+                                    <p className="text-sm font-semibold text-foreground">{task.assignee.name}</p>
+                                    <p className="text-xs text-muted-foreground">{t('tasks:taskDetailsDrawer.assignee')}</p>
                                 </div>
                             </div>
                         ) : (
-                            <div className="p-3 rounded-lg bg-gray-50">
-                                <p className="text-sm text-gray-600 italic">Unassigned</p>
+                            <div className="p-3 rounded-lg bg-muted">
+                                <p className="text-sm text-muted-foreground italic">{t('tasks:taskDetailsDrawer.unassigned')}</p>
                             </div>
                         )}
                     </div>
 
                     {/* Creator Section */}
                     <div className="mb-6">
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Created By</p>
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">{t('tasks:taskDetailsDrawer.createdBy')}</p>
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-muted">
                             {task.creator.avatar ? (
                                 <img
                                     src={task.creator.avatar}
@@ -188,13 +194,13 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                                     className="w-10 h-10 rounded-full object-cover"
                                 />
                             ) : (
-                                <div className="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center text-white font-semibold">
+                                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-semibold">
                                     {task.creator.name.charAt(0).toUpperCase()}
                                 </div>
                             )}
                             <div>
-                                <p className="text-sm font-semibold text-gray-900">{task.creator.name}</p>
-                                <p className="text-xs text-gray-600">Creator</p>
+                                <p className="text-sm font-semibold text-foreground">{task.creator.name}</p>
+                                <p className="text-xs text-muted-foreground">{t('tasks:taskDetailsDrawer.creator')}</p>
                             </div>
                         </div>
                     </div>
@@ -202,12 +208,12 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
                     {/* Tags Section */}
                     {task.tags.length > 0 && (
                         <div className="mb-6">
-                            <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Tags</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">{t('tasks:taskDetailsDrawer.tags')}</p>
                             <div className="flex flex-wrap gap-2">
                                 {task.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200"
+                                        className="px-3 py-1 rounded-full text-xs font-medium bg-info/10 text-info border border-info/20"
                                     >
                                         {tag}
                                     </span>
@@ -218,39 +224,39 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
 
                     {/* Documents Section */}
                     <div className="mb-6">
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Related Documents</p>
-                        <div className="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">{t('tasks:taskDetailsDrawer.relatedDocuments')}</p>
+                        <div className="p-4 rounded-lg bg-muted border border-border">
                             <div className="text-center">
-                                <p className="text-2xl font-bold text-gray-900 mb-1">
+                                <p className="text-2xl font-bold text-foreground mb-1">
                                     {task.relatedDocumentsCount}
                                 </p>
-                                <p className="text-sm text-gray-600">
-                                    {task.relatedDocumentsCount === 1 ? 'document' : 'documents'} attached
+                                <p className="text-sm text-muted-foreground">
+                                    {t('tasks:taskDetailsDrawer.documentsAttached', { count: task.relatedDocumentsCount })}
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     {/* Timestamps Section */}
-                    <div className="mb-6 p-3 rounded-lg bg-gray-50 border border-gray-200">
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-3">Activity</p>
+                    <div className="mb-6 p-3 rounded-lg bg-muted border border-border">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">{t('tasks:taskDetailsDrawer.activity')}</p>
                         <div className="space-y-2">
                             <div className="flex justify-between items-center text-xs">
-                                <span className="text-gray-600">Created</span>
-                                <span className="text-gray-900 font-medium">{formatDate(task.createdAt)}</span>
+                                <span className="text-muted-foreground">{t('tasks:taskDetailsDrawer.created')}</span>
+                                <span className="text-foreground font-medium">{formatDate(task.createdAt)}</span>
                             </div>
                             <div className="flex justify-between items-center text-xs">
-                                <span className="text-gray-600">Last Updated</span>
-                                <span className="text-gray-900 font-medium">{formatDate(task.updatedAt)}</span>
+                                <span className="text-muted-foreground">{t('tasks:taskDetailsDrawer.lastUpdated')}</span>
+                                <span className="text-foreground font-medium">{formatDate(task.updatedAt)}</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Footer */}
-                <DrawerFooter className="border-t border-gray-200">
-                    <DrawerClose className="w-full px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-lg hover:bg-gray-200 transition-colors">
-                        Close
+                <DrawerFooter className="border-t border-border">
+                    <DrawerClose className="w-full px-4 py-2 bg-secondary text-secondary-foreground font-medium rounded-lg hover:bg-secondary/80 transition-colors">
+                        {t('common:actions.close')}
                     </DrawerClose>
                 </DrawerFooter>
             </DrawerContent>

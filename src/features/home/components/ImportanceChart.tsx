@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
@@ -15,15 +16,25 @@ const COLORS: Record<string, string> = {
     Low: 'hsl(var(--success))',
 };
 
+<<<<<<< Updated upstream
 export default function ImportanceChart() {
+=======
+export default function ImportanceChart({ data }: { data: any }) {
+    const { t } = useTranslation(['home', 'common']);
+    const chartData = data?.total_documents_by_importance?.map((item: any) => ({
+        name: item.importance,
+        count: item.total_documents,
+    })) || [];
+
+>>>>>>> Stashed changes
     return (
-        <Card className="border-border rounded-xl">
+        <Card className="border-border rounded-xl h-full flex flex-col">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents By Importance & Confidentiality</CardTitle>
-                <p className="text-xs text-muted-foreground">Degree of importance distribution</p>
+                <CardTitle className="text-base font-bold">{t('importanceChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('importanceChart.subtitle')}</p>
             </CardHeader>
-            <CardContent>
-                <div className="h-56">
+            <CardContent className="flex-1 flex flex-col justify-center">
+                <div className="h-56 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data} barSize={32}>
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />

@@ -38,18 +38,21 @@ export function errorResponseInterceptor(error: AxiosError): Promise<never> {
     },
   });
 
-  // Handle 401 Unauthorized
-  if (status === HTTP_STATUS.UNAUTHORIZED) {
-    log.warn("Unauthorized request detected");
+  // Some endpoints report an expired/missing session as 403 with an
+  // "Unauthenticated." message instead of a real 401 - treat both the same.
+  const message = (error.response?.data as { message?: string } | undefined)?.message;
+  const isUnauthenticated =
+    status === HTTP_STATUS.UNAUTHORIZED ||
+    (status === HTTP_STATUS.FORBIDDEN && message?.toLowerCase() === "unauthenticated.");
 
-    // Trigger auth callback (logout, redirect to login)
+  if (isUnauthenticated) {
+    log.warn("Unauthenticated request detected", { data: { status, message } });
+
+    // Trigger auth callback (clears auth state, redirects to login)
     if (onUnauthorizedCallback) {
       onUnauthorizedCallback();
     }
-  }
-
-  // Handle 403 Forbidden
-  if (status === HTTP_STATUS.FORBIDDEN) {
+  } else if (status === HTTP_STATUS.FORBIDDEN) {
     log.warn("Forbidden request detected");
   }
 

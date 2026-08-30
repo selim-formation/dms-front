@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "documents": "المستندات",
+    "favorites": "المفضلة",
+    "tasks": "المهام",
+    "teams": "الفرق",
+    "dashboard": "لوحة التحكم",
+    "profile": "عرض الملف الشخصي",
+    "documentShares": "المشاركات"
+  },
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "reply": "رد",
+    "comment": "تعليق",
+    "search": "بحث",
+    "filter": "تصفية",
+    "filters": "التصفية",
+    "loadMore": "تحميل المزيد",
+    "upload": "رفع",
+    "uploadDocument": "رفع مستند",
+    "download": "تنزيل",
+    "share": "مشاركة",
+    "copyLink": "نسخ الرابط",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "logout": "تسجيل الخروج",
+    "loggingOut": "جارٍ تسجيل الخروج...",
+    "viewAll": "عرض الكل",
+    "clearAll": "مسح الكل",
+    "retry": "إعادة المحاولة",
+    "pin": "تثبيت",
+    "unpin": "إلغاء التثبيت",
+    "favorite": "إضافة للمفضلة",
+    "unfavorite": "إزالة من المفضلة",
+    "more": "المزيد",
+    "sort": "ترتيب",
+    "copied": "تم النسخ!"
+  },
+  "status": {
+    "active": "نشط",
+    "draft": "مسودة",
+    "archived": "مؤرشف",
+    "expired": "منتهي",
+    "expires": "ينتهي في",
+    "noExpiry": "بدون انتهاء",
+    "pending": "قيد الانتظار",
+    "approved": "موافق عليه",
+    "rejected": "مرفوض",
+    "inReview": "قيد المراجعة",
+    "completed": "مكتمل",
+    "toDo": "قيد التنفيذ",
+    "overdue": "متأخر"
+  },
+  "priority": {
+    "critical": "حرج",
+    "high": "مرتفع",
+    "medium": "متوسط",
+    "low": "منخفض",
+    "urgent": "عاجل"
+  },
+  "theme": {
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
+  },
+  "loadingScreen": {
+    "validatingSession": "جارٍ التحقق من الجلسة...",
+    "pleaseWait": "يرجى الانتظار بينما نتحقق من جلستك...",
+    "loadingApplication": "جارٍ تحميل التطبيق"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "noResults": "لا توجد نتائج",
+    "error": "خطأ",
+    "tryAgain": "حاول مرة أخرى",
+    "total": "الإجمالي",
+    "all": "الكل",
+    "departments": "الأقسام",
+    "users": "المستخدمون",
+    "documents": "المستندات",
+    "tasks": "المهام",
+    "notFound": "غير موجود",
+    "accessDenied": "الوصول مرفوض",
+    "unauthenticated": "غير مصرح",
+    "somethingWentWrong": "حدث خطأ ما"
+  }
+}

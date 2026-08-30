@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentFilterSidebar from './DocumentFilterSidebar';
 
 interface Filters {
@@ -22,6 +23,7 @@ const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
     onFiltersChange,
     onClearFilters,
 }) => {
+    const { t } = useTranslation(['documents', 'common']);
     if (!isOpen) return null;
 
     return (
@@ -30,14 +32,14 @@ const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
             onClick={onClose}
         >
             <div
-                className="absolute right-0 top-0 bottom-0 w-80 max-w-full bg-white shadow-lg overflow-y-auto"
+                className="absolute end-0 top-0 bottom-0 w-80 max-w-full bg-card shadow-lg overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-                    <h3 className="font-semibold text-gray-900">Filters</h3>
+                <div className="sticky top-0 bg-card border-b border-border px-6 py-4 flex items-center justify-between">
+                    <h3 className="font-semibold text-foreground">{t('common:actions.filters')}</h3>
                     <button
                         onClick={onClose}
-                        className="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 font-bold"
+                        className="p-1 hover:bg-accent rounded-lg transition-colors text-muted-foreground font-bold"
                     >
                         ✕
                     </button>

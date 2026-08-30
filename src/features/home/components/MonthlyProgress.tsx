@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Link } from '@tanstack/react-router';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
@@ -10,19 +11,21 @@ const data = [
   { month: 'Feb', approvals: 13, details: 0, pending: 0 },
 ];
 
-const stats = [
-  { label: 'Approvals', color: 'bg-primary', curr: 43, prev: 13 },
-  { label: 'Details', color: 'bg-info', curr: 0, prev: 12 },
-  { label: 'Pending', color: 'bg-accent', curr: 0, prev: 12 },
-];
-
 export default function MonthlyProgress() {
+  const { t } = useTranslation(['home', 'common']);
+
+  const stats = [
+    { label: t('monthlyProgress.approvals'), color: 'bg-primary', curr: 43, prev: 13 },
+    { label: t('monthlyProgress.details'), color: 'bg-info', curr: 0, prev: 12 },
+    { label: t('monthlyProgress.pending'), color: 'bg-accent', curr: 0, prev: 12 },
+  ];
+
   return (
     <Card className="border-border">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-bold">Monthly Progress</CardTitle>
-          <span className="text-xs text-primary font-medium cursor-pointer">View all ›</span>
+          <CardTitle className="text-base font-bold">{t('monthlyProgress.title')}</CardTitle>
+          <span className="text-xs text-primary font-medium cursor-pointer">{t('monthlyProgress.viewAll')}</span>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -44,8 +47,8 @@ export default function MonthlyProgress() {
               <span className={`h-2.5 w-2.5 rounded-full ${s.color}`} />
               <span className="text-muted-foreground flex-1">{s.label}</span>
               <span className={`h-1.5 flex-1 max-w-[80px] rounded-full ${s.color}`} />
-              <span className="font-semibold text-foreground w-5 text-right">{s.curr}</span>
-              <span className="text-muted-foreground w-5 text-right">{s.prev}</span>
+              <span className="font-semibold text-foreground w-5 text-end">{s.curr}</span>
+              <span className="text-muted-foreground w-5 text-end">{s.prev}</span>
             </div>
           ))}
         </div>

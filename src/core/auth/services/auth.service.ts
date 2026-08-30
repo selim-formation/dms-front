@@ -44,8 +44,13 @@ export async function logout(tenantId: string): Promise<void> {
   try {
     log.debug("Attempting logout");
 
+<<<<<<< Updated upstream
     const url = buildApiUrl("/{tenant}/logout", { tenant: tenantId });
     await axios.post(url);
+=======
+    const url = buildApiUrl("/api/logout", { tenant: tenantId });
+    await apiClient.post(url);
+>>>>>>> Stashed changes
 
     log.info("Logout successful");
   } catch (error) {

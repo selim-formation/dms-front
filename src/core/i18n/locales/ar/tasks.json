@@ -1,0 +1,116 @@
+{
+  "emptyState": {
+    "noTasksTitle": "لا توجد مهام بعد",
+    "noTasksMessage": "ابدأ بإنشاء أول مهمة لك",
+    "noMatchingTitle": "لا توجد مهام مطابقة",
+    "noMatchingMessage": "حاول تعديل عوامل التصفية أو عبارة البحث",
+    "noFilteredTitle": "لا توجد مهام بهذه التصفية",
+    "noFilteredMessage": "حاول اختيار خيارات تصفية مختلفة",
+    "noSearchTitle": "لا توجد مهام تطابق بحثك",
+    "noSearchMessage": "حاول البحث باستخدام كلمات مختلفة"
+  },
+  "filterSidebar": {
+    "title": "تصفية متقدمة",
+    "statusLabel": "الحالة",
+    "priorityLabel": "الأولوية",
+    "dueDateLabel": "تاريخ الاستحقاق",
+    "fromDate": "من تاريخ",
+    "toDate": "إلى تاريخ",
+    "clearAllFilters": "مسح جميع عوامل التصفية"
+  },
+  "taskCard": {
+    "unassigned": "غير مسندة"
+  },
+  "taskDetailsDrawer": {
+    "description": "الوصف",
+    "dueDate": "تاريخ الاستحقاق",
+    "noDueDate": "لا يوجد تاريخ استحقاق",
+    "priority": "الأولوية",
+    "status": "الحالة",
+    "department": "القسم",
+    "assignedTo": "مسندة إلى",
+    "assignee": "المسؤول",
+    "unassigned": "غير مسندة",
+    "createdBy": "أُنشئت بواسطة",
+    "creator": "المنشئ",
+    "tags": "الوسوم",
+    "relatedDocuments": "المستندات ذات الصلة",
+    "documentsAttached_one": "مستند واحد مرفق",
+    "documentsAttached_other": "{{count}} مستندات مرفقة",
+    "activity": "النشاط",
+    "created": "تاريخ الإنشاء",
+    "lastUpdated": "آخر تحديث"
+  },
+  "taskFilters": {
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "filterByStatus": "تصفية حسب الحالة: {{status}}",
+    "filterByPriority": "تصفية حسب الأولوية: {{priority}}",
+    "clearAllFilters": "مسح جميع عوامل التصفية",
+    "clearFilters": "مسح عوامل التصفية"
+  },
+  "taskSort": {
+    "sortBy": "الترتيب حسب:",
+    "direction": "الاتجاه:",
+    "sortByField": "الترتيب حسب الحقل",
+    "sortDirection": "اتجاه الترتيب: {{direction}}",
+    "ascending": "تصاعدي",
+    "descending": "تنازلي",
+    "asc": "↑ تصاعدي",
+    "desc": "↓ تنازلي",
+    "dueDate": "تاريخ الاستحقاق",
+    "priority": "الأولوية",
+    "createdDate": "تاريخ الإنشاء",
+    "title": "العنوان"
+  },
+  "searchCard": {
+    "taskLabel": "مهمة: {{title}}",
+    "dueLabel": "الاستحقاق: {{date}}",
+    "docCount_one": "مستند واحد",
+    "docCount_other": "{{count}} مستندات"
+  },
+  "resultsList": {
+    "noResultsFound": "لم يتم العثور على نتائج",
+    "showingResults": "عرض النتائج من {{from}} إلى {{to}} من أصل {{total}}",
+    "pageOf": " (صفحة {{current}} من {{last}})",
+    "noTasksFound": "لم يتم العثور على مهام",
+    "tryAdjustingSearch": "حاول تعديل البحث أو عوامل التصفية"
+  },
+  "searchError": {
+    "title": "فشل البحث",
+    "defaultMessage": "فشل تحميل المهام. يرجى المحاولة مرة أخرى.",
+    "retrying": "جارٍ إعادة المحاولة...",
+    "retry": "إعادة المحاولة",
+    "closeError": "إغلاق رسالة الخطأ"
+  },
+  "searchInput": {
+    "placeholder": "ابحث في المهام حسب العنوان أو الوصف...",
+    "searchTasks": "بحث في المهام",
+    "clearSearch": "مسح البحث",
+    "debounceInfo": "ستظهر النتائج بعد توقفك عن الكتابة لمدة 300 مللي ثانية"
+  },
+  "searchPage": {
+    "title": "المهام",
+    "subtitle": "ابحث في مهامك وقم بتصفيتها حسب الحالة والأولوية والمزيد",
+    "searchTasksLabel": "بحث في المهام",
+    "searchPlaceholder": "ابحث حسب العنوان أو الوصف...",
+    "debounceHint": "ستظهر النتائج أثناء الكتابة (تأخير 300 مللي ثانية)",
+    "activeFilters": "عوامل التصفية النشطة:",
+    "clearAll": "مسح الكل",
+    "defaultErrorMessage": "فشل جلب المهام. يرجى المحاولة مرة أخرى.",
+    "emptyWithFilters": "لا توجد مهام تطابق بحثك وعوامل التصفية.",
+    "emptyNoFilters": "لم يتم العثور على مهام. أنشئ مهمة جديدة للبدء.",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{last}}"
+  },
+  "tasksPage": {
+    "title": "المهام",
+    "failedToLoad": "فشل تحميل المهام",
+    "fetchError": "حدث خطأ أثناء جلب المهام",
+    "tryAgain": "أعد المحاولة",
+    "searchPlaceholder": "ابحث في المهام حسب العنوان أو الوصف...",
+    "toggleFilterSidebar": "تبديل الشريط الجانبي للتصفية",
+    "filter": "تصفية"
+  }
+}

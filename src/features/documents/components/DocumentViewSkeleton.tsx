@@ -4,7 +4,7 @@ import { Card } from '@/shared/components/ui/card';
 
 const DocumentViewSkeleton: React.FC = () => {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-muted">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="space-y-6">
                     <Skeleton className="h-5 w-48" />

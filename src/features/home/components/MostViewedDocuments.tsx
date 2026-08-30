@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { FileText } from 'lucide-react';
 const docs = [
@@ -8,10 +9,11 @@ const docs = [
   { name: 'Equipment Inspection', type: '1%', score: '1.05' },
 ];
 export default function MostViewedDocuments() {
+  const { t } = useTranslation(['home', 'common']);
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Most Viewed Documents</CardTitle>
+        <CardTitle className="text-base font-bold">{t('mostViewedDocuments.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">

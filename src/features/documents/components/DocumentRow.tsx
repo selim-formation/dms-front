@@ -1,5 +1,6 @@
 import { MoreHorizontal, Download, Share2 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DocumentRowProps {
     name: string;
@@ -13,19 +14,19 @@ interface DocumentRowProps {
 }
 
 const importanceStyles = {
-    Critical: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-100' },
-    High: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-700', badge: 'bg-orange-100' },
-    Medium: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700', badge: 'bg-blue-100' },
+    Critical: { bg: 'bg-destructive/5', border: 'border-destructive/30', text: 'text-destructive', badge: 'bg-destructive/10' },
+    High: { bg: 'bg-warning/5', border: 'border-warning/30', text: 'text-warning', badge: 'bg-warning/10' },
+    Medium: { bg: 'bg-info/5', border: 'border-info/30', text: 'text-info', badge: 'bg-info/10' },
 };
 
 const renewalStyles = {
-    Renewable: 'bg-purple-100 text-purple-700',
-    'One-Time': 'bg-gray-100 text-gray-700',
+    Renewable: 'bg-chart-1/10 text-chart-1',
+    'One-Time': 'bg-muted text-muted-foreground',
 };
 
 const statusStyles = {
-    Expires: 'text-amber-600',
-    Expired: 'text-red-600',
+    Expires: 'text-warning',
+    Expired: 'text-destructive',
 };
 
 export default function DocumentRow({
@@ -39,26 +40,43 @@ export default function DocumentRow({
     isNew,
 }: DocumentRowProps) {
     const [showMenu, setShowMenu] = useState(false);
+    const { t } = useTranslation(['documents', 'common']);
     const importMode = importanceStyles[importance];
+
+    const renewalLabels: Record<DocumentRowProps['renewal'], string> = {
+        Renewable: t('documentRow.renewable'),
+        'One-Time': t('documentRow.oneTime'),
+    };
+
+    const importanceLabels: Record<DocumentRowProps['importance'], string> = {
+        Critical: t('common:priority.critical'),
+        High: t('common:priority.high'),
+        Medium: t('common:priority.medium'),
+    };
+
+    const statusLabels: Record<DocumentRowProps['status'], string> = {
+        Expires: t('common:status.expires'),
+        Expired: t('common:status.expired'),
+    };
 
     return (
         <div
-            className={`flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-gray-50 transition-colors group ${importMode.bg
+            className={`flex items-center gap-4 px-6 py-4 border-b border-border hover:bg-accent transition-colors group ${importMode.bg
                 }`}
         >
             {/* Checkbox */}
             <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                className="w-4 h-4 rounded border-border text-primary focus:ring-primary cursor-pointer"
             />
 
             {/* Document Name & New Badge */}
             <div className="flex-1">
                 <div className="flex items-center gap-2">
-                    <span className="font-medium text-gray-900 text-sm">{name}</span>
+                    <span className="font-medium text-foreground text-sm">{name}</span>
                     {isNew && (
-                        <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
-                            New
+                        <span className="px-2 py-1 bg-info/10 text-info text-xs font-semibold rounded-full">
+                            {t('documentRow.new')}
                         </span>
                     )}
                 </div>
@@ -66,14 +84,14 @@ export default function DocumentRow({
 
             {/* Department Label */}
             <div className="w-28">
-                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-xl">
+                <span className="inline-block px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-xl">
                     {department}
                 </span>
             </div>
 
             {/* Entity Label */}
             <div className="w-28">
-                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-xl">
+                <span className="inline-block px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-xl">
                     {entity}
                 </span>
             </div>
@@ -81,7 +99,7 @@ export default function DocumentRow({
             {/* Renewal Badge */}
             <div className="w-24">
                 <span className={`inline-block px-3 py-1 text-xs font-medium rounded-xl ${renewalStyles[renewal]}`}>
-                    {renewal}
+                    {renewalLabels[renewal]}
                 </span>
             </div>
 
@@ -90,7 +108,7 @@ export default function DocumentRow({
                 <span
                     className={`inline-block px-3 py-1 text-xs font-semibold rounded-xl border ${importMode.badge} ${importMode.text}`}
                 >
-                    {importance}
+                    {importanceLabels[importance]}
                 </span>
             </div>
 
@@ -103,30 +121,31 @@ export default function DocumentRow({
             <div className="w-20">
                 <span
                     className={`inline-block px-2 py-1 text-xs font-semibold rounded-lg ${status === 'Expired'
-                            ? 'bg-red-100 text-red-700'
-                            : 'bg-amber-100 text-amber-700'
+                            ? 'bg-destructive/10 text-destructive'
+                            : 'bg-warning/10 text-warning'
                         }`}
                 >
-                    {status}
+                    {statusLabels[status]}
                 </span>
             </div>
 
             {/* Actions */}
             <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="p-1.5 hover:bg-white rounded-lg transition-colors text-gray-500 hover:text-blue-600">
+                <button className="p-1.5 hover:bg-card rounded-lg transition-colors text-muted-foreground hover:text-primary">
                     <Download size={16} />
                 </button>
-                <button className="p-1.5 hover:bg-white rounded-lg transition-colors text-gray-500 hover:text-blue-600">
+                <button className="p-1.5 hover:bg-card rounded-lg transition-colors text-muted-foreground hover:text-primary">
                     <Share2 size={16} />
                 </button>
                 <div className="relative">
                     <button
                         onClick={() => setShowMenu(!showMenu)}
-                        className="p-1.5 hover:bg-white rounded-lg transition-colors text-gray-500 hover:text-gray-700"
+                        className="p-1.5 hover:bg-card rounded-lg transition-colors text-muted-foreground hover:text-foreground"
                     >
                         <MoreHorizontal size={16} />
                     </button>
                     {showMenu && (
+<<<<<<< Updated upstream
                         <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-20">
                             <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                                 Preview
@@ -139,6 +158,11 @@ export default function DocumentRow({
                             </button>
                             <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100">
                                 Delete
+=======
+                        <div className="absolute end-0 mt-1 w-40 bg-popover border border-border rounded-lg shadow-lg z-20">
+                            <button className="w-full text-start px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors">
+                                {t('common:actions.pin')}
+>>>>>>> Stashed changes
                             </button>
                         </div>
                     )}

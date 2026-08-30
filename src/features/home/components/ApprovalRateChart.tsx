@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
@@ -12,11 +13,12 @@ const data = [
 ];
 
 export default function ApprovalRateChart() {
+    const { t } = useTranslation(['home', 'common']);
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Approval Rate</CardTitle>
-                <p className="text-xs text-muted-foreground">Trend over last 7 months</p>
+                <CardTitle className="text-base font-bold">{t('home:approvalRateChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:approvalRateChart.subtitle')}</p>
             </CardHeader>
             <CardContent>
                 <div className="h-56">
@@ -32,7 +34,11 @@ export default function ApprovalRateChart() {
                                     border: '1px solid hsl(var(--border))',
                                     background: 'hsl(var(--background))',
                                 }}
+<<<<<<< Updated upstream
                                 formatter={(value: number) => [`${value}%`, 'Approval Rate']}
+=======
+                                formatter={(value: number | undefined) => [`${value ?? ''}%`, t('home:approvalRateChart.title')] as [string, string]}
+>>>>>>> Stashed changes
                             />
                             <Line
                                 type="monotone"

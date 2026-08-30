@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { FileText, ExternalLink } from 'lucide-react';
+import DocumentCardGrid from './DocumentCardGrid';
 
 interface RelatedDocument {
     id: string;
@@ -10,39 +11,41 @@ interface RelatedDocument {
 
 interface DocumentRelatedProps {
     documents: RelatedDocument[];
-    fileTypeColors: Record<string, string>;
     onDocumentClick?: (id: string) => void;
 }
 
-const DocumentRelated: React.FC<DocumentRelatedProps> = ({
-    documents,
-    fileTypeColors,
-    onDocumentClick,
-}) => {
+/**
+ * Related documents — reuses the shared browse-grid `DocumentCardGrid` (same
+ * card as the documents page) instead of a bespoke compact list, so a related
+ * document gets the same pin/favorite/view/download affordances everywhere.
+ */
+const DocumentRelated: React.FC<DocumentRelatedProps> = ({ documents, onDocumentClick }) => {
+    const { t } = useTranslation(['documents', 'common']);
+
     return (
         <Card>
             <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold">Related Documents</CardTitle>
+                <CardTitle className="text-base font-semibold">{t('documentRelated.title')}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-                {documents.map((rd) => (
-                    <div
-                        key={rd.id}
-                        onClick={() => onDocumentClick?.(rd.id)}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer group"
-                    >
-                        <div className={`h-9 w-9 rounded-lg ${fileTypeColors[rd.type] || 'bg-muted text-muted-foreground'} flex items-center justify-center`}>
-                            <FileText className="h-4 w-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
-                                {rd.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground uppercase">.{rd.type}</p>
-                        </div>
-                        <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                ))}
+            <CardContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {documents.map((rd) => (
+                        <DocumentCardGrid
+                            key={rd.id}
+                            id={rd.id}
+                            name={rd.title}
+                            department={rd.type.toUpperCase()}
+                            entity={t('documentRelated.title')}
+                            renewal="One-Time"
+                            renewalLabel={t('documentRelated.title')}
+                            importance="Medium"
+                            importanceLabel={t('common:status.active')}
+                            expiryDate={t('documentDetails.notAvailable')}
+                            status="Expires"
+                            onView={onDocumentClick ? () => onDocumentClick(rd.id) : undefined}
+                        />
+                    ))}
+                </div>
             </CardContent>
         </Card>
     );

@@ -7,6 +7,7 @@
  */
 
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Task } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 import { formatDate } from '../utils/dateFormat'
@@ -16,24 +17,24 @@ import { formatDate } from '../utils/dateFormat'
  */
 const STATUS_COLORS: Record<Task['status'], { bg: string; text: string; badge: string }> = {
     TODO: {
-        bg: 'bg-slate-50',
-        text: 'text-slate-700',
-        badge: 'bg-slate-200 text-slate-800',
+        bg: 'bg-muted',
+        text: 'text-muted-foreground',
+        badge: 'bg-secondary text-secondary-foreground',
     },
     IN_PROGRESS: {
-        bg: 'bg-blue-50',
-        text: 'text-blue-700',
-        badge: 'bg-blue-200 text-blue-800',
+        bg: 'bg-info/10',
+        text: 'text-info',
+        badge: 'bg-info/20 text-info',
     },
     COMPLETED: {
-        bg: 'bg-green-50',
-        text: 'text-green-700',
-        badge: 'bg-green-200 text-green-800',
+        bg: 'bg-success/10',
+        text: 'text-success',
+        badge: 'bg-success/20 text-success',
     },
     BLOCKED: {
-        bg: 'bg-red-50',
-        text: 'text-red-700',
-        badge: 'bg-red-200 text-red-800',
+        bg: 'bg-destructive/10',
+        text: 'text-destructive',
+        badge: 'bg-destructive/20 text-destructive',
     },
 }
 
@@ -41,10 +42,10 @@ const STATUS_COLORS: Record<Task['status'], { bg: string; text: string; badge: s
  * Color mapping for priority badges
  */
 const PRIORITY_COLORS: Record<Task['priority'], string> = {
-    LOW: 'bg-slate-100 text-slate-700',
-    MEDIUM: 'bg-yellow-100 text-yellow-800',
-    HIGH: 'bg-orange-100 text-orange-800',
-    URGENT: 'bg-red-100 text-red-800',
+    LOW: 'bg-secondary text-secondary-foreground',
+    MEDIUM: 'bg-warning/10 text-warning',
+    HIGH: 'bg-warning/20 text-warning',
+    URGENT: 'bg-destructive/10 text-destructive',
 }
 
 interface TaskCardProps {
@@ -54,6 +55,7 @@ interface TaskCardProps {
 }
 
 function TaskCardComponent({ task, isSelected = false, onClick }: TaskCardProps) {
+    const { t } = useTranslation(['tasks', 'common'])
     const statusColors = STATUS_COLORS[task.status]
     const priorityColor = PRIORITY_COLORS[task.priority]
 
@@ -61,8 +63,8 @@ function TaskCardComponent({ task, isSelected = false, onClick }: TaskCardProps)
         <button
             onClick={() => onClick?.(task.id)}
             className={`
-        w-full text-left p-4 rounded-lg border-2 transition-all
-        ${isSelected ? `border-blue-500 ${statusColors.bg}` : 'border-gray-200 hover:border-gray-300'}
+        w-full text-start p-4 rounded-lg border-2 transition-all
+        ${isSelected ? `border-primary ${statusColors.bg}` : 'border-border hover:border-ring'}
         ${statusColors.bg} hover:shadow-md cursor-pointer
       `}
         >
@@ -78,7 +80,7 @@ function TaskCardComponent({ task, isSelected = false, onClick }: TaskCardProps)
 
             {/* Description preview - optional */}
             {task.description && (
-                <p className="text-xs text-gray-600 line-clamp-2 mb-3">
+                <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
                     {task.description}
                 </p>
             )}
@@ -88,7 +90,7 @@ function TaskCardComponent({ task, isSelected = false, onClick }: TaskCardProps)
                 <span className={`px-2 py-1 rounded text-xs font-medium ${priorityColor}`}>
                     {TASK_PRIORITY_LABELS[task.priority]}
                 </span>
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-muted-foreground">
                     {formatDate(task.dueDate)}
                 </span>
             </div>
@@ -107,20 +109,20 @@ function TaskCardComponent({ task, isSelected = false, onClick }: TaskCardProps)
                                 />
                             ) : (
                                 <div
-                                    className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center text-white text-xs"
+                                    className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground text-xs"
                                     title={task.assignee.name}
                                 >
                                     {task.assignee.name.charAt(0)}
                                 </div>
                             )}
-                            <span className="text-gray-700">{task.assignee.name}</span>
+                            <span className="text-muted-foreground">{task.assignee.name}</span>
                         </>
                     ) : (
-                        <span className="text-gray-400">Unassigned</span>
+                        <span className="text-muted-foreground">{t('tasks:taskCard.unassigned')}</span>
                     )}
                 </div>
                 {task.relatedDocumentsCount > 0 && (
-                    <span className="text-gray-600 font-medium">
+                    <span className="text-muted-foreground font-medium">
                         📄 {task.relatedDocumentsCount}
                     </span>
                 )}

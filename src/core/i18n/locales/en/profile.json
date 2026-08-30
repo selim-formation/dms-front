@@ -1,0 +1,24 @@
+{
+  "joinedOn": "Joined",
+  "errorTitle": "Failed to load profile",
+  "showMore": "Show more",
+  "loadingMore": "Loading...",
+  "stats": {
+    "documents": "Documents",
+    "favorites": "Favorites",
+    "pinned": "Pinned",
+    "tasks": "Tasks"
+  },
+  "tabs": {
+    "documents": "Documents",
+    "favorites": "Favorites",
+    "pinned": "Pinned",
+    "tasks": "Tasks"
+  },
+  "empty": {
+    "documents": "No documents yet",
+    "favorites": "No favorites yet",
+    "pinned": "No pinned documents yet",
+    "tasks": "No tasks yet"
+  }
+}

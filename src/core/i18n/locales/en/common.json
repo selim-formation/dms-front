@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Home",
+    "documents": "Documents",
+    "favorites": "Favorites",
+    "tasks": "Tasks",
+    "teams": "Teams",
+    "dashboard": "Dashboard",
+    "profile": "View Profile",
+    "documentShares": "Shares"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "reply": "Reply",
+    "comment": "Comment",
+    "search": "Search",
+    "filter": "Filter",
+    "filters": "Filters",
+    "loadMore": "Load more",
+    "upload": "Upload",
+    "uploadDocument": "Upload Document",
+    "download": "Download",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "logout": "Log out",
+    "loggingOut": "Logging out...",
+    "viewAll": "View All",
+    "clearAll": "Clear all",
+    "retry": "Retry",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "more": "More",
+    "sort": "Sort",
+    "copied": "Copied!"
+  },
+  "status": {
+    "active": "Active",
+    "draft": "Draft",
+    "archived": "Archived",
+    "expired": "Expired",
+    "expires": "Expires",
+    "noExpiry": "No expiry",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "inReview": "In review",
+    "completed": "Completed",
+    "toDo": "To Do",
+    "overdue": "Overdue"
+  },
+  "priority": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "urgent": "Urgent"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "loadingScreen": {
+    "validatingSession": "Validating session...",
+    "pleaseWait": "Please wait while we validate your session...",
+    "loadingApplication": "Loading application"
+  },
+  "common": {
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "error": "Error",
+    "tryAgain": "Try again",
+    "total": "Total",
+    "all": "All",
+    "departments": "Departments",
+    "users": "Users",
+    "documents": "Documents",
+    "tasks": "Tasks",
+    "notFound": "Not found",
+    "accessDenied": "Access Denied",
+    "unauthenticated": "Unauthenticated",
+    "somethingWentWrong": "Something went wrong"
+  }
+}

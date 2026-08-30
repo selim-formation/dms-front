@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { TrendingUp } from 'lucide-react';
 const users = [
@@ -6,10 +7,11 @@ const users = [
   { rank: 3, name: 'Sara Ahmed', role: 'Viewed documents', count: 114 },
 ];
 export default function TopActiveUsers() {
+  const { t } = useTranslation(['home', 'common']);
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Top Active Users</CardTitle>
+        <CardTitle className="text-base font-bold">{t('topActiveUsers.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

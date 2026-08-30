@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
+<<<<<<< Updated upstream
 const data = [
     { name: 'Finance', count: 38 },
     { name: 'Legal', count: 27 },
@@ -9,16 +11,24 @@ const data = [
     { name: 'Marketing', count: 16 },
     { name: 'Operations', count: 29 },
 ];
+=======
+export default function DepartmentsChart({ data }: { data: StatisticsData | undefined }) {
+    const { t } = useTranslation(['home', 'common']);
+    const chartData = (data as any)?.totalDocumentsByDepartment?.map((dept: any) => ({
+        name: dept.department,
+        count: dept.total_documents,
+    })) || [];
+>>>>>>> Stashed changes
 
 export default function DepartmentsChart() {
     return (
-        <Card className="border-border rounded-xl">
+        <Card className="border-border rounded-xl h-full flex flex-col">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents by Department</CardTitle>
-                <p className="text-xs text-muted-foreground">Distribution across departments</p>
+                <CardTitle className="text-base font-bold">{t('home:departmentsChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:departmentsChart.subtitle')}</p>
             </CardHeader>
-            <CardContent>
-                <div className="h-56">
+            <CardContent className="flex-1 flex flex-col justify-center">
+                <div className="h-56 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data} barSize={24} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />

@@ -1,0 +1,23 @@
+{
+  "title": "Dashboard",
+  "tenant": "Tenant:",
+  "stats": {
+    "documents": "Documents",
+    "workspaces": "Workspaces",
+    "users": "Users",
+    "storage": "Storage"
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "uploadDocument": "Upload Document",
+    "createWorkspace": "Create Workspace",
+    "inviteUser": "Invite User"
+  },
+  "recentActivity": {
+    "title": "Recent Activity",
+    "uploaded": "uploaded",
+    "created": "created",
+    "edited": "edited",
+    "shared": "shared"
+  }
+}

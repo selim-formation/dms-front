@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
@@ -12,11 +13,12 @@ const data = [
 ];
 
 export default function MonthlyUploadsChart() {
+    const { t } = useTranslation(['home', 'common']);
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Monthly Uploads</CardTitle>
-                <p className="text-xs text-muted-foreground">Documents uploaded per month</p>
+                <CardTitle className="text-base font-bold">{t('monthlyUploadsChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('monthlyUploadsChart.subtitle')}</p>
             </CardHeader>
             <CardContent>
                 <div className="h-56">

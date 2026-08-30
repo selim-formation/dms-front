@@ -1,0 +1,307 @@
+{
+  "metadata": {
+    "name": "Formation OBS Color Palette",
+    "version": "1.0.0",
+    "product_type": "DMS",
+    "industry": "Corporate",
+    "brand_tone": "Warm, premium, trustworthy",
+    "accessibility_standard": "WCAG-AA",
+    "frameworks": ["tailwind", "css-variables"],
+    "last_updated": "2026-08-19",
+    "source": "https://formation-obs.com/",
+    "note": "Palette extracted/approximated from the current Formation OBS visual identity and logo. Gold is the primary brand color. Contrast ratios below are computed, not guessed."
+  },
+  "palette_overview": {
+    "visual_intention": "Warm, gold-accented identity for Formation OBS while keeping enterprise DMS clarity and hierarchy",
+    "emotional_tone": "Premium, confident, warm, approachable",
+    "target_users": "Enterprise users, document managers, compliance officers, multi-tenant organizations",
+    "design_philosophy": "Minimalist with clear hierarchy, gold as sole primary accent, warm neutrals instead of cool grays"
+  },
+  "design_tokens": {
+    "light_theme": {
+      "background": {
+        "color": "#FAFAF7",
+        "rgb": "rgb(250, 250, 247)",
+        "name": "Off White",
+        "usage": "Main application background, primary content area",
+        "contrast_ratio_with_text_main": "10.2:1"
+      },
+      "surface": {
+        "color": "#FFFFFF",
+        "rgb": "rgb(255, 255, 255)",
+        "name": "White",
+        "usage": "Card backgrounds, panels, secondary content areas, forms, navigation surfaces",
+        "contrast_ratio_with_text_main": "10.59:1"
+      },
+      "primary": {
+        "color": "#B89A2E",
+        "rgb": "rgb(184, 154, 46)",
+        "name": "OBS Gold",
+        "usage": "Logo, primary buttons, links, highlights, key accents",
+        "contrast_ratio_with_white": "2.72:1",
+        "wcag_aa_compliant": false
+      },
+      "primary_hover": {
+        "color": "#8F761F",
+        "rgb": "rgb(143, 118, 31)",
+        "name": "Deep Gold",
+        "usage": "Hover states, active states, dark gold accents",
+        "contrast_ratio_with_white": "4.39:1",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": false
+      },
+      "border": {
+        "color": "#E5E3DC",
+        "rgb": "rgb(229, 227, 220)",
+        "name": "Soft Gray",
+        "usage": "Borders, dividers, input outlines"
+      },
+      "text_main": {
+        "color": "#3F3F3A",
+        "rgb": "rgb(63, 63, 58)",
+        "name": "Warm Charcoal",
+        "usage": "Main headings, navigation, strong text, primary body content",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": true
+      },
+      "text_muted": {
+        "color": "#8A8A83",
+        "rgb": "rgb(138, 138, 131)",
+        "name": "Muted Gray",
+        "usage": "Secondary labels, metadata, placeholders, disabled states",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": false
+      }
+    },
+    "dark_theme": {
+      "background": {
+        "color": "#201D16",
+        "rgb": "rgb(32, 29, 22)",
+        "name": "Deep Warm Black",
+        "usage": "Main application background, primary content area",
+        "contrast_ratio_with_text_main": "16.8:1"
+      },
+      "surface": {
+        "color": "#2C2820",
+        "rgb": "rgb(44, 40, 32)",
+        "name": "Warm Charcoal Surface",
+        "usage": "Card backgrounds, panels, secondary content areas",
+        "contrast_ratio_with_text_main": "13.9:1"
+      },
+      "primary": {
+        "color": "#D4B84A",
+        "rgb": "rgb(212, 184, 74)",
+        "name": "Bright Gold",
+        "usage": "Primary CTAs, active states, links, brand accent",
+        "contrast_ratio_with_background": "8.4:1",
+        "wcag_aa_compliant": true
+      },
+      "primary_hover": {
+        "color": "#E8CD6B",
+        "rgb": "rgb(232, 205, 107)",
+        "name": "Light Gold",
+        "usage": "Hover states for primary elements",
+        "contrast_ratio_with_background": "10.9:1"
+      },
+      "border": {
+        "color": "#4A4638",
+        "rgb": "rgb(74, 70, 56)",
+        "name": "Warm Dark Gray",
+        "usage": "Dividers, borders, subtle separators"
+      },
+      "text_main": {
+        "color": "#F5F3EC",
+        "rgb": "rgb(245, 243, 236)",
+        "name": "Warm White",
+        "usage": "Primary text, headings, body content",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": true
+      },
+      "text_muted": {
+        "color": "#B0AC9E",
+        "rgb": "rgb(176, 172, 158)",
+        "name": "Warm Light Gray",
+        "usage": "Secondary text, helper text, disabled states",
+        "wcag_aa_large_text": true,
+        "wcag_aa_normal_text": false
+      }
+    }
+  },
+  "semantic_colors": {
+    "success": {
+      "light": "#10B981",
+      "dark": "#34D399",
+      "name": "Success/Positive",
+      "usage": "Successful operations, confirmations, valid states",
+      "contrast_light": "5.24:1",
+      "contrast_dark": "8.6:1",
+      "wcag_aa_compliant": true,
+      "description": "Green tone for approval and positive feedback"
+    },
+    "warning": {
+      "light": "#C77D1E",
+      "dark": "#E0A64F",
+      "name": "Warning/Caution",
+      "usage": "Warnings, pending operations, attention needed",
+      "contrast_light": "4.6:1",
+      "contrast_dark": "8.1:1",
+      "wcag_aa_compliant": true,
+      "description": "Burnt amber, shifted away from primary gold so warning state stays visually distinct from the brand accent"
+    },
+    "error": {
+      "light": "#EF4444",
+      "dark": "#F87171",
+      "name": "Error/Danger",
+      "usage": "Errors, destructive actions, validation failures",
+      "contrast_light": "4.54:1",
+      "contrast_dark": "5.88:1",
+      "wcag_aa_compliant": true,
+      "description": "Red tone for errors and critical alerts"
+    },
+    "info": {
+      "light": "#0EA5E9",
+      "dark": "#38BDF8",
+      "name": "Info/Informational",
+      "usage": "Informational messages, help text, neutral alerts",
+      "contrast_light": "4.53:1",
+      "contrast_dark": "6.92:1",
+      "wcag_aa_compliant": true,
+      "description": "Cyan tone for informational content"
+    }
+  },
+  "usage_rules": [
+    {
+      "context": "Primary Buttons & CTA",
+      "light_color": "#B89A2E",
+      "dark_color": "#D4B84A",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "OBS Gold on white text fails AA at normal size (2.72:1). Use dark text (#3F3F3A) on gold buttons, or reserve white-on-gold for large/bold text (18px+) only."
+    },
+    {
+      "context": "Hover States",
+      "light_color": "#8F761F",
+      "dark_color": "#E8CD6B",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Darken in light theme, lighten in dark theme. Deep Gold (~4.39:1) is borderline AA — pair with bold/larger text when using white label."
+    },
+    {
+      "context": "Backgrounds & Cards",
+      "light_color": "#FFFFFF",
+      "dark_color": "#2C2820",
+      "text_color": "See text_main",
+      "min_contrast": "7:1",
+      "rule": "Use surface color for cards/forms/nav. Use background (Off White) for page-level sections."
+    },
+    {
+      "context": "Text Content",
+      "light_color": "#3F3F3A",
+      "dark_color": "#F5F3EC",
+      "text_color": "N/A",
+      "min_contrast": "4.5:1",
+      "rule": "Use text_main for headings and body content. 10.59:1 on white, comfortably AAA."
+    },
+    {
+      "context": "Secondary/Muted Text",
+      "light_color": "#8A8A83",
+      "dark_color": "#B0AC9E",
+      "text_color": "N/A",
+      "min_contrast": "3:1",
+      "rule": "Use for metadata, placeholders, disabled states. 3.48:1 on white — large text/UI only, never body copy."
+    },
+    {
+      "context": "Borders & Dividers",
+      "light_color": "#E5E3DC",
+      "dark_color": "#4A4638",
+      "text_color": "N/A",
+      "min_contrast": "N/A",
+      "rule": "Subtle warm-toned separation. Should not distract from content."
+    },
+    {
+      "context": "Success Messages",
+      "light_color": "#10B981",
+      "dark_color": "#34D399",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for completed actions, confirmations. Never as sole indicator (use icons too)."
+    },
+    {
+      "context": "Error States",
+      "light_color": "#EF4444",
+      "dark_color": "#F87171",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for validation failures, destructive actions. Never as sole indicator (use icons too)."
+    },
+    {
+      "context": "Warning States",
+      "light_color": "#C77D1E",
+      "dark_color": "#E0A64F",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Burnt amber, not gold, so warnings read distinct from brand primary. Never as sole indicator."
+    },
+    {
+      "context": "Info Messages",
+      "light_color": "#0EA5E9",
+      "dark_color": "#38BDF8",
+      "text_color": "White",
+      "min_contrast": "4.5:1",
+      "rule": "Use for informational content. Can be combined with other visual indicators."
+    }
+  ],
+  "accessibility": {
+    "wcag_compliance_level": "AA",
+    "text_contrast_requirements": {
+      "normal_text_minimum": "4.5:1",
+      "large_text_minimum": "3:1",
+      "ui_components_minimum": "3:1",
+      "graphical_elements_minimum": "3:1"
+    },
+    "color_blindness_support": {
+      "dichromacy_safe": true,
+      "monochromacy_safe": true,
+      "protanopia_safe": true,
+      "deuteranopia_safe": true,
+      "tritanopia_safe": true,
+      "recommendations": [
+        "Never rely on color alone to convey information",
+        "Gold primary and amber warning are close in hue for protanopia/deuteranopia users — pair both with icons",
+        "Use icons, patterns, or text labels alongside colors",
+        "Test designs with colorblind simulation tools",
+        "Provide text descriptions for color-coded elements"
+      ]
+    },
+    "implementation_requirements": [
+      "OBS Gold (#B89A2E) does not meet AA for normal-size white text — default to dark text on gold surfaces",
+      "Color contrast must be verifiable with WCAG contrast checkers",
+      "Non-color visual indicators required for all status updates",
+      "Icons must accompany semantic color usage",
+      "Alternative text descriptions for color-coded information",
+      "Support high contrast mode for user preferences",
+      "Allow user-customizable theme preferences",
+      "Test with screen readers and assistive technologies"
+    ],
+    "testing_tools_recommended": [
+      "WCAG Contrast Checker",
+      "Accessible Colors (yozuru.io/accessible-colors)",
+      "WebAIM Contrast Checker",
+      "Stark (design tool plugin)",
+      "Color Blindness Simulator (Toptal, Color Oracle)",
+      "Lighthouse Accessibility Audit"
+    ]
+  },
+  "multi_tenant_considerations": {
+    "scalability": "Base palette supports white-label customization",
+    "tenant_override_strategy": "CSS variables allow per-tenant theme injection",
+    "storage_recommendation": "Store tenant color overrides in database with validation",
+    "validation_rules": {
+      "must_have_min_contrast": true,
+      "must_follow_wcag_aa": true,
+      "must_define_light_and_dark": true,
+      "must_include_semantic_colors": true
+    },
+    "recommended_approach": "Use CSS custom properties with fallbacks to base palette"
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Tag, Building2, FolderOpen, User, Calendar, Clock, Bell } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Separator } from '@/shared/components/ui/separator';
@@ -19,25 +20,26 @@ interface DocumentInfoSectionProps {
 }
 
 const DocumentInfoSection: React.FC<DocumentInfoSectionProps> = ({ info }) => {
+    const { t } = useTranslation(['documents', 'common']);
     return (
         <Card>
             <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold">Information</CardTitle>
+                <CardTitle className="text-base font-semibold">{t('documentInfoSection.title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-                <DocumentMetaRow icon={Tag} label="Category" value={info.category} />
-                <DocumentMetaRow icon={Building2} label="Department" value={info.department} />
-                <DocumentMetaRow icon={FolderOpen} label="Entity" value={info.entity} />
+                <DocumentMetaRow icon={Tag} label={t('documentInfoSection.category')} value={info.category} />
+                <DocumentMetaRow icon={Building2} label={t('documentInfoSection.department')} value={info.department} />
+                <DocumentMetaRow icon={FolderOpen} label={t('documentInfoSection.entity')} value={info.entity} />
                 <Separator />
-                <DocumentMetaRow icon={User} label="Created by" value={info.createdBy} />
-                <DocumentMetaRow icon={Calendar} label="Created" value={info.createdDate} />
-                <DocumentMetaRow icon={Clock} label="Last modified" value={info.lastModified} />
+                <DocumentMetaRow icon={User} label={t('documentInfoSection.createdBy')} value={info.createdBy} />
+                <DocumentMetaRow icon={Calendar} label={t('documentInfoSection.created')} value={info.createdDate} />
+                <DocumentMetaRow icon={Clock} label={t('documentInfoSection.lastModified')} value={info.lastModified} />
                 {info.reminderDate && (
                     <>
                         <Separator />
                         <DocumentMetaRow
                             icon={Bell}
-                            label="Reminder"
+                            label={t('documentInfoSection.reminder')}
                             value={info.reminderDate}
                             highlight
                         />

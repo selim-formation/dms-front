@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import {
     Search,
@@ -151,6 +152,7 @@ const roleVariant: Record<string, string> = {
 };
 
 export default function TeamPage() {
+    const { t } = useTranslation(['teams', 'common']);
     const tenant = useTenant();
     const [search, setSearch] = useState('');
     const [filterDept, setFilterDept] = useState<string>('all');
@@ -173,7 +175,7 @@ export default function TeamPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-background">
             {/* Header */}
             <Navbar />
             <main className="max-w-7xl mx-auto px-4 py-8">
@@ -181,14 +183,14 @@ export default function TeamPage() {
                     {/* Page Header */}
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <h1 className="text-3xl font-bold tracking-tight text-foreground">Team</h1>
+                            <h1 className="text-3xl font-bold tracking-tight text-foreground">{t('teams:teamPage.title')}</h1>
                             <p className="mt-1 text-muted-foreground">
-                                Manage your team members and their document access
+                                {t('teams:teamPage.subtitle')}
                             </p>
                         </div>
                         <Button className="gap-2 shadow-md shadow-primary/20">
                             <Users className="h-4 w-4" />
-                            Invite Member
+                            {t('teams:teamPage.inviteMember')}
                         </Button>
                     </div>
 
@@ -200,7 +202,7 @@ export default function TeamPage() {
                             </div>
                             <div>
                                 <p className="text-2xl font-bold text-foreground">{stats.total}</p>
-                                <p className="text-sm text-muted-foreground">Total Members</p>
+                                <p className="text-sm text-muted-foreground">{t('teams:teamPage.totalMembers')}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-5">
@@ -209,7 +211,7 @@ export default function TeamPage() {
                             </div>
                             <div>
                                 <p className="text-2xl font-bold text-foreground">{stats.active}</p>
-                                <p className="text-sm text-muted-foreground">Active Now</p>
+                                <p className="text-sm text-muted-foreground">{t('teams:teamPage.activeNow')}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-5">
@@ -218,7 +220,7 @@ export default function TeamPage() {
                             </div>
                             <div>
                                 <p className="text-2xl font-bold text-foreground">{stats.admins}</p>
-                                <p className="text-sm text-muted-foreground">Administrators</p>
+                                <p className="text-sm text-muted-foreground">{t('teams:teamPage.administrators')}</p>
                             </div>
                         </div>
                     </div>
@@ -226,12 +228,12 @@ export default function TeamPage() {
                     {/* Search & Filter */}
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                         <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                            <Search className="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                             <Input
-                                placeholder="Search by name, email, or department..."
+                                placeholder={t('teams:teamPage.searchPlaceholder')}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="pl-10"
+                                className="ps-10"
                             />
                         </div>
                         <div className="flex items-center gap-2">
@@ -246,7 +248,7 @@ export default function TeamPage() {
                                             : 'bg-secondary text-muted-foreground hover:text-foreground'
                                             }`}
                                     >
-                                        {dept === 'all' ? 'All' : dept}
+                                        {dept === 'all' ? t('teams:teamPage.all') : dept}
                                     </button>
                                 ))}
                             </div>
@@ -275,7 +277,7 @@ export default function TeamPage() {
                                                     </AvatarFallback>
                                                 </Avatar>
                                                 <span
-                                                    className={`absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-card ${statusColors[member.status]}`}
+                                                    className={`absolute bottom-0 end-0 h-3.5 w-3.5 rounded-full border-2 border-card ${statusColors[member.status]}`}
                                                 />
                                             </div>
                                             <div>
@@ -300,9 +302,9 @@ export default function TeamPage() {
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem>Edit Member</DropdownMenuItem>
-                                                <DropdownMenuItem>Change Role</DropdownMenuItem>
-                                                <DropdownMenuItem className="text-destructive">Remove</DropdownMenuItem>
+                                                <DropdownMenuItem>{t('teams:teamPage.editMember')}</DropdownMenuItem>
+                                                <DropdownMenuItem>{t('teams:teamPage.changeRole')}</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive">{t('teams:teamPage.remove')}</DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </div>
@@ -323,11 +325,11 @@ export default function TeamPage() {
                                     <div className="mt-5 grid grid-cols-2 gap-3">
                                         <div className="rounded-lg bg-secondary/60 px-3 py-2.5 text-center">
                                             <p className="text-lg font-bold text-foreground">{member.documentsCount}</p>
-                                            <p className="text-[11px] text-muted-foreground">Documents</p>
+                                            <p className="text-[11px] text-muted-foreground">{t('teams:teamPage.documents')}</p>
                                         </div>
                                         <div className="rounded-lg bg-secondary/60 px-3 py-2.5 text-center">
                                             <p className="text-lg font-bold text-foreground">{member.sharedCount}</p>
-                                            <p className="text-[11px] text-muted-foreground">Shared</p>
+                                            <p className="text-[11px] text-muted-foreground">{t('teams:teamPage.shared')}</p>
                                         </div>
                                     </div>
 
@@ -336,7 +338,7 @@ export default function TeamPage() {
                                         <Link to={`/${tenant}/documents?owner=${member.id}`} className="flex-1">
                                             <Button variant="outline" className="w-full gap-2 text-sm">
                                                 <FileText className="h-4 w-4" />
-                                                Documents
+                                                {t('teams:teamPage.documents')}
                                             </Button>
                                         </Link>
                                         <Link to={`/${tenant}/documents?shared_by=${member.id}`} className="flex-1">
@@ -345,7 +347,7 @@ export default function TeamPage() {
                                                 className="w-full gap-2 text-sm border-primary/20 text-primary hover:bg-primary/5"
                                             >
                                                 <Share2 className="h-4 w-4" />
-                                                Shared
+                                                {t('teams:teamPage.shared')}
                                             </Button>
                                         </Link>
                                     </div>
@@ -357,7 +359,7 @@ export default function TeamPage() {
                     {filtered.length === 0 && (
                         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border py-16 bg-card">
                             <Users className="h-12 w-12 text-muted-foreground/40" />
-                            <p className="mt-3 text-muted-foreground">No team members found</p>
+                            <p className="mt-3 text-muted-foreground">{t('teams:teamPage.noTeamMembersFound')}</p>
                         </div>
                     )}
                 </div>

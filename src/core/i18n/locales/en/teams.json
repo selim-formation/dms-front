@@ -1,0 +1,18 @@
+{
+  "teamPage": {
+    "title": "Team",
+    "subtitle": "Manage your team members and their document access",
+    "inviteMember": "Invite Member",
+    "totalMembers": "Total Members",
+    "activeNow": "Active Now",
+    "administrators": "Administrators",
+    "searchPlaceholder": "Search by name, email, or department...",
+    "all": "All",
+    "editMember": "Edit Member",
+    "changeRole": "Change Role",
+    "remove": "Remove",
+    "documents": "Documents",
+    "shared": "Shared",
+    "noTeamMembersFound": "No team members found"
+  }
+}

@@ -21,7 +21,7 @@ const DocumentActivity: React.FC<DocumentActivityProps> = ({ activities }) => {
                     {activities.map((activity, i) => (
                         <div key={activity.id} className="flex gap-4 pb-6 relative">
                             {i < activities.length - 1 && (
-                                <div className="absolute left-[17px] top-10 bottom-0 w-px bg-border" />
+                                <div className="absolute start-[17px] top-10 bottom-0 w-px bg-border" />
                             )}
                             <div className="flex-shrink-0 h-9 w-9 rounded-full bg-muted flex items-center justify-center z-10">
                                 {activity.icon}

@@ -8,8 +8,14 @@
  * - Due Date
  */
 
+<<<<<<< Updated upstream
 import React, { useState, useMemo } from 'react'
 import type { Task, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
+=======
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import type { Task, TaskStatus, TaskPriority } from '../types/task.types'
+>>>>>>> Stashed changes
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 
 interface FilterSidebarProps {
@@ -59,6 +65,7 @@ export function FilterSidebar({
     onCustomDateRangeChange,
     onReset,
 }: FilterSidebarProps) {
+    const { t } = useTranslation(['tasks', 'common'])
     const [expandedSections, setExpandedSections] = useState<Set<string>>(
         new Set(['status', 'priority', 'dueDate'])
     )
@@ -103,16 +110,15 @@ export function FilterSidebar({
         selectedStatuses.length + selectedPriorities.length + selectedAssigneeIds.length + (selectedDueDateRange ? 1 : 0)
 
     return (
-        <div className="w-80 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden flex flex-col max-h-[calc(100vh-120px)]">
+        <div className="w-80 bg-card rounded-lg shadow-lg border border-border overflow-hidden flex flex-col max-h-[calc(100vh-120px)]">
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-50 to-blue-25 border-b border-gray-200 px-6 py-4">
+            <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-b border-border px-6 py-4">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-lg font-bold text-gray-900">Advanced Filters</h2>
-                        <p className="text-sm text-gray-600 mt-0.5">تصفية متقدمة</p>
+                        <h2 className="text-lg font-bold text-foreground">{t('tasks:filterSidebar.title')}</h2>
                     </div>
                     {activeFiltersCount > 0 && (
-                        <span className="bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                        <span className="bg-primary text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-full">
                             {activeFiltersCount}
                         </span>
                     )}
@@ -122,14 +128,13 @@ export function FilterSidebar({
             {/* Filter Sections */}
             <div className="flex-1 overflow-y-auto">
                 {/* Status Section */}
-                <div className="border-b border-gray-100">
+                <div className="border-b border-border">
                     <button
                         onClick={() => toggleSection('status')}
-                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-accent transition-colors"
                     >
-                        <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">Status</span>
-                        <span className="text-xs text-gray-600">الحالة</span>
-                        <span className="ml-2 text-gray-400">
+                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">{t('tasks:filterSidebar.statusLabel')}</span>
+                        <span className="ms-2 text-muted-foreground">
                             {expandedSections.has('status') ? '−' : '+'}
                         </span>
                     </button>
@@ -147,9 +152,9 @@ export function FilterSidebar({
                                             type="checkbox"
                                             checked={isSelected}
                                             onChange={() => handleStatusToggle(status)}
-                                            className="w-4 h-4 rounded border-gray-300 text-blue-600 cursor-pointer"
+                                            className="w-4 h-4 rounded border-input text-primary cursor-pointer"
                                         />
-                                        <span className="text-sm text-gray-700 group-hover:text-gray-900">
+                                        <span className="text-sm text-muted-foreground group-hover:text-foreground">
                                             {TASK_STATUS_LABELS[status]}
                                         </span>
                                     </label>
@@ -160,14 +165,13 @@ export function FilterSidebar({
                 </div>
 
                 {/* Priority Section */}
-                <div className="border-b border-gray-100">
+                <div className="border-b border-border">
                     <button
                         onClick={() => toggleSection('priority')}
-                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-accent transition-colors"
                     >
-                        <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">Priority</span>
-                        <span className="text-xs text-gray-600">الأولوية</span>
-                        <span className="ml-2 text-gray-400">
+                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">{t('tasks:filterSidebar.priorityLabel')}</span>
+                        <span className="ms-2 text-muted-foreground">
                             {expandedSections.has('priority') ? '−' : '+'}
                         </span>
                     </button>
@@ -185,9 +189,9 @@ export function FilterSidebar({
                                             type="checkbox"
                                             checked={isSelected}
                                             onChange={() => handlePriorityToggle(priority)}
-                                            className="w-4 h-4 rounded border-gray-300 text-blue-600 cursor-pointer"
+                                            className="w-4 h-4 rounded border-input text-primary cursor-pointer"
                                         />
-                                        <span className="text-sm text-gray-700 group-hover:text-gray-900">
+                                        <span className="text-sm text-muted-foreground group-hover:text-foreground">
                                             {TASK_PRIORITY_LABELS[priority]}
                                         </span>
                                     </label>
@@ -198,19 +202,19 @@ export function FilterSidebar({
                 </div>
 
                 {/* Due Date Section */}
-                <div className="border-b border-gray-100">
+                <div className="border-b border-border">
                     <button
                         onClick={() => toggleSection('dueDate')}
-                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                        className="w-full px-6 py-3 flex items-center justify-between hover:bg-accent transition-colors"
                     >
-                        <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">Due Date</span>
-                        <span className="text-xs text-gray-600">تاريخ الاستحقاق</span>
-                        <span className="ml-2 text-gray-400">
+                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">{t('tasks:filterSidebar.dueDateLabel')}</span>
+                        <span className="ms-2 text-muted-foreground">
                             {expandedSections.has('dueDate') ? '−' : '+'}
                         </span>
                     </button>
 
                     {expandedSections.has('dueDate') && (
+<<<<<<< Updated upstream
                         <div className="px-6 py-3 space-y-2">
                             <label className="flex items-center gap-3 cursor-pointer group">
                                 <input
@@ -233,6 +237,33 @@ export function FilterSidebar({
                                     checked={selectedDueDateRange === 'thisWeek'}
                                     onChange={() => onDueDateRangeChange('thisWeek')}
                                     className="w-4 h-4 text-blue-600 cursor-pointer"
+=======
+                        <div className="px-6 py-3 space-y-3">
+                            <div>
+                                <label className="text-xs font-semibold text-muted-foreground block mb-1">
+                                    {t('tasks:filterSidebar.fromDate')}
+                                </label>
+                                <input
+                                    type="date"
+                                    value={selectedDueDateFrom || ''}
+                                    onChange={(e) =>
+                                        onDueDateRangeChange(e.target.value || null, selectedDueDateTo)
+                                    }
+                                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-muted-foreground block mb-1">
+                                    {t('tasks:filterSidebar.toDate')}
+                                </label>
+                                <input
+                                    type="date"
+                                    value={selectedDueDateTo || ''}
+                                    onChange={(e) =>
+                                        onDueDateRangeChange(selectedDueDateFrom, e.target.value || null)
+                                    }
+                                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+>>>>>>> Stashed changes
                                 />
                                 <span className="text-sm text-gray-700 group-hover:text-gray-900">This Week</span>
                                 <span className="text-xs text-gray-500">(هذا الأسبوع)</span>
@@ -320,12 +351,12 @@ export function FilterSidebar({
 
             {/* Footer */}
             {activeFiltersCount > 0 && (
-                <div className="border-t border-gray-200 px-6 py-3 bg-gray-50">
+                <div className="border-t border-border px-6 py-3 bg-muted">
                     <button
                         onClick={onReset}
-                        className="w-full px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
+                        className="w-full px-4 py-2 bg-card text-muted-foreground border border-input rounded-md text-sm font-medium hover:bg-accent hover:border-ring transition-colors"
                     >
-                        Clear All Filters
+                        {t('tasks:filterSidebar.clearAllFilters')}
                     </button>
                 </div>
             )}
