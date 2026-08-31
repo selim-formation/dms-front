@@ -74,14 +74,8 @@ export default function DocumentCard({
             >
               <Star
                 size={16}
-<<<<<<< Updated upstream
-                className={`transition-colors ${
-                  isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'
-                }`}
-=======
                 className={`transition-colors ${isFavorite ? 'fill-warning text-warning' : 'text-muted-foreground'
                   }`}
->>>>>>> Stashed changes
               />
             </button>
             <div className="relative">
@@ -92,21 +86,9 @@ export default function DocumentCard({
                 <MoreVertical size={16} className="text-muted-foreground" />
               </button>
               {showMenu && (
-<<<<<<< Updated upstream
-                <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                  <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors">
-                    Preview
-                  </button>
-                  <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors">
-                    Share
-                  </button>
-                  <button className="w-full text-left px-3 py-2 text-xs hover:bg-gray-100 transition-colors border-t border-gray-200 text-red-600">
-                    Delete
-=======
                 <div className="absolute end-0 mt-1 w-32 bg-popover border border-border rounded-lg shadow-lg z-10">
                   <button className="w-full text-start px-3 py-2 text-xs hover:bg-accent transition-colors">
                     {t('common:actions.pin')}
->>>>>>> Stashed changes
                   </button>
                 </div>
               )}

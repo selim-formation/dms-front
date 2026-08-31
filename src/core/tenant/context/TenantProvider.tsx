@@ -4,9 +4,17 @@
  */
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { TenantContext } from "./TenantContext";
-import { Tenant } from "../types";
-import { validateTenant } from "../services/tenant.service";
+import {
+  validateTenant,
+  tenantValidateQueryKey,
+  TENANT_VALIDATE_STALE_TIME,
+} from "../services/tenant.service";
+import {
+  getTenantCookie,
+  setTenantCookie,
+} from "../services/tenant-cookie.service";
 import { apiClient } from "@/core/api/client";
 import { logger } from "@/shared/utils/logger";
 
@@ -25,51 +33,60 @@ export function TenantProvider({
   children,
   initialTenantId = null,
 }: TenantProviderProps) {
-  const [tenantId, setTenantId] = useState<string | null>(initialTenantId);
-  const [tenant, setTenant] = useState<Tenant | null>(null);
+  const queryClient = useQueryClient();
+  // Fall back to the last cached tenant (set on login, cleared on
+  // logout) when nothing more specific — e.g. the /$tenant URL param —
+  // has provided one yet.
+  const [tenantId, setTenantId] = useState<string | null>(
+    () => initialTenantId ?? getTenantCookie(),
+  );
   const [isValidating, setIsValidating] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   /**
-   * Validate and load tenant
+   * Validate tenant. Goes through the shared react-query cache (same
+   * key the /$tenant router layout uses) so if that guard already
+   * validated this tenant within TENANT_VALIDATE_STALE_TIME, this is
+   * a cache hit — not a second network call.
    */
-  const loadTenant = useCallback(async (id: string) => {
-    setIsValidating(true);
-    setError(null);
+  const loadTenant = useCallback(
+    async (id: string) => {
+      setIsValidating(true);
+      setError(null);
 
-    try {
-      log.debug(`Loading tenant: ${id}`);
+      try {
+        log.debug(`Loading tenant: ${id}`);
 
-      const validation = await validateTenant(id);
+        const validation = await queryClient.fetchQuery({
+          queryKey: tenantValidateQueryKey(id),
+          queryFn: () => validateTenant(id),
+          staleTime: TENANT_VALIDATE_STALE_TIME,
+        });
 
-      if (validation.valid && validation.tenant) {
-        setTenant(validation.tenant);
-        setIsValid(true);
-
-        // Set tenant in API client for request interception
-        apiClient.setTenant(id);
-
-        log.info(`Tenant loaded successfully: ${id}`);
-      } else {
-        setTenant(null);
+        if (validation.kind === "valid") {
+          setIsValid(true);
+          apiClient.setTenant(id);
+          setTenantCookie(id);
+          log.info(`Tenant loaded successfully: ${id}`);
+        } else {
+          setIsValid(false);
+          setError(new Error(validation.message || "Tenant validation failed"));
+          log.warn(`Tenant validation failed: ${id}`, { data: { kind: validation.kind } });
+        }
+      } catch (err) {
+        const error =
+          err instanceof Error ? err : new Error("Failed to load tenant");
+        setError(error);
         setIsValid(false);
-        setError(new Error(validation.message || "Tenant validation failed"));
 
-        log.warn(`Tenant validation failed: ${id}`);
+        log.error(`Error loading tenant: ${id}`, { data: error });
+      } finally {
+        setIsValidating(false);
       }
-    } catch (err) {
-      const error =
-        err instanceof Error ? err : new Error("Failed to load tenant");
-      setError(error);
-      setTenant(null);
-      setIsValid(false);
-
-      log.error(`Error loading tenant: ${id}`, { data: error });
-    } finally {
-      setIsValidating(false);
-    }
-  }, []);
+    },
+    [queryClient],
+  );
 
   /**
    * Effect to load tenant when tenantId changes
@@ -79,7 +96,6 @@ export function TenantProvider({
       loadTenant(tenantId);
     } else {
       // Clear tenant state
-      setTenant(null);
       setIsValid(false);
       setError(null);
       apiClient.setTenant(null);
@@ -91,9 +107,10 @@ export function TenantProvider({
    */
   const refetch = useCallback(async () => {
     if (tenantId) {
+      await queryClient.invalidateQueries({ queryKey: tenantValidateQueryKey(tenantId) });
       await loadTenant(tenantId);
     }
-  }, [tenantId, loadTenant]);
+  }, [tenantId, loadTenant, queryClient]);
 
   /**
    * Memoized context value
@@ -101,15 +118,17 @@ export function TenantProvider({
   const contextValue = useMemo(
     () => ({
       tenantId,
-      tenant,
-      current: tenant, // Alias for consistency with architecture
+      // The validate endpoint doesn't return tenant details, only
+      // exists/access booleans — nothing to hydrate a full Tenant with.
+      tenant: null,
+      current: null,
       isValidating,
       isValid,
       error,
       setTenantId,
       refetch,
     }),
-    [tenantId, tenant, isValidating, isValid, error, refetch],
+    [tenantId, isValidating, isValid, error, refetch],
   );
 
   return (

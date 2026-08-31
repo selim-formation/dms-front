@@ -10,6 +10,7 @@ import { favoritesKeys } from '../api/favoritesKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
 import type { FavoriteData } from '../types/favorites.types';
+import type { ApiError } from '@/core/api/types';
 
 const log = logger.createScoped('useCreateFavorite');
 
@@ -51,12 +52,23 @@ export function useCreateFavorite(
             // Invalidate all favorites queries (list + last),
             // so any preview reflects the change without a manual reload
             if (tenant) {
-                queryClient.invalidateQueries({ queryKey: favoritesKeys.all });
+                queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
             }
 
             onSuccessCallback?.(data);
         },
         onError: (error: Error) => {
+            // 409 means the document is already favorited — not a real
+            // error. Resync from the server (our cache was stale) and
+            // treat it as the success case instead of surfacing a toast.
+            if ((error as Partial<ApiError>)?.status === 409) {
+                log.info('Document already favorited (409) — resyncing instead of erroring');
+                if (tenant) {
+                    queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
+                }
+                return;
+            }
+
             log.error('Create favorite mutation failed', { error });
             onErrorCallback?.(error);
         },

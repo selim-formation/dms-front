@@ -145,24 +145,9 @@ export default function DocumentRow({
                         <MoreHorizontal size={16} />
                     </button>
                     {showMenu && (
-<<<<<<< Updated upstream
-                        <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-20">
-                            <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                                Preview
-                            </button>
-                            <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                                Edit Details
-                            </button>
-                            <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-t border-gray-100">
-                                Duplicate
-                            </button>
-                            <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100">
-                                Delete
-=======
                         <div className="absolute end-0 mt-1 w-40 bg-popover border border-border rounded-lg shadow-lg z-20">
                             <button className="w-full text-start px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors">
                                 {t('common:actions.pin')}
->>>>>>> Stashed changes
                             </button>
                         </div>
                     )}

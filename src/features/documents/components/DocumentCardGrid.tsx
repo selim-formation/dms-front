@@ -2,15 +2,12 @@ import type { ReactNode } from 'react';
 import { Download, Loader2, Pin, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '@tanstack/react-router';
-<<<<<<< Updated upstream
-=======
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { useTogglePin } from '../hooks/usePinnedStatus';
 import { useToggleFavorite } from '../hooks/useFavoriteStatus';
 import DocumentIconToggleButton from './DocumentIconToggleButton';
 import { translateDocumentTypeName, translateDepartmentName } from '../utils/documentLabelDictionary';
 import { useDownloadDocument } from '../hooks/useDownloadDocument';
->>>>>>> Stashed changes
 
 interface DocumentCardGridProps {
     id: string;
@@ -87,8 +84,6 @@ export default function DocumentCardGrid({
 }: DocumentCardGridProps) {
     const importanceMode = importanceStyles[importance];
     const navigate = useNavigate();
-<<<<<<< Updated upstream
-=======
     const tenant = useTenantId();
     const { t, i18n } = useTranslation(['documents', 'common']);
     const documentId = parseInt(id, 10);
@@ -113,7 +108,6 @@ export default function DocumentCardGrid({
         High: t('common:priority.high'),
         Medium: t('common:priority.medium'),
     };
->>>>>>> Stashed changes
 
     const statusLabels: Record<DocumentCardGridProps['status'], string> = {
         Expires: t('common:status.expires'),
@@ -126,27 +120,6 @@ export default function DocumentCardGrid({
             {/* Card Header */}
             <div className="relative h-32 bg-gradient-to-br from-muted to-muted flex items-center justify-center border-b border-border">
                 <div className="text-6xl opacity-50">{icon}</div>
-<<<<<<< Updated upstream
-                <button
-                    onClick={() => setShowMenu(!showMenu)}
-                    className="absolute top-3 right-3 p-1.5 rounded-lg hover:bg-white/60 transition-colors"
-                >
-                    <MoreVertical size={16} className="text-gray-500" />
-                </button>
-                {showMenu && (
-                    <div className="absolute top-10 right-0 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-20">
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            Preview
-                        </button>
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            Share
-                        </button>
-                        <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100">
-                            Delete
-                        </button>
-                    </div>
-                )}
-=======
                 <div className="absolute top-3 end-3 flex items-center gap-1 bg-card/80 rounded-lg backdrop-blur-sm">
                     <DocumentIconToggleButton
                         icon={Star}
@@ -163,7 +136,6 @@ export default function DocumentCardGrid({
                         label={isPinned ? t('common:actions.unpin') : t('common:actions.pin')}
                     />
                 </div>
->>>>>>> Stashed changes
             </div>
 
             {/* Card Content */}
@@ -234,16 +206,11 @@ export default function DocumentCardGrid({
 
                 {/* Action Buttons */}
                 <div className="pt-2 flex gap-2">
-<<<<<<< Updated upstream
-                    <button onClick={() => navigate({ to: `/asd/documents/${id}` })} className="flex-1 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm">
-                        View
-=======
                     <button
                         onClick={onView ?? (() => navigate({ to: `/${tenant}/documents/${id}` }))}
                         className="flex-1 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
                     >
                         {t('documentCardGrid.view')}
->>>>>>> Stashed changes
                     </button>
                     <button
                         onClick={handleDownload}

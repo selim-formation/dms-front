@@ -4,7 +4,7 @@
  */
 
 import { createContext } from "react";
-import { TenantContextValue } from "../types";
+import type { TenantContextValue } from "../types";
 
 /**
  * Default context value
@@ -21,6 +21,7 @@ const defaultValue: TenantContextValue = {
   refetch: async () => {
     throw new Error("TenantProvider not initialized");
   },
+  current: null
 };
 
 /**

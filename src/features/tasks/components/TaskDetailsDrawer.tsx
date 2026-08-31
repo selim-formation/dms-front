@@ -5,11 +5,7 @@
  * Shown when a task is selected from the task list
  */
 
-<<<<<<< Updated upstream
-import React from 'react'
-=======
 import { useTranslation } from 'react-i18next'
->>>>>>> Stashed changes
 import {
     Drawer,
     DrawerContent,

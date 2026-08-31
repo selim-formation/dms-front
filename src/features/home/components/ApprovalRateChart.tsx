@@ -34,11 +34,7 @@ export default function ApprovalRateChart() {
                                     border: '1px solid hsl(var(--border))',
                                     background: 'hsl(var(--background))',
                                 }}
-<<<<<<< Updated upstream
-                                formatter={(value: number) => [`${value}%`, 'Approval Rate']}
-=======
                                 formatter={(value: number | undefined) => [`${value ?? ''}%`, t('home:approvalRateChart.title')] as [string, string]}
->>>>>>> Stashed changes
                             />
                             <Line
                                 type="monotone"

@@ -1,4 +1,19 @@
 {
+  "routeError": {
+    "tenant_not_found": {
+      "title": "Workspace not found",
+      "description": "That workspace doesn't exist. Check the link or pick another workspace."
+    },
+    "tenant_access_denied": {
+      "title": "Access denied",
+      "description": "You don't have access to that workspace. Contact an admin if you think this is a mistake."
+    },
+    "invalid_tenant": {
+      "title": "Something went wrong",
+      "description": "We couldn't verify that workspace. Please try again."
+    },
+    "dismiss": "Dismiss"
+  },
   "nav": {
     "home": "Home",
     "documents": "Documents",
@@ -7,7 +22,8 @@
     "teams": "Teams",
     "dashboard": "Dashboard",
     "profile": "View Profile",
-    "documentShares": "Shares"
+    "documentShares": "Shares",
+    "pinnedDocuments": "Pinned"
   },
   "actions": {
     "save": "Save",

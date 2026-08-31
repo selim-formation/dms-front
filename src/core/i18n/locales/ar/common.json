@@ -1,4 +1,19 @@
 {
+  "routeError": {
+    "tenant_not_found": {
+      "title": "مساحة العمل غير موجودة",
+      "description": "مساحة العمل هذه غير موجودة. تحقق من الرابط أو اختر مساحة عمل أخرى."
+    },
+    "tenant_access_denied": {
+      "title": "الوصول مرفوض",
+      "description": "ليس لديك صلاحية الوصول إلى مساحة العمل هذه. تواصل مع المسؤول إذا كنت تعتقد أن هذا خطأ."
+    },
+    "invalid_tenant": {
+      "title": "حدث خطأ ما",
+      "description": "تعذر التحقق من مساحة العمل هذه. يرجى المحاولة مرة أخرى."
+    },
+    "dismiss": "إغلاق"
+  },
   "nav": {
     "home": "الرئيسية",
     "documents": "المستندات",
@@ -7,7 +22,8 @@
     "teams": "الفرق",
     "dashboard": "لوحة التحكم",
     "profile": "عرض الملف الشخصي",
-    "documentShares": "المشاركات"
+    "documentShares": "المشاركات",
+    "pinnedDocuments": "المثبَّتة"
   },
   "actions": {
     "save": "حفظ",

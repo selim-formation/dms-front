@@ -1,18 +1,29 @@
 {
   "teamPage": {
     "title": "Team",
-    "subtitle": "Manage your team members and their document access",
-    "inviteMember": "Invite Member",
+    "subtitle": "Colleagues who share your departments",
     "totalMembers": "Total Members",
-    "activeNow": "Active Now",
+    "activeNow": "Active",
     "administrators": "Administrators",
-    "searchPlaceholder": "Search by name, email, or department...",
+    "searchPlaceholder": "Search by name or email...",
     "all": "All",
-    "editMember": "Edit Member",
-    "changeRole": "Change Role",
-    "remove": "Remove",
     "documents": "Documents",
     "shared": "Shared",
-    "noTeamMembersFound": "No team members found"
+    "noTeamMembersFound": "No team members found",
+    "noTeamMembersFoundDescription": "Try a different search or department filter.",
+    "errorTitle": "Failed to load team",
+    "pageOf": "Page {{current}} of {{last}}",
+    "noDepartment": "No department",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "role": {
+      "admin": "Admin",
+      "manager": "Manager",
+      "head": "Head",
+      "key_user": "Key User",
+      "none": "No role"
+    }
   }
 }

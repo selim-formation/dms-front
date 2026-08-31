@@ -23,17 +23,30 @@ export interface TenantSettings {
   [key: string]: unknown;
 }
 
-export interface TenantValidation {
-  valid: boolean;
-  tenant?: Tenant;
+/**
+ * Outcome of GET /api/tenants/{tenant}/validate. The endpoint only ever
+ * confirms existence + access — it doesn't return tenant details, so
+ * there's no `Tenant` object here to hydrate `tenant`/`current` with.
+ */
+export type TenantValidationKind =
+  | "valid"
+  | "not_found"
+  | "access_denied"
+  | "unauthenticated"
+  | "error";
+
+export interface TenantValidationResult {
+  kind: TenantValidationKind;
+  tenantExists: boolean;
+  hasAccess: boolean;
   message?: string;
 }
 
 export interface TenantContextValue {
-  /** Current tenant ID from URL */
+  /** Current tenant ID (id or slug) from URL */
   tenantId: string | null;
 
-  /** Full tenant object (if validated) */
+  /** Full tenant object — not returned by /validate, always null today */
   tenant: Tenant | null;
 
   /** Alias for tenant object (for consistency with architecture) */
@@ -42,7 +55,7 @@ export interface TenantContextValue {
   /** Whether tenant is being validated */
   isValidating: boolean;
 
-  /** Whether tenant is valid */
+  /** Whether tenant exists AND the current user has access to it */
   isValid: boolean;
 
   /** Validation error if any */

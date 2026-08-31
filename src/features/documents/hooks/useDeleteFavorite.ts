@@ -47,7 +47,7 @@ export function useDeleteFavorite(
             log.info('Delete favorite mutation successful');
 
             if (tenant) {
-                queryClient.invalidateQueries({ queryKey: favoritesKeys.all });
+                queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
             }
 
             onSuccessCallback?.();

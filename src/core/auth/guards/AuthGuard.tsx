@@ -6,7 +6,6 @@
 import React from "react";
 import { Navigate } from "@tanstack/react-router";
 import { useAuth } from "../hooks/useAuth";
-import { useTenant } from "@/core/tenant/hooks/useTenant";
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -19,7 +18,6 @@ interface AuthGuardProps {
  */
 export function AuthGuard({ children, fallback }: AuthGuardProps) {
   const { isAuthenticated, isLoading } = useAuth();
-  const { tenantId } = useTenant();
 
   // Show loading state while checking auth
   if (isLoading) {
@@ -28,8 +26,7 @@ export function AuthGuard({ children, fallback }: AuthGuardProps) {
 
   // Redirect to login if not authenticated
   if (!isAuthenticated) {
-    const loginPath = tenantId ? `/${tenantId}/login` : "/";
-    return <Navigate to={loginPath} />;
+    return <Navigate to="/login" />;
   }
 
   // User is authenticated, render children

@@ -19,13 +19,8 @@ export default function RecentDocumentsSidebar({ tenant }: Props) {
     <Card className="border-border">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-<<<<<<< Updated upstream
-          <CardTitle className="text-base font-bold">Recent Documents</CardTitle>
-          <Link to={`/${tenant}/documents`} className="text-xs text-primary font-medium hover:underline">View All ›</Link>
-=======
           <CardTitle className="text-base font-bold">{t('recentDocumentsSidebar.title')}</CardTitle>
           <Link to="/$tenant/documents" params={{ tenant }} className="text-xs text-primary font-medium hover:underline">{t('recentDocumentsSidebar.viewAll')}</Link>
->>>>>>> Stashed changes
         </div>
       </CardHeader>
       <CardContent className="p-0 divide-y divide-border">

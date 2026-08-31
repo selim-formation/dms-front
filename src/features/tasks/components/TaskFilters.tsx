@@ -5,11 +5,7 @@
  * Uses shadcn Select component from Radix UI
  */
 
-<<<<<<< Updated upstream
-import React from 'react'
-=======
 import { useTranslation } from 'react-i18next'
->>>>>>> Stashed changes
 import type { TaskStatus, TaskPriority } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 
@@ -62,13 +58,8 @@ export function TaskFilters({
                             key={status}
                             onClick={() => handleStatusToggle(status)}
                             className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedStatuses.includes(status)
-<<<<<<< Updated upstream
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-=======
                                 ? 'bg-primary text-primary-foreground'
                                 : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
->>>>>>> Stashed changes
                                 }`}
                             aria-pressed={selectedStatuses.includes(status)}
                             aria-label={t('tasks:taskFilters.filterByStatus', { status: TASK_STATUS_LABELS[status] })}
@@ -88,13 +79,8 @@ export function TaskFilters({
                             key={priority}
                             onClick={() => handlePriorityToggle(priority)}
                             className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedPriorities.includes(priority)
-<<<<<<< Updated upstream
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-=======
                                 ? 'bg-primary text-primary-foreground'
                                 : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
->>>>>>> Stashed changes
                                 }`}
                             aria-pressed={selectedPriorities.includes(priority)}
                             aria-label={t('tasks:taskFilters.filterByPriority', { priority: TASK_PRIORITY_LABELS[priority] })}

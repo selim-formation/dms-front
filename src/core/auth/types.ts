@@ -2,8 +2,13 @@
  * Authentication-related types
  */
 
-import { User } from "@/shared/types/common.types";
-import { PermissionString } from "@/shared/types/permission.types";
+import type { PermissionString } from "@/shared/types/permission.types";
+import type { AuthCompany, MeResponse } from "./types/api.types";
+
+/**
+ * The authenticated user, as returned by GET /api/me.
+ */
+export type AuthUser = MeResponse["user"];
 
 /**
  * Login credentials
@@ -28,8 +33,10 @@ export interface RegisterData {
  * Auth state
  */
 export interface AuthState {
-  user: User | null;
+  user: AuthUser | null;
   permissions: PermissionString[];
+  /** Tenants/companies the logged-in user belongs to (from /api/me) */
+  companies: AuthCompany[];
   isAuthenticated: boolean;
   isLoading: boolean;
 }
@@ -38,8 +45,8 @@ export interface AuthState {
  * Auth context value
  */
 export interface AuthContextValue extends AuthState {
-  /** Login user */
-  login: (credentials: LoginCredentials) => Promise<void>;
+  /** Login user. Resolves with the tenants the user can access. */
+  login: (credentials: LoginCredentials) => Promise<AuthCompany[]>;
 
   /** Logout user */
   logout: () => Promise<void>;

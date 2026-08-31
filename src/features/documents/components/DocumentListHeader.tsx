@@ -1,20 +1,12 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import { Plus } from 'lucide-react';
-=======
 import { useTranslation } from 'react-i18next';
->>>>>>> Stashed changes
 
 interface DocumentListHeaderProps {
     onUploadClick?: () => void;
 }
 
-<<<<<<< Updated upstream
-const DocumentListHeader: React.FC<DocumentListHeaderProps> = ({ onUploadClick }) => {
-=======
 const DocumentListHeader: React.FC<DocumentListHeaderProps> = () => {
     const { t } = useTranslation(['documents', 'common']);
->>>>>>> Stashed changes
     return (
         <div className="flex items-start justify-between mb-6">
             <div>

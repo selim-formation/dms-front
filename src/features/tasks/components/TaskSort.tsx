@@ -5,11 +5,7 @@
  * Allows users to sort by dueDate, priority, createdAt, or title
  */
 
-<<<<<<< Updated upstream
-import React from 'react'
-=======
 import { useTranslation } from 'react-i18next'
->>>>>>> Stashed changes
 import type { SortField, SortDirection } from '../types/task.types'
 
 interface TaskSortProps {

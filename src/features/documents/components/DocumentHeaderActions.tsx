@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
-import React, { useCallback } from 'react';
-=======
 import React from 'react';
 import { useTranslation } from 'react-i18next';
->>>>>>> Stashed changes
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
 import { Star, Pin, Share2, Download, Pencil, MoreHorizontal } from 'lucide-react';

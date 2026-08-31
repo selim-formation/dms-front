@@ -1,33 +1,36 @@
 /**
  * Auth service
- * Handles authentication API calls
+ * Handles authentication API calls against the flat, tenant-agnostic
+ * /api/login, /api/logout, /api/me endpoints. Auth is an httpOnly
+ * `access_token` cookie set directly by the server — never readable
+ * or stored client-side.
  */
 
-import { axios } from "@/core/api/client";
-import { buildApiUrl } from "@/config/api.config";
-import { User } from "@/shared/types/common.types";
-import { LoginCredentials, RegisterData } from "../types";
+import { apiClient } from "@/core/api/client";
+import { buildApiUrl, apiEndpoints } from "@/config/api.config";
+import type { User } from "@/shared/types/common.types";
+import type { LoginCredentials, RegisterData } from "../types";
+import type { LoginResponse, MeResponse } from "../types/api.types";
 import { initializeSanctum } from "./sanctum.service";
 import { logger } from "@/shared/utils/logger";
 
 const log = logger.createScoped("Auth Service");
 
 /**
- * Login user
+ * Login user (POST /api/login)
  */
 export async function login(
-  tenantId: string,
   credentials: LoginCredentials,
-): Promise<User> {
+): Promise<LoginResponse["data"]> {
   try {
     log.debug("Attempting login", { data: { email: credentials.email } });
 
-    // Initialize CSRF cookie first
-    await initializeSanctum();
-
-    // Login request
-    const url = buildApiUrl("/{tenant}/login", { tenant: tenantId });
-    const response = await axios.post<{ data: User }>(url, credentials);
+    const url = buildApiUrl(apiEndpoints.auth.loginGlobal);
+    const response = await apiClient.getInstance().post<LoginResponse>(
+      url,
+      { email: credentials.email, password: credentials.password },
+      { withCredentials: true },
+    );
 
     log.info("Login successful");
     return response.data.data;
@@ -38,19 +41,17 @@ export async function login(
 }
 
 /**
- * Logout user
+ * Logout user (POST /api/logout)
  */
-export async function logout(tenantId: string): Promise<void> {
+export async function logout(): Promise<void> {
   try {
     log.debug("Attempting logout");
 
-<<<<<<< Updated upstream
-    const url = buildApiUrl("/{tenant}/logout", { tenant: tenantId });
-    await axios.post(url);
-=======
-    const url = buildApiUrl("/api/logout", { tenant: tenantId });
-    await apiClient.post(url);
->>>>>>> Stashed changes
+    await apiClient.getInstance().post(
+      "/api/logout",
+      {},
+      { withCredentials: true },
+    );
 
     log.info("Logout successful");
   } catch (error) {
@@ -61,6 +62,7 @@ export async function logout(tenantId: string): Promise<void> {
 
 /**
  * Register new user
+ * (Not covered by the current backend spec — still tenant-scoped.)
  */
 export async function register(
   tenantId: string,
@@ -73,7 +75,9 @@ export async function register(
     await initializeSanctum();
 
     const url = buildApiUrl("/{tenant}/register", { tenant: tenantId });
-    const response = await axios.post<{ data: User }>(url, data);
+    const response = await apiClient
+      .getInstance()
+      .post<{ data: User }>(url, data);
 
     log.info("Registration successful");
     return response.data.data;
@@ -84,46 +88,28 @@ export async function register(
 }
 
 /**
- * Get authenticated user
+ * Get authenticated user (GET /api/me)
+ * Bootstraps the session on app load — tenant-agnostic.
  */
-export async function getUser(tenantId: string): Promise<User> {
-  try {
-    const url = buildApiUrl("/{tenant}/api/user", { tenant: tenantId });
-    const response = await axios.get<{ data: User }>(url);
-
-    return response.data.data;
-  } catch (error) {
-    log.error("Failed to fetch user", { data: error });
-    throw error;
-  }
-}
-
-/**
- * Get user permissions
- */
-export async function getUserPermissions(tenantId: string): Promise<string[]> {
-  try {
-    const url = buildApiUrl("/{tenant}/api/user/permissions", {
-      tenant: tenantId,
+export async function getMe(): Promise<MeResponse> {
+  const response = await apiClient
+    .getInstance()
+    .get<{ data: MeResponse; message: string }>("/api/me", {
+      withCredentials: true,
     });
-    const response = await axios.get<{ data: string[] }>(url);
 
-    return response.data.data;
-  } catch (error) {
-    log.error("Failed to fetch permissions", { data: error });
-    throw error;
-  }
+  return response.data.data;
 }
 
 /**
  * Check if user is authenticated
  * Makes a lightweight request to verify session
  */
-export async function checkAuth(tenantId: string): Promise<boolean> {
+export async function checkAuth(): Promise<boolean> {
   try {
-    await getUser(tenantId);
+    await getMe();
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }

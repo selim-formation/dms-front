@@ -77,18 +77,6 @@ export default function DepartmentTabs({
           <button
             key={dept.id}
             onClick={() => onSelectDepartment(dept.id)}
-<<<<<<< Updated upstream
-            className={`flex-shrink-0 flex items-center gap-2.5 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 whitespace-nowrap group ${
-              selectedDepartment === dept.id
-                ? 'bg-white text-gray-900 shadow-md border border-gray-200'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-transparent'
-            }`}
-          >
-            <span
-              className={`${
-                selectedDepartment === dept.id ? dept.color : 'text-gray-500 group-hover:' + dept.color
-              } transition-colors`}
-=======
             className={`flex-shrink-0 flex items-center gap-2.5 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 whitespace-nowrap group ${selectedDepartment === dept.id
               ? 'bg-card text-foreground shadow-md border border-border'
               : 'bg-muted text-muted-foreground hover:bg-accent border border-transparent'
@@ -97,24 +85,15 @@ export default function DepartmentTabs({
             <span
               className={`${selectedDepartment === dept.id ? dept.color : 'text-muted-foreground group-hover:' + dept.color
                 } transition-colors`}
->>>>>>> Stashed changes
             >
               {dept.icon}
             </span>
             <span>{t(dept.nameKey)}</span>
             <span
-<<<<<<< Updated upstream
-              className={`ml-1 px-2 py-0.5 text-xs font-semibold rounded-full ${
-                selectedDepartment === dept.id
-                  ? 'bg-gray-200 text-gray-700'
-                  : 'bg-gray-300 bg-opacity-50 text-gray-600'
-              }`}
-=======
               className={`ms-1 px-2 py-0.5 text-xs font-semibold rounded-full ${selectedDepartment === dept.id
                 ? 'bg-secondary text-secondary-foreground'
                 : 'bg-secondary/50 text-muted-foreground'
                 }`}
->>>>>>> Stashed changes
             >
               {dept.documentCount}
             </span>

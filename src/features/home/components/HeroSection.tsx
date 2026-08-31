@@ -13,12 +13,8 @@ interface Props {
   tenant: string;
 }
 
-<<<<<<< Updated upstream
 export default function HeroSection({ greeting, firstName, logo, tenant }: Props) {
-=======
-export default function HeroSection({ greeting, firstName, tenant }: Props) {
   const { t } = useTranslation(['home', 'common']);
->>>>>>> Stashed changes
   return (
     <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-10 text-primary-foreground z-10">
       {/* Decorative circles */}
@@ -46,15 +42,6 @@ export default function HeroSection({ greeting, firstName, tenant }: Props) {
         </div>
 
         <div>
-<<<<<<< Updated upstream
-          <h1 className="text-2xl md:text-3xl font-bold">
-            {greeting}, {firstName} 🌙
-          </h1>
-          <p className="mt-1 text-primary-foreground/80">
-            Welcome back. Your document management system is ready to help you organize, review, and manage your files efficiently.          </p>
-          <p className="mt-1 text-sm text-primary-foreground/60">
-            Marketing Department · 24 Documents · 3 Pending
-=======
           <h1 className="text-2xl md:text-3xl font-bold text-accent-foreground">
             {t('home:heroSection.greeting', { greeting, firstName })}
           </h1>
@@ -62,7 +49,6 @@ export default function HeroSection({ greeting, firstName, tenant }: Props) {
             {t('home:heroSection.description')}          </p>
           <p className="mt-1 text-sm  text-accent-foreground/60">
             {t('home:heroSection.meta')}
->>>>>>> Stashed changes
           </p>
         </div>
 

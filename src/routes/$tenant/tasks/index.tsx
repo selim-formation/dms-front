@@ -6,6 +6,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import TasksPage from "@/features/tasks/pages/TasksPage";
 
-export const Route = createFileRoute("/_protected/$tenant/tasks/")({
+export const Route = createFileRoute("/$tenant/tasks/")({
   component: TasksPage,
 });

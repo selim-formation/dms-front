@@ -15,12 +15,9 @@ const log = logger.createScoped("Login API");
  */
 export function useLoginMutation() {
   return useMutation({
-    mutationFn: async (data: {
-      tenantId: string;
-      credentials: LoginCredentials;
-    }) => {
-      log.debug("Login mutation starting", { email: data.credentials.email });
-      return login(data.tenantId, data.credentials);
+    mutationFn: async (credentials: LoginCredentials) => {
+      log.debug("Login mutation starting", { email: credentials.email });
+      return login(credentials);
     },
     onError: (error) => {
       log.error("Login mutation failed", { error });

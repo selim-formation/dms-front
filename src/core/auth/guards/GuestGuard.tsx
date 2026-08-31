@@ -17,7 +17,7 @@ interface GuestGuardProps {
  * Redirects to dashboard if user is already authenticated
  */
 export function GuestGuard({ children }: GuestGuardProps) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, companies } = useAuth();
   const { tenantId } = useTenant();
 
   // Show loading state while checking auth
@@ -27,8 +27,15 @@ export function GuestGuard({ children }: GuestGuardProps) {
 
   // Redirect to dashboard if already authenticated
   if (isAuthenticated) {
-    const dashboardPath = tenantId ? `/${tenantId}/dashboard` : "/";
-    return <Navigate to={dashboardPath} />;
+    const targetTenant = tenantId ?? companies[0]?.slug ?? companies[0]?.id;
+
+    if (targetTenant) {
+      return (
+        <Navigate to="/$tenant/dashboard" params={{ tenant: targetTenant }} />
+      );
+    }
+
+    return <Navigate to="/" />;
   }
 
   // User is not authenticated, render children (login/register pages)

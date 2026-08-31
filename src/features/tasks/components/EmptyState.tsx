@@ -4,11 +4,7 @@
  * Displays a friendly message when no tasks are available or match current filters
  */
 
-<<<<<<< Updated upstream
-import React from 'react'
-=======
 import { useTranslation } from 'react-i18next'
->>>>>>> Stashed changes
 
 interface EmptyStateProps {
     hasFiltersApplied?: boolean

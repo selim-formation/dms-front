@@ -63,7 +63,7 @@ export function useUnpinDocument(
             // so the home page preview reflects the change without a manual reload
             if (tenant) {
                 queryClient.invalidateQueries({
-                    queryKey: pinnedDocumentsKeys.all,
+                    queryKey: pinnedDocumentsKeys.all(tenant),
                 });
             }
             

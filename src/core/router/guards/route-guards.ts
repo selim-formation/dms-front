@@ -20,7 +20,7 @@ export async function requireAuth(context: RouteContext) {
     log.warn("Auth guard: User not authenticated, redirecting to login");
 
     throw redirect({
-      to: "/$tenant/login",
+      to: "/login",
       search: {
         redirect: location.pathname,
       },
@@ -35,15 +35,25 @@ export async function requireAuth(context: RouteContext) {
  * Ensures user is NOT authenticated (for login/register pages)
  */
 export async function requireGuest(context: RouteContext) {
-  const { auth } = context;
+  const { auth, tenant } = context;
 
   if (auth?.isAuthenticated && auth?.user) {
+    // Login is tenant-agnostic; fall back to the user's first company if
+    // no tenant has been selected yet in this browser session.
+    const targetTenant = tenant.tenantId ?? auth.companies[0]?.slug ?? auth.companies[0]?.id;
+
+    if (!targetTenant) {
+      // Authenticated but no tenant to land on — let them stay put.
+      return;
+    }
+
     log.info(
       "Guest guard: User already authenticated, redirecting to dashboard",
     );
 
     throw redirect({
       to: "/$tenant/dashboard",
+      params: { tenant: targetTenant },
     });
   }
 }
@@ -54,7 +64,7 @@ export async function requireGuest(context: RouteContext) {
  */
 export function requirePermission(permission: string | string[]) {
   return async (context: RouteContext) => {
-    const { auth } = context;
+    const { auth, tenant } = context;
 
     // First check auth
     await requireAuth(context);
@@ -69,9 +79,7 @@ export function requirePermission(permission: string | string[]) {
 
       throw redirect({
         to: "/$tenant/dashboard",
-        search: {
-          error: "insufficient_permissions",
-        },
+        params: { tenant: tenant.tenantId! },
       });
     }
 
@@ -93,7 +101,7 @@ export function requireAnyPermission(permissions: string[]) {
  */
 export function requireAllPermissions(permissions: string[]) {
   return async (context: RouteContext) => {
-    const { auth } = context;
+    const { auth, tenant } = context;
 
     // First check auth
     await requireAuth(context);
@@ -107,9 +115,7 @@ export function requireAllPermissions(permissions: string[]) {
 
       throw redirect({
         to: "/$tenant/dashboard",
-        search: {
-          error: "insufficient_permissions",
-        },
+        params: { tenant: tenant.tenantId! },
       });
     }
 
@@ -124,7 +130,7 @@ export function requireAllPermissions(permissions: string[]) {
 export async function requireTenant(context: RouteContext) {
   const { tenant } = context;
 
-  if (!tenant?.isValid || !tenant?.current) {
+  if (!tenant?.isValid || !tenant?.tenantId) {
     log.error("Tenant guard: Invalid or missing tenant");
 
     throw redirect({
@@ -135,7 +141,7 @@ export async function requireTenant(context: RouteContext) {
     });
   }
 
-  return { tenant: tenant.current };
+  return { tenantId: tenant.tenantId };
 }
 
 /**
@@ -148,6 +154,6 @@ export async function requireAuthAndTenant(context: RouteContext) {
 
   return {
     user: context.auth.user!,
-    tenant: context.tenant.current!,
+    tenantId: context.tenant.tenantId!,
   };
 }

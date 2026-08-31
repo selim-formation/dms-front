@@ -1,18 +1,29 @@
 {
   "teamPage": {
     "title": "الفريق",
-    "subtitle": "إدارة أعضاء فريقك وصلاحيات وصولهم إلى المستندات",
-    "inviteMember": "دعوة عضو",
+    "subtitle": "الزملاء المشتركون معك في نفس الأقسام",
     "totalMembers": "إجمالي الأعضاء",
-    "activeNow": "نشط الآن",
+    "activeNow": "نشط",
     "administrators": "المسؤولون",
-    "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني أو القسم...",
+    "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
     "all": "الكل",
-    "editMember": "تعديل العضو",
-    "changeRole": "تغيير الدور",
-    "remove": "إزالة",
     "documents": "المستندات",
     "shared": "مشترك",
-    "noTeamMembersFound": "لم يتم العثور على أعضاء في الفريق"
+    "noTeamMembersFound": "لم يتم العثور على أعضاء في الفريق",
+    "noTeamMembersFoundDescription": "جرّب بحثًا مختلفًا أو غيّر فلتر القسم.",
+    "errorTitle": "فشل تحميل الفريق",
+    "pageOf": "صفحة {{current}} من {{last}}",
+    "noDepartment": "بلا قسم",
+    "status": {
+      "active": "نشط",
+      "inactive": "غير نشط"
+    },
+    "role": {
+      "admin": "مسؤول",
+      "manager": "مدير",
+      "head": "رئيس",
+      "key_user": "مستخدم رئيسي",
+      "none": "بلا دور"
+    }
   }
 }

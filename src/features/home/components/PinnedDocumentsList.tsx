@@ -31,11 +31,7 @@ export default function PinnedDocumentsList({ tenant }: Props) {
           <h2 className="text-lg font-bold text-foreground">{t('pinnedDocumentsList.title')}</h2>
         </div>
         <Link
-<<<<<<< Updated upstream
-         to={`/${tenant}/documents`} className="text-sm text-primary font-medium hover:underline">View All ›</Link>
-=======
           to="/$tenant/documents" params={{ tenant }} className="text-sm text-primary font-medium hover:underline">{t('pinnedDocumentsList.viewAll')}</Link>
->>>>>>> Stashed changes
       </div>
       <Card>
         <CardContent className="p-0 divide-y divide-border">

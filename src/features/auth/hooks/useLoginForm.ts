@@ -5,16 +5,16 @@
 
 import { useCallback, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { UseFormSetError } from "react-hook-form";
-import { AxiosError } from "axios";
-import { LoginFormData } from "../types";
+import type { UseFormSetError } from "react-hook-form";
+import type { LoginFormData } from "../types";
 import { logger } from "@/shared/utils/logger";
-import { loginToGlobalEndpoint } from "@/core/auth/services/login-endpoint.service";
+import { useAuth } from "@/core/auth/hooks/useAuth";
+import { getTenantCookie } from "@/core/tenant/services/tenant-cookie.service";
 import {
   parseValidationErrors,
   getErrorMessage,
+  getErrorStatus,
 } from "../utils/error-handling";
-import { axios } from "@/core/api/client";
 
 const log = logger.createScoped("Login Form Hook");
 
@@ -24,6 +24,7 @@ interface UseLoginFormOptions {
 
 export function useLoginForm(options?: UseLoginFormOptions) {
   const navigate = useNavigate();
+  const { login, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,37 +35,49 @@ export function useLoginForm(options?: UseLoginFormOptions) {
 
       try {
         log.debug("Submitting login form", { email: data.email });
- 
-        const response = await loginToGlobalEndpoint({
+
+        const companies = await login({
           email: data.email,
           password: data.password,
-          remember: data.remember,
         });
 
         log.info("Login successful");
-console.log(response.data);
-        // Get first available tenant/company
-        const tenant = response.data.companies[0];
-        if (tenant) {
-          log.debug("Navigating to dashboard", { tenant: tenant.id });
-          navigate({ to: `/${tenant.id}/dashboard` });
-        } else {
-          log.warn("No tenant available for user");
+
+        if (companies.length === 0) {
+          // Nothing to land on — don't leave a stuck, half-authenticated
+          // session sitting on the login page.
+          log.warn("No tenant available for user, logging out");
           setError("No workspace available. Please contact support.");
+          await logout();
+          return;
         }
+
+        // Prefer the last tenant this user was in (cached on login),
+        // as long as they still have access to it.
+        const cachedTenantId = getTenantCookie();
+        const tenant =
+          companies.find(
+            (c) => c.slug === cachedTenantId || c.id === cachedTenantId,
+          ) ?? companies[0];
+
+        log.debug("Navigating to dashboard", { tenant: tenant.slug ?? tenant.id });
+        navigate({
+          to: "/$tenant/dashboard",
+          params: { tenant: tenant.slug ?? tenant.id },
+        });
       } catch (err) {
-        const axiosError = err as AxiosError<any>;
         const errorMessage = getErrorMessage(err);
 
         log.error("Login failed", { error: errorMessage });
         setError(errorMessage);
 
         // Set field-level validation errors
-        if (options?.setError && axiosError.response?.status === 422) {
-          const fieldErrors = parseValidationErrors(axiosError);
+        const setFieldError = options?.setError;
+        if (setFieldError && getErrorStatus(err) === 422) {
+          const fieldErrors = parseValidationErrors(err);
           Object.entries(fieldErrors).forEach(([field, message]) => {
             if (field === "email" || field === "password") {
-              options.setError(field as keyof LoginFormData, {
+              setFieldError(field as keyof LoginFormData, {
                 type: "server",
                 message,
               });
@@ -75,7 +88,7 @@ console.log(response.data);
         setIsLoading(false);
       }
     },
-    [navigate, options],
+    [navigate, login, logout, options],
   );
 
   return { handleSubmit, isLoading, error, setError };

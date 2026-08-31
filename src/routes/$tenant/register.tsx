@@ -4,28 +4,23 @@
  */
 
 import { createFileRoute } from "@tanstack/react-router";
-<<<<<<< Updated upstream:src/routes/$tenant/register.tsx
 import { requireGuest, requireTenant } from "@/core/router";
-=======
+
 import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "@/shared/components/ThemeToggle";
->>>>>>> Stashed changes:src/routes/_guest/register.tsx
 
 export const Route = createFileRoute("/$tenant/register")({
   beforeLoad: async (ctx) => {
-    await requireTenant(ctx);
-    await requireGuest(ctx);
+    await requireTenant(ctx.context);
+    await requireGuest(ctx.context);
   },
   component: RegisterPage,
 });
 
 function RegisterPage() {
-<<<<<<< Updated upstream:src/routes/$tenant/register.tsx
   const { tenant } = Route.useParams();
-=======
-  const { t } = useTranslation(['auth', 'common']);
-  const tenant = '';
->>>>>>> Stashed changes:src/routes/_guest/register.tsx
+  const { t } = useTranslation(["auth", "common"]);
+  // const tenant = '';
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -33,9 +28,12 @@ function RegisterPage() {
       <div className="max-w-md w-full">
         <div className="bg-card rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground">{t('auth:register.createAccount')}</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              {t("auth:register.createAccount")}
+            </h1>
             <p className="text-muted-foreground mt-2">
-              {t('auth:register.join')} <span className="font-semibold text-primary">{tenant}</span>
+              {t("auth:register.join")}{" "}
+              <span className="font-semibold text-primary">{tenant}</span>
             </p>
           </div>
 
@@ -46,12 +44,12 @@ function RegisterPage() {
                   htmlFor="firstName"
                   className="block text-sm font-medium text-muted-foreground mb-2"
                 >
-                  {t('auth:register.firstName')}
+                  {t("auth:register.firstName")}
                 </label>
                 <input
                   id="firstName"
                   type="text"
-                  placeholder={t('auth:register.firstNamePlaceholder')}
+                  placeholder={t("auth:register.firstNamePlaceholder")}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
@@ -61,12 +59,12 @@ function RegisterPage() {
                   htmlFor="lastName"
                   className="block text-sm font-medium text-muted-foreground mb-2"
                 >
-                  {t('auth:register.lastName')}
+                  {t("auth:register.lastName")}
                 </label>
                 <input
                   id="lastName"
                   type="text"
-                  placeholder={t('auth:register.lastNamePlaceholder')}
+                  placeholder={t("auth:register.lastNamePlaceholder")}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
@@ -77,12 +75,12 @@ function RegisterPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-muted-foreground mb-2"
               >
-                {t('auth:register.emailAddress')}
+                {t("auth:register.emailAddress")}
               </label>
               <input
                 id="email"
                 type="email"
-                placeholder={t('auth:register.emailPlaceholder')}
+                placeholder={t("auth:register.emailPlaceholder")}
                 className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
@@ -92,7 +90,7 @@ function RegisterPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-muted-foreground mb-2"
               >
-                {t('auth:register.password')}
+                {t("auth:register.password")}
               </label>
               <input
                 id="password"
@@ -107,7 +105,7 @@ function RegisterPage() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-muted-foreground mb-2"
               >
-                {t('auth:register.confirmPassword')}
+                {t("auth:register.confirmPassword")}
               </label>
               <input
                 id="confirmPassword"
@@ -123,14 +121,17 @@ function RegisterPage() {
                 id="terms"
                 className="rounded border-border text-primary focus:ring-primary mt-1"
               />
-              <label htmlFor="terms" className="ms-2 text-sm text-muted-foreground">
-                {t('auth:register.agreeToTerms')}{" "}
+              <label
+                htmlFor="terms"
+                className="ms-2 text-sm text-muted-foreground"
+              >
+                {t("auth:register.agreeToTerms")}{" "}
                 <a href="#" className="text-primary hover:text-primary/90">
-                  {t('auth:register.termsOfService')}
+                  {t("auth:register.termsOfService")}
                 </a>{" "}
-                {t('auth:register.and')}{" "}
+                {t("auth:register.and")}{" "}
                 <a href="#" className="text-primary hover:text-primary/90">
-                  {t('auth:register.privacyPolicy')}
+                  {t("auth:register.privacyPolicy")}
                 </a>
               </label>
             </div>
@@ -139,18 +140,18 @@ function RegisterPage() {
               type="submit"
               className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
-              {t('auth:register.createAccount')}
+              {t("auth:register.createAccount")}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
-              {t('auth:register.alreadyHaveAccount')}{" "}
+              {t("auth:register.alreadyHaveAccount")}{" "}
               <a
                 href={`/${tenant}/login`}
                 className="text-primary hover:text-primary/90 font-medium"
               >
-                {t('auth:register.signIn')}
+                {t("auth:register.signIn")}
               </a>
             </p>
           </div>

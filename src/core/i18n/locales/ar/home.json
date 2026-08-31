@@ -122,7 +122,8 @@
     "renewalCompliant": "ملتزم بالتجديد"
   },
   "expiredByDeptChart": {
-    "title": "المستندات المنتهية حسب القسم"
+    "title": "المستندات المنتهية حسب القسم",
+    "renewalComplianceRate": "معدل الالتزام بالتجديد"
   },
   "expiredByDeptGroupedChart": {
     "title": "المستندات المنتهية حسب القسم",
@@ -252,7 +253,9 @@
   },
   "statsRow": {
     "totalDocuments": "إجمالي المستندات",
-    "totalTasks": "إجمالي المهام"
+    "totalTasks": "إجمالي المهام",
+    "renewalDocuments": "مستندات قابلة للتجديد",
+    "renewalPercentage": "{{percent}}% من الإجمالي"
   },
   "statusDistributionChart": {
     "title": "توزيع الحالة",

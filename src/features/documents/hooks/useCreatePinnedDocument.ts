@@ -11,6 +11,7 @@ import { pinnedDocumentsKeys } from '../api/pinnedDocumentsKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
 import type { PinnedDocumentData } from '../types/pinned.types';
+import type { ApiError } from '@/core/api/types';
 
 const log = logger.createScoped('useCreatePinnedDocument');
 
@@ -65,13 +66,24 @@ export function useCreatePinnedDocument(
             // so the home page preview reflects the change without a manual reload
             if (tenant) {
                 queryClient.invalidateQueries({
-                    queryKey: pinnedDocumentsKeys.all,
+                    queryKey: pinnedDocumentsKeys.all(tenant),
                 });
             }
 
             onSuccessCallback?.(data);
         },
         onError: (error: Error) => {
+            // 409 means the document is already pinned — not a real
+            // error. Resync from the server (our cache was stale) and
+            // treat it as the success case instead of surfacing a toast.
+            if ((error as Partial<ApiError>)?.status === 409) {
+                log.info('Document already pinned (409) — resyncing instead of erroring');
+                if (tenant) {
+                    queryClient.invalidateQueries({ queryKey: pinnedDocumentsKeys.all(tenant) });
+                }
+                return;
+            }
+
             log.error('Pin document mutation failed', { error });
             onErrorCallback?.(error);
         },

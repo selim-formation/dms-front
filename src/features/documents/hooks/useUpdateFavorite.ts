@@ -48,7 +48,7 @@ export function useUpdateFavorite(
             log.info('Update favorite mutation successful', { data });
 
             if (tenant) {
-                queryClient.invalidateQueries({ queryKey: favoritesKeys.all });
+                queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
             }
 
             onSuccessCallback?.(data);

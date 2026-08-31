@@ -49,7 +49,7 @@ export function useFavorites(options: UseFavoritesOptions = {}): UseFavoritesRes
     const enabled = enabledProp && !!tenant;
 
     const query = useQuery({
-        queryKey: tenant ? favoritesKeys.list(params) : ['favorites', 'list', 'pending'],
+        queryKey: tenant ? favoritesKeys.list(tenant, params) : ['favorites', 'list', 'pending'],
         queryFn: async () => {
             if (!tenant) {
                 log.warn('Tenant is not available for favorites fetch');

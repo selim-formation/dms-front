@@ -9,216 +9,166 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-<<<<<<< Updated upstream
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TenantTasksRouteImport } from './routes/$tenant/tasks'
-import { Route as TenantRegisterRouteImport } from './routes/$tenant/register'
+import { Route as TenantRouteRouteImport } from './routes/$tenant/route'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as TenantIndexRouteImport } from './routes/$tenant/index'
 import { Route as TenantDashboardRouteImport } from './routes/$tenant/dashboard'
-import { Route as TenantTeamsIndexRouteImport } from './routes/$tenant/teams/index'
+import { Route as TenantProfileRouteImport } from './routes/$tenant/profile'
+import { Route as TenantRegisterRouteImport } from './routes/$tenant/register'
+import { Route as TenantTasksRouteImport } from './routes/$tenant/tasks'
+import { Route as TenantDocumentSharesIndexRouteImport } from './routes/$tenant/document-shares/index'
 import { Route as TenantDocumentsIndexRouteImport } from './routes/$tenant/documents/index'
 import { Route as TenantDocumentsIdRouteImport } from './routes/$tenant/documents/$id'
-=======
-import { Route as ProtectedRouteImport } from './routes/_protected'
-import { Route as GuestRouteImport } from './routes/_guest'
-import { Route as ProtectedIndexRouteImport } from './routes/_protected/index'
-import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
-import { Route as GuestLoginRouteImport } from './routes/_guest/login'
-import { Route as ProtectedTenantIndexRouteImport } from './routes/_protected/$tenant/index'
-import { Route as ProtectedTenantProfileRouteImport } from './routes/_protected/$tenant/profile'
-import { Route as ProtectedTenantDashboardRouteImport } from './routes/_protected/$tenant/dashboard'
-import { Route as ProtectedTenantTeamsIndexRouteImport } from './routes/_protected/$tenant/teams/index'
-import { Route as ProtectedTenantTasksIndexRouteImport } from './routes/_protected/$tenant/tasks/index'
-import { Route as ProtectedTenantFavoritesIndexRouteImport } from './routes/_protected/$tenant/favorites/index'
-import { Route as ProtectedTenantDocumentsIndexRouteImport } from './routes/_protected/$tenant/documents/index'
-import { Route as ProtectedTenantDocumentSharesIndexRouteImport } from './routes/_protected/$tenant/document-shares/index'
-import { Route as ProtectedTenantDocumentsIdRouteImport } from './routes/_protected/$tenant/documents/$id'
->>>>>>> Stashed changes
+import { Route as TenantFavoritesIndexRouteImport } from './routes/$tenant/favorites/index'
+import { Route as TenantPinnedDocumentsIndexRouteImport } from './routes/$tenant/pinned-documents/index'
+import { Route as TenantTasksIndexRouteImport } from './routes/$tenant/tasks/index'
+import { Route as TenantTeamsIndexRouteImport } from './routes/$tenant/teams/index'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-<<<<<<< Updated upstream
-const TenantTasksRoute = TenantTasksRouteImport.update({
-  id: '/$tenant/tasks',
-  path: '/$tenant/tasks',
+const TenantRouteRoute = TenantRouteRouteImport.update({
+  id: '/$tenant',
+  path: '/$tenant',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TenantRegisterRoute = TenantRegisterRouteImport.update({
-  id: '/$tenant/register',
-  path: '/$tenant/register',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TenantIndexRoute = TenantIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TenantRouteRoute,
 } as any)
 const TenantDashboardRoute = TenantDashboardRouteImport.update({
-  id: '/$tenant/dashboard',
-  path: '/$tenant/dashboard',
-  getParentRoute: () => rootRouteImport,
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => TenantRouteRoute,
 } as any)
-const TenantTeamsIndexRoute = TenantTeamsIndexRouteImport.update({
-  id: '/$tenant/teams/',
-  path: '/$tenant/teams/',
-  getParentRoute: () => rootRouteImport,
+const TenantProfileRoute = TenantProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => TenantRouteRoute,
 } as any)
+const TenantRegisterRoute = TenantRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => TenantRouteRoute,
+} as any)
+const TenantTasksRoute = TenantTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => TenantRouteRoute,
+} as any)
+const TenantDocumentSharesIndexRoute =
+  TenantDocumentSharesIndexRouteImport.update({
+    id: '/document-shares/',
+    path: '/document-shares/',
+    getParentRoute: () => TenantRouteRoute,
+  } as any)
 const TenantDocumentsIndexRoute = TenantDocumentsIndexRouteImport.update({
-  id: '/$tenant/documents/',
-  path: '/$tenant/documents/',
-  getParentRoute: () => rootRouteImport,
+  id: '/documents/',
+  path: '/documents/',
+  getParentRoute: () => TenantRouteRoute,
 } as any)
 const TenantDocumentsIdRoute = TenantDocumentsIdRouteImport.update({
-  id: '/$tenant/documents/$id',
-  path: '/$tenant/documents/$id',
-  getParentRoute: () => rootRouteImport,
+  id: '/documents/$id',
+  path: '/documents/$id',
+  getParentRoute: () => TenantRouteRoute,
+} as any)
+const TenantFavoritesIndexRoute = TenantFavoritesIndexRouteImport.update({
+  id: '/favorites/',
+  path: '/favorites/',
+  getParentRoute: () => TenantRouteRoute,
+} as any)
+const TenantPinnedDocumentsIndexRoute =
+  TenantPinnedDocumentsIndexRouteImport.update({
+    id: '/pinned-documents/',
+    path: '/pinned-documents/',
+    getParentRoute: () => TenantRouteRoute,
+  } as any)
+const TenantTasksIndexRoute = TenantTasksIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TenantTasksRoute,
+} as any)
+const TenantTeamsIndexRoute = TenantTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => TenantRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$tenant': typeof TenantRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/$tenant/dashboard': typeof TenantDashboardRoute
+  '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
-  '/$tenant/tasks': typeof TenantTasksRoute
+  '/$tenant/tasks': typeof TenantTasksRouteWithChildren
+  '/$tenant/': typeof TenantIndexRoute
   '/$tenant/documents/$id': typeof TenantDocumentsIdRoute
+  '/$tenant/document-shares/': typeof TenantDocumentSharesIndexRoute
   '/$tenant/documents/': typeof TenantDocumentsIndexRoute
+  '/$tenant/favorites/': typeof TenantFavoritesIndexRoute
+  '/$tenant/pinned-documents/': typeof TenantPinnedDocumentsIndexRoute
+  '/$tenant/tasks/': typeof TenantTasksIndexRoute
   '/$tenant/teams/': typeof TenantTeamsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/$tenant/dashboard': typeof TenantDashboardRoute
+  '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
-  '/$tenant/tasks': typeof TenantTasksRoute
+  '/$tenant': typeof TenantIndexRoute
   '/$tenant/documents/$id': typeof TenantDocumentsIdRoute
+  '/$tenant/document-shares': typeof TenantDocumentSharesIndexRoute
   '/$tenant/documents': typeof TenantDocumentsIndexRoute
+  '/$tenant/favorites': typeof TenantFavoritesIndexRoute
+  '/$tenant/pinned-documents': typeof TenantPinnedDocumentsIndexRoute
+  '/$tenant/tasks': typeof TenantTasksIndexRoute
   '/$tenant/teams': typeof TenantTeamsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$tenant': typeof TenantRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/$tenant/dashboard': typeof TenantDashboardRoute
+  '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
-  '/$tenant/tasks': typeof TenantTasksRoute
+  '/$tenant/tasks': typeof TenantTasksRouteWithChildren
+  '/$tenant/': typeof TenantIndexRoute
   '/$tenant/documents/$id': typeof TenantDocumentsIdRoute
+  '/$tenant/document-shares/': typeof TenantDocumentSharesIndexRoute
   '/$tenant/documents/': typeof TenantDocumentsIndexRoute
+  '/$tenant/favorites/': typeof TenantFavoritesIndexRoute
+  '/$tenant/pinned-documents/': typeof TenantPinnedDocumentsIndexRoute
+  '/$tenant/tasks/': typeof TenantTasksIndexRoute
   '/$tenant/teams/': typeof TenantTeamsIndexRoute
-=======
-const ProtectedTenantProfileRoute = ProtectedTenantProfileRouteImport.update({
-  id: '/$tenant/profile',
-  path: '/$tenant/profile',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedTenantDashboardRoute =
-  ProtectedTenantDashboardRouteImport.update({
-    id: '/$tenant/dashboard',
-    path: '/$tenant/dashboard',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantTeamsIndexRoute =
-  ProtectedTenantTeamsIndexRouteImport.update({
-    id: '/$tenant/teams/',
-    path: '/$tenant/teams/',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantTasksIndexRoute =
-  ProtectedTenantTasksIndexRouteImport.update({
-    id: '/$tenant/tasks/',
-    path: '/$tenant/tasks/',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantFavoritesIndexRoute =
-  ProtectedTenantFavoritesIndexRouteImport.update({
-    id: '/$tenant/favorites/',
-    path: '/$tenant/favorites/',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantDocumentsIndexRoute =
-  ProtectedTenantDocumentsIndexRouteImport.update({
-    id: '/$tenant/documents/',
-    path: '/$tenant/documents/',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantDocumentSharesIndexRoute =
-  ProtectedTenantDocumentSharesIndexRouteImport.update({
-    id: '/$tenant/document-shares/',
-    path: '/$tenant/document-shares/',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedTenantDocumentsIdRoute =
-  ProtectedTenantDocumentsIdRouteImport.update({
-    id: '/$tenant/documents/$id',
-    path: '/$tenant/documents/$id',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-
-export interface FileRoutesByFullPath {
-  '/': typeof ProtectedIndexRoute
-  '/login': typeof GuestLoginRoute
-  '/register': typeof GuestRegisterRoute
-  '/$tenant/dashboard': typeof ProtectedTenantDashboardRoute
-  '/$tenant/profile': typeof ProtectedTenantProfileRoute
-  '/$tenant/': typeof ProtectedTenantIndexRoute
-  '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
-  '/$tenant/document-shares/': typeof ProtectedTenantDocumentSharesIndexRoute
-  '/$tenant/documents/': typeof ProtectedTenantDocumentsIndexRoute
-  '/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
-  '/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
-  '/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
-}
-export interface FileRoutesByTo {
-  '/': typeof ProtectedIndexRoute
-  '/login': typeof GuestLoginRoute
-  '/register': typeof GuestRegisterRoute
-  '/$tenant/dashboard': typeof ProtectedTenantDashboardRoute
-  '/$tenant/profile': typeof ProtectedTenantProfileRoute
-  '/$tenant': typeof ProtectedTenantIndexRoute
-  '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
-  '/$tenant/document-shares': typeof ProtectedTenantDocumentSharesIndexRoute
-  '/$tenant/documents': typeof ProtectedTenantDocumentsIndexRoute
-  '/$tenant/favorites': typeof ProtectedTenantFavoritesIndexRoute
-  '/$tenant/tasks': typeof ProtectedTenantTasksIndexRoute
-  '/$tenant/teams': typeof ProtectedTenantTeamsIndexRoute
-}
-export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/_guest': typeof GuestRouteWithChildren
-  '/_protected': typeof ProtectedRouteWithChildren
-  '/_guest/login': typeof GuestLoginRoute
-  '/_guest/register': typeof GuestRegisterRoute
-  '/_protected/': typeof ProtectedIndexRoute
-  '/_protected/$tenant/dashboard': typeof ProtectedTenantDashboardRoute
-  '/_protected/$tenant/profile': typeof ProtectedTenantProfileRoute
-  '/_protected/$tenant/': typeof ProtectedTenantIndexRoute
-  '/_protected/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
-  '/_protected/$tenant/document-shares/': typeof ProtectedTenantDocumentSharesIndexRoute
-  '/_protected/$tenant/documents/': typeof ProtectedTenantDocumentsIndexRoute
-  '/_protected/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
-  '/_protected/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
-  '/_protected/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
->>>>>>> Stashed changes
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$tenant'
     | '/login'
     | '/$tenant/dashboard'
-<<<<<<< Updated upstream
+    | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant/tasks'
-=======
-    | '/$tenant/profile'
     | '/$tenant/'
->>>>>>> Stashed changes
     | '/$tenant/documents/$id'
     | '/$tenant/document-shares/'
     | '/$tenant/documents/'
     | '/$tenant/favorites/'
+    | '/$tenant/pinned-documents/'
     | '/$tenant/tasks/'
     | '/$tenant/teams/'
   fileRoutesByTo: FileRoutesByTo
@@ -226,68 +176,43 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/$tenant/dashboard'
-<<<<<<< Updated upstream
-    | '/$tenant/register'
-    | '/$tenant/tasks'
-=======
     | '/$tenant/profile'
+    | '/$tenant/register'
     | '/$tenant'
->>>>>>> Stashed changes
     | '/$tenant/documents/$id'
     | '/$tenant/document-shares'
     | '/$tenant/documents'
     | '/$tenant/favorites'
+    | '/$tenant/pinned-documents'
     | '/$tenant/tasks'
     | '/$tenant/teams'
   id:
     | '__root__'
-<<<<<<< Updated upstream
     | '/'
+    | '/$tenant'
     | '/login'
     | '/$tenant/dashboard'
+    | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant/tasks'
+    | '/$tenant/'
     | '/$tenant/documents/$id'
+    | '/$tenant/document-shares/'
     | '/$tenant/documents/'
+    | '/$tenant/favorites/'
+    | '/$tenant/pinned-documents/'
+    | '/$tenant/tasks/'
     | '/$tenant/teams/'
-=======
-    | '/_guest'
-    | '/_protected'
-    | '/_guest/login'
-    | '/_guest/register'
-    | '/_protected/'
-    | '/_protected/$tenant/dashboard'
-    | '/_protected/$tenant/profile'
-    | '/_protected/$tenant/'
-    | '/_protected/$tenant/documents/$id'
-    | '/_protected/$tenant/document-shares/'
-    | '/_protected/$tenant/documents/'
-    | '/_protected/$tenant/favorites/'
-    | '/_protected/$tenant/tasks/'
-    | '/_protected/$tenant/teams/'
->>>>>>> Stashed changes
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TenantRouteRoute: typeof TenantRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
-  TenantDashboardRoute: typeof TenantDashboardRoute
-  TenantRegisterRoute: typeof TenantRegisterRoute
-  TenantTasksRoute: typeof TenantTasksRoute
-  TenantDocumentsIdRoute: typeof TenantDocumentsIdRoute
-  TenantDocumentsIndexRoute: typeof TenantDocumentsIndexRoute
-  TenantTeamsIndexRoute: typeof TenantTeamsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -295,146 +220,155 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-<<<<<<< Updated upstream
-    '/$tenant/tasks': {
-      id: '/$tenant/tasks'
-      path: '/$tenant/tasks'
-      fullPath: '/$tenant/tasks'
-      preLoaderRoute: typeof TenantTasksRouteImport
+    '/$tenant': {
+      id: '/$tenant'
+      path: '/$tenant'
+      fullPath: '/$tenant'
+      preLoaderRoute: typeof TenantRouteRouteImport
       parentRoute: typeof rootRouteImport
-=======
-    '/_protected/$tenant/profile': {
-      id: '/_protected/$tenant/profile'
-      path: '/$tenant/profile'
-      fullPath: '/$tenant/profile'
-      preLoaderRoute: typeof ProtectedTenantProfileRouteImport
-      parentRoute: typeof ProtectedRoute
->>>>>>> Stashed changes
     }
-    '/$tenant/register': {
-      id: '/$tenant/register'
-      path: '/$tenant/register'
-      fullPath: '/$tenant/register'
-      preLoaderRoute: typeof TenantRegisterRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/$tenant/': {
+      id: '/$tenant/'
+      path: '/'
+      fullPath: '/$tenant/'
+      preLoaderRoute: typeof TenantIndexRouteImport
+      parentRoute: typeof TenantRouteRoute
     }
     '/$tenant/dashboard': {
       id: '/$tenant/dashboard'
-      path: '/$tenant/dashboard'
+      path: '/dashboard'
       fullPath: '/$tenant/dashboard'
       preLoaderRoute: typeof TenantDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/profile': {
+      id: '/$tenant/profile'
+      path: '/profile'
+      fullPath: '/$tenant/profile'
+      preLoaderRoute: typeof TenantProfileRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/register': {
+      id: '/$tenant/register'
+      path: '/register'
+      fullPath: '/$tenant/register'
+      preLoaderRoute: typeof TenantRegisterRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/tasks': {
+      id: '/$tenant/tasks'
+      path: '/tasks'
+      fullPath: '/$tenant/tasks'
+      preLoaderRoute: typeof TenantTasksRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/document-shares/': {
+      id: '/$tenant/document-shares/'
+      path: '/document-shares'
+      fullPath: '/$tenant/document-shares/'
+      preLoaderRoute: typeof TenantDocumentSharesIndexRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/documents/': {
+      id: '/$tenant/documents/'
+      path: '/documents'
+      fullPath: '/$tenant/documents/'
+      preLoaderRoute: typeof TenantDocumentsIndexRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/documents/$id': {
+      id: '/$tenant/documents/$id'
+      path: '/documents/$id'
+      fullPath: '/$tenant/documents/$id'
+      preLoaderRoute: typeof TenantDocumentsIdRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/favorites/': {
+      id: '/$tenant/favorites/'
+      path: '/favorites'
+      fullPath: '/$tenant/favorites/'
+      preLoaderRoute: typeof TenantFavoritesIndexRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/pinned-documents/': {
+      id: '/$tenant/pinned-documents/'
+      path: '/pinned-documents'
+      fullPath: '/$tenant/pinned-documents/'
+      preLoaderRoute: typeof TenantPinnedDocumentsIndexRouteImport
+      parentRoute: typeof TenantRouteRoute
+    }
+    '/$tenant/tasks/': {
+      id: '/$tenant/tasks/'
+      path: '/'
+      fullPath: '/$tenant/tasks/'
+      preLoaderRoute: typeof TenantTasksIndexRouteImport
+      parentRoute: typeof TenantTasksRoute
     }
     '/$tenant/teams/': {
       id: '/$tenant/teams/'
-      path: '/$tenant/teams'
+      path: '/teams'
       fullPath: '/$tenant/teams/'
       preLoaderRoute: typeof TenantTeamsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-<<<<<<< Updated upstream
-    '/$tenant/documents/': {
-      id: '/$tenant/documents/'
-=======
-    '/_protected/$tenant/tasks/': {
-      id: '/_protected/$tenant/tasks/'
-      path: '/$tenant/tasks'
-      fullPath: '/$tenant/tasks/'
-      preLoaderRoute: typeof ProtectedTenantTasksIndexRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/$tenant/favorites/': {
-      id: '/_protected/$tenant/favorites/'
-      path: '/$tenant/favorites'
-      fullPath: '/$tenant/favorites/'
-      preLoaderRoute: typeof ProtectedTenantFavoritesIndexRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/$tenant/documents/': {
-      id: '/_protected/$tenant/documents/'
->>>>>>> Stashed changes
-      path: '/$tenant/documents'
-      fullPath: '/$tenant/documents/'
-      preLoaderRoute: typeof TenantDocumentsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-<<<<<<< Updated upstream
-    '/$tenant/documents/$id': {
-      id: '/$tenant/documents/$id'
-=======
-    '/_protected/$tenant/document-shares/': {
-      id: '/_protected/$tenant/document-shares/'
-      path: '/$tenant/document-shares'
-      fullPath: '/$tenant/document-shares/'
-      preLoaderRoute: typeof ProtectedTenantDocumentSharesIndexRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/$tenant/documents/$id': {
-      id: '/_protected/$tenant/documents/$id'
->>>>>>> Stashed changes
-      path: '/$tenant/documents/$id'
-      fullPath: '/$tenant/documents/$id'
-      preLoaderRoute: typeof TenantDocumentsIdRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof TenantRouteRoute
     }
   }
 }
 
-<<<<<<< Updated upstream
-=======
-interface GuestRouteChildren {
-  GuestLoginRoute: typeof GuestLoginRoute
-  GuestRegisterRoute: typeof GuestRegisterRoute
+interface TenantTasksRouteChildren {
+  TenantTasksIndexRoute: typeof TenantTasksIndexRoute
 }
 
-const GuestRouteChildren: GuestRouteChildren = {
-  GuestLoginRoute: GuestLoginRoute,
-  GuestRegisterRoute: GuestRegisterRoute,
+const TenantTasksRouteChildren: TenantTasksRouteChildren = {
+  TenantTasksIndexRoute: TenantTasksIndexRoute,
 }
 
-const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
-
-interface ProtectedRouteChildren {
-  ProtectedIndexRoute: typeof ProtectedIndexRoute
-  ProtectedTenantDashboardRoute: typeof ProtectedTenantDashboardRoute
-  ProtectedTenantProfileRoute: typeof ProtectedTenantProfileRoute
-  ProtectedTenantIndexRoute: typeof ProtectedTenantIndexRoute
-  ProtectedTenantDocumentsIdRoute: typeof ProtectedTenantDocumentsIdRoute
-  ProtectedTenantDocumentSharesIndexRoute: typeof ProtectedTenantDocumentSharesIndexRoute
-  ProtectedTenantDocumentsIndexRoute: typeof ProtectedTenantDocumentsIndexRoute
-  ProtectedTenantFavoritesIndexRoute: typeof ProtectedTenantFavoritesIndexRoute
-  ProtectedTenantTasksIndexRoute: typeof ProtectedTenantTasksIndexRoute
-  ProtectedTenantTeamsIndexRoute: typeof ProtectedTenantTeamsIndexRoute
-}
-
-const ProtectedRouteChildren: ProtectedRouteChildren = {
-  ProtectedIndexRoute: ProtectedIndexRoute,
-  ProtectedTenantDashboardRoute: ProtectedTenantDashboardRoute,
-  ProtectedTenantProfileRoute: ProtectedTenantProfileRoute,
-  ProtectedTenantIndexRoute: ProtectedTenantIndexRoute,
-  ProtectedTenantDocumentsIdRoute: ProtectedTenantDocumentsIdRoute,
-  ProtectedTenantDocumentSharesIndexRoute:
-    ProtectedTenantDocumentSharesIndexRoute,
-  ProtectedTenantDocumentsIndexRoute: ProtectedTenantDocumentsIndexRoute,
-  ProtectedTenantFavoritesIndexRoute: ProtectedTenantFavoritesIndexRoute,
-  ProtectedTenantTasksIndexRoute: ProtectedTenantTasksIndexRoute,
-  ProtectedTenantTeamsIndexRoute: ProtectedTenantTeamsIndexRoute,
-}
-
-const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
-  ProtectedRouteChildren,
+const TenantTasksRouteWithChildren = TenantTasksRoute._addFileChildren(
+  TenantTasksRouteChildren,
 )
 
->>>>>>> Stashed changes
+interface TenantRouteRouteChildren {
+  TenantDashboardRoute: typeof TenantDashboardRoute
+  TenantProfileRoute: typeof TenantProfileRoute
+  TenantRegisterRoute: typeof TenantRegisterRoute
+  TenantTasksRoute: typeof TenantTasksRouteWithChildren
+  TenantIndexRoute: typeof TenantIndexRoute
+  TenantDocumentsIdRoute: typeof TenantDocumentsIdRoute
+  TenantDocumentSharesIndexRoute: typeof TenantDocumentSharesIndexRoute
+  TenantDocumentsIndexRoute: typeof TenantDocumentsIndexRoute
+  TenantFavoritesIndexRoute: typeof TenantFavoritesIndexRoute
+  TenantPinnedDocumentsIndexRoute: typeof TenantPinnedDocumentsIndexRoute
+  TenantTeamsIndexRoute: typeof TenantTeamsIndexRoute
+}
+
+const TenantRouteRouteChildren: TenantRouteRouteChildren = {
+  TenantDashboardRoute: TenantDashboardRoute,
+  TenantProfileRoute: TenantProfileRoute,
+  TenantRegisterRoute: TenantRegisterRoute,
+  TenantTasksRoute: TenantTasksRouteWithChildren,
+  TenantIndexRoute: TenantIndexRoute,
+  TenantDocumentsIdRoute: TenantDocumentsIdRoute,
+  TenantDocumentSharesIndexRoute: TenantDocumentSharesIndexRoute,
+  TenantDocumentsIndexRoute: TenantDocumentsIndexRoute,
+  TenantFavoritesIndexRoute: TenantFavoritesIndexRoute,
+  TenantPinnedDocumentsIndexRoute: TenantPinnedDocumentsIndexRoute,
+  TenantTeamsIndexRoute: TenantTeamsIndexRoute,
+}
+
+const TenantRouteRouteWithChildren = TenantRouteRoute._addFileChildren(
+  TenantRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TenantRouteRoute: TenantRouteRouteWithChildren,
   LoginRoute: LoginRoute,
-  TenantDashboardRoute: TenantDashboardRoute,
-  TenantRegisterRoute: TenantRegisterRoute,
-  TenantTasksRoute: TenantTasksRoute,
-  TenantDocumentsIdRoute: TenantDocumentsIdRoute,
-  TenantDocumentsIndexRoute: TenantDocumentsIndexRoute,
-  TenantTeamsIndexRoute: TenantTeamsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

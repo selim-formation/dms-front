@@ -69,15 +69,19 @@ export const apiEndpoints = {
   },
 
   /**
-   * Team endpoints
+   * Team endpoints — roster of the current user's visible colleagues
+   * (department-scoped via User::scopeVisibleTo on the backend)
    */
   teams: {
-    list: "/api/{tenant}/teams",
-    create: "/api/{tenant}/teams",
-    detail: "/api/{tenant}/teams/{id}",
-    update: "/api/{tenant}/teams/{id}",
-    delete: "/api/{tenant}/teams/{id}",
-    members: "/api/{tenant}/teams/{id}/members",
+    list: "api/{tenant}/teams",
+    stats: "api/{tenant}/teams/stats",
+  },
+
+  /**
+   * Departments (used to populate the team filter chips)
+   */
+  departments: {
+    list: "api/{tenant}/departments",
   },
 
   /**
@@ -107,8 +111,6 @@ export const apiEndpoints = {
     recentActivity: "/api/{tenant}/dashboard/recent-activity",
     recentDocuments: "/api/{tenant}/dashboard/recent-documents",
   },
-<<<<<<< Updated upstream
-=======
 
   /**
    * Task endpoints
@@ -143,8 +145,10 @@ export const apiEndpoints = {
   pinnedDocuments: {
     list: "api/{tenant}/pinned-documents",
     last: "api/{tenant}/pinned-documents/last",
+    view: "api/{tenant}/pinned-documents/{id}/view",
     pin: "api/{tenant}/pinned-documents/pin",
     unpin: "api/{tenant}/pinned-documents/{id}/unpin",
+    order: "api/{tenant}/pinned-documents/{id}/order",
   },
 
   /**
@@ -183,7 +187,8 @@ export const apiEndpoints = {
    */
   comments: {
     byDocument: "api/{tenant}/comments/document/{documentId}",
-    byVersion: "api/{tenant}/comments/document/{documentId}/version/{versionId}",
+    byVersion:
+      "api/{tenant}/comments/document/{documentId}/version/{versionId}",
     thread: "api/{tenant}/comments/{commentId}/thread",
     store: "api/{tenant}/comments/store",
     update: "api/{tenant}/comments/{commentId}/update",
@@ -191,7 +196,6 @@ export const apiEndpoints = {
     reactions: "api/{tenant}/comments/{commentId}/reactions",
     toggleReaction: "api/{tenant}/comments/{commentId}/reactions/toggle",
   },
->>>>>>> Stashed changes
 } as const;
 
 /**

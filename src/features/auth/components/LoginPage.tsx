@@ -8,6 +8,7 @@ import { LoginForm } from "./LoginForm";
 import LastLoginMethod from "./LastLoginMethod";
 import { useLocalStorage } from "@/shared/hooks";
 import { ThemeToggle } from "@/shared/components/ThemeToggle";
+import { appConfig } from "@/config/app.config";
 
 interface LoginPageProps {
   backgroundImage?: string;
@@ -21,11 +22,7 @@ export function LoginPage({
 
   const handleSocialLogin = (method: string, url: string) => {
     setItem(method)
-<<<<<<< Updated upstream
-    window.location.href = `http://127.0.0.1:8000${url}`
-=======
-    window.location.href = `https://dms.test${url}`
->>>>>>> Stashed changes
+    window.location.href = `${appConfig.api.baseUrl}${url}`
   }
 
   return (

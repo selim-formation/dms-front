@@ -43,7 +43,7 @@ export function useLastFavorites(options: UseLastFavoritesOptions = {}): UseLast
     const enabled = enabledProp && !!tenant;
 
     const query = useQuery({
-        queryKey: tenant ? favoritesKeys.last() : ['favorites', 'last', 'pending'],
+        queryKey: tenant ? favoritesKeys.last(tenant) : ['favorites', 'last', 'pending'],
         queryFn: async () => {
             if (!tenant) {
                 log.warn('Tenant is not available for last favorites fetch');

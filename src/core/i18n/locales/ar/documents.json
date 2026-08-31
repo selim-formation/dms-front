@@ -82,16 +82,11 @@
   },
   "documentFilterSidebar": {
     "title": "فلاتر متقدمة",
-    "titleArabic": "تصفية متقدمة",
     "sections": {
       "type": "النوع",
-      "typeArabic": "نوع المستند",
       "entity": "الكيان",
-      "entityArabic": "الكيان",
       "renewal": "التجديد",
-      "renewalArabic": "التجديد",
-      "importance": "الأهمية",
-      "importanceArabic": "الأهمية"
+      "importance": "الأهمية"
     },
     "types": {
       "licenses": "التراخيص",
@@ -240,6 +235,16 @@
     "operationalOneTimeDescription": "مستندات تشغيلية لمرة واحدة"
   },
   "documentListPage": {
+    "allDocumentsTitle": "جميع المستندات",
+    "documentTypesLabel": "أنواع المستندات",
+    "departmentsLabel": "الأقسام",
+    "departments": {
+      "hr": "الموارد البشرية",
+      "legal": "الشؤون القانونية",
+      "engineering": "الهندسة",
+      "finance": "المالية",
+      "operations": "العمليات"
+    },
     "loadingDocuments": "جارٍ تحميل المستندات...",
     "unknownError": "حدث خطأ غير معروف",
     "error403": "ليس لديك إذن للوصول إلى المستندات في هذا العرض.",
@@ -257,6 +262,19 @@
     "noPermission": "ليس لديك إذن لعرض هذا المستند.",
     "documentNotFoundDescription": "المستند الذي تبحث عنه غير موجود أو تمت إزالته.",
     "backToDocuments": "العودة إلى المستندات"
+  },
+  "pinnedDocumentCard": {
+    "title": "مثبَّت",
+    "pinnedBy": "ثبَّته",
+    "pinnedOn": "تاريخ التثبيت"
+  },
+  "pinnedDocumentsPage": {
+    "title": "المستندات المثبَّتة",
+    "subtitle": "المستندات المثبَّتة للوصول السريع.",
+    "errorTitle": "فشل تحميل المستندات المثبَّتة",
+    "emptyTitle": "لا توجد مستندات مثبَّتة بعد",
+    "emptyDescription": "المستندات التي تقوم بتثبيتها ستظهر هنا.",
+    "browseDocuments": "تصفح المستندات"
   },
   "favoritesPage": {
     "title": "المفضلة",

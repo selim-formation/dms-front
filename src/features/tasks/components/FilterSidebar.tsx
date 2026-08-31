@@ -8,14 +8,9 @@
  * - Due Date
  */
 
-<<<<<<< Updated upstream
-import React, { useState, useMemo } from 'react'
-import type { Task, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
-=======
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { Task, TaskStatus, TaskPriority } from '../types/task.types'
->>>>>>> Stashed changes
+import type { Task, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
 
 interface FilterSidebarProps {
@@ -214,7 +209,6 @@ export function FilterSidebar({
                     </button>
 
                     {expandedSections.has('dueDate') && (
-<<<<<<< Updated upstream
                         <div className="px-6 py-3 space-y-2">
                             <label className="flex items-center gap-3 cursor-pointer group">
                                 <input
@@ -237,33 +231,6 @@ export function FilterSidebar({
                                     checked={selectedDueDateRange === 'thisWeek'}
                                     onChange={() => onDueDateRangeChange('thisWeek')}
                                     className="w-4 h-4 text-blue-600 cursor-pointer"
-=======
-                        <div className="px-6 py-3 space-y-3">
-                            <div>
-                                <label className="text-xs font-semibold text-muted-foreground block mb-1">
-                                    {t('tasks:filterSidebar.fromDate')}
-                                </label>
-                                <input
-                                    type="date"
-                                    value={selectedDueDateFrom || ''}
-                                    onChange={(e) =>
-                                        onDueDateRangeChange(e.target.value || null, selectedDueDateTo)
-                                    }
-                                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                                />
-                            </div>
-                            <div>
-                                <label className="text-xs font-semibold text-muted-foreground block mb-1">
-                                    {t('tasks:filterSidebar.toDate')}
-                                </label>
-                                <input
-                                    type="date"
-                                    value={selectedDueDateTo || ''}
-                                    onChange={(e) =>
-                                        onDueDateRangeChange(selectedDueDateFrom, e.target.value || null)
-                                    }
-                                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
->>>>>>> Stashed changes
                                 />
                                 <span className="text-sm text-gray-700 group-hover:text-gray-900">This Week</span>
                                 <span className="text-xs text-gray-500">(هذا الأسبوع)</span>

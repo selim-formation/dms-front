@@ -122,7 +122,8 @@
     "renewalCompliant": "Renewal Compliant"
   },
   "expiredByDeptChart": {
-    "title": "Expired Documents by Department"
+    "title": "Expired Documents by Department",
+    "renewalComplianceRate": "Renewal Compliance Rate"
   },
   "expiredByDeptGroupedChart": {
     "title": "Expired Documents by Dept.",
@@ -252,7 +253,9 @@
   },
   "statsRow": {
     "totalDocuments": "Total Documents",
-    "totalTasks": "Total Tasks"
+    "totalTasks": "Total Tasks",
+    "renewalDocuments": "Renewal Documents",
+    "renewalPercentage": "{{percent}}% of total"
   },
   "statusDistributionChart": {
     "title": "Status Distribution",

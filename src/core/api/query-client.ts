@@ -3,7 +3,7 @@
  * Configured with tenant-scoped cache keys
  */
 
-import type { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { createQueryClient } from "@/shared/lib/react-query";
 import { logger } from "@/shared/utils/logger";
 
@@ -29,7 +29,7 @@ export function createAppQueryClient(): QueryClient {
       });
     }
 
-    // Subscribe to mutation cache updates  
+    // Subscribe to mutation cache updates
     const mutationCache = (queryClient as any).mutationCache;
     if (mutationCache && typeof mutationCache.subscribe === "function") {
       mutationCache.subscribe((event: any) => {

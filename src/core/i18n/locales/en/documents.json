@@ -82,24 +82,19 @@
   },
   "documentFilterSidebar": {
     "title": "Advanced Filters",
-    "titleArabic": "تصفية متقدمة",
     "sections": {
       "type": "Type",
-      "typeArabic": "نوع المستند",
       "entity": "Entity",
-      "entityArabic": "الكيان",
       "renewal": "Renewal",
-      "renewalArabic": "التجديد",
-      "importance": "Importance",
-      "importanceArabic": "الأهمية"
+      "importance": "Importance"
     },
     "types": {
-      "licenses": "Licenses (تراخيص)",
-      "permits": "Permits (تصاريح)",
-      "authorizations": "Authorizations (تفويضات)",
-      "cards": "Cards (بطاقات)",
-      "approvals": "Approvals (اذونات)",
-      "equipment": "Equipment (الات)"
+      "licenses": "Licenses",
+      "permits": "Permits",
+      "authorizations": "Authorizations",
+      "cards": "Cards",
+      "approvals": "Approvals",
+      "equipment": "Equipment"
     },
     "clearAllFilters": "Clear All Filters"
   },
@@ -240,6 +235,16 @@
     "operationalOneTimeDescription": "One-time operational documents"
   },
   "documentListPage": {
+    "allDocumentsTitle": "All Documents",
+    "documentTypesLabel": "Document Types",
+    "departmentsLabel": "Departments",
+    "departments": {
+      "hr": "HR",
+      "legal": "Legal",
+      "engineering": "Engineering",
+      "finance": "Finance",
+      "operations": "Operations"
+    },
     "loadingDocuments": "Loading documents...",
     "unknownError": "Unknown error occurred",
     "error403": "You do not have permission to access documents in this view.",
@@ -257,6 +262,19 @@
     "noPermission": "You don't have permission to view this document.",
     "documentNotFoundDescription": "The document you're looking for doesn't exist or has been removed.",
     "backToDocuments": "Back to Documents"
+  },
+  "pinnedDocumentCard": {
+    "title": "Pinned",
+    "pinnedBy": "Pinned by",
+    "pinnedOn": "Pinned on"
+  },
+  "pinnedDocumentsPage": {
+    "title": "Pinned Documents",
+    "subtitle": "Documents pinned for quick access.",
+    "errorTitle": "Failed to load pinned documents",
+    "emptyTitle": "No pinned documents yet",
+    "emptyDescription": "Documents you pin will show up here.",
+    "browseDocuments": "Browse Documents"
   },
   "favoritesPage": {
     "title": "Favorites",

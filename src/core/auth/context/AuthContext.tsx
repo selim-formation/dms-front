@@ -12,6 +12,7 @@ import { type AuthContextValue } from "../types";
 const defaultValue: AuthContextValue = {
   user: null,
   permissions: [],
+  companies: [],
   isAuthenticated: false,
   isLoading: true,
   login: async () => {

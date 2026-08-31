@@ -17,7 +17,6 @@ interface Filters {
 
 interface FilterSection {
     label: string;
-    labelArabic: string;
     items: { label: string; id: string }[];
 }
 
@@ -40,7 +39,6 @@ export default function DocumentFilterSidebar({
     const filterSections: Record<string, FilterSection> = {
         types: {
             label: t('documentFilterSidebar.sections.type'),
-            labelArabic: t('documentFilterSidebar.sections.typeArabic'),
             items: [
                 { label: t('documentFilterSidebar.types.licenses'), id: 'licenses' },
                 { label: t('documentFilterSidebar.types.permits'), id: 'permits' },
@@ -52,7 +50,6 @@ export default function DocumentFilterSidebar({
         },
         entities: {
             label: t('documentFilterSidebar.sections.entity'),
-            labelArabic: t('documentFilterSidebar.sections.entityArabic'),
             items: [
                 { label: t('entityType.operational'), id: 'operational' },
                 { label: t('entityType.establishment'), id: 'establishment' },
@@ -60,7 +57,6 @@ export default function DocumentFilterSidebar({
         },
         renewals: {
             label: t('documentFilterSidebar.sections.renewal'),
-            labelArabic: t('documentFilterSidebar.sections.renewalArabic'),
             items: [
                 { label: t('renewalType.oneTime'), id: 'one-time' },
                 { label: t('renewalType.renewable'), id: 'renewable' },
@@ -68,7 +64,6 @@ export default function DocumentFilterSidebar({
         },
         importances: {
             label: t('documentFilterSidebar.sections.importance'),
-            labelArabic: t('documentFilterSidebar.sections.importanceArabic'),
             items: [
                 { label: t('common:priority.critical'), id: 'critical' },
                 { label: t('common:priority.high'), id: 'high' },
@@ -120,7 +115,6 @@ export default function DocumentFilterSidebar({
             {/* Header */}
             <div className="px-6 py-4 border-b border-border bg-muted">
                 <h3 className="text-sm font-bold text-foreground">{t('documentFilterSidebar.title')}</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">{t('documentFilterSidebar.titleArabic')}</p>
             </div>
 
             {/* Filter Sections */}
@@ -132,12 +126,9 @@ export default function DocumentFilterSidebar({
                             onClick={() => toggleSection(key)}
                             className="w-full flex items-center justify-between px-6 py-3 hover:bg-muted transition-colors"
                         >
-                            <div className="text-start">
-                                <p className="text-xs font-semibold text-foreground uppercase tracking-wide">
-                                    {section.label}
-                                </p>
-                                <p className="text-xs text-muted-foreground mt-0.5">{section.labelArabic}</p>
-                            </div>
+                            <p className="text-xs font-semibold text-foreground uppercase tracking-wide">
+                                {section.label}
+                            </p>
                             <ChevronDown
                                 size={16}
                                 className={`text-muted-foreground transition-transform ${expandedSections.has(key) ? '' : '-rotate-90'

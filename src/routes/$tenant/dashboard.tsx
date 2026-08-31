@@ -3,18 +3,14 @@
  * Main dashboard for authenticated users
  */
 
-<<<<<<< Updated upstream:src/routes/$tenant/dashboard.tsx
-import { createFileRoute } from "@tanstack/react-router";
 import { requireAuthAndTenant } from "@/core/router";
-=======
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "@/shared/components/ThemeToggle";
 import { useAuth } from "@/core/auth/hooks/useAuth";
->>>>>>> Stashed changes:src/routes/_protected/$tenant/dashboard.tsx
 
 export const Route = createFileRoute("/$tenant/dashboard")({
-  beforeLoad: requireAuthAndTenant,
+  beforeLoad: (ctx) => requireAuthAndTenant(ctx.context),
   component: DashboardPage,
 });
 
@@ -61,15 +57,37 @@ function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Stats Cards */}
           {[
-            { label: t("stats.documents"), value: "1,234", icon: "📄", color: "blue" },
-            { label: t("stats.workspaces"), value: "12", icon: "🗂️", color: "green" },
-            { label: t("stats.users"), value: "45", icon: "👥", color: "purple" },
-            { label: t("stats.storage"), value: "45.2 GB", icon: "💾", color: "orange" },
+            {
+              label: t("stats.documents"),
+              value: "1,234",
+              icon: "📄",
+              color: "blue",
+            },
+            {
+              label: t("stats.workspaces"),
+              value: "12",
+              icon: "🗂️",
+              color: "green",
+            },
+            {
+              label: t("stats.users"),
+              value: "45",
+              icon: "👥",
+              color: "purple",
+            },
+            {
+              label: t("stats.storage"),
+              value: "45.2 GB",
+              icon: "💾",
+              color: "orange",
+            },
           ].map((stat) => (
             <div key={stat.label} className="bg-card rounded-lg shadow p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">{stat.label}</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    {stat.label}
+                  </p>
                   <p className="text-2xl font-bold text-foreground">
                     {stat.value}
                   </p>
@@ -165,10 +183,14 @@ function DashboardPage() {
                   <div>
                     <p className="text-sm text-foreground">
                       <span className="font-semibold">{activity.user}</span>{" "}
-                      <span className="text-muted-foreground">{activity.action}</span>{" "}
+                      <span className="text-muted-foreground">
+                        {activity.action}
+                      </span>{" "}
                       <span className="font-medium">{activity.item}</span>
                     </p>
-                    <p className="text-xs text-muted-foreground">{activity.time}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {activity.time}
+                    </p>
                   </div>
                 </div>
               </div>

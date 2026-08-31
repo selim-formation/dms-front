@@ -20,8 +20,10 @@ export interface User {
     id: number
     /** User's display name */
     name: string
-    /** Optional profile image URL */
+    /** Optional profile image URL — API doesn't currently return one */
     avatar: string | null
+    /** Present on API responses, absent on older mock/local data */
+    email?: string
 }
 
 /**
@@ -64,6 +66,40 @@ export interface Task {
     department: string | null
     /** Count of related documents (non-negative integer) */
     relatedDocumentsCount: number
+    /** What kind of action this task represents (API-only, no dedicated UI yet) */
+    taskType?: string
+    /** When the task was marked complete, if it has been */
+    completedAt?: string | null
+    /** The single document this task is attached to, if any */
+    document?: { id: number | null; title: string | null } | null
+}
+
+// ============================================================================
+// Raw API Shapes (GET /{tenant}/tasks)
+// ============================================================================
+
+/** Task shape exactly as the backend returns it — snake_case, nullable relations. */
+export interface RawTask {
+    id: number
+    title: string
+    description: string | null
+    status: TaskStatus
+    priority: TaskPriority
+    task_type: string | null
+    assignee: { id: number; name: string; email?: string } | null
+    creator: { id: number; name: string; email?: string }
+    document: { id: number | null; title: string | null } | null
+    department: { id: number; name: string | null } | null
+    tags: string[] | null
+    due_date: string | null
+    completed_at: string | null
+    created_at: string
+    updated_at: string
+}
+
+export interface TasksApiResponse {
+    data: RawTask[]
+    message: string
 }
 
 // ============================================================================
