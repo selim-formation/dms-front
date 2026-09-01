@@ -38,6 +38,17 @@ export interface DocumentActivity {
   details?: string | Record<string, unknown>;
 }
 
+/**
+ * A single document as returned by every /documents* endpoint.
+ *
+ * Two gotchas from the backend docs, both handled here rather than at
+ * every call site:
+ * 1. `creation_process`/`renewal_process` are renamed to `manual`/`details`
+ *    whenever the document has an entity titled "machine" — both key
+ *    pairs are optional; read whichever pair is present.
+ * 2. Dates are `d/m/Y` (date-only, no time) — different from every other
+ *    module's date format, don't reuse a shared parser.
+ */
 export interface ApiDocument {
   id: number;
   title: string;
@@ -49,15 +60,23 @@ export interface ApiDocument {
   last_viewed: string | null;
   expire_date: string | null;
   reminder_before: number | null;
-  importance: "critical" | "high" | "medium" | "low" | "archival";
-  category: "operational" | "establishment";
-  origin_department: string | null;
-  manual: boolean | null;
-  details: string | null;
-  version_history: string | null;
-  uploaded_by: string | null;
-  responsible: string | null;
-  cc: string | null;
+  /** Free string set by the tenant admin — not a fixed enum. */
+  importance: string;
+  /** Free string set by the tenant admin — not a fixed enum. */
+  category: string;
+  /** Full Department object when the relation is loaded, else absent/null. */
+  origin_department?: Department | null;
+  creation_process?: string | null;
+  renewal_process?: string | null;
+  manual?: string | null;
+  details?: string | null;
+  /** Excludes the latest version. */
+  version_history: DocumentVersionEntry[];
+  /** Raw Eloquent model dump — no stable resource contract, field set may change release to release. */
+  uploaded_by: Record<string, unknown> | null;
+  /** Raw Eloquent model dump — same caveat as uploaded_by. */
+  responsible: Record<string, unknown> | null;
+  cc: string[] | null;
   entities: Entity[];
   departments: Department[];
   types: DocumentType[];
@@ -66,26 +85,24 @@ export interface ApiDocument {
   updated_at: string;
 }
 
-export interface RenewalDocuments {
-  renewal: ApiDocument[];
+export interface DocumentsByGroup {
   one_time: ApiDocument[];
+  renewal: ApiDocument[];
 }
 
-export interface DocumentsByTypeResponse {
-  entity: string;
-  establishment: RenewalDocuments;
-  operational: RenewalDocuments;
+/** GET /documents/documents-by-types — `type` is a plain string here. */
+export interface DocumentsByTypeItem extends DocumentsByGroup {
+  type: string;
 }
 
 export interface DocumentsByTypeApiResponse {
-  data: DocumentsByTypeResponse[];
+  data: DocumentsByTypeItem[];
   message: string;
 }
 
-export interface DocumentsByDepartmentItem {
+/** GET /documents/documents-by-departments */
+export interface DocumentsByDepartmentItem extends DocumentsByGroup {
   department: string;
-  renewal: ApiDocument[];
-  one_time: ApiDocument[];
 }
 
 export interface DocumentsByDepartmentApiResponse {
@@ -94,63 +111,72 @@ export interface DocumentsByDepartmentApiResponse {
 }
 
 /**
- * Unified document type for UI consumption
+ * POST /documents/categorized — `type` is array-wrapped here (unlike
+ * documents-by-types' plain string), and the envelope double-nests under
+ * `data.data` only when NO filter was sent. Always read via
+ * `unwrapCategorizedResponse()` below rather than a fixed path.
  */
-export interface UIDocument {
+export interface CategorizedGroup {
+  type: string[];
+  documents: ApiDocument[];
+}
+
+export interface CategorizedApiResponse {
+  data: CategorizedGroup[] | { data: CategorizedGroup[] };
+  message: string;
+}
+
+export interface CategorizedFilters {
+  category?: string;
+  entity?: string;
+  department?: string;
+  has_expire_date?: "true" | "false";
+}
+
+export function unwrapCategorizedResponse(response: CategorizedApiResponse): CategorizedGroup[] {
+  const { data } = response;
+  return Array.isArray(data) ? data : (data.data ?? []);
+}
+
+/** POST /documents/search body — entity/department/type are TITLE strings, not ids. */
+export interface DocumentSearchFilters {
+  category?: string;
+  type?: string;
+  entity?: string;
+  department?: string;
+  title?: string;
+  has_expire_date?: "true" | "false";
+  importance?: string;
+}
+
+export interface DocumentSearchProject {
   id: number;
-  title: string;
-  description: string | null;
-  importance: "critical" | "high" | "medium" | "low" | "archival";
-  category: "operational" | "establishment";
-  expireDate: string | null;
-  entities: Entity[];
-  departments: Department[];
-  types: DocumentType[];
-  createdAt: string;
-  updatedAt: string;
-  isOneTime: boolean;
+  [key: string]: unknown;
+}
+
+export interface DocumentSearchData {
+  documents: ApiDocument[];
+  projects: DocumentSearchProject[];
+}
+
+export interface DocumentSearchApiResponse {
+  data: DocumentSearchData;
+  message: string;
+}
+
+/** GET /documents/reminder and /documents/active-reminders — flat array, no pagination. */
+export interface DocumentsFlatListApiResponse {
+  data: ApiDocument[];
+  message: string;
 }
 
 /**
- * Grouped documents structure for display
- */
-export interface GroupedDocuments {
-  name: string;
-  establishment: {
-    oneTime: UIDocument[];
-    renewal: UIDocument[];
-  };
-  operational: {
-    oneTime: UIDocument[];
-    renewal: UIDocument[];
-  };
-  allDocuments: UIDocument[];
-}
-
-/**
- * Department grouped documents
- */
-export interface DepartmentGroupedDocuments {
-  department: string;
-  oneTime: UIDocument[];
-  renewal: UIDocument[];
-  allDocuments: UIDocument[];
-}
-
-/**
- * Query parameters for documents list API
+ * Query parameters for GET /documents — the backend only accepts `page`,
+ * nothing else (no server-side search/sort/filter on this endpoint;
+ * use POST /documents/search for filtered queries).
  */
 export interface DocumentListParams {
   page?: number;
-  per_page?: number;
-  sort_by?:
-    "created_at" | "updated_at" | "title" | "importance" | "expire_date";
-  sort_dir?: "asc" | "desc";
-  search?: string;
-  category?: number;
-  department?: number;
-  importance?: "critical" | "high" | "medium" | "low" | "archival";
-  entity?: number;
 }
 
 /**

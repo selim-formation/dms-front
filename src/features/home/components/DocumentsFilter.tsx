@@ -1,4 +1,4 @@
-import { Search, Filter, Calendar, FileType, MoreHorizontal } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

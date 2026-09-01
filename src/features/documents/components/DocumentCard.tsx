@@ -1,4 +1,4 @@
-import { FileText, Share2, Download, MoreVertical, Star, Lock } from 'lucide-react';
+import { Share2, Download, MoreVertical, Star, Lock } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,14 +24,12 @@ const statusConfig = {
 };
 
 export default function DocumentCard({
-  id,
   title,
   description,
   type,
   size,
   dateModified,
   status,
-  department,
   author,
   icon,
   color,

@@ -213,8 +213,11 @@
     "failedToFetchNotifications": "Failed to fetch notifications",
     "openAriaLabel": "Open reminders and notifications",
     "closeAriaLabel": "Close drawer",
-    "title": "Reminders & Notifications",
-    "notificationsTab": "Notifications"
+    "title": "Notifications",
+    "notificationsTab": "Notifications",
+    "remindersTab": "Reminders",
+    "activeTab": "Active Reminders",
+    "emptyAllDescription": "There's no general notifications feed yet."
   },
   "departmentView": {
     "emptyState": "No documents found in this department",
@@ -236,6 +239,8 @@
   },
   "documentListPage": {
     "allDocumentsTitle": "All Documents",
+    "searchResultsTitle": "Search Results",
+    "pageOf": "Page {{current}} of {{last}}",
     "documentTypesLabel": "Document Types",
     "departmentsLabel": "Departments",
     "departments": {

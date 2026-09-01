@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '@/shared/components/layout/Navbar';
 import DocumentListHeader from '@/features/documents/components/DocumentListHeader';
@@ -9,20 +9,12 @@ import DocumentResultsSummary from '@/features/documents/components/DocumentResu
 import DocumentsGridSection from '@/features/documents/components/DocumentsGridSection';
 import DocumentFiltersPanel from '@/features/documents/components/DocumentFiltersPanel';
 import MobileFilterDrawer from '@/features/documents/components/MobileFilterDrawer';
-
-interface Document {
-  id: string;
-  name: string;
-  type: string;
-  typeArabic: string;
-  department: string;
-  entity: string;
-  renewal: 'Renewable' | 'One-Time';
-  importance: 'Critical' | 'High' | 'Medium';
-  expiryDate: string;
-  status: 'Expires' | 'Expired';
-  icon?: string;
-}
+import PaginationControl from '@/shared/components/ui/PaginationControl';
+import { useDocumentsList } from '../hooks/useDocumentsList';
+import { useDocumentsByTypes } from '../hooks/useDocumentsByTypes';
+import { useDocumentsByDepartments } from '../hooks/useDocumentsByDepartments';
+import { useDocumentSearch } from '../hooks/useDocumentSearch';
+import type { ApiDocument } from '../types/api.types';
 
 interface Filters {
   types: string[];
@@ -32,173 +24,18 @@ interface Filters {
   importances: string[];
 }
 
-// Sample data: Flat document list
-const allDocuments: Document[] = [
-  {
-    id: '1',
-    name: 'Business Operating License',
-    type: 'licenses',
-    typeArabic: 'تراخيص',
-    department: 'HR',
-    entity: 'Operational',
-    renewal: 'Renewable',
-    importance: 'Critical',
-    expiryDate: 'Mar 15, 2026',
-    status: 'Expires',
-    icon: '📋',
-  },
-  {
-    id: '2',
-    name: 'Commercial License',
-    type: 'licenses',
-    typeArabic: 'تراخيص',
-    department: 'Legal',
-    entity: 'Establishment',
-    renewal: 'Renewable',
-    importance: 'Critical',
-    expiryDate: 'Jun 20, 2026',
-    status: 'Expires',
-    icon: '📋',
-  },
-  {
-    id: '3',
-    name: 'Import-Export License',
-    type: 'licenses',
-    typeArabic: 'تراخيص',
-    department: 'Operations',
-    entity: 'Operational',
-    renewal: 'Renewable',
-    importance: 'High',
-    expiryDate: 'May 10, 2026',
-    status: 'Expires',
-    icon: '📋',
-  },
-  {
-    id: '4',
-    name: 'Construction Permit',
-    type: 'permits',
-    typeArabic: 'تصاريح',
-    department: 'Engineering',
-    entity: 'Establishment',
-    renewal: 'One-Time',
-    importance: 'High',
-    expiryDate: 'Dec 31, 2026',
-    status: 'Expires',
-    icon: '🏗️',
-  },
-  {
-    id: '5',
-    name: 'Environmental Permit',
-    type: 'permits',
-    typeArabic: 'تصاريح',
-    department: 'Operations',
-    entity: 'Operational',
-    renewal: 'Renewable',
-    importance: 'High',
-    expiryDate: 'Apr 30, 2026',
-    status: 'Expires',
-    icon: '🏗️',
-  },
-  {
-    id: '6',
-    name: 'Bank Authorization Form',
-    type: 'authorizations',
-    typeArabic: 'تفويضات',
-    department: 'Finance',
-    entity: 'Operational',
-    renewal: 'One-Time',
-    importance: 'Medium',
-    expiryDate: 'Feb 28, 2026',
-    status: 'Expired',
-    icon: '✍️',
-  },
-  {
-    id: '7',
-    name: 'Government Authorization',
-    type: 'authorizations',
-    typeArabic: 'تفويضات',
-    department: 'Legal',
-    entity: 'Establishment',
-    renewal: 'Renewable',
-    importance: 'Critical',
-    expiryDate: 'Mar 1, 2026',
-    status: 'Expires',
-    icon: '✍️',
-  },
-  {
-    id: '8',
-    name: 'Corporate ID Card',
-    type: 'cards',
-    typeArabic: 'بطاقات',
-    department: 'HR',
-    entity: 'Operational',
-    renewal: 'Renewable',
-    importance: 'Medium',
-    expiryDate: 'Aug 15, 2026',
-    status: 'Expires',
-    icon: '🎫',
-  },
-  {
-    id: '9',
-    name: 'Board Approval Minutes',
-    type: 'approvals',
-    typeArabic: 'اذونات',
-    department: 'Legal',
-    entity: 'Establishment',
-    renewal: 'One-Time',
-    importance: 'Medium',
-    expiryDate: 'Dec 31, 2026',
-    status: 'Expires',
-    icon: '✅',
-  },
-  {
-    id: '10',
-    name: 'Audit Committee Approval',
-    type: 'approvals',
-    typeArabic: 'اذونات',
-    department: 'Finance',
-    entity: 'Operational',
-    renewal: 'One-Time',
-    importance: 'High',
-    expiryDate: 'Jul 1, 2026',
-    status: 'Expires',
-    icon: '✅',
-  },
-  {
-    id: '11',
-    name: 'Equipment Maintenance Certificate',
-    type: 'equipment',
-    typeArabic: 'الات',
-    department: 'Engineering',
-    entity: 'Operational',
-    renewal: 'Renewable',
-    importance: 'High',
-    expiryDate: 'Apr 15, 2026',
-    status: 'Expires',
-    icon: '⚙️',
-  },
-];
-
-// Fixed set of document type / department ids used by the mock data below.
-// Display labels are resolved through i18n inside the component.
-const documentTypeIds = [
-  'licenses',
-  'permits',
-  'authorizations',
-  'cards',
-  'approvals',
-  'equipment',
-] as const;
-
-const departmentIds = ['hr', 'legal', 'engineering', 'finance', 'operations'] as const;
+type ViewMode = 'all' | 'byType' | 'byDepartment';
 
 export default function DocumentListPage(): React.ReactElement {
   const { t } = useTranslation(['documents', 'common']);
-  const [viewMode, setViewMode] = useState<'all' | 'byType' | 'byDepartment'>('all');
+  const [viewMode, setViewMode] = useState<ViewMode>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTypeTab, setSelectedTypeTab] = useState<string>('licenses');
-  const [selectedDeptTab, setSelectedDeptTab] = useState<string>('hr');
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
+  const [selectedTypeTab, setSelectedTypeTab] = useState<string>('');
+  const [selectedDeptTab, setSelectedDeptTab] = useState<string>('');
+  // Sidebar filter selections stay client-side/cosmetic for now — the
+  // real /search endpoint only accepts single-value type/entity/department
+  // filters, not the multi-select set this UI currently offers.
+  const [, setSelectedFilters] = useState<Filters>({
     types: [],
     departments: [],
     entities: [],
@@ -206,91 +43,110 @@ export default function DocumentListPage(): React.ReactElement {
     importances: [],
   });
   const [showFilters, setShowFilters] = useState(true);
+  const [page, setPage] = useState(1);
 
-  const typeLabel = useCallback(
-    (id: string) => t(`documentFilterSidebar.types.${id}` as const),
-    [t],
-  );
-  const departmentLabel = useCallback(
-    (id: string) => t(`documentListPage.departments.${id}` as const),
-    [t],
-  );
+  // Free-text search hits the real /documents/search endpoint (debounced
+  // internally) and, once active, replaces whatever tab is showing —
+  // the backend only supports single-value type/entity/department
+  // filters, so the sidebar's multi-select checkboxes stay client-side
+  // for now rather than being force-fit onto it.
+  const search = useDocumentSearch({ title: searchQuery });
 
-  // Get type tabs with document counts
-  const typeTabsWithCounts = useMemo(() => {
-    return documentTypeIds.map((id) => ({
-      id,
-      label: typeLabel(id),
-      count: allDocuments.filter((doc) => doc.type === id).length,
-    }));
-  }, [typeLabel]);
+  const allDocs = useDocumentsList(page, { enabled: viewMode === 'all' && !search.isActive });
+  const byTypes = useDocumentsByTypes({ enabled: viewMode === 'byType' && !search.isActive });
+  const byDepartments = useDocumentsByDepartments({
+    enabled: viewMode === 'byDepartment' && !search.isActive,
+  });
 
-  // Get department tabs with document counts
-  const deptTabsWithCounts = useMemo(() => {
-    return departmentIds.map((id) => ({
-      id,
-      label: departmentLabel(id),
-      count: allDocuments.filter((doc) => doc.department.toLowerCase() === id)
-        .length,
-    }));
-  }, [departmentLabel]);
-
-  // Filter documents based on view mode, search, and advanced filters
-  const filteredDocuments = useMemo(() => {
-    let result = allDocuments;
-
-    // Search filter
-    if (searchQuery) {
-      result = result.filter((doc) =>
-        doc.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // Default the type/department chip selection to the first group once loaded.
+  useEffect(() => {
+    if (!selectedTypeTab && byTypes.groups.length > 0) {
+      setSelectedTypeTab(byTypes.groups[0].type);
     }
+  }, [byTypes.groups, selectedTypeTab]);
 
-    // View mode filtering
+  useEffect(() => {
+    if (!selectedDeptTab && byDepartments.groups.length > 0) {
+      setSelectedDeptTab(byDepartments.groups[0].department);
+    }
+  }, [byDepartments.groups, selectedDeptTab]);
+
+  const typeTabsWithCounts = useMemo(
+    () =>
+      byTypes.groups.map((group) => ({
+        id: group.type,
+        label: group.type,
+        count: group.one_time.length + group.renewal.length,
+      })),
+    [byTypes.groups],
+  );
+
+  const deptTabsWithCounts = useMemo(
+    () =>
+      byDepartments.groups.map((group) => ({
+        id: group.department,
+        label: group.department,
+        count: group.one_time.length + group.renewal.length,
+      })),
+    [byDepartments.groups],
+  );
+
+  const selectedTypeGroup = useMemo(
+    () => byTypes.groups.find((g) => g.type === selectedTypeTab),
+    [byTypes.groups, selectedTypeTab],
+  );
+
+  const selectedDeptGroup = useMemo(
+    () => byDepartments.groups.find((g) => g.department === selectedDeptTab),
+    [byDepartments.groups, selectedDeptTab],
+  );
+
+  // Resolve which document list + loading/error state the active view
+  // (search overrides tab, then All/Types/Departments) should render.
+  const { documents, isLoading, isError }: {
+    documents: ApiDocument[];
+    isLoading: boolean;
+    isError: boolean;
+  } = useMemo(() => {
+    if (search.isActive) {
+      return { documents: search.documents, isLoading: search.isLoading, isError: search.isError };
+    }
     if (viewMode === 'byType') {
-      result = result.filter((doc) => doc.type === selectedTypeTab);
-    } else if (viewMode === 'byDepartment') {
-      result = result.filter(
-        (doc) => doc.department.toLowerCase() === selectedDeptTab
-      );
+      const group = selectedTypeGroup;
+      return {
+        documents: group ? [...group.one_time, ...group.renewal] : [],
+        isLoading: byTypes.isLoading,
+        isError: byTypes.isError,
+      };
     }
+    if (viewMode === 'byDepartment') {
+      const group = selectedDeptGroup;
+      return {
+        documents: group ? [...group.one_time, ...group.renewal] : [],
+        isLoading: byDepartments.isLoading,
+        isError: byDepartments.isError,
+      };
+    }
+    return { documents: allDocs.documents, isLoading: allDocs.isLoading, isError: allDocs.isError };
+  }, [
+    search.isActive,
+    search.documents,
+    search.isLoading,
+    search.isError,
+    viewMode,
+    selectedTypeGroup,
+    selectedDeptGroup,
+    byTypes.isLoading,
+    byTypes.isError,
+    byDepartments.isLoading,
+    byDepartments.isError,
+    allDocs.documents,
+    allDocs.isLoading,
+    allDocs.isError,
+  ]);
 
-    // Advanced filters
-    if (selectedFilters.types.length > 0) {
-      result = result.filter((doc) => selectedFilters.types.includes(doc.type));
-    }
-    if (selectedFilters.departments.length > 0) {
-      result = result.filter((doc) =>
-        selectedFilters.departments.includes(doc.department.toLowerCase())
-      );
-    }
-    if (selectedFilters.entities.length > 0) {
-      result = result.filter((doc) =>
-        selectedFilters.entities.includes(doc.entity.toLowerCase())
-      );
-    }
-    if (selectedFilters.renewals.length > 0) {
-      result = result.filter((doc) =>
-        selectedFilters.renewals.includes(doc.renewal.toLowerCase().replace(/-/g, '-'))
-      );
-    }
-    if (selectedFilters.importances.length > 0) {
-      result = result.filter((doc) =>
-        selectedFilters.importances.includes(doc.importance.toLowerCase())
-      );
-    }
-
-    return result;
-  }, [viewMode, selectedTypeTab, selectedDeptTab, searchQuery, selectedFilters]);
-
-  // Memoized callbacks for optimization
-  const handleViewModeChange = useCallback((mode: 'all' | 'byType' | 'byDepartment') => {
+  const handleViewModeChange = useCallback((mode: ViewMode) => {
     setViewMode(mode);
-    if (mode === 'byType') {
-      setSelectedTypeTab('licenses');
-    } else if (mode === 'byDepartment') {
-      setSelectedDeptTab('hr');
-    }
   }, []);
 
   const handleSearchChange = useCallback((query: string) => {
@@ -302,39 +158,23 @@ export default function DocumentListPage(): React.ReactElement {
   }, []);
 
   const handleClearFilters = useCallback(() => {
-    setSelectedFilters({
-      types: [],
-      departments: [],
-      entities: [],
-      renewals: [],
-      importances: [],
-    });
+    setSelectedFilters({ types: [], departments: [], entities: [], renewals: [], importances: [] });
   }, []);
 
-  // Get page title based on view mode
-  const getPageTitle = useCallback(() => {
-    if (viewMode === 'byType') {
-      return documentTypeIds.includes(selectedTypeTab as (typeof documentTypeIds)[number])
-        ? typeLabel(selectedTypeTab)
-        : t('common:nav.documents');
-    } else if (viewMode === 'byDepartment') {
-      return departmentIds.includes(selectedDeptTab as (typeof departmentIds)[number])
-        ? departmentLabel(selectedDeptTab)
-        : t('common:nav.documents');
-    }
+  const pageTitle = useMemo(() => {
+    if (search.isActive) return t('documentListPage.searchResultsTitle');
+    if (viewMode === 'byType') return selectedTypeTab || t('common:nav.documents');
+    if (viewMode === 'byDepartment') return selectedDeptTab || t('common:nav.documents');
     return t('documentListPage.allDocumentsTitle');
-  }, [viewMode, selectedTypeTab, selectedDeptTab, typeLabel, departmentLabel, t]);
+  }, [search.isActive, viewMode, selectedTypeTab, selectedDeptTab, t]);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <Navbar />
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Page Header Section */}
         <div className="mb-8">
-          <DocumentListHeader onUploadClick={() => {}} />
+          <DocumentListHeader />
           <DocumentSearchBar
             searchQuery={searchQuery}
             onSearchChange={handleSearchChange}
@@ -342,55 +182,65 @@ export default function DocumentListPage(): React.ReactElement {
           />
         </div>
 
-        {/* View Mode Tabs */}
-        <DocumentViewModeTabs
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-        />
+        <DocumentViewModeTabs viewMode={viewMode} onViewModeChange={handleViewModeChange} />
 
-        {/* Content Area with Sidebar */}
         <div className="flex gap-8">
-          {/* Main Content */}
           <div className="flex-1">
-            {/* Dynamic Slider Tabs */}
-            <DocumentListTypesTabs
-              tabs={typeTabsWithCounts}
-              activeTab={selectedTypeTab}
-              onTabChange={setSelectedTypeTab}
-              isVisible={viewMode === 'byType'}
-              label={t('documentListPage.documentTypesLabel')}
-            />
+            {!search.isActive && (
+              <>
+                <DocumentListTypesTabs
+                  tabs={typeTabsWithCounts}
+                  activeTab={selectedTypeTab}
+                  onTabChange={setSelectedTypeTab}
+                  isVisible={viewMode === 'byType'}
+                  label={t('documentListPage.documentTypesLabel')}
+                />
+                <DocumentListTypesTabs
+                  tabs={deptTabsWithCounts}
+                  activeTab={selectedDeptTab}
+                  onTabChange={setSelectedDeptTab}
+                  isVisible={viewMode === 'byDepartment'}
+                  label={t('documentListPage.departmentsLabel')}
+                />
+              </>
+            )}
 
-            <DocumentListTypesTabs
-              tabs={deptTabsWithCounts}
-              activeTab={selectedDeptTab}
-              onTabChange={setSelectedDeptTab}
-              isVisible={viewMode === 'byDepartment'}
-              label={t('documentListPage.departmentsLabel')}
-            />
+            <DocumentResultsSummary title={pageTitle} count={documents.length} />
 
-            {/* Results Summary */}
-            <DocumentResultsSummary
-              title={getPageTitle()}
-              count={filteredDocuments.length}
-            />
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="h-64 rounded-2xl border border-border bg-card animate-pulse" />
+                ))}
+              </div>
+            ) : isError ? (
+              <div className="rounded-2xl bg-destructive/10 border border-destructive/30 p-12 text-center">
+                <p className="text-destructive font-semibold">{t('documentListPage.errorLoadingDocuments')}</p>
+              </div>
+            ) : (
+              <DocumentsGridSection documents={documents} searchQuery={searchQuery} />
+            )}
 
-            {/* Documents Grid */}
-            <DocumentsGridSection
-              documents={filteredDocuments}
-              searchQuery={searchQuery}
-              onUploadClick={() => { }}
-            />
+            {viewMode === 'all' && !search.isActive && allDocs.meta && (
+              <PaginationControl
+                currentPage={allDocs.meta.current_page}
+                lastPage={allDocs.meta.last_page}
+                onPageChange={setPage}
+                disabled={allDocs.isFetching}
+                label={t('documentListPage.pageOf', {
+                  current: allDocs.meta.current_page,
+                  last: allDocs.meta.last_page,
+                })}
+              />
+            )}
           </div>
 
-          {/* Right Sidebar - Advanced Filters */}
           <DocumentFiltersPanel
             onFiltersChange={setSelectedFilters}
             onClearFilters={handleClearFilters}
             isVisible={showFilters}
           />
 
-          {/* Mobile Filter Modal */}
           <MobileFilterDrawer
             isOpen={showFilters}
             onClose={() => setShowFilters(false)}

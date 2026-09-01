@@ -32,14 +32,15 @@ export const apiEndpoints = {
    * Document endpoints
    */
   documents: {
-    list: "/{tenant}/api/documents",
-    create: "/{tenant}/api/documents",
-    detail: "/{tenant}/api/documents/{id}",
-    update: "/{tenant}/api/documents/{id}",
-    delete: "/{tenant}/api/documents/{id}",
-    download: "/{tenant}/api/documents/{id}/download",
-    upload: "/{tenant}/api/documents/upload",
-    versions: "/{tenant}/api/documents/{id}/versions",
+    list: "api/{tenant}/documents",
+    view: "api/{tenant}/documents/{id}/view",
+    download: "api/{tenant}/documents/{documentId}/download",
+    categorized: "api/{tenant}/documents/categorized",
+    search: "api/{tenant}/documents/search",
+    reminder: "api/{tenant}/documents/reminder",
+    activeReminders: "api/{tenant}/documents/active-reminders",
+    byTypes: "api/{tenant}/documents/documents-by-types",
+    byDepartments: "api/{tenant}/documents/documents-by-departments",
   },
 
   /**
@@ -78,10 +79,17 @@ export const apiEndpoints = {
   },
 
   /**
-   * Departments (used to populate the team filter chips)
+   * Reference-data lookup lists — document type, related entity,
+   * department. Read-only, flat unpaginated arrays, cached server-side.
    */
   departments: {
     list: "api/{tenant}/departments",
+  },
+  types: {
+    list: "api/{tenant}/types",
+  },
+  entities: {
+    list: "api/{tenant}/entities",
   },
 
   /**

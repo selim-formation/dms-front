@@ -4,7 +4,8 @@
  */
 
 import { AxiosError } from "axios";
-import { ApiError, transformAxiosError } from "./types";
+import type { ApiError } from "./types";
+import { transformAxiosError } from "./types";
 import { logger } from "@/shared/utils/logger";
 import {
   mapApiErrorToMessage,

@@ -10,18 +10,21 @@ import React, { useMemo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useTasks } from "../hooks/useTasks";
-import { useTask } from "../hooks/useTask";
 import { useTaskFilters } from "../hooks/useTaskFilters";
 
 import { TasksList } from "../components/TasksList";
-import { TaskFilters } from "../components/TaskFilters";
-import { TaskSort } from "../components/TaskSort";
 import { FilterSidebar } from "../components/FilterSidebar";
 import { TaskDetailsDrawer } from "../components/TaskDetailsDrawer";
 import { TaskSearchInput } from "../components/search/TaskSearchInput";
 
 import { DEFAULT_SORT } from "../types/task.types";
-import type { SortConfig, SortField, SortDirection } from "../types/task.types";
+import type {
+  SortConfig,
+  TaskStatus,
+  TaskPriority,
+  DueDateRange,
+  CustomDateRange,
+} from "../types/task.types";
 
 import { sortTasks } from "../utils/taskSort";
 import { hasActiveFilters } from "../utils/taskFilters";
@@ -102,7 +105,7 @@ export function TasksPage() {
   /**
    * Manage sort
    */
-  const [sortConfig, setSortConfig] = React.useState<SortConfig>(DEFAULT_SORT);
+  const [sortConfig] = React.useState<SortConfig>(DEFAULT_SORT);
 
   /**
    * Fetch tasks with filters applied
@@ -130,55 +133,38 @@ export function TasksPage() {
   const filtersActive = hasActiveFilters(filters);
 
   /**
-   * Sort callbacks
-   */
-  const handleSortFieldChange = useCallback((field: SortField) => {
-    setSortConfig((prev) => ({
-      ...prev,
-      field,
-    }));
-  }, []);
-
-  const handleSortDirectionChange = useCallback((direction: SortDirection) => {
-    setSortConfig((prev) => ({
-      ...prev,
-      direction,
-    }));
-  }, []);
-
-  /**
    * Filter callbacks
    */
   const handleStatusChange = useCallback(
-    (statuses) => {
+    (statuses: TaskStatus[]) => {
       setStatusFilter(statuses);
     },
     [setStatusFilter],
   );
 
   const handlePriorityChange = useCallback(
-    (priorities) => {
+    (priorities: TaskPriority[]) => {
       setPriorityFilter(priorities);
     },
     [setPriorityFilter],
   );
 
   const handleAssigneeChange = useCallback(
-    (assigneeIds) => {
+    (assigneeIds: number[]) => {
       setAssigneeFilter(assigneeIds);
     },
     [setAssigneeFilter],
   );
 
   const handleDueDateRangeChange = useCallback(
-    (range) => {
+    (range: DueDateRange) => {
       setDueDateRange(range);
     },
     [setDueDateRange],
   );
 
   const handleCustomDateRangeChange = useCallback(
-    (range) => {
+    (range: CustomDateRange) => {
       setCustomDateRange(range);
     },
     [setCustomDateRange],
@@ -301,11 +287,8 @@ export function TasksPage() {
                       <span className="ms-1 px-2 py-0.5 bg-primary-foreground text-primary rounded-full text-xs font-semibold">
                         {filters.status.length +
                           filters.priority.length +
-                          (filters.assignee_id ? 1 : 0) +
-                          (filters.task_type ? 1 : 0) +
-                          (filters.department_id ? 1 : 0) +
-                          (filters.due_date_from ? 1 : 0) +
-                          (filters.due_date_to ? 1 : 0)}
+                          filters.assigneeIds.length +
+                          (filters.dueDateRange ? 1 : 0)}
                       </span>
                     )}
                   </button>

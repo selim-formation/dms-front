@@ -8,7 +8,7 @@
  * - Due Date
  */
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Task, TaskStatus, TaskPriority, DueDateRange, CustomDateRange } from '../types/task.types'
 import { TASK_STATUS_LABELS, TASK_PRIORITY_LABELS } from '../types/task.types'
@@ -29,25 +29,9 @@ interface FilterSidebarProps {
 }
 
 /**
- * Get unique assignees from tasks
- */
-function getUniqueAssignees(tasks: Task[]) {
-    const assigneeMap = new Map<number, { id: number; name: string; avatar: string | null }>()
-
-    tasks.forEach((task) => {
-        if (task.assignee) {
-            assigneeMap.set(task.assignee.id, task.assignee)
-        }
-    })
-
-    return Array.from(assigneeMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-}
-
-/**
  * FilterSidebar Component
  */
 export function FilterSidebar({
-    tasks,
     selectedStatuses,
     selectedPriorities,
     selectedAssigneeIds,
@@ -55,7 +39,6 @@ export function FilterSidebar({
     customDateRange,
     onStatusChange,
     onPriorityChange,
-    onAssigneeChange,
     onDueDateRangeChange,
     onCustomDateRangeChange,
     onReset,
@@ -64,8 +47,6 @@ export function FilterSidebar({
     const [expandedSections, setExpandedSections] = useState<Set<string>>(
         new Set(['status', 'priority', 'dueDate'])
     )
-
-    const assignees = useMemo(() => getUniqueAssignees(tasks), [tasks])
 
     const statusOptions: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED']
     const priorityOptions: TaskPriority[] = ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
@@ -92,13 +73,6 @@ export function FilterSidebar({
             ? selectedPriorities.filter((p) => p !== priority)
             : [...selectedPriorities, priority]
         onPriorityChange(newPriorities)
-    }
-
-    const handleAssigneeToggle = (assigneeId: number) => {
-        const newAssignees = selectedAssigneeIds.includes(assigneeId)
-            ? selectedAssigneeIds.filter((id) => id !== assigneeId)
-            : [...selectedAssigneeIds, assigneeId]
-        onAssigneeChange(newAssignees)
     }
 
     const activeFiltersCount =

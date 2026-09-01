@@ -2,7 +2,7 @@
  * Error mapper - maps API errors to user-friendly messages
  */
 
-import { ApiError } from "../types/api.types";
+import type { ApiError } from "../types/api.types";
 import { ERROR_MESSAGES } from "./constants";
 
 /**

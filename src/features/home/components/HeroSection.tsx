@@ -1,9 +1,7 @@
-import { Upload, FolderPlus, FileText } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/components/ui/button';
-import SearchInput from '@/shared/components/ui/SearchInput';
-import crescentImage from '@/assets/ramadan_crescent_transparent.png';
 import patternImage from '@/assets/ramadan_pattern_transparent.png';
 
 interface Props {
@@ -53,7 +51,7 @@ export default function HeroSection({ greeting, firstName, logo, tenant }: Props
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Link to={`/${tenant}/documents`}>
+          <Link to="/$tenant/documents" params={{ tenant }}>
             <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
               <Upload className="h-4 w-4" /> {t('common:actions.uploadDocument')}
             </Button>

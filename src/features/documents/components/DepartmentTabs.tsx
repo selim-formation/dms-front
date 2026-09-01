@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Users, Briefcase, BarChart3, Zap, Shield, Lightbulb } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

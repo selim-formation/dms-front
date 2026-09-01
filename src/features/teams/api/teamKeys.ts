@@ -13,8 +13,3 @@ export const teamKeys = {
         [...teamKeys.lists(tenant), params] as const,
     stats: (tenant: string) => [...teamKeys.all(tenant), 'stats'] as const,
 };
-
-export const departmentKeys = {
-    all: (tenant: string) => ['departments', tenant] as const,
-    list: (tenant: string) => [...departmentKeys.all(tenant), 'list'] as const,
-};

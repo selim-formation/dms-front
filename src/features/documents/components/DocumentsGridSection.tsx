@@ -1,23 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import DocumentCardGrid from './DocumentCardGrid';
-
-interface Document {
-    id: string;
-    name: string;
-    type: string;
-    typeArabic: string;
-    department: string;
-    entity: string;
-    renewal: 'Renewable' | 'One-Time';
-    importance: 'Critical' | 'High' | 'Medium';
-    expiryDate: string;
-    status: 'Expires' | 'Expired';
-    icon?: string;
-}
+import RealDocumentCard from './RealDocumentCard';
+import type { ApiDocument } from '../types/api.types';
 
 interface DocumentsGridSectionProps {
-    documents: Document[];
+    documents: ApiDocument[];
     searchQuery: string;
     onUploadClick?: () => void;
 }
@@ -28,7 +15,6 @@ const DocumentsGridSection: React.FC<DocumentsGridSectionProps> = ({
     onUploadClick,
 }) => {
     const { t } = useTranslation(['documents', 'common']);
-    // Lazy import empty state component
     const DocumentEmptyState = React.lazy(() => import('./DocumentEmptyState'));
 
     if (documents.length === 0) {
@@ -42,7 +28,7 @@ const DocumentsGridSection: React.FC<DocumentsGridSectionProps> = ({
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {documents.map((doc) => (
-                <DocumentCardGrid key={doc.id} {...doc} />
+                <RealDocumentCard key={doc.id} document={doc} />
             ))}
         </div>
     );

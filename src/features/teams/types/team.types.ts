@@ -73,8 +73,3 @@ export interface GetTeamStatsApiResponse {
     data: TeamStats;
     message: string;
 }
-
-export interface GetDepartmentsApiResponse {
-    data: TeamDepartment[];
-    message: string;
-}

@@ -213,8 +213,11 @@
     "failedToFetchNotifications": "فشل في جلب الإشعارات",
     "openAriaLabel": "فتح التذكيرات والإشعارات",
     "closeAriaLabel": "إغلاق اللوحة",
-    "title": "التذكيرات والإشعارات",
-    "notificationsTab": "الإشعارات"
+    "title": "الإشعارات",
+    "notificationsTab": "الإشعارات",
+    "remindersTab": "التذكيرات",
+    "activeTab": "التذكيرات النشطة",
+    "emptyAllDescription": "لا يوجد بعد خلاصة إشعارات عامة."
   },
   "departmentView": {
     "emptyState": "لم يتم العثور على مستندات في هذا القسم",
@@ -236,6 +239,8 @@
   },
   "documentListPage": {
     "allDocumentsTitle": "جميع المستندات",
+    "searchResultsTitle": "نتائج البحث",
+    "pageOf": "صفحة {{current}} من {{last}}",
     "documentTypesLabel": "أنواع المستندات",
     "departmentsLabel": "الأقسام",
     "departments": {

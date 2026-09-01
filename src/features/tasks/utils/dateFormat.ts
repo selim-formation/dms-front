@@ -40,7 +40,6 @@ export function formatDateTime(isoDateTime: string): string {
             day: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
-            meridiem: 'short',
         })
     } catch {
         return 'Invalid date'

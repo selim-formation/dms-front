@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Search } from 'lucide-react'
 import { Input } from '@/shared/components/ui/input'
 import DynamicSliderTabs from '@/features/documents/components/DynamicSliderTabs'
-import { useDepartments } from '../hooks/useDepartments'
+import { useDepartments } from '@/core/reference-data/hooks/useDepartments'
 
 const ALL_ID = 'all'
 

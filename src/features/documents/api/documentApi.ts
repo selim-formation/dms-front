@@ -1,4 +1,4 @@
-import type { ApiResponse } from '@/api/types';
+import type { ApiResponse } from '@/shared/types/api.types';
 import type { Document, DocumentFilters } from '../types';
 
 // ── Mock data (replace with real API calls) ──────────────────────────

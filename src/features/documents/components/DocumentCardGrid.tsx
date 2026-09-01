@@ -17,7 +17,7 @@ interface DocumentCardGridProps {
     renewal: 'Renewable' | 'One-Time';
     importance: 'Critical' | 'High' | 'Medium';
     expiryDate: string;
-    status: 'Expires' | 'Expired';
+    status: 'Expires' | 'Expired' | 'Active';
     icon?: string;
     /** Override the renewal chip's text while keeping its color bucket — lets callers outside the browse grid (e.g. shares) show truthful copy. */
     renewalLabel?: string;
@@ -61,6 +61,7 @@ const renewalStyles = {
 const statusStyles = {
     Expires: 'text-warning',
     Expired: 'text-destructive',
+    Active: 'text-success',
 };
 
 export default function DocumentCardGrid({
@@ -112,6 +113,7 @@ export default function DocumentCardGrid({
     const statusLabels: Record<DocumentCardGridProps['status'], string> = {
         Expires: t('common:status.expires'),
         Expired: t('common:status.expired'),
+        Active: t('common:status.active'),
     };
     return (
         <div
@@ -196,7 +198,9 @@ export default function DocumentCardGrid({
                             title={statusLabel ?? statusLabels[status]}
                             className={`min-w-0 max-w-[65%] truncate px-2 py-0.5 text-xs font-semibold rounded-lg text-center ${status === 'Expired'
                                 ? 'bg-destructive/10 text-destructive'
-                                : 'bg-warning/10 text-warning'
+                                : status === 'Active'
+                                    ? 'bg-success/10 text-success'
+                                    : 'bg-warning/10 text-warning'
                                 }`}
                         >
                             {statusLabel ?? statusLabels[status]}

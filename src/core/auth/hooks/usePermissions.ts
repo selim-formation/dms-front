@@ -5,7 +5,7 @@
 
 import { useMemo } from "react";
 import { useAuth } from "./useAuth";
-import { PermissionString } from "@/shared/types/permission.types";
+import type { PermissionString } from "@/shared/types/permission.types";
 
 interface PermissionsHook {
   /** All user permissions */

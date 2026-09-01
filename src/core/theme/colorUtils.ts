@@ -248,7 +248,6 @@ export function getContrastingTextColor(
  */
 export function lightenColor(hexColor: string, percent: number): string {
   const [r, g, b] = hexToRgb(hexColor);
-  const factor = 1 + percent / 100;
   const newR = Math.min(255, Math.round(r + (255 - r) * (percent / 100)));
   const newG = Math.min(255, Math.round(g + (255 - g) * (percent / 100)));
   const newB = Math.min(255, Math.round(b + (255 - b) * (percent / 100)));
