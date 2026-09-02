@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import armaLogo from "@/assets/arma-logo.png";
+import Logo from "@/assets/logo.png";
 import { useTenant } from "@/core/tenant/hooks/useTenant";
 import { NavbarLinks } from "./NavbarLinks";
 import { NavbarActions } from "./NavbarActions";
@@ -19,16 +19,16 @@ export default function Navbar() {
             className="flex items-center gap-2"
           >
             <img
-              src={armaLogo}
-              alt="Arma Logo"
+              src={Logo}
+              alt="Logo"
               className="h-20 w-auto object-contain"
             />
           </Link>
         ) : (
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={armaLogo}
-              alt="Arma Logo"
+              src={Logo}
+              alt="Logo"
               className="h-20 w-auto object-contain"
             />
           </Link>

@@ -1,8 +1,8 @@
-import { Upload } from 'lucide-react';
-import { Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/components/ui/button';
-import patternImage from '@/assets/ramadan_pattern_transparent.png';
+import { Upload } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/shared/components/ui/button";
+import patternImage from "@/assets/ramadan_pattern_transparent.png";
 
 interface Props {
   greeting: string;
@@ -11,8 +11,13 @@ interface Props {
   tenant: string;
 }
 
-export default function HeroSection({ greeting, firstName, logo, tenant }: Props) {
-  const { t } = useTranslation(['home', 'common']);
+export default function HeroSection({
+  greeting,
+  firstName,
+  logo,
+  tenant,
+}: Props) {
+  const { t } = useTranslation(["home", "common"]);
   return (
     <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-10 text-primary-foreground z-10">
       {/* Decorative circles */}
@@ -24,36 +29,38 @@ export default function HeroSection({ greeting, firstName, logo, tenant }: Props
         className="absolute inset-0 pointer-events-none rounded-2xl"
         style={{
           backgroundImage: `url('${patternImage}')`,
-          backgroundSize: '520px',
-          backgroundRepeat: 'repeat',
+          backgroundSize: "520px",
+          backgroundRepeat: "repeat",
           opacity: 0.05,
-          mixBlendMode: 'soft-light',
+          mixBlendMode: "soft-light",
         }}
       />
 
-      
-
       <div className="relative z-10 space-y-5">
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <img src={logo} alt="Logo" className="h-16 w-16 object-contain drop-shadow-lg" />
           <h2 className="text-3xl font-bold tracking-tight">Bisco Misr</h2>
-        </div>
+        </div> */}
 
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-accent-foreground">
-            {t('home:heroSection.greeting', { greeting, firstName })}
+          <h1 className="text-2xl md:text-3xl font-bold text-primary-foreground">
+            {t("home:heroSection.greeting", { greeting, firstName })}
           </h1>
-          <p className="mt-1 text-accent-foreground/80">
-            {t('home:heroSection.description')}          </p>
-          <p className="mt-1 text-sm  text-accent-foreground/60">
-            {t('home:heroSection.meta')}
+
+          <p className="mt-1 text-primary-foreground/80">
+            {t("home:heroSection.description")}
+          </p>
+
+          <p className="mt-1 text-sm text-primary-foreground/60">
+            {t("home:heroSection.meta")}
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3">
           <Link to="/$tenant/documents" params={{ tenant }}>
             <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
-              <Upload className="h-4 w-4" /> {t('common:actions.uploadDocument')}
+              <Upload className="h-4 w-4" />{" "}
+              {t("common:actions.uploadDocument")}
             </Button>
           </Link>
           {/* <Button variant="outline" className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/20 rounded-full px-6 gap-2">
