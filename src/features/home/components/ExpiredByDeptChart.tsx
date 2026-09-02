@@ -58,8 +58,9 @@ export default function ExpiredByDeptChart() {
             dataKey="count"
             radius={[4, 4, 0, 0]}
             shape={(props: any) => {
-              const fill = CHART_COLOR_SEQUENCE[props.index % CHART_COLOR_SEQUENCE.length];
-              return <rect {...props} fill={fill} />;
+              const { x, y, width, height, index } = props;
+              const fill = CHART_COLOR_SEQUENCE[index % CHART_COLOR_SEQUENCE.length];
+              return <rect x={x} y={y} width={width} height={height} fill={fill} />;
             }}
           />
         </BarChart>

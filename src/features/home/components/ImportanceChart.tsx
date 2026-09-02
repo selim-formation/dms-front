@@ -41,8 +41,9 @@ export default function ImportanceChart() {
                                 dataKey="count"
                                 radius={[4, 4, 0, 0]}
                                 shape={(props: any) => {
-                                    const fill = COLORS[props.name] || 'hsl(var(--primary))';
-                                    return <rect {...props} fill={fill} />;
+                                    const { x, y, width, height, name } = props;
+                                    const fill = COLORS[name] || 'hsl(var(--primary))';
+                                    return <rect x={x} y={y} width={width} height={height} fill={fill} />;
                                 }}
                             />
                         </BarChart>

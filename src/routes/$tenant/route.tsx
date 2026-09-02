@@ -12,8 +12,20 @@ import {
 } from "@/core/tenant/services/tenant.service";
 
 export const Route = createFileRoute("/$tenant")({
-  beforeLoad: async ({ params, context }) => {
+  beforeLoad: async ({ params, context, location }) => {
     const { tenant: tenantCtx, auth, queryClient } = context;
+
+    // Register is the one nested route meant for anonymous visitors —
+    // everything else needs a session, and /validate needs one too, so
+    // skip straight to login instead of a doomed API round-trip that
+    // comes back as a confusing "tenant access denied" on "/".
+    const isRegisterRoute = location.pathname.endsWith("/register");
+    if (!auth.isAuthenticated && !isRegisterRoute) {
+      throw redirect({
+        to: "/login",
+        search: { redirect: location.pathname },
+      });
+    }
 
     // Keep the provider (and every useTenant() consumer) in sync with the URL.
     if (tenantCtx.tenantId !== params.tenant) {
