@@ -33,6 +33,7 @@ export const apiEndpoints = {
    */
   documents: {
     list: "api/{tenant}/documents",
+    recent: "api/{tenant}/documents/recent",
     view: "api/{tenant}/documents/{id}/view",
     download: "api/{tenant}/documents/{documentId}/download",
     categorized: "api/{tenant}/documents/categorized",

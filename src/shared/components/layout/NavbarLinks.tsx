@@ -1,7 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
-const navItems = [
+export const navItems = [
   { labelKey: "nav.home", to: "/$tenant" as const },
   { labelKey: "nav.documents", to: "/$tenant/documents" as const },
   { labelKey: "nav.tasks", to: "/$tenant/tasks" as const },

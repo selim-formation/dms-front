@@ -55,7 +55,6 @@ export const ROUTES = {
   REGISTER: "/$tenant/register",
   FORGOT_PASSWORD: "/$tenant/forgot-password",
   RESET_PASSWORD: "/$tenant/reset-password",
-  DASHBOARD: "/$tenant/dashboard",
   DOCUMENTS: "/$tenant/documents",
   WORKSPACES: "/$tenant/workspaces",
   USERS: "/$tenant/users",

@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TenantRouteRouteImport } from './routes/$tenant/route'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as TenantIndexRouteImport } from './routes/$tenant/index'
-import { Route as TenantDashboardRouteImport } from './routes/$tenant/dashboard'
 import { Route as TenantProfileRouteImport } from './routes/$tenant/profile'
 import { Route as TenantRegisterRouteImport } from './routes/$tenant/register'
 import { Route as TenantTasksRouteImport } from './routes/$tenant/tasks'
@@ -43,11 +42,6 @@ const LoginRoute = LoginRouteImport.update({
 const TenantIndexRoute = TenantIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => TenantRouteRoute,
-} as any)
-const TenantDashboardRoute = TenantDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
   getParentRoute: () => TenantRouteRoute,
 } as any)
 const TenantProfileRoute = TenantProfileRouteImport.update({
@@ -107,7 +101,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$tenant': typeof TenantRouteRouteWithChildren
   '/login': typeof LoginRoute
-  '/$tenant/dashboard': typeof TenantDashboardRoute
   '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
   '/$tenant/tasks': typeof TenantTasksRouteWithChildren
@@ -123,7 +116,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/$tenant/dashboard': typeof TenantDashboardRoute
   '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
   '/$tenant': typeof TenantIndexRoute
@@ -140,7 +132,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$tenant': typeof TenantRouteRouteWithChildren
   '/login': typeof LoginRoute
-  '/$tenant/dashboard': typeof TenantDashboardRoute
   '/$tenant/profile': typeof TenantProfileRoute
   '/$tenant/register': typeof TenantRegisterRoute
   '/$tenant/tasks': typeof TenantTasksRouteWithChildren
@@ -159,7 +150,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$tenant'
     | '/login'
-    | '/$tenant/dashboard'
     | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant/tasks'
@@ -175,7 +165,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
-    | '/$tenant/dashboard'
     | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant'
@@ -191,7 +180,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$tenant'
     | '/login'
-    | '/$tenant/dashboard'
     | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant/tasks'
@@ -239,13 +227,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/$tenant/'
       preLoaderRoute: typeof TenantIndexRouteImport
-      parentRoute: typeof TenantRouteRoute
-    }
-    '/$tenant/dashboard': {
-      id: '/$tenant/dashboard'
-      path: '/dashboard'
-      fullPath: '/$tenant/dashboard'
-      preLoaderRoute: typeof TenantDashboardRouteImport
       parentRoute: typeof TenantRouteRoute
     }
     '/$tenant/profile': {
@@ -334,7 +315,6 @@ const TenantTasksRouteWithChildren = TenantTasksRoute._addFileChildren(
 )
 
 interface TenantRouteRouteChildren {
-  TenantDashboardRoute: typeof TenantDashboardRoute
   TenantProfileRoute: typeof TenantProfileRoute
   TenantRegisterRoute: typeof TenantRegisterRoute
   TenantTasksRoute: typeof TenantTasksRouteWithChildren
@@ -348,7 +328,6 @@ interface TenantRouteRouteChildren {
 }
 
 const TenantRouteRouteChildren: TenantRouteRouteChildren = {
-  TenantDashboardRoute: TenantDashboardRoute,
   TenantProfileRoute: TenantProfileRoute,
   TenantRegisterRoute: TenantRegisterRoute,
   TenantTasksRoute: TenantTasksRouteWithChildren,

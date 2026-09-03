@@ -18,12 +18,14 @@ function filenameFromContentDisposition(header: string | undefined): string | nu
 export async function downloadDocumentFile(
     tenant: string,
     documentId: number,
-    fallbackFilename: string
+    fallbackFilename: string,
+    versionId?: number,
 ): Promise<void> {
     try {
         const client = apiClient.getInstance();
         const response = await client.get<Blob>(`api/${tenant}/documents/${documentId}/download`, {
             responseType: 'blob',
+            params: versionId ? { version_id: versionId } : undefined,
         });
 
         const filename = filenameFromContentDisposition(response.headers['content-disposition']) ?? fallbackFilename;

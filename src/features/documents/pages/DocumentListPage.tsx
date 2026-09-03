@@ -14,6 +14,7 @@ import { useDocumentsList } from '../hooks/useDocumentsList';
 import { useDocumentsByTypes } from '../hooks/useDocumentsByTypes';
 import { useDocumentsByDepartments } from '../hooks/useDocumentsByDepartments';
 import { useDocumentSearch } from '../hooks/useDocumentSearch';
+import { translateTypeGroupName, translateDepartmentName } from '../utils/documentLabelDictionary';
 import type { ApiDocument } from '../types/api.types';
 
 interface Filters {
@@ -27,7 +28,7 @@ interface Filters {
 type ViewMode = 'all' | 'byType' | 'byDepartment';
 
 export default function DocumentListPage(): React.ReactElement {
-  const { t } = useTranslation(['documents', 'common']);
+  const { t, i18n } = useTranslation(['documents', 'common']);
   const [viewMode, setViewMode] = useState<ViewMode>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTypeTab, setSelectedTypeTab] = useState<string>('');
@@ -42,7 +43,13 @@ export default function DocumentListPage(): React.ReactElement {
     renewals: [],
     importances: [],
   });
+  // Drives the desktop sidebar panel (visible by default there). The
+  // mobile drawer below tracks its own state — reusing this one for both
+  // meant the drawer's full-screen backdrop mounted open on every page
+  // load under the `lg` breakpoint, silently eating the first click
+  // anywhere on the page (it just closed the invisible-looking backdrop).
   const [showFilters, setShowFilters] = useState(true);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [page, setPage] = useState(1);
 
   // Free-text search hits the real /documents/search endpoint (debounced
@@ -75,20 +82,20 @@ export default function DocumentListPage(): React.ReactElement {
     () =>
       byTypes.groups.map((group) => ({
         id: group.type,
-        label: group.type,
+        label: translateTypeGroupName(group.type, i18n.language),
         count: group.one_time.length + group.renewal.length,
       })),
-    [byTypes.groups],
+    [byTypes.groups, i18n.language],
   );
 
   const deptTabsWithCounts = useMemo(
     () =>
       byDepartments.groups.map((group) => ({
         id: group.department,
-        label: group.department,
+        label: translateDepartmentName(group.department, i18n.language),
         count: group.one_time.length + group.renewal.length,
       })),
-    [byDepartments.groups],
+    [byDepartments.groups, i18n.language],
   );
 
   const selectedTypeGroup = useMemo(
@@ -154,7 +161,11 @@ export default function DocumentListPage(): React.ReactElement {
   }, []);
 
   const handleFilterToggle = useCallback(() => {
+    // One button, two targets: only one of these is ever visible at a
+    // given viewport width (desktop panel is `hidden lg:block`, mobile
+    // drawer is `lg:hidden`), so toggling both is harmless.
     setShowFilters((prev) => !prev);
+    setIsMobileFilterOpen((prev) => !prev);
   }, []);
 
   const handleClearFilters = useCallback(() => {
@@ -163,10 +174,18 @@ export default function DocumentListPage(): React.ReactElement {
 
   const pageTitle = useMemo(() => {
     if (search.isActive) return t('documentListPage.searchResultsTitle');
-    if (viewMode === 'byType') return selectedTypeTab || t('common:nav.documents');
-    if (viewMode === 'byDepartment') return selectedDeptTab || t('common:nav.documents');
+    if (viewMode === 'byType') {
+      return selectedTypeTab
+        ? translateTypeGroupName(selectedTypeTab, i18n.language)
+        : t('common:nav.documents');
+    }
+    if (viewMode === 'byDepartment') {
+      return selectedDeptTab
+        ? translateDepartmentName(selectedDeptTab, i18n.language)
+        : t('common:nav.documents');
+    }
     return t('documentListPage.allDocumentsTitle');
-  }, [search.isActive, viewMode, selectedTypeTab, selectedDeptTab, t]);
+  }, [search.isActive, viewMode, selectedTypeTab, selectedDeptTab, t, i18n.language]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -184,8 +203,8 @@ export default function DocumentListPage(): React.ReactElement {
 
         <DocumentViewModeTabs viewMode={viewMode} onViewModeChange={handleViewModeChange} />
 
-        <div className="flex gap-8">
-          <div className="flex-1">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex-1 min-w-0">
             {!search.isActive && (
               <>
                 <DocumentListTypesTabs
@@ -242,8 +261,8 @@ export default function DocumentListPage(): React.ReactElement {
           />
 
           <MobileFilterDrawer
-            isOpen={showFilters}
-            onClose={() => setShowFilters(false)}
+            isOpen={isMobileFilterOpen}
+            onClose={() => setIsMobileFilterOpen(false)}
             onFiltersChange={setSelectedFilters}
             onClearFilters={handleClearFilters}
           />

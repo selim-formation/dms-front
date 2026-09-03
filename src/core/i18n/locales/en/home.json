@@ -230,7 +230,14 @@
   },
   "recentDocumentsSidebar": {
     "title": "Recent Documents",
-    "viewAll": "View All ›"
+    "viewAll": "View All ›",
+    "empty": "No recent documents"
+  },
+  "recentTasksSidebar": {
+    "title": "Recent Tasks",
+    "viewAll": "View All ›",
+    "empty": "No tasks yet",
+    "noDueDate": "No due date"
   },
   "renewalChart": {
     "title": "Documents By Renewal & One-Time",

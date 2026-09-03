@@ -15,6 +15,8 @@ const log = logger.createScoped('useDownloadDocument');
 interface DownloadDocumentInput {
     documentId: number;
     filename: string;
+    /** Omit for the latest version — see /documents/{id}/download's `?version_id=`. */
+    versionId?: number;
 }
 
 interface UseDownloadDocumentOptions {
@@ -33,12 +35,12 @@ export function useDownloadDocument(options: UseDownloadDocumentOptions = {}): U
     const { onError: onErrorCallback } = options;
 
     const mutation = useMutation({
-        mutationFn: async ({ documentId, filename }: DownloadDocumentInput) => {
+        mutationFn: async ({ documentId, filename, versionId }: DownloadDocumentInput) => {
             if (!tenant) {
                 log.error('Tenant is not available for document download');
                 throw new Error('Tenant is required to download a document');
             }
-            return downloadDocumentFile(tenant, documentId, filename);
+            return downloadDocumentFile(tenant, documentId, filename, versionId);
         },
         onError: (error: Error) => {
             log.error('Document download failed', { error });

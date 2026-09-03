@@ -214,7 +214,7 @@ const ReminderTabContent = memo(function ReminderTabContent({
 
   if (isLoading) {
     return (
-      <div className="space-y-2 max-h-96 overflow-y-auto">
+      <div className="h-full space-y-2 overflow-y-auto">
         {[...Array(3)].map((_, i) => (
           <ReminderItemSkeleton key={i} />
         ))}
@@ -242,7 +242,7 @@ const ReminderTabContent = memo(function ReminderTabContent({
   }
 
   return (
-    <div className="space-y-2 max-h-96 overflow-y-auto">
+    <div className="h-full space-y-2 overflow-y-auto">
       {documents.map((document) => (
         <ReminderItem key={document.id} document={document} onSelect={onSelect} />
       ))}
@@ -308,7 +308,7 @@ const RemindersDrawerComponent = memo(function RemindersDrawer({
         )}
       </button>
 
-      <Drawer open={isOpen} onOpenChange={setIsOpen}>
+      <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right">
         <DrawerContent side="right" className="w-full sm:w-105 h-full rounded-none">
           <DrawerHeader className="flex items-center justify-between border-b border-border/50 pb-3">
             <div className="flex items-center gap-2">

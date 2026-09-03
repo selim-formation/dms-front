@@ -83,7 +83,7 @@ export function TaskDetailsDrawer({ task, isOpen, onClose }: TaskDetailsDrawerPr
     const priorityColors = PRIORITY_COLORS[task.priority]
 
     return (
-        <Drawer open={isOpen} onOpenChange={onClose}>
+        <Drawer open={isOpen} onOpenChange={onClose} direction="right">
             <DrawerContent side="right" className="max-w-md max-h-screen flex flex-col">
                 {/* Header */}
                 <DrawerHeader className="border-b border-border pb-4">

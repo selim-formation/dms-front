@@ -161,6 +161,7 @@
     "unknownUser": "Unknown",
     "roleOwner": "Owner",
     "roleViewer": "Viewer",
+    "currentVersionNote": "Current version",
     "tabs": {
       "details": "Details",
       "activity": "Activity",
@@ -170,7 +171,9 @@
   },
   "documentVersions": {
     "versionLabel": "v{{version}}",
-    "current": "Current"
+    "current": "Current",
+    "view": "View",
+    "download": "Download"
   },
   "documentViewModeTabs": {
     "types": "Types"

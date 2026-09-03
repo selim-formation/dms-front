@@ -35,7 +35,7 @@ export async function requireAuth(context: RouteContext) {
  * Ensures user is NOT authenticated (for login/register pages)
  */
 export async function requireGuest(context: RouteContext) {
-  const { auth, tenant } = context;
+  const { auth, tenant, location } = context;
 
   if (auth?.isAuthenticated && auth?.user) {
     // Login is tenant-agnostic; fall back to the user's first company if
@@ -47,15 +47,45 @@ export async function requireGuest(context: RouteContext) {
       return;
     }
 
+    // A reload on any protected page bounces through here (auth starts
+    // "loading" on boot, so the tenant layout's requireAuth sends us to
+    // /login?redirect=<original path>, then this guard fires once auth
+    // resolves) — honor that path instead of always landing on Home.
+    const redirectTo = getSafeRedirectPath(location.search);
+
     log.info(
-      "Guest guard: User already authenticated, redirecting to dashboard",
+      redirectTo
+        ? `Guest guard: User already authenticated, redirecting to ${redirectTo}`
+        : "Guest guard: User already authenticated, redirecting to home",
     );
 
+    if (redirectTo) {
+      throw redirect({ to: redirectTo });
+    }
+
     throw redirect({
-      to: "/$tenant/dashboard",
+      to: "/$tenant",
       params: { tenant: targetTenant },
     });
   }
+}
+
+/**
+ * Pull a same-origin `redirect` search param back out as a safe path, or
+ * null if absent/unsafe. Guards against protocol-relative ("//evil.com")
+ * or absolute-URL open-redirect payloads — only a single-leading-slash
+ * relative path is honored.
+ */
+function getSafeRedirectPath(search: Record<string, unknown>): string | null {
+  const redirectTo = search.redirect;
+  if (
+    typeof redirectTo === "string" &&
+    redirectTo.startsWith("/") &&
+    !redirectTo.startsWith("//")
+  ) {
+    return redirectTo;
+  }
+  return null;
 }
 
 /**
@@ -78,7 +108,7 @@ export function requirePermission(permission: string | string[]) {
       );
 
       throw redirect({
-        to: "/$tenant/dashboard",
+        to: "/$tenant",
         params: { tenant: tenant.tenantId! },
       });
     }
@@ -114,7 +144,7 @@ export function requireAllPermissions(permissions: string[]) {
       );
 
       throw redirect({
-        to: "/$tenant/dashboard",
+        to: "/$tenant",
         params: { tenant: tenant.tenantId! },
       });
     }

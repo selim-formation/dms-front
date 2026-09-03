@@ -11,6 +11,23 @@ const ENTITY_TYPE_NAME_AR: Record<string, string> = {
     'delegations': 'تفويضات',
 };
 
+/** Document `types` group names — /documents-by-types & /categorized `type` field. */
+const DOCUMENT_TYPE_GROUP_NAME_AR: Record<string, string> = {
+    'contracts': 'العقود',
+    'licenses': 'التراخيص',
+    'permits': 'التصاريح',
+    'records': 'السجلات',
+    'plans': 'الخطط',
+    'reports': 'التقارير',
+    'cards': 'البطاقات',
+    'permissions': 'الصلاحيات',
+    'memberships': 'العضويات',
+    'approvals': 'الموافقات',
+    'certifications': 'الشهادات',
+    'equipment': 'المعدات',
+    'authorizations': 'التفويضات',
+};
+
 const DEPARTMENT_NAME_AR: Record<string, string> = {
     'machine': 'الآلات',
     'administration department': 'قسم الإدارة',
@@ -35,6 +52,11 @@ function lookup(dictionary: Record<string, string>, name: string, language: stri
 
 export function translateDocumentTypeName(name: string, language: string): string {
     return lookup(ENTITY_TYPE_NAME_AR, name, language);
+}
+
+/** For the "Types" tab group names (Contracts/Licenses/...), not the entity badge above. */
+export function translateTypeGroupName(name: string, language: string): string {
+    return lookup(DOCUMENT_TYPE_GROUP_NAME_AR, name, language);
 }
 
 export function translateDepartmentName(name: string, language: string): string {

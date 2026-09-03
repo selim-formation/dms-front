@@ -9,6 +9,7 @@ import type { DocumentSearchFilters } from '../types/api.types';
 export const documentsListKeys = {
     all: (tenant: string) => ['documents-list', tenant] as const,
     list: (tenant: string, page: number) => [...documentsListKeys.all(tenant), 'list', page] as const,
+    recent: (tenant: string, limit?: number) => [...documentsListKeys.all(tenant), 'recent', limit ?? 'default'] as const,
     byTypes: (tenant: string) => [...documentsListKeys.all(tenant), 'by-types'] as const,
     byDepartments: (tenant: string) => [...documentsListKeys.all(tenant), 'by-departments'] as const,
     search: (tenant: string, filters: DocumentSearchFilters) =>

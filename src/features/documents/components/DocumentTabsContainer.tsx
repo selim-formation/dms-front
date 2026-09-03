@@ -93,48 +93,61 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
     });
   }, [doc.document_activities, notAvailableLabel, t]);
 
-  const formattedVersions = useMemo(() => {
-    // Map real version history to the format needed by DocumentVersions
-    return (doc.version_history || []).map((v) => {
-      let formattedDate = notAvailableLabel;
-      try {
-        // Check if it's ISO format (contains T or hyphen) or DD/MM/YYYY format
-        const dateStr = v.created_at?.trim() || "";
-        let parsedDate: Date;
-
-        if (dateStr.includes("T")) {
-          // ISO format: "2026-03-17T12:05:18.000000Z"
-          parsedDate = new Date(dateStr);
-        } else if (dateStr.includes("/")) {
-          // DD/MM/YYYY format: "17/03/2026"
-          parsedDate = parse(dateStr, "dd/MM/yyyy", new Date());
-        } else if (dateStr.includes("-")) {
-          // ISO date only: "2026-03-17"
-          parsedDate = new Date(dateStr);
-        } else {
-          throw new Error("Unrecognized date format");
-        }
-
-        // Validate the parsed date
-        if (!isNaN(parsedDate.getTime())) {
-          formattedDate = format(parsedDate, "MMM d, yyyy");
-        }
-      } catch (error) {
-        console.warn(`Failed to parse date: ${v.created_at}`, error);
-        // Use the raw date string as fallback
-        formattedDate = v.created_at || notAvailableLabel;
+  const formatVersionDate = (dateStr: string | undefined | null): string => {
+    const trimmed = dateStr?.trim() || "";
+    try {
+      let parsedDate: Date;
+      if (trimmed.includes("T")) {
+        // ISO format: "2026-03-17T12:05:18.000000Z"
+        parsedDate = new Date(trimmed);
+      } else if (trimmed.includes("/")) {
+        // DD/MM/YYYY format: "17/03/2026"
+        parsedDate = parse(trimmed, "dd/MM/yyyy", new Date());
+      } else if (trimmed.includes("-")) {
+        // ISO date only: "2026-03-17"
+        parsedDate = new Date(trimmed);
+      } else {
+        throw new Error("Unrecognized date format");
       }
+      if (!isNaN(parsedDate.getTime())) {
+        return format(parsedDate, "MMM d, yyyy");
+      }
+    } catch (error) {
+      console.warn(`Failed to parse date: ${dateStr}`, error);
+    }
+    return trimmed || notAvailableLabel;
+  };
 
-      return {
-        id: String(v.id),
-        version: v.version,
-        user: v.uploaded_by?.name || t("documentTabsContainer.unknownUser"),
-        date: formattedDate,
-        size: v.size || "0",
-        note: v.version_description || "",
-      };
-    });
-  }, [doc.version_history, notAvailableLabel, t]);
+  const formattedVersions = useMemo(() => {
+    // version_history deliberately EXCLUDES the current/latest version (see
+    // DocumentResource docs) — its own fields live at the top level of
+    // `doc`, so prepend it here rather than letting the oldest entry in
+    // version_history wrongly get treated as "current".
+    const current = {
+      id: `current-${doc.id}`,
+      version: doc.version,
+      user: doc.uploaded_by?.name || t("documentTabsContainer.unknownUser"),
+      date: formatVersionDate(doc.updated_at),
+      size: doc.size || "0",
+      note: t("documentTabsContainer.currentVersionNote"),
+      path: doc.path,
+      isCurrent: true,
+    };
+
+    const history = (doc.version_history || []).map((v) => ({
+      id: String(v.id),
+      versionId: v.id,
+      version: v.version,
+      user: v.uploaded_by?.name || t("documentTabsContainer.unknownUser"),
+      date: formatVersionDate(v.created_at),
+      size: v.size || "0",
+      note: v.version_description || "",
+      path: v.path,
+      isCurrent: false,
+    }));
+
+    return [current, ...history];
+  }, [doc.id, doc.version, doc.uploaded_by, doc.updated_at, doc.size, doc.path, doc.version_history, notAvailableLabel, t]);
 
   const accessControl = useMemo(() => {
     // Build access control from API data
@@ -220,7 +233,7 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
       </TabsContent>
 
       <TabsContent value="versions" className="py-6">
-        <DocumentVersions versions={formattedVersions} />
+        <DocumentVersions versions={formattedVersions} documentId={doc.id} documentTitle={doc.title} />
       </TabsContent>
 
       <TabsContent value="permissions" className="py-6">

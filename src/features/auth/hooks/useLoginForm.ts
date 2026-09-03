@@ -60,9 +60,9 @@ export function useLoginForm(options?: UseLoginFormOptions) {
             (c) => c.slug === cachedTenantId || c.id === cachedTenantId,
           ) ?? companies[0];
 
-        log.debug("Navigating to dashboard", { tenant: tenant.slug ?? tenant.id });
+        log.debug("Navigating to home", { tenant: tenant.slug ?? tenant.id });
         navigate({
-          to: "/$tenant/dashboard",
+          to: "/$tenant",
           params: { tenant: tenant.slug ?? tenant.id },
         });
       } catch (err) {

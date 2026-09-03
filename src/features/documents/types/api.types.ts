@@ -171,6 +171,36 @@ export interface DocumentsFlatListApiResponse {
 }
 
 /**
+ * GET /documents/recent — deliberately NOT ApiDocument. A slimmer,
+ * separate resource: no version_history/document_activities/cc/full
+ * departments[]/entities[], no creation_process/manual key-swap. Ordered
+ * by created_at DESC (recently *created*, not updated/viewed).
+ */
+export interface RecentApiDocument {
+  id: number;
+  title: string;
+  description: string | null;
+  category: string;
+  importance: string;
+  /** Singular — the doc's origin_department only, not the full departments[] array. */
+  department: { id: number; title: string } | null;
+  types: { id: number; title: string }[];
+  version: number | null;
+  extension: string | null;
+  size: number | null;
+  expire_date: string | null;
+  /** Null whenever the document has no version yet (latestVersion missing). */
+  uploaded_by: { id: number; name: string } | null;
+  created_at: string;
+}
+
+/** GET /documents/recent — flat array, no pagination. Cache key also varies by `limit`. */
+export interface RecentDocumentsApiResponse {
+  data: RecentApiDocument[];
+  message: string;
+}
+
+/**
  * Query parameters for GET /documents — the backend only accepts `page`,
  * nothing else (no server-side search/sort/filter on this endpoint;
  * use POST /documents/search for filtered queries).

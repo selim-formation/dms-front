@@ -90,7 +90,11 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
     }
   };
 
-  console.log("DocumentDetailsContent rendered with document:", doc);
+  const handleOpenInViewer = () => {
+    if (doc.path) {
+      window.open(doc.path, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <>
@@ -108,7 +112,12 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
               <p className="text-muted-foreground text-sm">
                 {t("documentDetails.preview")}
               </p>
-              <Button variant="outline" size="sm">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={!doc.path}
+                onClick={handleOpenInViewer}
+              >
                 <ExternalLink className="me-2 h-4 w-4" />{" "}
                 {t("documentDetails.openInViewer")}
               </Button>

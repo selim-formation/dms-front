@@ -5,7 +5,6 @@
 
 import React from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createAppQueryClient } from "@/core/api/query-client";
 import { TenantProvider } from "@/core/tenant/context/TenantProvider";
 import { AuthProvider } from "@/core/auth/context/AuthProvider";
@@ -38,9 +37,6 @@ export function AppProviders({ children, initialTenantId }: AppProvidersProps) {
         <TenantProvider initialTenantId={initialTenantId}>
           <AuthProvider>{children}</AuthProvider>
         </TenantProvider>
-
-        {/* React Query Devtools in development */}
-        {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
     </ThemeProvider>
   );

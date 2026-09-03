@@ -5,10 +5,12 @@ import { cn } from "@/lib/utils"
 
 const Drawer = ({
   shouldScaleBackground = true,
+  direction = "bottom",
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
   <DrawerPrimitive.Root
     shouldScaleBackground={shouldScaleBackground}
+    direction={direction}
     {...props}
   />
 )
@@ -37,7 +39,7 @@ const DrawerContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & { side?: 'bottom' | 'right' }
 >(({ className, children, side = 'bottom', ...props }, ref) => {
   const positionClasses = side === 'right'
-    ? 'fixed inset-y-0 right-0 z-50 h-full w-full max-w-md flex-col border-l border-border'
+    ? 'fixed inset-y-0 right-0 z-50 h-full w-full max-w-md flex flex-col border-l border-border bg-background'
     : 'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background'
 
   return (

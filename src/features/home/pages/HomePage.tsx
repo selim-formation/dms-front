@@ -2,6 +2,7 @@ import armaLogo from "@/assets/bisco-logo.png";
 import HeroSection from "../components/HeroSection";
 import StatsRow from "../components/StatsRow";
 import RecentDocumentsSidebar from "../components/RecentDocumentsSidebar";
+import RecentTasksSidebar from "../components/RecentTasksSidebar";
 import NeedsReview from "../components/NeedsReview";
 import PinnedDocuments from "../components/PinnedDocuments";
 import { useAuth } from "@/core/auth/hooks/useAuth";
@@ -48,7 +49,8 @@ export default function HomePage() {
               <PinnedDocuments />
             </div>
             <div className="space-y-6">
-              <NeedsReview tenant={tenant} />
+              {/* <NeedsReview tenant={tenant} /> */}
+              <RecentTasksSidebar tenant={tenant} />
               <RecentDocumentsSidebar tenant={tenant} />
             </div>
           </div>

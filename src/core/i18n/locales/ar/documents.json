@@ -161,6 +161,7 @@
     "unknownUser": "غير معروف",
     "roleOwner": "المالك",
     "roleViewer": "مشاهد",
+    "currentVersionNote": "الإصدار الحالي",
     "tabs": {
       "details": "التفاصيل",
       "activity": "النشاط",
@@ -170,7 +171,9 @@
   },
   "documentVersions": {
     "versionLabel": "الإصدار {{version}}",
-    "current": "الحالي"
+    "current": "الحالي",
+    "view": "عرض",
+    "download": "تنزيل"
   },
   "documentViewModeTabs": {
     "types": "الأنواع"

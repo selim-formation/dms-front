@@ -27,6 +27,8 @@ import {
     type DocumentsByTypeItem,
     type DocumentsFlatListApiResponse,
     type PaginationMeta,
+    type RecentApiDocument,
+    type RecentDocumentsApiResponse,
 } from '../types/api.types';
 
 const log = logger.createScoped('DocumentsListApiService');
@@ -64,6 +66,24 @@ export class DocumentsListApiService {
             };
         } catch (error) {
             log.error('Failed to fetch documents', { error });
+            throw error;
+        }
+    }
+
+    /**
+     * GET /documents/recent — dashboard widget. `limit` optional, default
+     * 10, clamped 1–50 server-side. Returns RecentApiDocument (slimmer
+     * than ApiDocument), ordered by created_at DESC.
+     */
+    public async fetchRecent(tenant: string, limit?: number): Promise<RecentApiDocument[]> {
+        try {
+            const url = buildApiUrl(this.endpoints.recent, { tenant });
+            const response = await this.client.get<RecentDocumentsApiResponse>(url, {
+                params: limit ? { limit } : undefined,
+            });
+            return response.data.data ?? [];
+        } catch (error) {
+            log.error('Failed to fetch recent documents', { error });
             throw error;
         }
     }

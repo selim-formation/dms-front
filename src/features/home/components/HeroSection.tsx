@@ -58,17 +58,11 @@ export default function HeroSection({
 
         <div className="flex flex-wrap gap-3">
           <Link to="/$tenant/documents" params={{ tenant }}>
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
+            <Button className="bg-accent text-primary-foreground/90 hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
               <Upload className="h-4 w-4" />{" "}
               {t("common:actions.uploadDocument")}
             </Button>
           </Link>
-          {/* <Button variant="outline" className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/20 rounded-full px-6 gap-2">
-            <FolderPlus className="h-4 w-4" /> Create Folder
-          </Button>
-          <Button variant="outline" className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/20 rounded-full px-6 gap-2">
-            <FileText className="h-4 w-4" /> New Template
-          </Button> */}
         </div>
       </div>
     </section>

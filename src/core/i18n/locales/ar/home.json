@@ -230,7 +230,14 @@
   },
   "recentDocumentsSidebar": {
     "title": "المستندات الأخيرة",
-    "viewAll": "عرض الكل ›"
+    "viewAll": "عرض الكل ›",
+    "empty": "لا توجد مستندات حديثة"
+  },
+  "recentTasksSidebar": {
+    "title": "آخر المهام",
+    "viewAll": "عرض الكل ›",
+    "empty": "لا توجد مهام بعد",
+    "noDueDate": "بدون تاريخ استحقاق"
   },
   "renewalChart": {
     "title": "المستندات حسب التجديد والمرة الواحدة",
