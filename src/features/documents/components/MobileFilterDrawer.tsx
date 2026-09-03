@@ -1,27 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import DocumentFilterSidebar from './DocumentFilterSidebar';
-
-interface Filters {
-    types: string[];
-    departments: string[];
-    entities: string[];
-    renewals: string[];
-    importances: string[];
-}
+import DocumentFilterSidebar, { type Filters, type FilterOption } from './DocumentFilterSidebar';
 
 interface MobileFilterDrawerProps {
     isOpen: boolean;
     onClose: () => void;
+    filters: Filters;
     onFiltersChange: (filters: Filters) => void;
     onClearFilters: () => void;
+    typeOptions: FilterOption[];
+    departmentOptions: FilterOption[];
 }
 
 const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
     isOpen,
     onClose,
+    filters,
     onFiltersChange,
     onClearFilters,
+    typeOptions,
+    departmentOptions,
 }) => {
     const { t } = useTranslation(['documents', 'common']);
     if (!isOpen) return null;
@@ -46,8 +44,11 @@ const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
                 </div>
                 <div className="p-4">
                     <DocumentFilterSidebar
+                        filters={filters}
                         onFiltersChange={onFiltersChange}
                         onClearFilters={onClearFilters}
+                        typeOptions={typeOptions}
+                        departmentOptions={departmentOptions}
                     />
                 </div>
             </div>

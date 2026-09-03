@@ -53,9 +53,14 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
   };
 
   // Real comment total (top-level count from the comments API), not a
-  // document_activities heuristic — shares the same cache the comments
-  // panel writes to, so it stays in sync when comments are added/removed.
-  const { meta: commentsMeta } = useDocumentComments(doc.id, { perPage: 1 });
+  // document_activities heuristic. perPage matches CommentsPanel's
+  // DEFAULT_PER_PAGE (20) on purpose — same query key, so this shares
+  // one cached fetch with the comments panel instead of firing a second
+  // request, and stays in sync when comments are added/removed. It also
+  // has to be >1: the API returns no real pagination total (see
+  // extractPaginationMeta), so the count here is derived from how many
+  // comments actually came back — perPage:1 would always read back "1".
+  const { meta: commentsMeta } = useDocumentComments(doc.id, { perPage: 20 });
 
   // Views/downloads have no dedicated count endpoint yet — derived from the activity log
   const engagementMetrics = useMemo(() => {

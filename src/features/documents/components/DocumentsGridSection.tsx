@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import RealDocumentCard from './RealDocumentCard';
 import type { ApiDocument } from '../types/api.types';
 
+const DocumentEmptyState = React.lazy(() => import('./DocumentEmptyState'));
+
 interface DocumentsGridSectionProps {
     documents: ApiDocument[];
     searchQuery: string;
@@ -15,7 +17,6 @@ const DocumentsGridSection: React.FC<DocumentsGridSectionProps> = ({
     onUploadClick,
 }) => {
     const { t } = useTranslation(['documents', 'common']);
-    const DocumentEmptyState = React.lazy(() => import('./DocumentEmptyState'));
 
     if (documents.length === 0) {
         return (

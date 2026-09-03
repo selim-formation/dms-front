@@ -70,7 +70,11 @@ export function CommentsPanel({ documentId, documentVersionId, className = '' }:
     [deleteComment],
   );
 
-  const canLoadMore = !!meta && perPage < Math.min(meta.totalCount, MAX_PER_PAGE);
+  // currentPage < lastPage rather than comparing against totalCount — the
+  // API never returns real pagination totals (see extractPaginationMeta),
+  // so totalCount is a lower-bound estimate that can equal the page size
+  // exactly, which would make a totalCount-based check always false.
+  const canLoadMore = !!meta && meta.currentPage < meta.lastPage && perPage < MAX_PER_PAGE;
 
   return (
     <div className={`bg-card rounded-xl border border-border shadow-sm p-6 ${className}`}>

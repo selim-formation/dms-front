@@ -84,6 +84,7 @@
     "title": "Advanced Filters",
     "sections": {
       "type": "Type",
+      "department": "Department",
       "entity": "Entity",
       "renewal": "Renewal",
       "importance": "Importance"
@@ -243,6 +244,7 @@
   "documentListPage": {
     "allDocumentsTitle": "All Documents",
     "searchResultsTitle": "Search Results",
+    "filteredResultsTitle": "Filtered Results",
     "pageOf": "Page {{current}} of {{last}}",
     "documentTypesLabel": "Document Types",
     "departmentsLabel": "Departments",

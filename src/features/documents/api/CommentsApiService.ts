@@ -32,13 +32,44 @@ interface ListParams {
   per_page?: number;
 }
 
-function extractPaginationMeta(headers: AxiosResponse['headers']): PaginationMeta {
+/**
+ * This endpoint's pagination is only ever readable via response headers
+ * (the JSON body is just `{data, message, status}`, no `meta`) — and in
+ * practice `X-Total-Count` etc. never show up client-side either (missing
+ * from `Access-Control-Expose-Headers` server-side, or never sent), so
+ * `get()` below reliably comes back 0. Rather than surface a permanent
+ * "Comments (0)" regardless of how many comments actually exist, fall
+ * back to a lower-bound total derived from what this page returned: exact
+ * whenever everything fits on one page, an undercount only once a
+ * document has more comments than a single fetch's `per_page`. `lastPage`
+ * likewise falls back to "one more page than this" whenever the page came
+ * back full, so "load more" stays offered rather than disappearing.
+ */
+function extractPaginationMeta(
+  headers: AxiosResponse['headers'],
+  params: { page: number; per_page: number },
+  dataLength: number,
+): PaginationMeta {
   const get = (key: string) => Number(headers[key] ?? headers[key.toLowerCase()] ?? 0);
+  const headerTotal = get('x-total-count') || get('X-Total-Count');
+  const currentPage = get('x-current-page') || get('X-Current-Page') || params.page;
+  const perPage = get('x-per-page') || get('X-Per-Page') || params.per_page;
+
+  if (headerTotal > 0) {
+    return {
+      totalCount: headerTotal,
+      perPage,
+      currentPage,
+      lastPage: get('x-last-page') || get('X-Last-Page') || 1,
+    };
+  }
+
+  const pageIsFull = dataLength >= params.per_page;
   return {
-    totalCount: get('x-total-count') || get('X-Total-Count'),
-    perPage: get('x-per-page') || get('X-Per-Page') || 20,
-    currentPage: get('x-current-page') || get('X-Current-Page') || 1,
-    lastPage: get('x-last-page') || get('X-Last-Page') || 1,
+    totalCount: (params.page - 1) * params.per_page + dataLength,
+    perPage,
+    currentPage,
+    lastPage: pageIsFull ? currentPage + 1 : currentPage,
   };
 }
 
@@ -67,14 +98,16 @@ export class CommentsApiService {
   ): Promise<{ comments: DocumentComment[]; meta: PaginationMeta }> {
     try {
       const url = buildApiUrl(this.endpoints.byDocument, { tenant, documentId });
+      const requestParams = { page: params.page ?? 1, per_page: params.per_page ?? 20 };
       const response = await this.client.get<ApiEnvelope<DocumentComment[]>>(url, {
-        params: { page: params.page ?? 1, per_page: params.per_page ?? 20 },
+        params: requestParams,
         signal,
       });
+      const comments = normalizeComments(response.data.data ?? []);
 
       return {
-        comments: normalizeComments(response.data.data ?? []),
-        meta: extractPaginationMeta(response.headers),
+        comments,
+        meta: extractPaginationMeta(response.headers, requestParams, comments.length),
       };
     } catch (error) {
       log.error('Failed to fetch comments by document', { documentId, error });
@@ -92,14 +125,16 @@ export class CommentsApiService {
   ): Promise<{ comments: DocumentComment[]; meta: PaginationMeta }> {
     try {
       const url = buildApiUrl(this.endpoints.byVersion, { tenant, documentId, versionId });
+      const requestParams = { page: params.page ?? 1, per_page: params.per_page ?? 20 };
       const response = await this.client.get<ApiEnvelope<DocumentComment[]>>(url, {
-        params: { page: params.page ?? 1, per_page: params.per_page ?? 20 },
+        params: requestParams,
         signal,
       });
+      const comments = normalizeComments(response.data.data ?? []);
 
       return {
-        comments: normalizeComments(response.data.data ?? []),
-        meta: extractPaginationMeta(response.headers),
+        comments,
+        meta: extractPaginationMeta(response.headers, requestParams, comments.length),
       };
     } catch (error) {
       log.error('Failed to fetch comments by version', { documentId, versionId, error });
@@ -176,14 +211,16 @@ export class CommentsApiService {
   ): Promise<{ reactions: CommentReaction[]; meta: PaginationMeta }> {
     try {
       const url = buildApiUrl(this.endpoints.reactions, { tenant, commentId });
+      const requestParams = { page: params.page ?? 1, per_page: params.per_page ?? 20 };
       const response = await this.client.get<ApiEnvelope<CommentReaction[]>>(url, {
-        params: { page: params.page ?? 1, per_page: params.per_page ?? 20 },
+        params: requestParams,
         signal,
       });
+      const reactions = response.data.data ?? [];
 
       return {
-        reactions: response.data.data ?? [],
-        meta: extractPaginationMeta(response.headers),
+        reactions,
+        meta: extractPaginationMeta(response.headers, requestParams, reactions.length),
       };
     } catch (error) {
       log.error('Failed to fetch reactions', { commentId, error });

@@ -84,6 +84,7 @@
     "title": "فلاتر متقدمة",
     "sections": {
       "type": "النوع",
+      "department": "القسم",
       "entity": "الكيان",
       "renewal": "التجديد",
       "importance": "الأهمية"
@@ -243,6 +244,7 @@
   "documentListPage": {
     "allDocumentsTitle": "جميع المستندات",
     "searchResultsTitle": "نتائج البحث",
+    "filteredResultsTitle": "نتائج التصفية",
     "pageOf": "صفحة {{current}} من {{last}}",
     "documentTypesLabel": "أنواع المستندات",
     "departmentsLabel": "الأقسام",
