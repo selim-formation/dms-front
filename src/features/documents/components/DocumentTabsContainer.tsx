@@ -142,7 +142,7 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
       date: formatVersionDate(v.created_at),
       size: v.size || "0",
       note: v.version_description || "",
-      path: v.path,
+      path: v.path ?? "",
       isCurrent: false,
     }));
 

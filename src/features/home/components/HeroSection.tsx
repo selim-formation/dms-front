@@ -17,6 +17,7 @@ export default function HeroSection({
   logo,
   tenant,
 }: Props) {
+  void logo;
   const { t } = useTranslation(["home", "common"]);
   return (
     <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-10 text-primary-foreground z-10">

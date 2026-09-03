@@ -3,7 +3,6 @@ import HeroSection from "../components/HeroSection";
 import StatsRow from "../components/StatsRow";
 import RecentDocumentsSidebar from "../components/RecentDocumentsSidebar";
 import RecentTasksSidebar from "../components/RecentTasksSidebar";
-import NeedsReview from "../components/NeedsReview";
 import PinnedDocuments from "../components/PinnedDocuments";
 import { useAuth } from "@/core/auth/hooks/useAuth";
 import { useTenant } from "@/core/tenant/hooks/useTenant";

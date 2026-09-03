@@ -35,6 +35,8 @@ export default function DocumentFilterSidebar({
   typeOptions,
   departmentOptions,
 }: FilterSidebarProps) {
+  void typeOptions;
+  void departmentOptions;
   const { t } = useTranslation(["documents", "common"]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set(["types", "departments", "entities", "renewals", "importances"]),
