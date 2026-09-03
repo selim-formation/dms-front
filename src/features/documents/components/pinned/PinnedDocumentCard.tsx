@@ -34,6 +34,7 @@ function PinnedDocumentCard({ pinned }: PinnedDocumentCardProps) {
             }
             renewal="Renewable"
             renewalLabel={t('pinnedDocumentCard.title')}
+            renewalClassName="bg-info/10 text-info"
             importance="Medium"
             importanceLabel={pinnedOn}
             expiryDate={pinnedOn}

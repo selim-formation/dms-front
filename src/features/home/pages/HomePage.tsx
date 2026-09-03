@@ -30,8 +30,6 @@ export default function HomePage() {
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8 relative">
-        
-
         <div className="space-y-8">
           {/* Hero */}
           <HeroSection
@@ -48,7 +46,6 @@ export default function HomePage() {
               <PinnedDocuments />
             </div>
             <div className="space-y-6">
-              {/* <NeedsReview tenant={tenant} /> */}
               <RecentTasksSidebar tenant={tenant} />
               <RecentDocumentsSidebar tenant={tenant} />
             </div>
@@ -58,8 +55,11 @@ export default function HomePage() {
             <TypesChart />
             <DepartmentsChart />
             <CategoryTypeChart />
+
             <RenewalChart />
-            <ImportanceChart />
+            <div className="lg:col-span-2">
+              <ImportanceChart />
+            </div>
           </div>
 
           {/* Row 1: Status + Created per Month + Expired by Dept */}

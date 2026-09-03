@@ -21,6 +21,8 @@ interface DocumentCardGridProps {
     icon?: string;
     /** Override the renewal chip's text while keeping its color bucket — lets callers outside the browse grid (e.g. shares) show truthful copy. */
     renewalLabel?: string;
+    /** Override the renewal chip's color classes (e.g. Pinned card reusing this slot for a "Pinned" label). */
+    renewalClassName?: string;
     /** Override the importance chip's text while keeping its color bucket. */
     importanceLabel?: string;
     /** Override the status chip's text while keeping its color bucket. */
@@ -75,6 +77,7 @@ export default function DocumentCardGrid({
     status,
     icon = '📄',
     renewalLabel,
+    renewalClassName,
     importanceLabel,
     statusLabel,
     onView,
@@ -169,7 +172,7 @@ export default function DocumentCardGrid({
                 <div className="flex gap-2">
                     <span
                         title={renewalLabel ?? renewalLabels[renewal]}
-                        className={`min-w-0 flex-1 truncate px-2.5 py-1 text-xs font-medium rounded-lg text-center ${renewalStyles[renewal]}`}
+                        className={`min-w-0 flex-1 truncate px-2.5 py-1 text-xs font-medium rounded-lg text-center ${renewalClassName ?? renewalStyles[renewal]}`}
                     >
                         {renewalLabel ?? renewalLabels[renewal]}
                     </span>

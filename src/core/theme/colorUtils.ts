@@ -239,8 +239,9 @@ export function isColorTooDark(
 export function getContrastingTextColor(
   backgroundColor: string,
 ): "#000000" | "#FFFFFF" {
-  const luminance = getLuminance(backgroundColor);
-  return luminance > 0.5 ? "#000000" : "#FFFFFF";
+  const blackRatio = getContrastRatio("#000000", backgroundColor);
+  const whiteRatio = getContrastRatio("#FFFFFF", backgroundColor);
+  return blackRatio >= whiteRatio ? "#000000" : "#FFFFFF";
 }
 
 /**
