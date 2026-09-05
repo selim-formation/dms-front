@@ -8,7 +8,7 @@ import { LoginPage } from "@/features/auth";
 import { requireGuest } from "@/core/router";
 import { GuestGuard } from "@/core/auth/guards/GuestGuard";
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/_guest/login")({
   beforeLoad: async (ctx) => {
     await requireGuest(ctx.context);
   },

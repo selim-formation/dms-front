@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import HomePage from '@/features/home/pages/HomePage'
+import FavoritesPage from '@/features/documents/pages/FavoritesPage'
 import { requireAuthAndTenant } from '@/core/router'
 
-export const Route = createFileRoute('/$tenant/')({
+export const Route = createFileRoute('/_protected/$tenant/favorites/')({
   beforeLoad: (ctx) => requireAuthAndTenant(ctx.context),
-  component: HomePage,
+  component: FavoritesPage,
 })

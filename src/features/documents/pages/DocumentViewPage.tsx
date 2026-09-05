@@ -61,7 +61,7 @@ const fileTypeColors: Record<string, string> = {
 export default function DocumentViewPage() {
   const { t } = useTranslation(["documents", "common"]);
   const tenant = useTenant();
-  const { id } = useParams({ from: "/$tenant/documents/$id" });
+  const { id } = useParams({ from: "/_protected/$tenant/documents/$id" });
   const numId = Number(id);
   const [isShareOpen, setIsShareOpen] = useState(false);
 

@@ -9,7 +9,7 @@ import { requireGuest, requireTenant } from "@/core/router";
 import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "@/shared/components/ThemeToggle";
 
-export const Route = createFileRoute("/$tenant/register")({
+export const Route = createFileRoute("/_protected/$tenant/register")({
   beforeLoad: async (ctx) => {
     await requireTenant(ctx.context);
     await requireGuest(ctx.context);

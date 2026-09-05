@@ -11,7 +11,7 @@ import {
   TENANT_VALIDATE_STALE_TIME,
 } from "@/core/tenant/services/tenant.service";
 
-export const Route = createFileRoute("/$tenant")({
+export const Route = createFileRoute("/_protected/$tenant")({
   beforeLoad: async ({ params, context, location }) => {
     const { tenant: tenantCtx, auth, queryClient } = context;
 
