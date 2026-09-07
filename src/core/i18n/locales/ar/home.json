@@ -49,7 +49,15 @@
   },
   "departmentsChart": {
     "title": "المستندات حسب القسم",
-    "subtitle": "التوزيع عبر الأقسام"
+    "subtitle": "التوزيع عبر الأقسام",
+    "departments": {
+      "finance": "المالية",
+      "legal": "الشؤون القانونية",
+      "hr": "الموارد البشرية",
+      "engineering": "الهندسة",
+      "marketing": "التسويق",
+      "operations": "العمليات"
+    }
   },
   "documentCard": {
     "by": "بواسطة {{author}}",
@@ -71,7 +79,14 @@
   },
   "documentsByStatusChart": {
     "title": "المستندات حسب الحالة",
-    "unit": "مستندات"
+    "unit": "مستندات",
+    "statuses": {
+      "active": "نشط",
+      "expiringSoon": "قريب الانتهاء",
+      "expired": "منتهي",
+      "archived": "مؤرشف",
+      "underReview": "قيد المراجعة"
+    }
   },
   "documentsCreatedPerMonthChart": {
     "title": "المستندات المُنشأة شهريًا",
@@ -163,7 +178,13 @@
   },
   "importanceChart": {
     "title": "المستندات حسب الأهمية والسرية",
-    "subtitle": "توزيع درجة الأهمية"
+    "subtitle": "توزيع درجة الأهمية",
+    "levels": {
+      "critical": "حرجة",
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة"
+    }
   },
   "monthlyProgress": {
     "title": "التقدم الشهري",
@@ -277,7 +298,14 @@
   },
   "typesChart": {
     "title": "المستندات حسب النوع",
-    "subtitle": "التوزيع عبر أنواع المستندات"
+    "subtitle": "التوزيع عبر أنواع المستندات",
+    "categories": {
+      "licenses": "تراخيص",
+      "permits": "تصاريح",
+      "cards": "بطاقات",
+      "machines": "الآلات",
+      "authorizations": "أذونات"
+    }
   },
   "welcomeCard": {
     "totalDocuments": "إجمالي المستندات",
@@ -288,6 +316,7 @@
     "subtitle": "إليك آخر ما يحدث مع مستنداتك اليوم"
   },
   "homePage": {
-    "greeting": "مرحبًا بعودتك"
+    "greeting": "مرحبًا بعودتك",
+    "ramadanGreeting": "رمضان كريم"
   }
 }

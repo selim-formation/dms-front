@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Card,
   CardContent,
@@ -13,22 +14,24 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "Operational", value: 68 },
-  { name: "Establishment", value: 45 },
-];
-
 const COLORS = ["hsl(var(--primary))", "hsl(var(--info))"];
 
 export default function CategoryTypeChart() {
+  const { t } = useTranslation(["home", "common"]);
+
+  const data = [
+    { name: t("home:categoryTypeChart.operational"), value: 68 },
+    { name: t("home:categoryTypeChart.establishment"), value: 45 },
+  ];
+
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-base font-bold">
-          Documents by Establishment & Operational
+          {t("home:categoryTypeChart.title")}
         </CardTitle>
         <p className="text-xs text-muted-foreground">
-          Operational vs Establishment
+          {t("home:categoryTypeChart.subtitle")}
         </p>
       </CardHeader>
       <CardContent>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import armaLogo from "@/assets/bisco-logo.png";
 import HeroSection from "../components/HeroSection";
 import StatsRow from "../components/StatsRow";
@@ -17,13 +18,14 @@ import ExpiryRiskOverview2 from "../components/ExpiryRiskOverview2";
 import DocumentsByStatusChart from "../components/DocumentsByStatusChart";
 import ExpiredByDeptChart from "../components/ExpiredByDeptChart";
 export default function HomePage() {
+  const { t } = useTranslation("home");
   const { user } = useAuth();
   const { tenantId } = useTenant();
   const tenant = tenantId ?? "";
   const { data: statistics } = useStatistics();
 
   const firstName = user?.name?.split(" ")[0] ?? "Ahmed";
-  const greeting = "Ramadan Kareem";
+  const greeting = t("homePage.ramadanGreeting");
 
   return (
     <div className="min-h-screen bg-background">

@@ -144,8 +144,8 @@ export default function DocumentViewPage() {
                   documentId={numId}
                   onShare={() => setIsShareOpen(true)}
                   onDownload={() => console.log("Download")}
-                  onEdit={() => console.log("Edit")}
-                  onMore={() => console.log("More")}
+                  // onEdit={() => console.log("Edit")}
+                  // onMore={() => console.log("More")}
                 />
               </div>
             </div>

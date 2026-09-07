@@ -1,21 +1,24 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
-const data = [
-    { name: 'Finance', count: 38 },
-    { name: 'Legal', count: 27 },
-    { name: 'HR', count: 21 },
-    { name: 'Engineering', count: 34 },
-    { name: 'Marketing', count: 16 },
-    { name: 'Operations', count: 29 },
-];
-
 export default function DepartmentsChart() {
+    const { t } = useTranslation(['home', 'common']);
+
+    const data = [
+        { name: t('home:departmentsChart.departments.finance'), count: 38 },
+        { name: t('home:departmentsChart.departments.legal'), count: 27 },
+        { name: t('home:departmentsChart.departments.hr'), count: 21 },
+        { name: t('home:departmentsChart.departments.engineering'), count: 34 },
+        { name: t('home:departmentsChart.departments.marketing'), count: 16 },
+        { name: t('home:departmentsChart.departments.operations'), count: 29 },
+    ];
+
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents by Department</CardTitle>
-                <p className="text-xs text-muted-foreground">Distribution across departments</p>
+                <CardTitle className="text-base font-bold">{t('home:departmentsChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:departmentsChart.subtitle')}</p>
             </CardHeader>
             <CardContent>
                 <div className="h-56">

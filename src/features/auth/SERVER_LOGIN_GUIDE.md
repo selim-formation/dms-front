@@ -7,10 +7,13 @@ This guide explains how the login system now authenticates with your actual API 
 ### Endpoint
 
 <<<<<<< Updated upstream
+
 - **URL**: `POST http://dms.test/api/login`
-=======
-- **URL**: `POST https://dms.test/api/login`
->>>>>>> Stashed changes
+  \=======
+- **URL**: `POST https://dms.formation-obs.com/api/login`
+
+> > > > > > > Stashed changes
+
 - **Base URL**: Configured in `src/config/app.config.ts` via `VITE_API_BASE_URL`
 
 ### Request Payload
@@ -188,7 +191,7 @@ Set in `.env`:
 <<<<<<< Updated upstream
 VITE_API_BASE_URL=http://dms.test
 =======
-VITE_API_BASE_URL=https://dms.test
+VITE_API_BASE_URL=https://dms.formation-obs.com
 >>>>>>> Stashed changes
 ```
 

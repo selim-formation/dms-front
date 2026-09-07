@@ -1,9 +1,9 @@
-import { useCallback, useState } from 'react';
-import { useNavigate, Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
-import { LogOut, User as UserIcon } from 'lucide-react';
-import { useAuth } from '@/core/auth/hooks/useAuth';
-import { useTenant } from '@/core/tenant/hooks/useTenant';
+import { useCallback, useState } from "react";
+import { useNavigate, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
+import { LayoutDashboard, LogOut, User as UserIcon } from "lucide-react";
+import { useAuth } from "@/core/auth/hooks/useAuth";
+import { useTenant } from "@/core/tenant/hooks/useTenant";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,17 +11,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
+} from "@/shared/components/ui/dropdown-menu";
 
 function getInitials(name: string): string {
   const parts = name.trim().split(/\s+/);
   return parts.length > 1
     ? `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
-    : (parts[0]?.slice(0, 2) ?? '?').toUpperCase();
+    : (parts[0]?.slice(0, 2) ?? "?").toUpperCase();
 }
 
 export function UserMenu() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const { user, logout } = useAuth();
   const tenant = useTenant();
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export function UserMenu() {
     try {
       await logout();
     } finally {
-      navigate({ to: '/login' });
+      navigate({ to: "/login" });
     }
   }, [logout, navigate, isLoggingOut]);
 
@@ -57,8 +57,12 @@ export function UserMenu() {
               {getInitials(user.name)}
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-foreground truncate">{user.name}</p>
-              <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+              <p className="text-sm font-semibold text-foreground truncate">
+                {user.name}
+              </p>
+              <p className="text-xs text-muted-foreground truncate">
+                {user.email}
+              </p>
             </div>
           </div>
         </DropdownMenuLabel>
@@ -68,12 +72,24 @@ export function UserMenu() {
         <DropdownMenuItem asChild>
           <Link
             to="/$tenant/profile"
-            params={{ tenant: tenant?.tenantId ?? '' }}
+            params={{ tenant: tenant?.tenantId ?? "" }}
             className="flex items-center cursor-pointer"
           >
             <UserIcon className="me-2 h-4 w-4" />
-            {t('nav.profile')}
+            {t("nav.profile")}
           </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <a
+            href="https://dms.formation-obs.com/admin/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center cursor-pointer"
+          >
+            <LayoutDashboard className="me-2 h-4 w-4" />
+            {t("nav.dashboard")}
+          </a>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
@@ -84,7 +100,7 @@ export function UserMenu() {
           className="text-destructive focus:text-destructive cursor-pointer"
         >
           <LogOut className="me-2 h-4 w-4" />
-          {isLoggingOut ? t('actions.loggingOut') : t('actions.logout')}
+          {isLoggingOut ? t("actions.loggingOut") : t("actions.logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

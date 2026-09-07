@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Card,
   CardContent,
@@ -5,20 +6,15 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-const data = [
-  { name: "Active", value: 110, color: "hsl(var(--success))" },
-  { name: "Expiring Soon", value: 99, color: "hsl(var(--warning))" },
-  { name: "Expired", value: 10, color: "hsl(var(--destructive))" },
-  { name: "Archived", value: 44, color: "hsl(var(--info))" },
-  { name: "Under Review", value: 17, color: "hsl(var(--primary))" },
-];
-const LABEL_TYPES: Record<string, string> = {
-  Active: "documents",
-  "Expiring Soon": "documents",
-  Expired: "documents",
-  Archived: "documents",
-  "Under Review": "documents",
-};
+
+const STATUSES = [
+  { key: "active", value: 110, color: "hsl(var(--success))" },
+  { key: "expiringSoon", value: 99, color: "hsl(var(--warning))" },
+  { key: "expired", value: 10, color: "hsl(var(--destructive))" },
+  { key: "archived", value: 44, color: "hsl(var(--info))" },
+  { key: "underReview", value: 17, color: "hsl(var(--primary))" },
+] as const;
+
 const renderCustomLabel = ({ cx, cy, midAngle, outerRadius, value }: any) => {
   const RADIAN = Math.PI / 180;
   const x = cx + (outerRadius + 22) * Math.cos(-midAngle * RADIAN);
@@ -37,11 +33,18 @@ const renderCustomLabel = ({ cx, cy, midAngle, outerRadius, value }: any) => {
   );
 };
 export default function DocumentsByStatusChart() {
+  const { t } = useTranslation(["home", "common"]);
+
+  const data = STATUSES.map((s) => ({
+    ...s,
+    name: t(`home:documentsByStatusChart.statuses.${s.key}`),
+  }));
+
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-base font-bold">
-          Documents by Status
+          {t("home:documentsByStatusChart.title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -93,7 +96,7 @@ export default function DocumentsByStatusChart() {
                   {item.value}
                 </span>
                 <span className="text-muted-foreground">
-                  ({LABEL_TYPES[item.name]})
+                  ({t("home:documentsByStatusChart.unit")})
                 </span>
               </div>
             </div>

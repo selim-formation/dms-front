@@ -49,7 +49,15 @@
   },
   "departmentsChart": {
     "title": "Documents by Department",
-    "subtitle": "Distribution across departments"
+    "subtitle": "Distribution across departments",
+    "departments": {
+      "finance": "Finance",
+      "legal": "Legal",
+      "hr": "HR",
+      "engineering": "Engineering",
+      "marketing": "Marketing",
+      "operations": "Operations"
+    }
   },
   "documentCard": {
     "by": "By {{author}}",
@@ -71,7 +79,14 @@
   },
   "documentsByStatusChart": {
     "title": "Documents by Status",
-    "unit": "documents"
+    "unit": "documents",
+    "statuses": {
+      "active": "Active",
+      "expiringSoon": "Expiring Soon",
+      "expired": "Expired",
+      "archived": "Archived",
+      "underReview": "Under Review"
+    }
   },
   "documentsCreatedPerMonthChart": {
     "title": "Documents Created per Month",
@@ -163,7 +178,13 @@
   },
   "importanceChart": {
     "title": "Documents By Importance & Confidentiality",
-    "subtitle": "Degree of importance distribution"
+    "subtitle": "Degree of importance distribution",
+    "levels": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
   },
   "monthlyProgress": {
     "title": "Monthly Progress",
@@ -277,7 +298,14 @@
   },
   "typesChart": {
     "title": "Documents by Type",
-    "subtitle": "Distribution across document types"
+    "subtitle": "Distribution across document types",
+    "categories": {
+      "licenses": "Licenses",
+      "permits": "Permits",
+      "cards": "Cards",
+      "machines": "Machines",
+      "authorizations": "Authorizations"
+    }
   },
   "welcomeCard": {
     "totalDocuments": "Total documents",
@@ -288,6 +316,7 @@
     "subtitle": "Here's what's happening with your documents today"
   },
   "homePage": {
-    "greeting": "Welcome back"
+    "greeting": "Welcome back",
+    "ramadanGreeting": "Ramadan Kareem"
   }
 }

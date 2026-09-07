@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Card,
   CardContent,
@@ -13,14 +14,6 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "تراخيص", value: 42 },
-  { name: "تصاريح", value: 31 },
-  { name: "بطاقات", value: 18 },
-  { name: "الآلات", value: 14 },
-  { name: "أذونات", value: 22 },
-];
-
 const COLORS = [
   "hsl(var(--primary))",
   "hsl(var(--info))",
@@ -30,12 +23,22 @@ const COLORS = [
 ];
 
 export default function TypesChart() {
+  const { t } = useTranslation(["home", "common"]);
+
+  const data = [
+    { name: t("home:typesChart.categories.licenses"), value: 42 },
+    { name: t("home:typesChart.categories.permits"), value: 31 },
+    { name: t("home:typesChart.categories.cards"), value: 18 },
+    { name: t("home:typesChart.categories.machines"), value: 14 },
+    { name: t("home:typesChart.categories.authorizations"), value: 22 },
+  ];
+
   return (
     <Card className="border-border rounded-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-bold">Documents by Type</CardTitle>
+        <CardTitle className="text-base font-bold">{t("home:typesChart.title")}</CardTitle>
         <p className="text-xs text-muted-foreground">
-          Distribution across document types
+          {t("home:typesChart.subtitle")}
         </p>
       </CardHeader>
       <CardContent>

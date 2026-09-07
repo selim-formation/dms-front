@@ -1,26 +1,35 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 
-const data = [
-    { name: 'Critical', count: 24 },
-    { name: 'High', count: 42 },
-    { name: 'Medium', count: 35 },
-    { name: 'Low', count: 18 },
-];
-
-const COLORS: Record<string, string> = {
-    Critical: 'hsl(var(--destructive))',
-    High: 'hsl(var(--warning))',
-    Medium: 'hsl(var(--info))',
-    Low: 'hsl(var(--success))',
+const KEYS = ['critical', 'high', 'medium', 'low'] as const;
+const COUNTS: Record<(typeof KEYS)[number], number> = {
+    critical: 24,
+    high: 42,
+    medium: 35,
+    low: 18,
+};
+const COLORS: Record<(typeof KEYS)[number], string> = {
+    critical: 'hsl(var(--destructive))',
+    high: 'hsl(var(--warning))',
+    medium: 'hsl(var(--info))',
+    low: 'hsl(var(--success))',
 };
 
 export default function ImportanceChart() {
+    const { t } = useTranslation(['home', 'common']);
+
+    const data = KEYS.map((key) => ({
+        key,
+        name: t(`home:importanceChart.levels.${key}`),
+        count: COUNTS[key],
+    }));
+
     return (
         <Card className="border-border rounded-xl">
             <CardHeader className="pb-2">
-                <CardTitle className="text-base font-bold">Documents By Importance & Confidentiality</CardTitle>
-                <p className="text-xs text-muted-foreground">Degree of importance distribution</p>
+                <CardTitle className="text-base font-bold">{t('home:importanceChart.title')}</CardTitle>
+                <p className="text-xs text-muted-foreground">{t('home:importanceChart.subtitle')}</p>
             </CardHeader>
             <CardContent>
                 <div className="h-56">
@@ -41,8 +50,8 @@ export default function ImportanceChart() {
                                 dataKey="count"
                                 radius={[4, 4, 0, 0]}
                                 shape={(props: any) => {
-                                    const { x, y, width, height, name } = props;
-                                    const fill = COLORS[name] || 'hsl(var(--primary))';
+                                    const { x, y, width, height, payload } = props;
+                                    const fill = COLORS[payload.key as (typeof KEYS)[number]] || 'hsl(var(--primary))';
                                     return <rect x={x} y={y} width={width} height={height} fill={fill} />;
                                 }}
                             />
