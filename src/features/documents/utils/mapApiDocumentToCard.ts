@@ -23,6 +23,7 @@ export interface DocumentCardData {
     importanceLabel: string;
     expiryDate: string;
     status: 'Expires' | 'Expired' | 'Active';
+    category: string;
 }
 
 function parseDMY(value: string | null): Date | null {
@@ -67,6 +68,7 @@ export function mapApiDocumentToCard(doc: ApiDocument): DocumentCardData {
         importanceLabel: doc.importance,
         expiryDate: doc.expire_date ?? '—',
         status: resolveStatus(doc),
+        category: doc.category,
     };
 }
 

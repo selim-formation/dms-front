@@ -9,6 +9,7 @@ import { deleteFavorite } from '../api/favorites-api';
 import { favoritesKeys } from '../api/favoritesKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
+import { profileKeys } from '@/features/profile/api/profileKeys';
 
 const log = logger.createScoped('useDeleteFavorite');
 
@@ -49,6 +50,7 @@ export function useDeleteFavorite(
             if (tenant) {
                 queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
             }
+            queryClient.invalidateQueries({ queryKey: profileKeys.all });
 
             onSuccessCallback?.();
         },

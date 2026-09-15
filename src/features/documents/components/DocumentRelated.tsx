@@ -42,6 +42,7 @@ const DocumentRelated: React.FC<DocumentRelatedProps> = ({ documents, onDocument
                             importanceLabel={t('common:status.active')}
                             expiryDate={t('documentDetails.notAvailable')}
                             status="Expires"
+                            category=""
                             onView={onDocumentClick ? () => onDocumentClick(rd.id) : undefined}
                         />
                     ))}

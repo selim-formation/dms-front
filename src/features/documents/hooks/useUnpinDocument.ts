@@ -10,6 +10,7 @@ import { unpinDocument } from '../api/pinnedDocuments-api';
 import { pinnedDocumentsKeys } from '../api/pinnedDocumentsKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
+import { profileKeys } from '@/features/profile/api/profileKeys';
 
 const log = logger.createScoped('useUnpinDocument');
 
@@ -66,7 +67,8 @@ export function useUnpinDocument(
                     queryKey: pinnedDocumentsKeys.all(tenant),
                 });
             }
-            
+            queryClient.invalidateQueries({ queryKey: profileKeys.all });
+
             onSuccessCallback?.();
         },
         onError: (error: Error) => {

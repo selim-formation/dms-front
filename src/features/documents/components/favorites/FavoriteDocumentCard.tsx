@@ -33,6 +33,7 @@ function FavoriteDocumentCard({ favorite }: FavoriteDocumentCardProps) {
             expiryDate={favoritedOn}
             status="Expires"
             statusLabel={t('common:status.active')}
+            category=""
         />
     );
 }

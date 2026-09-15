@@ -6,59 +6,83 @@
  */
 
 const ENTITY_TYPE_NAME_AR: Record<string, string> = {
-    'proxies': 'توكيلات',
-    'permits': 'تصاريح',
-    'delegations': 'تفويضات',
+  proxies: "توكيلات",
+  permits: "تصاريح",
+  delegations: "تفويضات",
+};
+
+const CATEGORY_NAME_AR: Record<string, string> = {
+  establishment: "تأسيس",
+  operational: "تشغيل",
 };
 
 /** Document `types` group names — /documents-by-types & /categorized `type` field. */
 const DOCUMENT_TYPE_GROUP_NAME_AR: Record<string, string> = {
-    'contracts': 'العقود',
-    'licenses': 'التراخيص',
-    'permits': 'التصاريح',
-    'records': 'السجلات',
-    'plans': 'الخطط',
-    'reports': 'التقارير',
-    'cards': 'البطاقات',
-    'permissions': 'الصلاحيات',
-    'memberships': 'العضويات',
-    'approvals': 'الموافقات',
-    'certifications': 'الشهادات',
-    'equipment': 'المعدات',
-    'authorizations': 'التفويضات',
+  contracts: "العقود",
+  licenses: "التراخيص",
+  permits: "التصاريح",
+  records: "السجلات",
+  plans: "الخطط",
+  reports: "التقارير",
+  cards: "البطاقات",
+  permissions: "الصلاحيات",
+  memberships: "العضويات",
+  approvals: "الموافقات",
+  certifications: "الشهادات",
+  equipment: "المعدات",
+  authorizations: "التفويضات",
+  machines: "الآلات",
+  delegations: "تفويضات",
+  proxies: "توكيلات",
+  certificates: "الشهادات",
+  other: "أخرى",
 };
 
 const DEPARTMENT_NAME_AR: Record<string, string> = {
-    'machine': 'الآلات',
-    'administration department': 'قسم الإدارة',
-    'administration': 'الإدارة',
-    'project': 'مشروع',
-    'logistics': 'الخدمات اللوجستية',
-    'hr': 'الموارد البشرية',
-    'human resources': 'الموارد البشرية',
-    'finance': 'المالية',
-    'legal': 'الشؤون القانونية',
-    'it': 'تقنية المعلومات',
-    'operations': 'العمليات',
-    'procurement': 'المشتريات',
-    'maintenance': 'الصيانة',
+  machine: "الآلات",
+  "administration department": "قسم الإدارة",
+  administration: "الإدارة",
+  project: "مشروع",
+  logistics: "الخدمات اللوجستية",
+  hr: "الموارد البشرية",
+  "human resources": "الموارد البشرية",
+  finance: "المالية",
+  legal: "الشؤون القانونية",
+  it: "تقنية المعلومات",
+  operations: "العمليات",
+  procurement: "المشتريات",
+  maintenance: "الصيانة",
 };
 
-function lookup(dictionary: Record<string, string>, name: string, language: string): string {
-    if (language !== 'ar') return name;
-    const match = dictionary[name.trim().toLowerCase()];
-    return match ?? name;
+function lookup(
+  dictionary: Record<string, string>,
+  name: string,
+  language: string,
+): string {
+  if (language !== "ar") return name;
+  const match = dictionary[name.trim().toLowerCase()];
+  return match ?? name;
 }
 
-export function translateDocumentTypeName(name: string, language: string): string {
-    return lookup(ENTITY_TYPE_NAME_AR, name, language);
+export function translateDocumentTypeName(
+  name: string,
+  language: string,
+): string {
+  return lookup(ENTITY_TYPE_NAME_AR, name, language);
+}
+
+export function translateCategoryName(name: string, language: string): string {
+  return lookup(CATEGORY_NAME_AR, name, language);
 }
 
 /** For the "Types" tab group names (Contracts/Licenses/...), not the entity badge above. */
 export function translateTypeGroupName(name: string, language: string): string {
-    return lookup(DOCUMENT_TYPE_GROUP_NAME_AR, name, language);
+  return lookup(DOCUMENT_TYPE_GROUP_NAME_AR, name, language);
 }
 
-export function translateDepartmentName(name: string, language: string): string {
-    return lookup(DEPARTMENT_NAME_AR, name, language);
+export function translateDepartmentName(
+  name: string,
+  language: string,
+): string {
+  return lookup(DEPARTMENT_NAME_AR, name, language);
 }

@@ -9,6 +9,7 @@ import { createFavorite } from '../api/favorites-api';
 import { favoritesKeys } from '../api/favoritesKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
+import { profileKeys } from '@/features/profile/api/profileKeys';
 import type { FavoriteData } from '../types/favorites.types';
 import type { ApiError } from '@/core/api/types';
 
@@ -54,6 +55,7 @@ export function useCreateFavorite(
             if (tenant) {
                 queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
             }
+            queryClient.invalidateQueries({ queryKey: profileKeys.all });
 
             onSuccessCallback?.(data);
         },

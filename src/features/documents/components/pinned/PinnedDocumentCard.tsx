@@ -40,6 +40,7 @@ function PinnedDocumentCard({ pinned }: PinnedDocumentCardProps) {
             expiryDate={pinnedOn}
             status="Expires"
             statusLabel={t('common:status.active')}
+            category=""
         />
     );
 }

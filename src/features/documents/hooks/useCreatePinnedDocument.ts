@@ -10,6 +10,7 @@ import { pinDocument } from '../api/pinnedDocuments-api';
 import { pinnedDocumentsKeys } from '../api/pinnedDocumentsKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
+import { profileKeys } from '@/features/profile/api/profileKeys';
 import type { PinnedDocumentData } from '../types/pinned.types';
 import type { ApiError } from '@/core/api/types';
 
@@ -69,6 +70,7 @@ export function useCreatePinnedDocument(
                     queryKey: pinnedDocumentsKeys.all(tenant),
                 });
             }
+            queryClient.invalidateQueries({ queryKey: profileKeys.all });
 
             onSuccessCallback?.(data);
         },

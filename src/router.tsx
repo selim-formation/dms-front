@@ -19,14 +19,18 @@ export const router = createRouter({
   } as RouteContext,
   defaultPreload: "intent",
   defaultPreloadStaleTime: 0,
-  defaultErrorComponent: ({ error }) => (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-2">Error</h1>
-        <p className="text-muted-foreground">{error.message}</p>
+  defaultErrorComponent: ({ error }) => {
+    const message = error instanceof Error ? error.message : String(error);
+
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-destructive mb-2">Error</h1>
+          <p className="text-muted-foreground">{message}</p>
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
   defaultPendingComponent: () => (
     <div className="flex items-center justify-center min-h-screen">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>

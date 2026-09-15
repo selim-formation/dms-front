@@ -34,6 +34,7 @@ function PinnedDocumentGridCard({ pinned }: PinnedDocumentGridCardProps) {
             expiryDate={pinnedOn}
             status="Expires"
             statusLabel={t('common:status.active')}
+            category=""
         />
     );
 }

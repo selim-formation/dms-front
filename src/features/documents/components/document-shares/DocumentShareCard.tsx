@@ -58,6 +58,7 @@ function DocumentShareCard({ share, direction, onEdit, onRevoke }: DocumentShare
             importanceLabel={statusLabel}
             expiryDate={expires ?? t('documentShares.neverExpires')}
             status={share.status === 'expired' || share.status === 'revoked' ? 'Expired' : 'Expires'}
+            category=""
             downloadDisabled={!isActionable || !share.can_download}
             footerActions={
                 canManage ? (
