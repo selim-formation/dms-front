@@ -6,8 +6,8 @@
   "scripts": {
     "generate-routes": "tsr generate",
     "watch-routes": "tsr watch",
-    "dev": "vite && bun run watch-routes",
-    "build": "tsc -b && bun run generate-routes && vite build",
+    "dev": "vite",
+    "build": "tsc -b && npm run generate-routes && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
