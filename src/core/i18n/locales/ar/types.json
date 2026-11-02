@@ -1,0 +1,114 @@
+{
+  "page": {
+    "title": "أنواع المستندات",
+    "subtitle": "التصنيفات المستخدمة لتصنيف مستنداتك",
+    "total_zero": "لا أنواع",
+    "total_one": "نوع واحد",
+    "total_two": "نوعان",
+    "total_few": "{{count}} أنواع",
+    "total_many": "{{count}} نوعاً",
+    "total_other": "{{count}} نوع",
+    "create": "نوع جديد",
+    "errorTitle": "تعذّر تحميل الأنواع"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث بالعنوان بأي لغة...",
+    "deleted": "المحذوفة",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "-updated_at": "الأحدث تعديلاً",
+      "updated_at": "الأقدم تعديلاً"
+    }
+  },
+  "card": {
+    "untitled": "بدون عنوان",
+    "created": "أُنشئ {{time}}",
+    "updated": "حُدّث {{time}}",
+    "deleted": "محذوف",
+    "select": "تحديد {{title}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{title}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "form": {
+    "createTitle": "نوع جديد",
+    "editTitle": "تعديل النوع",
+    "createDescription": "أضف عنواناً بكل لغة وصورة اختيارية.",
+    "editDescription": "حدّث عناوين هذا النوع أو صورته.",
+    "titleLabel": "العنوان ({{language}})",
+    "titlePlaceholder": "مثال: عقد",
+    "titleRequired": "العنوان بهذه اللغة مطلوب.",
+    "titleTooLong": "يجب ألا يزيد العنوان عن 255 حرفاً.",
+    "image": "الصورة",
+    "tabHasError": "توجد أخطاء في هذه اللغة",
+    "create": "إنشاء النوع",
+    "save": "حفظ التغييرات"
+  },
+  "details": {
+    "title": "تفاصيل النوع",
+    "titles": "العناوين",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف النوع؟",
+      "description": "سيتم نقل «{{title}}» إلى قائمة المحذوفات مع بقاء ارتباط مستنداته. يمكنك استعادته لاحقاً.",
+      "confirm": "حذف"
+    },
+    "restore": {
+      "title": "استعادة النوع؟",
+      "description": "سيصبح «{{title}}» نشطاً من جديد.",
+      "confirm": "استعادة"
+    },
+    "forceDelete": {
+      "title": "حذف نهائي؟",
+      "description": "سيتم حذف «{{title}}» نهائياً وستفقد المستندات هذا النوع. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الأنواع؟",
+      "description": "سيتم نقل الأنواع المحددة إلى قائمة المحذوفات.",
+      "confirm": "حذف"
+    },
+    "bulkRestore": {
+      "title": "استعادة {{count}} من الأنواع؟",
+      "description": "ستصبح الأنواع المحددة نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "bulkForceDelete": {
+      "title": "حذف {{count}} من الأنواع نهائياً؟",
+      "description": "سيتم حذف الأنواع المحددة نهائياً وستفقدها المستندات. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء النوع بنجاح.",
+    "updated": "تم تحديث النوع بنجاح.",
+    "deleted": "تم حذف النوع.",
+    "restored": "تمت استعادة النوع.",
+    "forceDeleted": "تم حذف النوع نهائياً.",
+    "bulkDone": "تمت معالجة {{processed}} من {{total}} نوع.",
+    "bulkSkipped": "تمت معالجة {{processed}} من {{total}} نوع وتم تخطي الباقي.",
+    "notFound": "هذا النوع لم يعد موجوداً. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد أنواع",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل الفلاتر.",
+    "emptyCreate": "أنشئ أول نوع للبدء.",
+    "viewError": "تعذّر تحميل هذا النوع."
+  }
+}

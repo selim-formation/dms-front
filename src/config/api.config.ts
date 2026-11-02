@@ -80,17 +80,120 @@ export const apiEndpoints = {
   },
 
   /**
+   * Document insights — admin/head dashboard analytics, one endpoint per chart
+   */
+  insights: {
+    documents: "api/{tenant}/insights/documents/{metric}",
+  },
+
+  /**
    * Reference-data lookup lists — document type, related entity,
    * department. Read-only, flat unpaginated arrays, cached server-side.
    */
   departments: {
     list: "api/{tenant}/departments",
+    stats: "api/{tenant}/departments/stats",
+    detail: "api/{tenant}/departments/{id}",
+    create: "api/{tenant}/departments",
+    update: "api/{tenant}/departments/{id}",
+    delete: "api/{tenant}/departments/{id}",
+    restore: "api/{tenant}/departments/{id}/restore",
+    forceDelete: "api/{tenant}/departments/{id}/force",
+    bulk: "api/{tenant}/departments/bulk",
+  },
+  sections: {
+    list: "api/{tenant}/sections",
+    stats: "api/{tenant}/sections/stats",
+    detail: "api/{tenant}/sections/{id}",
+    create: "api/{tenant}/sections",
+    update: "api/{tenant}/sections/{id}",
+    delete: "api/{tenant}/sections/{id}",
+    bulk: "api/{tenant}/sections/bulk",
+  },
+  roles: {
+    list: "api/{tenant}/roles",
+    detail: "api/{tenant}/roles/{id}",
+    create: "api/{tenant}/roles",
+    update: "api/{tenant}/roles/{id}",
+    delete: "api/{tenant}/roles/{id}",
+    bulk: "api/{tenant}/roles/bulk",
+  },
+  permissions: {
+    list: "api/{tenant}/permissions",
+  },
+  documentManagement: {
+    list: "api/{tenant}/document-management",
+    counts: "api/{tenant}/document-management/counts",
+    detail: "api/{tenant}/document-management/{id}",
+    approve: "api/{tenant}/document-management/{id}/approve",
+    reject: "api/{tenant}/document-management/{id}/reject",
+    delete: "api/{tenant}/document-management/{id}",
+    restore: "api/{tenant}/document-management/{id}/restore",
+    forceDelete: "api/{tenant}/document-management/{id}/force",
+    bulk: "api/{tenant}/document-management/bulk",
+  },
+  documentImports: {
+    list: "api/{tenant}/document-imports",
+    create: "api/{tenant}/document-imports",
+    detail: "api/{tenant}/document-imports/{id}",
+    rows: "api/{tenant}/document-imports/{id}/rows",
+    problems: "api/{tenant}/document-imports/{id}/problems",
+    commit: "api/{tenant}/document-imports/{id}/commit",
+    retry: "api/{tenant}/document-imports/{id}/retry",
+    rollback: "api/{tenant}/document-imports/{id}/rollback",
+    manifestTemplate: "api/{tenant}/document-imports/manifest-template",
+    uploads: "api/{tenant}/document-imports/uploads",
+    upload: "api/{tenant}/document-imports/uploads/{uploadId}",
+    chunk: "api/{tenant}/document-imports/uploads/{uploadId}/chunks/{index}",
+    completeUpload: "api/{tenant}/document-imports/uploads/{uploadId}/complete",
   },
   types: {
     list: "api/{tenant}/types",
+    detail: "api/{tenant}/types/{id}",
+    create: "api/{tenant}/types",
+    update: "api/{tenant}/types/{id}",
+    delete: "api/{tenant}/types/{id}",
+    restore: "api/{tenant}/types/{id}/restore",
+    forceDelete: "api/{tenant}/types/{id}/force",
+    bulk: "api/{tenant}/types/bulk",
   },
   entities: {
     list: "api/{tenant}/entities",
+    stats: "api/{tenant}/entities/stats",
+    detail: "api/{tenant}/entities/{id}",
+    create: "api/{tenant}/entities",
+    update: "api/{tenant}/entities/{id}",
+    delete: "api/{tenant}/entities/{id}",
+    restore: "api/{tenant}/entities/{id}/restore",
+    forceDelete: "api/{tenant}/entities/{id}/force",
+    bulk: "api/{tenant}/entities/bulk",
+  },
+
+  /**
+   * Projects management endpoints (distinct from the legacy
+   * `all-projects` widget endpoint, which needs "General" membership).
+   */
+  projects: {
+    list: "api/{tenant}/projects",
+    detail: "api/{tenant}/projects/{id}",
+    create: "api/{tenant}/projects",
+    update: "api/{tenant}/projects/{id}",
+    delete: "api/{tenant}/projects/{id}",
+    restore: "api/{tenant}/projects/{id}/restore",
+    forceDelete: "api/{tenant}/projects/{id}/force",
+    bulk: "api/{tenant}/projects/bulk",
+  },
+
+  /** Employees management (name + email; separate from user accounts). */
+  employees: {
+    list: "api/{tenant}/employees",
+    detail: "api/{tenant}/employees/{id}",
+    create: "api/{tenant}/employees",
+    update: "api/{tenant}/employees/{id}",
+    delete: "api/{tenant}/employees/{id}",
+    restore: "api/{tenant}/employees/{id}/restore",
+    forceDelete: "api/{tenant}/employees/{id}/force",
+    bulk: "api/{tenant}/employees/bulk",
   },
 
   /**
@@ -187,8 +290,11 @@ export const apiEndpoints = {
     received: "api/{tenant}/document-shares/received",
     view: "api/{tenant}/document-shares/{id}",
     create: "api/{tenant}/document-shares",
+    bulk: "api/{tenant}/document-shares/bulk",
     update: "api/{tenant}/document-shares/{id}",
     delete: "api/{tenant}/document-shares/{id}",
+    download: "api/{tenant}/document-shares/{id}/download",
+    link: "api/{tenant}/document-shares/{id}/link",
   },
 
   /**

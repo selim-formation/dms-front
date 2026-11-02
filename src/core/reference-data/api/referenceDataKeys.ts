@@ -9,4 +9,6 @@ export const referenceDataKeys = {
     types: (tenant: string) => ['reference-data', tenant, 'types'] as const,
     entities: (tenant: string) => ['reference-data', tenant, 'entities'] as const,
     departments: (tenant: string) => ['reference-data', tenant, 'departments'] as const,
+    sections: (tenant: string) => ['reference-data', tenant, 'sections'] as const,
+    permissions: (tenant: string) => ['reference-data', tenant, 'permissions'] as const,
 };

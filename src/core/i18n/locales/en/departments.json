@@ -1,0 +1,143 @@
+{
+  "page": {
+    "title": "Departments",
+    "subtitle": "Organise your tenant into departments and their sections",
+    "create": "New department",
+    "errorTitle": "Failed to load departments",
+    "pageOf": "Page {{current}} of {{last}}"
+  },
+  "stats": {
+    "total": "Departments",
+    "withImage": "With image",
+    "trashed": "Deleted"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by department or section...",
+    "deleted": "Deleted",
+    "hideDeleted": "Active only",
+    "includeDeleted": "Include deleted",
+    "onlyDeleted": "Deleted only",
+    "hasImage": "Has image",
+    "createdThisMonth": "Created this month",
+    "sections": "Sections",
+    "sectionsCount": "Sections ({{count}})",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "title": "Title A–Z",
+      "-title": "Title Z–A",
+      "-updated_at": "Recently updated",
+      "updated_at": "Least recently updated"
+    }
+  },
+  "card": {
+    "sections_one": "{{count}} section",
+    "sections_other": "{{count}} sections",
+    "noSections": "No sections",
+    "moreSections": "+{{count}}",
+    "created": "Created {{time}}",
+    "updated": "Updated {{time}}",
+    "deleted": "Deleted",
+    "select": "Select {{title}}"
+  },
+  "actions": {
+    "menu": "Actions for {{title}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "bulk": {
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "clear": "Clear selection",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently",
+    "selectAll": "Select all on page"
+  },
+  "form": {
+    "createTitle": "New department",
+    "editTitle": "Edit department",
+    "createDescription": "Add a department and optionally assign existing sections to it.",
+    "editDescription": "Update the details of this department.",
+    "title": "Title",
+    "titlePlaceholder": "e.g. Finance",
+    "image": "Image",
+    "imageHint": "JPEG, PNG or GIF · max 2 MB",
+    "imageChoose": "Choose image",
+    "imageReplace": "Replace",
+    "imageRemove": "Remove",
+    "imageTooBig": "The image may not be greater than 2 MB.",
+    "imageBadType": "The image must be a jpeg, png, jpg or gif file.",
+    "sections": "Sections",
+    "sectionsHint": "Selected sections are moved into this department.",
+    "sectionsSearch": "Search sections...",
+    "sectionsEmpty": "No sections found",
+    "sectionsSelected": "{{count}} selected",
+    "titleRequired": "The department title is required.",
+    "titleTooLong": "The title may not be longer than 255 characters.",
+    "noChanges": "No changes to save.",
+    "create": "Create department",
+    "save": "Save changes"
+  },
+  "details": {
+    "title": "Department details",
+    "sections": "Sections",
+    "created": "Created",
+    "updated": "Updated",
+    "noImage": "No image"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete department?",
+      "description": "“{{title}}” will be moved to the deleted list. Its sections are kept. You can restore it later.",
+      "confirm": "Delete"
+    },
+    "restore": {
+      "title": "Restore department?",
+      "description": "“{{title}}” will become active again.",
+      "confirm": "Restore"
+    },
+    "forceDelete": {
+      "title": "Delete permanently?",
+      "description": "“{{title}}” and ALL of its sections will be permanently removed. This cannot be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} departments?",
+      "description": "The selected departments will be moved to the deleted list.",
+      "confirm": "Delete"
+    },
+    "bulkRestore": {
+      "title": "Restore {{count}} departments?",
+      "description": "The selected departments will become active again.",
+      "confirm": "Restore"
+    },
+    "bulkForceDelete": {
+      "title": "Permanently delete {{count}} departments?",
+      "description": "The selected departments and ALL of their sections will be permanently removed. This cannot be undone.",
+      "confirm": "Delete permanently"
+    }
+  },
+  "notice": {
+    "created": "Department created successfully.",
+    "updated": "Department updated successfully.",
+    "deleted": "Department deleted.",
+    "restored": "Department restored.",
+    "forceDeleted": "Department permanently deleted.",
+    "bulkDone": "{{processed}} of {{total}} departments processed.",
+    "bulkSkipped": "{{processed}} of {{total}} departments processed; the rest were skipped.",
+    "notFound": "That department no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No departments found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first department to get started.",
+    "viewError": "Failed to load this department."
+  }
+}

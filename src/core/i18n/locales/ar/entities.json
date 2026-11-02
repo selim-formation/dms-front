@@ -1,0 +1,115 @@
+{
+  "page": {
+    "title": "الجهات",
+    "subtitle": "الجهات والأطراف التي ترتبط بها مستنداتك",
+    "create": "جهة جديدة",
+    "errorTitle": "تعذّر تحميل الجهات"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث بالعنوان بأي لغة...",
+    "deleted": "المحذوفة",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "-updated_at": "الأحدث تعديلاً",
+      "updated_at": "الأقدم تعديلاً"
+    },
+    "hasImage": "لها صورة",
+    "createdThisMonth": "أُنشئت هذا الشهر"
+  },
+  "card": {
+    "untitled": "بدون عنوان",
+    "created": "أُنشئت {{time}}",
+    "updated": "حُدّثت {{time}}",
+    "deleted": "محذوفة",
+    "select": "تحديد {{title}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{title}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "form": {
+    "createTitle": "جهة جديدة",
+    "editTitle": "تعديل الجهة",
+    "createDescription": "أضف عنواناً بكل لغة وصورة اختيارية.",
+    "editDescription": "حدّث عناوين هذه الجهة أو صورتها.",
+    "titleLabel": "العنوان ({{language}})",
+    "titlePlaceholder": "مثال: عقد",
+    "titleRequired": "العنوان بهذه اللغة مطلوب.",
+    "titleTooLong": "يجب ألا يزيد العنوان عن 255 حرفاً.",
+    "image": "الصورة",
+    "tabHasError": "توجد أخطاء في هذه اللغة",
+    "create": "إنشاء الجهة",
+    "save": "حفظ التغييرات"
+  },
+  "details": {
+    "title": "تفاصيل الجهة",
+    "titles": "العناوين",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف الجهة؟",
+      "description": "سيتم نقل «{{title}}» إلى قائمة المحذوفات مع بقاء ارتباط مستنداتها. يمكنك استعادتها لاحقاً.",
+      "confirm": "حذف"
+    },
+    "restore": {
+      "title": "استعادة الجهة؟",
+      "description": "ستصبح «{{title}}» نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "forceDelete": {
+      "title": "حذف نهائي؟",
+      "description": "سيتم حذف «{{title}}» نهائياً وستفقد المستندات هذه الجهة. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الجهات؟",
+      "description": "سيتم نقل الجهات المحددة إلى قائمة المحذوفات.",
+      "confirm": "حذف"
+    },
+    "bulkRestore": {
+      "title": "استعادة {{count}} من الجهات؟",
+      "description": "ستصبح الجهات المحددة نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "bulkForceDelete": {
+      "title": "حذف {{count}} من الجهات نهائياً؟",
+      "description": "سيتم حذف الجهات المحددة نهائياً وستفقدها المستندات. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء الجهة بنجاح.",
+    "updated": "تم تحديث الجهة بنجاح.",
+    "deleted": "تم حذف الجهة.",
+    "restored": "تمت استعادة الجهة.",
+    "forceDeleted": "تم حذف الجهة نهائياً.",
+    "bulkDone": "تمت معالجة {{processed}} من {{total}} جهة.",
+    "bulkSkipped": "تمت معالجة {{processed}} من {{total}} جهة وتم تخطي الباقي.",
+    "notFound": "هذه الجهة لم تعد موجودة. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد جهات",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل الفلاتر.",
+    "emptyCreate": "أنشئ أول جهة للبدء.",
+    "viewError": "تعذّر تحميل هذه الجهة."
+  },
+  "stats": {
+    "total": "الجهات",
+    "withImage": "بصورة",
+    "trashed": "المحذوفة"
+  }
+}

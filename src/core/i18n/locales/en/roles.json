@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "Roles",
+    "subtitle": "Group permissions into roles and assign them to your users",
+    "create": "New role",
+    "errorTitle": "Failed to load roles"
+  },
+  "filters": {
+    "searchPlaceholder": "Search roles...",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A"
+    }
+  },
+  "card": {
+    "system": "System",
+    "systemHint": "Used by the application. It can't be created, renamed or deleted; its permissions can be edited.",
+    "permissions": "Permissions",
+    "users": "Users",
+    "created": "Created {{time}}",
+    "select": "Select {{name}}"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteSystem": "System roles can't be deleted.",
+    "deleteInUse": "Still assigned to {{count}} user(s). Remove it from them first."
+  },
+  "form": {
+    "createTitle": "New role",
+    "editTitle": "Edit role",
+    "createDescription": "Name the role and choose the permissions it grants.",
+    "editDescription": "Rename the role or change the permissions it grants.",
+    "name": "Name",
+    "namePlaceholder": "e.g. document_reader",
+    "nameTooShort": "The name must be at least 2 characters.",
+    "nameTooLong": "The name may not be longer than 255 characters.",
+    "nameReserved": "This name is reserved for a system role.",
+    "systemLocked": "System roles can't be renamed. Their permissions can still be edited.",
+    "permissions": "Permissions",
+    "permissionsSearch": "Search permissions...",
+    "permissionsEmpty": "No permissions found",
+    "permissionsError": "Failed to load permissions.",
+    "permissionsRequired": "Select at least one permission.",
+    "permissionsSelected": "{{count}} of {{total}} selected",
+    "permissionNotHeld": "You don't hold this permission, so you can't grant it.",
+    "grantHint": "You can only grant permissions you hold yourself.",
+    "selectGroup": "Select all",
+    "create": "Create role",
+    "save": "Save changes"
+  },
+  "details": {
+    "title": "Role details",
+    "permissions": "Permissions",
+    "noPermissions": "This role has no permissions.",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "permissions": {
+    "actions": {
+      "read": "View",
+      "create": "Create",
+      "update": "Edit",
+      "delete": "Delete",
+      "restore": "Restore",
+      "force_delete": "Permanent delete",
+      "other": "Other"
+    },
+    "resources": {
+      "departments": "Departments",
+      "sections": "Sections",
+      "types": "Types",
+      "entities": "Entities",
+      "projects": "Projects",
+      "employees": "Employees",
+      "documents": "Documents",
+      "users": "Users",
+      "role": "Roles",
+      "roles": "Roles",
+      "teams": "Teams",
+      "tasks": "Tasks"
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete role?",
+      "description": "“{{name}}” will be permanently deleted and removed from the permissions it had. This can't be undone.",
+      "confirm": "Delete"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} roles?",
+      "description": "The selected roles will be permanently deleted. If any of them can't be deleted, nothing is deleted.",
+      "confirm": "Delete"
+    }
+  },
+  "notice": {
+    "created": "Role created successfully.",
+    "updated": "Role updated successfully.",
+    "deleted": "Role deleted.",
+    "bulkDone": "{{processed}} of {{total}} roles deleted.",
+    "bulkSkipped": "{{processed}} of {{total}} roles deleted; the rest no longer exist.",
+    "notFound": "That role no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No roles found",
+    "emptyDescription": "Try a different search.",
+    "emptyCreate": "Create your first role to get started.",
+    "viewError": "Failed to load this role."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "page": {
+    "title": "Document types",
+    "subtitle": "Categories used to classify your documents",
+    "total_one": "{{count}} type",
+    "total_other": "{{count}} types",
+    "create": "New type",
+    "errorTitle": "Failed to load types"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by title in any language...",
+    "deleted": "Deleted",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "-updated_at": "Recently updated",
+      "updated_at": "Least recently updated"
+    }
+  },
+  "card": {
+    "untitled": "Untitled",
+    "created": "Created {{time}}",
+    "updated": "Updated {{time}}",
+    "deleted": "Deleted",
+    "select": "Select {{title}}"
+  },
+  "actions": {
+    "menu": "Actions for {{title}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "form": {
+    "createTitle": "New type",
+    "editTitle": "Edit type",
+    "createDescription": "Add a title in every language and an optional image.",
+    "editDescription": "Update the titles or image of this type.",
+    "titleLabel": "Title ({{language}})",
+    "titlePlaceholder": "e.g. Contract",
+    "titleRequired": "The title in this language is required.",
+    "titleTooLong": "The title may not be longer than 255 characters.",
+    "image": "Image",
+    "tabHasError": "This language has errors",
+    "create": "Create type",
+    "save": "Save changes"
+  },
+  "details": {
+    "title": "Type details",
+    "titles": "Titles",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete type?",
+      "description": "“{{title}}” will be moved to the deleted list. Its documents keep the link and you can restore it later.",
+      "confirm": "Delete"
+    },
+    "restore": {
+      "title": "Restore type?",
+      "description": "“{{title}}” will become active again.",
+      "confirm": "Restore"
+    },
+    "forceDelete": {
+      "title": "Delete permanently?",
+      "description": "“{{title}}” will be permanently removed and documents will lose this type. This cannot be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} types?",
+      "description": "The selected types will be moved to the deleted list.",
+      "confirm": "Delete"
+    },
+    "bulkRestore": {
+      "title": "Restore {{count}} types?",
+      "description": "The selected types will become active again.",
+      "confirm": "Restore"
+    },
+    "bulkForceDelete": {
+      "title": "Permanently delete {{count}} types?",
+      "description": "The selected types will be permanently removed and documents will lose them. This cannot be undone.",
+      "confirm": "Delete permanently"
+    }
+  },
+  "notice": {
+    "created": "Type created successfully.",
+    "updated": "Type updated successfully.",
+    "deleted": "Type deleted.",
+    "restored": "Type restored.",
+    "forceDeleted": "Type permanently deleted.",
+    "bulkDone": "{{processed}} of {{total}} types processed.",
+    "bulkSkipped": "{{processed}} of {{total}} types processed; the rest were skipped.",
+    "notFound": "That type no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No types found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first type to get started.",
+    "viewError": "Failed to load this type."
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "page": {
+    "title": "المشاريع",
+    "subtitle": "إدارة المشاريع ومستنداتها",
+    "total_zero": "لا مشاريع",
+    "total_one": "مشروع واحد",
+    "total_two": "مشروعان",
+    "total_few": "{{count}} مشاريع",
+    "total_many": "{{count}} مشروعاً",
+    "total_other": "{{count}} مشروع",
+    "create": "مشروع جديد",
+    "errorTitle": "تعذّر تحميل المشاريع"
+  },
+  "status": {
+    "active": "نشط",
+    "completed": "مكتمل",
+    "pending": "قيد الانتظار",
+    "in_progress": "قيد التنفيذ",
+    "on_hold": "معلّق",
+    "cancelled": "ملغى"
+  },
+  "type": {
+    "internal": "داخلي",
+    "external": "خارجي",
+    "research": "بحثي",
+    "development": "تطوير"
+  },
+  "durationType": {
+    "days": "أيام",
+    "weeks": "أسابيع",
+    "months": "أشهر",
+    "years": "سنوات"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث بالاسم أو التصنيف أو المدير...",
+    "deleted": "المحذوفة",
+    "status": "الحالة",
+    "statusCount": "الحالة ({{count}})",
+    "type": "النوع",
+    "typeCount": "النوع ({{count}})",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "name": "الاسم أ–ي",
+      "-name": "الاسم ي–أ",
+      "status": "الحالة أ–ي",
+      "-status": "الحالة ي–أ",
+      "start_date": "تاريخ البدء ↑",
+      "-start_date": "تاريخ البدء ↓",
+      "end_date": "تاريخ الانتهاء ↑",
+      "-end_date": "تاريخ الانتهاء ↓",
+      "updated_at": "الأقدم تعديلاً",
+      "-updated_at": "الأحدث تعديلاً"
+    }
+  },
+  "card": {
+    "noCategory": "بدون تصنيف",
+    "manager": "المدير",
+    "start": "البدء",
+    "end": "الانتهاء",
+    "duration": "المدة",
+    "openFile": "فتح الملف",
+    "created": "أُنشئ {{time}}",
+    "deleted": "محذوف",
+    "select": "تحديد {{name}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "form": {
+    "createTitle": "مشروع جديد",
+    "editTitle": "تعديل المشروع",
+    "createDescription": "أضف مشروعاً وارفع مستنده.",
+    "editDescription": "حدّث بيانات هذا المشروع.",
+    "name": "الاسم",
+    "namePlaceholder": "مثال: إعادة تصميم الموقع",
+    "nameRequired": "اسم المشروع مطلوب.",
+    "nameTooLong": "يجب ألا يزيد الاسم عن 255 حرفاً.",
+    "description": "الوصف",
+    "descriptionPlaceholder": "ملاحظات اختيارية عن هذا المشروع",
+    "descriptionCounter": "{{count}} / {{max}}",
+    "descriptionTooLong": "يجب ألا يزيد الوصف عن 1000 حرف.",
+    "status": "الحالة",
+    "type": "النوع",
+    "category": "التصنيف",
+    "categoryTooLong": "يجب ألا يزيد التصنيف عن 50 حرفاً.",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "duration": "المدة",
+    "durationInvalid": "يجب أن تكون المدة عدداً صحيحاً لا يقل عن 1.",
+    "durationType": "الوحدة",
+    "manager": "اسم المدير",
+    "managerTooLong": "يجب ألا يزيد اسم المدير عن 255 حرفاً.",
+    "none": "— بدون —",
+    "file": "ملف المشروع",
+    "fileRequired": "ملف المشروع مطلوب.",
+    "fileHintCreate": "PDF أو Office أو نص أو أرشيف أو صورة · الحد الأقصى 97 ميجابايت",
+    "fileHintEdit": "اتركه فارغاً للإبقاء على الملف الحالي. الملف الجديد يستبدله.",
+    "fileChoose": "اختيار ملف",
+    "fileReplace": "استبدال الملف",
+    "fileCurrent": "الملف الحالي",
+    "fileBadType": "يجب أن يكون الملف مستنداً أو صورة (pdf, doc, docx, xls, xlsx, ppt, pptx, txt, csv, rtf, odt, ods, zip, jpg, jpeg, png, gif).",
+    "fileTooBig": "يجب ألا يتجاوز حجم الملف 97 ميجابايت.",
+    "create": "إنشاء المشروع",
+    "save": "حفظ التغييرات"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف المشروع؟",
+      "description": "سيتم نقل «{{name}}» إلى قائمة المحذوفات مع الاحتفاظ بملفه. يمكنك استعادته لاحقاً.",
+      "confirm": "حذف"
+    },
+    "restore": {
+      "title": "استعادة المشروع؟",
+      "description": "سيصبح «{{name}}» نشطاً من جديد.",
+      "confirm": "استعادة"
+    },
+    "forceDelete": {
+      "title": "حذف نهائي؟",
+      "description": "سيتم حذف «{{name}}» وملفه نهائياً. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من المشاريع؟",
+      "description": "سيتم نقل المشاريع المحددة إلى قائمة المحذوفات.",
+      "confirm": "حذف"
+    },
+    "bulkRestore": {
+      "title": "استعادة {{count}} من المشاريع؟",
+      "description": "ستصبح المشاريع المحددة نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "bulkForceDelete": {
+      "title": "حذف {{count}} من المشاريع نهائياً؟",
+      "description": "سيتم حذف المشاريع المحددة وملفاتها نهائياً. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء المشروع بنجاح.",
+    "updated": "تم تحديث المشروع بنجاح.",
+    "deleted": "تم حذف المشروع.",
+    "restored": "تمت استعادة المشروع.",
+    "forceDeleted": "تم حذف المشروع نهائياً.",
+    "bulkDone": "تمت معالجة {{processed}} من {{total}} مشروع.",
+    "bulkSkipped": "تمت معالجة {{processed}} من {{total}} مشروع وتم تخطي الباقي.",
+    "notFound": "هذا المشروع لم يعد موجوداً. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد مشاريع",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل الفلاتر.",
+    "emptyCreate": "أنشئ أول مشروع للبدء."
+  }
+}

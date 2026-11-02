@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "الأدوار",
+    "subtitle": "اجمع الصلاحيات في أدوار وعيّنها للمستخدمين",
+    "create": "دور جديد",
+    "errorTitle": "تعذّر تحميل الأدوار"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث في الأدوار...",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "name": "الاسم أ–ي",
+      "-name": "الاسم ي–أ"
+    }
+  },
+  "card": {
+    "system": "نظامي",
+    "systemHint": "يستخدمه التطبيق. لا يمكن إنشاؤه أو إعادة تسميته أو حذفه، ويمكن تعديل صلاحياته.",
+    "permissions": "الصلاحيات",
+    "users": "المستخدمون",
+    "created": "أُنشئ {{time}}",
+    "select": "تحديد {{name}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteSystem": "لا يمكن حذف الأدوار النظامية.",
+    "deleteInUse": "ما زال معيّناً لـ {{count}} مستخدم. أزِله منهم أولاً."
+  },
+  "form": {
+    "createTitle": "دور جديد",
+    "editTitle": "تعديل الدور",
+    "createDescription": "سمِّ الدور واختر الصلاحيات التي يمنحها.",
+    "editDescription": "غيّر اسم الدور أو الصلاحيات التي يمنحها.",
+    "name": "الاسم",
+    "namePlaceholder": "مثال: document_reader",
+    "nameTooShort": "يجب ألا يقل الاسم عن حرفين.",
+    "nameTooLong": "يجب ألا يزيد الاسم عن 255 حرفاً.",
+    "nameReserved": "هذا الاسم محجوز لدور نظامي.",
+    "systemLocked": "لا يمكن إعادة تسمية الأدوار النظامية، لكن يمكن تعديل صلاحياتها.",
+    "permissions": "الصلاحيات",
+    "permissionsSearch": "ابحث في الصلاحيات...",
+    "permissionsEmpty": "لا توجد صلاحيات",
+    "permissionsError": "تعذّر تحميل الصلاحيات.",
+    "permissionsRequired": "اختر صلاحية واحدة على الأقل.",
+    "permissionsSelected": "تم تحديد {{count}} من {{total}}",
+    "permissionNotHeld": "لا تملك هذه الصلاحية، لذا لا يمكنك منحها.",
+    "grantHint": "يمكنك منح الصلاحيات التي تملكها فقط.",
+    "selectGroup": "تحديد الكل",
+    "create": "إنشاء الدور",
+    "save": "حفظ التغييرات"
+  },
+  "details": {
+    "title": "تفاصيل الدور",
+    "permissions": "الصلاحيات",
+    "noPermissions": "لا يملك هذا الدور أي صلاحيات.",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث"
+  },
+  "permissions": {
+    "actions": {
+      "read": "عرض",
+      "create": "إنشاء",
+      "update": "تعديل",
+      "delete": "حذف",
+      "restore": "استعادة",
+      "force_delete": "حذف نهائي",
+      "other": "أخرى"
+    },
+    "resources": {
+      "departments": "الإدارات",
+      "sections": "الأقسام",
+      "types": "الأنواع",
+      "entities": "الجهات",
+      "projects": "المشاريع",
+      "employees": "الموظفون",
+      "documents": "المستندات",
+      "users": "المستخدمون",
+      "role": "الأدوار",
+      "roles": "الأدوار",
+      "teams": "الفرق",
+      "tasks": "المهام"
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف الدور؟",
+      "description": "سيُحذف «{{name}}» نهائياً ويُزال من الصلاحيات التي كان يملكها. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الأدوار؟",
+      "description": "ستُحذف الأدوار المحددة نهائياً. إذا تعذّر حذف أي منها فلن يُحذف شيء.",
+      "confirm": "حذف"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء الدور بنجاح.",
+    "updated": "تم تحديث الدور بنجاح.",
+    "deleted": "تم حذف الدور.",
+    "bulkDone": "تم حذف {{processed}} من {{total}} أدوار.",
+    "bulkSkipped": "تم حذف {{processed}} من {{total}} أدوار؛ والباقي لم يعد موجوداً.",
+    "notFound": "هذا الدور لم يعد موجوداً. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد أدوار",
+    "emptyDescription": "جرّب بحثاً مختلفاً.",
+    "emptyCreate": "أنشئ أول دور للبدء.",
+    "viewError": "تعذّر تحميل هذا الدور."
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "page": {
+    "title": "Manage documents",
+    "subtitle": "Every document you manage, whatever its status",
+    "errorTitle": "Failed to load documents"
+  },
+  "tabs": {
+    "label": "Document status",
+    "all": "All",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "pending": "Pending",
+    "trash": "Trash"
+  },
+  "status": { "pending": "Pending", "approved": "Approved", "rejected": "Rejected" },
+  "importance": {
+    "critical": "Critical", "high": "High", "medium": "Medium",
+    "low": "Low", "informational": "Informational", "archival": "Archival"
+  },
+  "category": { "establishment": "Establishment", "operational": "Operational" },
+  "filters": {
+    "searchPlaceholder": "Search by title, creator or department...",
+    "importance": "Importance",
+    "category": "Category",
+    "allImportance": "All importance",
+    "allCategories": "All categories",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "title": "Title A–Z",
+      "-title": "Title Z–A",
+      "importance": "Importance A–Z",
+      "-importance": "Importance Z–A",
+      "status": "Status A–Z",
+      "-status": "Status Z–A"
+    }
+  },
+  "table": {
+    "select": "Select {{name}}",
+    "responsible": "Responsible: {{name}}",
+    "columns": {
+      "title": "Title",
+      "status": "Status",
+      "creator": "Creator",
+      "departments": "Departments",
+      "importance": "Importance",
+      "category": "Category",
+      "versions": "Versions",
+      "created": "Created",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "view": "View",
+    "approve": "Approve",
+    "reject": "Reject",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "details": {
+    "title": "Document details",
+    "inTrash": "In trash",
+    "creator": "Creator",
+    "responsible": "Responsible",
+    "origin": "Origin department",
+    "category": "Category",
+    "departments": "Departments",
+    "versions": "Versions",
+    "created": "Created",
+    "updated": "Updated",
+    "deleted": "Deleted",
+    "latestVersion": "Latest version",
+    "version": "Version",
+    "extension": "Type",
+    "uploadStatus": "Upload",
+    "expires": "Expires",
+    "noFiles": "This document has no files yet.",
+    "approvals": "Approvals",
+    "noApprovals": "No approvals are required."
+  },
+  "review": {
+    "note": "Note (optional)",
+    "notePlaceholder": "Add a note for the author",
+    "rejectHint": "A rejected document can't be edited by its author.",
+    "error": "The review could not be saved.",
+    "approve": {
+      "title": "Approve document?",
+      "description": "You are approving “{{name}}”. It becomes approved once nobody else is still pending.",
+      "confirm": "Approve"
+    },
+    "reject": {
+      "title": "Reject document?",
+      "description": "You are rejecting “{{name}}”. The document is rejected immediately.",
+      "confirm": "Reject"
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "Move to trash?",
+      "description": "“{{name}}” will be moved to the trash. You can restore it later.",
+      "confirm": "Move to trash"
+    },
+    "restore": {
+      "title": "Restore document?",
+      "description": "“{{name}}” will be brought back from the trash.",
+      "confirm": "Restore"
+    },
+    "force_delete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” and all its versions and files will be removed for good. This can't be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulk": {
+      "delete": {
+        "title": "Move {{count}} documents to the trash?",
+        "description": "If any selected document can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} documents?",
+        "description": "If any selected document can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} documents?",
+        "description": "Their versions and files are removed for good and this can't be undone. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    }
+  },
+  "notice": {
+    "approve": "Document approved.",
+    "reject": "Document rejected.",
+    "delete": "Document moved to the trash.",
+    "restore": "Document restored.",
+    "force_delete": "Document permanently deleted.",
+    "bulk": {
+      "delete": "{{count}} documents moved to the trash.",
+      "restore": "{{count}} documents restored.",
+      "force_delete": "{{count}} documents permanently deleted."
+    },
+    "notFound": "That document no longer exists or isn't available to you. The list was refreshed.",
+    "forbidden": "You don't have permission to do that.",
+    "failed": "That action failed. Try again."
+  },
+  "states": {
+    "emptyTitle": "No documents found",
+    "emptyTrash": "The trash is empty",
+    "emptyDescription": "Try a different tab, search or filter.",
+    "forbiddenTitle": "You can't manage documents",
+    "forbiddenDescription": "You don't have permission to view this screen.",
+    "notFound": "This document no longer exists or isn't available to you.",
+    "viewError": "Failed to load this document."
+  }
+}

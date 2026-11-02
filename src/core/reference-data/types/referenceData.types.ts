@@ -7,6 +7,8 @@
 export interface ReferenceItem {
     id: number;
     title: string;
+    /** Some lists (e.g. sections) expose `name` instead of / alongside `title`. */
+    name?: string;
     /** Temporary signed Wasabi URL (2h expiry), not a static path — don't persist across sessions. */
     image: string | null;
     tenant_id: string;
@@ -17,4 +19,10 @@ export interface ReferenceItem {
 export interface ReferenceListApiResponse {
     data: ReferenceItem[];
     message: string;
+}
+
+/** A tenant permission as listed by GET /api/{tenant}/permissions. */
+export interface PermissionItem {
+    id: number;
+    name: string;
 }

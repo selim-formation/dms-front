@@ -1,0 +1,105 @@
+{
+  "page": {
+    "title": "Employees",
+    "subtitle": "Manage the employee directory (name and email)",
+    "total_one": "{{count}} employee",
+    "total_other": "{{count}} employees",
+    "create": "New employee",
+    "errorTitle": "Failed to load employees"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name or email...",
+    "deleted": "Deleted",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "email": "Email A–Z",
+      "-email": "Email Z–A",
+      "updated_at": "Least recently updated",
+      "-updated_at": "Recently updated"
+    }
+  },
+  "card": {
+    "created": "Created {{time}}",
+    "deleted": "Deleted",
+    "select": "Select {{name}}"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "form": {
+    "createTitle": "New employee",
+    "editTitle": "Edit employee",
+    "createDescription": "Add an employee to the directory.",
+    "editDescription": "Update the details of this employee.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Sara Ali",
+    "nameRequired": "The employee name is required.",
+    "nameTooLong": "The name may not be longer than 255 characters.",
+    "email": "Email",
+    "emailPlaceholder": "name@company.com",
+    "emailRequired": "The employee email is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "emailTooLong": "The email may not be longer than 255 characters.",
+    "restoreHint": "A deleted employee (“{{name}}”) already uses this email. Restore it instead of creating a new one.",
+    "restoreAction": "Restore",
+    "create": "Create employee",
+    "save": "Save changes"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete employee?",
+      "description": "“{{name}}” will be moved to the deleted list. You can restore it later.",
+      "confirm": "Delete"
+    },
+    "restore": {
+      "title": "Restore employee?",
+      "description": "“{{name}}” will become active again.",
+      "confirm": "Restore"
+    },
+    "forceDelete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” will be permanently removed. This cannot be undone, and older document versions that reference this employee will lose it.",
+      "confirm": "Delete permanently"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} employees?",
+      "description": "The selected employees will be moved to the deleted list.",
+      "confirm": "Delete"
+    },
+    "bulkRestore": {
+      "title": "Restore {{count}} employees?",
+      "description": "The selected employees will become active again.",
+      "confirm": "Restore"
+    },
+    "bulkForceDelete": {
+      "title": "Permanently delete {{count}} employees?",
+      "description": "The selected employees will be permanently removed. This cannot be undone.",
+      "confirm": "Delete permanently"
+    }
+  },
+  "notice": {
+    "created": "Employee created successfully.",
+    "updated": "Employee updated successfully.",
+    "restored": "Employee restored.",
+    "deleted": "Employee deleted.",
+    "forceDeleted": "Employee permanently deleted.",
+    "bulkDone": "{{processed}} of {{total}} employees processed.",
+    "bulkSkipped": "{{processed}} of {{total}} employees processed; the rest were skipped.",
+    "notFound": "That employee no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No employees found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Add your first employee to get started."
+  }
+}

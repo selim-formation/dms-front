@@ -1,0 +1,109 @@
+{
+  "page": {
+    "title": "الموظفون",
+    "subtitle": "إدارة دليل الموظفين (الاسم والبريد الإلكتروني)",
+    "total_zero": "لا موظفين",
+    "total_one": "موظف واحد",
+    "total_two": "موظفان",
+    "total_few": "{{count}} موظفين",
+    "total_many": "{{count}} موظفاً",
+    "total_other": "{{count}} موظف",
+    "create": "موظف جديد",
+    "errorTitle": "تعذّر تحميل الموظفين"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
+    "deleted": "المحذوفات",
+    "sort": "الترتيب",
+    "clear": "مسح التصفية",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "name": "الاسم أ–ي",
+      "-name": "الاسم ي–أ",
+      "email": "البريد أ–ي",
+      "-email": "البريد ي–أ",
+      "updated_at": "الأقدم تحديثاً",
+      "-updated_at": "الأحدث تحديثاً"
+    }
+  },
+  "card": {
+    "created": "أُنشئ {{time}}",
+    "deleted": "محذوف",
+    "select": "تحديد {{name}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "form": {
+    "createTitle": "موظف جديد",
+    "editTitle": "تعديل الموظف",
+    "createDescription": "أضف موظفاً إلى الدليل.",
+    "editDescription": "حدّث بيانات هذا الموظف.",
+    "name": "الاسم",
+    "namePlaceholder": "مثال: سارة علي",
+    "nameRequired": "اسم الموظف مطلوب.",
+    "nameTooLong": "يجب ألا يزيد الاسم على 255 حرفاً.",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "name@company.com",
+    "emailRequired": "البريد الإلكتروني للموظف مطلوب.",
+    "emailInvalid": "أدخل بريداً إلكترونياً صالحاً.",
+    "emailTooLong": "يجب ألا يزيد البريد الإلكتروني على 255 حرفاً.",
+    "restoreHint": "يوجد موظف محذوف («{{name}}») يستخدم هذا البريد. استعده بدلاً من إنشاء موظف جديد.",
+    "restoreAction": "استعادة",
+    "create": "إنشاء الموظف",
+    "save": "حفظ التغييرات"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف الموظف؟",
+      "description": "سيتم نقل «{{name}}» إلى قائمة المحذوفات ويمكنك استعادته لاحقاً.",
+      "confirm": "حذف"
+    },
+    "restore": {
+      "title": "استعادة الموظف؟",
+      "description": "سيصبح «{{name}}» نشطاً مرة أخرى.",
+      "confirm": "استعادة"
+    },
+    "forceDelete": {
+      "title": "حذف نهائي؟",
+      "description": "سيتم حذف «{{name}}» نهائياً. لا يمكن التراجع عن ذلك، وستفقد إصدارات المستندات القديمة التي تشير إلى هذا الموظف هذه البيانات.",
+      "confirm": "حذف نهائي"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الموظفين؟",
+      "description": "سيتم نقل الموظفين المحددين إلى قائمة المحذوفات.",
+      "confirm": "حذف"
+    },
+    "bulkRestore": {
+      "title": "استعادة {{count}} من الموظفين؟",
+      "description": "سيصبح الموظفون المحددون نشطين مرة أخرى.",
+      "confirm": "استعادة"
+    },
+    "bulkForceDelete": {
+      "title": "حذف {{count}} من الموظفين نهائياً؟",
+      "description": "سيتم حذف الموظفين المحددين نهائياً. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء الموظف بنجاح.",
+    "updated": "تم تحديث الموظف بنجاح.",
+    "restored": "تمت استعادة الموظف.",
+    "deleted": "تم حذف الموظف.",
+    "forceDeleted": "تم حذف الموظف نهائياً.",
+    "bulkDone": "تمت معالجة {{processed}} من {{total}} موظفين.",
+    "bulkSkipped": "تمت معالجة {{processed}} من {{total}} موظفين، وتم تخطي الباقي.",
+    "notFound": "هذا الموظف لم يعد موجوداً. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا يوجد موظفون",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل عوامل التصفية.",
+    "emptyCreate": "أضف أول موظف للبدء."
+  }
+}

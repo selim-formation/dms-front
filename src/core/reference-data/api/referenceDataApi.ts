@@ -10,7 +10,7 @@
 import { apiClient } from '@/core/api/client';
 import { apiEndpoints, buildApiUrl } from '@/config/api.config';
 import { logger } from '@/shared/utils/logger';
-import type { ReferenceItem, ReferenceListApiResponse } from '../types/referenceData.types';
+import type { PermissionItem, ReferenceItem, ReferenceListApiResponse } from '../types/referenceData.types';
 
 const log = logger.createScoped('ReferenceDataApi');
 
@@ -40,6 +40,24 @@ export function getEntities(tenant: string): Promise<ReferenceItem[]> {
     return fetchReferenceList(tenant, apiEndpoints.entities.list, 'entities');
 }
 
+export function getSections(tenant: string): Promise<ReferenceItem[]> {
+    return fetchReferenceList(tenant, apiEndpoints.sections.list, 'sections');
+}
+
 export function getDepartments(tenant: string): Promise<ReferenceItem[]> {
     return fetchReferenceList(tenant, apiEndpoints.departments.list, 'departments');
+}
+
+/**
+ * Tenant permission catalog (role form picker). Accepts both the flat array
+ * and the paginated `{ data: [...] }` payload so a backend change can't break it.
+ */
+export async function getPermissions(tenant: string): Promise<PermissionItem[]> {
+    const url = buildApiUrl(apiEndpoints.permissions.list, { tenant });
+    const response = await apiClient
+        .getInstance()
+        .get<{ data: PermissionItem[] | { data: PermissionItem[] } }>(url);
+    const payload = response.data.data;
+    const items = Array.isArray(payload) ? payload : (payload?.data ?? []);
+    return items.map(({ id, name }) => ({ id, name }));
 }

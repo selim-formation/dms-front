@@ -1,0 +1,157 @@
+{
+  "page": {
+    "title": "Projects",
+    "subtitle": "Manage projects and their documents",
+    "total_one": "{{count}} project",
+    "total_other": "{{count}} projects",
+    "create": "New project",
+    "errorTitle": "Failed to load projects"
+  },
+  "status": {
+    "active": "Active",
+    "completed": "Completed",
+    "pending": "Pending",
+    "in_progress": "In progress",
+    "on_hold": "On hold",
+    "cancelled": "Cancelled"
+  },
+  "type": {
+    "internal": "Internal",
+    "external": "External",
+    "research": "Research",
+    "development": "Development"
+  },
+  "durationType": {
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "years": "Years"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name, category or manager...",
+    "deleted": "Deleted",
+    "status": "Status",
+    "statusCount": "Status ({{count}})",
+    "type": "Type",
+    "typeCount": "Type ({{count}})",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "status": "Status A–Z",
+      "-status": "Status Z–A",
+      "start_date": "Start date ↑",
+      "-start_date": "Start date ↓",
+      "end_date": "End date ↑",
+      "-end_date": "End date ↓",
+      "updated_at": "Least recently updated",
+      "-updated_at": "Recently updated"
+    }
+  },
+  "card": {
+    "noCategory": "No category",
+    "manager": "Manager",
+    "start": "Start",
+    "end": "End",
+    "duration": "Duration",
+    "openFile": "Open file",
+    "created": "Created {{time}}",
+    "deleted": "Deleted",
+    "select": "Select {{name}}"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "form": {
+    "createTitle": "New project",
+    "editTitle": "Edit project",
+    "createDescription": "Add a project and upload its document.",
+    "editDescription": "Update the details of this project.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Website redesign",
+    "nameRequired": "The project name is required.",
+    "nameTooLong": "The name may not be longer than 255 characters.",
+    "description": "Description",
+    "descriptionPlaceholder": "Optional notes about this project",
+    "descriptionCounter": "{{count}} / {{max}}",
+    "descriptionTooLong": "The description may not be longer than 1000 characters.",
+    "status": "Status",
+    "type": "Type",
+    "category": "Category",
+    "categoryTooLong": "The category may not be longer than 50 characters.",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "duration": "Duration",
+    "durationInvalid": "The duration must be a whole number of at least 1.",
+    "durationType": "Unit",
+    "manager": "Manager name",
+    "managerTooLong": "The manager name may not be longer than 255 characters.",
+    "none": "— None —",
+    "file": "Project file",
+    "fileRequired": "The project file is required.",
+    "fileHintCreate": "PDF, Office, text, archive or image · max 97 MB",
+    "fileHintEdit": "Leave empty to keep the current file. A new file replaces it.",
+    "fileChoose": "Choose file",
+    "fileReplace": "Replace file",
+    "fileCurrent": "Current file",
+    "fileBadType": "The file must be a document or image (pdf, doc, docx, xls, xlsx, ppt, pptx, txt, csv, rtf, odt, ods, zip, jpg, jpeg, png, gif).",
+    "fileTooBig": "The file may not be greater than 97 MB.",
+    "create": "Create project",
+    "save": "Save changes"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete project?",
+      "description": "“{{name}}” will be moved to the deleted list. Its file is kept and you can restore it later.",
+      "confirm": "Delete"
+    },
+    "restore": {
+      "title": "Restore project?",
+      "description": "“{{name}}” will become active again.",
+      "confirm": "Restore"
+    },
+    "forceDelete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” and its file will be permanently removed. This cannot be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} projects?",
+      "description": "The selected projects will be moved to the deleted list.",
+      "confirm": "Delete"
+    },
+    "bulkRestore": {
+      "title": "Restore {{count}} projects?",
+      "description": "The selected projects will become active again.",
+      "confirm": "Restore"
+    },
+    "bulkForceDelete": {
+      "title": "Permanently delete {{count}} projects?",
+      "description": "The selected projects and their files will be permanently removed. This cannot be undone.",
+      "confirm": "Delete permanently"
+    }
+  },
+  "notice": {
+    "created": "Project created successfully.",
+    "updated": "Project updated successfully.",
+    "deleted": "Project deleted.",
+    "restored": "Project restored.",
+    "forceDeleted": "Project permanently deleted.",
+    "bulkDone": "{{processed}} of {{total}} projects processed.",
+    "bulkSkipped": "{{processed}} of {{total}} projects processed; the rest were skipped.",
+    "notFound": "That project no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No projects found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first project to get started."
+  }
+}

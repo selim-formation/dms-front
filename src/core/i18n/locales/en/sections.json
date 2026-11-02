@@ -1,0 +1,99 @@
+{
+  "page": {
+    "title": "Sections",
+    "subtitle": "Sub-units that belong to your departments",
+    "create": "New section",
+    "errorTitle": "Failed to load sections"
+  },
+  "stats": {
+    "total": "Sections",
+    "withImage": "With image"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by section or department...",
+    "hasImage": "Has image",
+    "createdThisMonth": "Created this month",
+    "departments": "Departments",
+    "departmentsCount": "Departments ({{count}})",
+    "departmentsSearch": "Search departments...",
+    "departmentsEmpty": "No departments found",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "department": "Department A–Z",
+      "-department": "Department Z–A"
+    }
+  },
+  "card": {
+    "noDepartment": "No department",
+    "created": "Created {{time}}",
+    "select": "Select {{name}}"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "form": {
+    "createTitle": "New section",
+    "editTitle": "Edit section",
+    "createDescription": "Add a section to a department.",
+    "editDescription": "Update the details of this section.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Payroll",
+    "nameRequired": "The section name is required.",
+    "nameTooLong": "The name may not be longer than 255 characters.",
+    "department": "Department",
+    "departmentPlaceholder": "Select a department",
+    "departmentRequired": "The department is required.",
+    "description": "Description",
+    "descriptionPlaceholder": "Optional notes about this section",
+    "descriptionCounter": "{{count}} / {{max}}",
+    "descriptionTooLong": "The description may not be longer than 1000 characters.",
+    "image": "Image",
+    "create": "Create section",
+    "save": "Save changes"
+  },
+  "details": {
+    "title": "Section details",
+    "id": "ID",
+    "department": "Department",
+    "documents": "Documents",
+    "description": "Description",
+    "noDescription": "No description",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete section?",
+      "description": "“{{name}}” will be deleted. Its name stays reserved in its department because sections cannot be restored.",
+      "confirm": "Delete"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} sections?",
+      "description": "The selected sections will be deleted. Sections cannot be restored.",
+      "confirm": "Delete"
+    }
+  },
+  "notice": {
+    "created": "Section created successfully.",
+    "updated": "Section updated successfully.",
+    "deleted": "Section deleted.",
+    "bulkDone": "{{processed}} of {{total}} sections deleted.",
+    "bulkSkipped": "{{processed}} of {{total}} sections deleted; the rest were skipped.",
+    "notFound": "That section no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No sections found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first section to get started.",
+    "viewError": "Failed to load this section."
+  }
+}

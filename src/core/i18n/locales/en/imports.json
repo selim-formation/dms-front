@@ -1,0 +1,194 @@
+{
+  "page": {
+    "title": "Bulk import",
+    "subtitle": "Import many documents at once from a ZIP archive",
+    "create": "New import",
+    "errorTitle": "Failed to load imports"
+  },
+  "filters": {
+    "searchPlaceholder": "Search imports...",
+    "status": "Status",
+    "mode": "Mode",
+    "allStatuses": "All statuses",
+    "allModes": "All modes",
+    "allRows": "All rows",
+    "rowStatus": "Row status",
+    "clear": "Clear filters"
+  },
+  "status": {
+    "draft": "Queued",
+    "preparing": "Unpacking",
+    "validating": "Checking",
+    "ready": "Ready",
+    "committing": "Importing",
+    "rolling_back": "Rolling back",
+    "completed": "Completed",
+    "completed_errors": "Completed with errors",
+    "failed": "Failed",
+    "rolled_back": "Rolled back"
+  },
+  "rowStatus": {
+    "pending": "Pending",
+    "valid": "Valid",
+    "invalid": "Invalid",
+    "committed": "Imported",
+    "failed": "Failed",
+    "skipped": "Skipped"
+  },
+  "mode": {
+    "create_only": "Create only",
+    "create_onlyHint": "Every group of files becomes a new document. A row whose external reference already exists is invalid.",
+    "append_versions": "Append versions",
+    "append_versionsHint": "A group whose external reference exists gets new versions added (never replaced); otherwise a new document is created."
+  },
+  "category": {
+    "establishment": "Establishment",
+    "operational": "Operational"
+  },
+  "importance": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical",
+    "informational": "Informational",
+    "archival": "Archival"
+  },
+  "list": {
+    "progress": "Import progress",
+    "problems": "{{count}} with problems",
+    "columns": {
+      "name": "Name",
+      "status": "Status",
+      "progress": "Progress",
+      "rows": "Rows",
+      "creator": "Created by",
+      "created": "Created"
+    }
+  },
+  "form": {
+    "title": "New bulk import",
+    "description": "Upload a ZIP archive. Nothing is imported until you review the result and press Start import.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Legacy archive 2019",
+    "nameRequired": "Give the import a name.",
+    "nameTooLong": "The name may not be longer than 150 characters.",
+    "mode": "Mode",
+    "archive": "ZIP archive",
+    "archivePick": "Choose the ZIP archive",
+    "archiveRequired": "Upload the ZIP archive first.",
+    "manifest": "Manifest (optional)",
+    "manifestPick": "Choose a manifest CSV",
+    "manifestHint": "Describes the files. A manifest.csv inside the ZIP is used when you don't upload one.",
+    "template": "Download the manifest template",
+    "fileLimit": "{{ext}} · up to {{size}}",
+    "removeFile": "Remove file",
+    "file": {
+      "extension": "The file must be a {{ext}} file.",
+      "empty": "The file is empty.",
+      "tooLarge": "The file is too large."
+    },
+    "uploadProgress": "Upload progress",
+    "uploading": "Uploading {{sent}} of {{total}}…",
+    "assembling": "Assembling the file on the server…",
+    "uploaded": "Uploaded",
+    "uploadFailed": "The upload failed. Try again.",
+    "cancelUpload": "Cancel upload",
+    "defaults": "Defaults",
+    "defaultsHint": "Used for rows that don't name their own department, section, type or entity.",
+    "departments": "Departments",
+    "sections": "Sections",
+    "types": "Types",
+    "entities": "Entities",
+    "category": "Category",
+    "importance": "Importance",
+    "none": "Not set",
+    "search": "Search...",
+    "noOptions": "Nothing found",
+    "selectedCount": "{{count}} selected",
+    "skipInvalid": "Import the valid rows even if some rows are invalid",
+    "skipInvalidShort": "Skip invalid rows",
+    "skipInvalidHint": "Invalid rows are left out instead of blocking the import.",
+    "submit": "Upload and create import",
+    "tooManyUploads": "You have too many unfinished uploads. Finish or cancel one first.",
+    "genericError": "Something went wrong. Try again."
+  },
+  "detail": {
+    "back": "Back to imports",
+    "by": "by {{name}}",
+    "info": "Import details",
+    "manifest": "Manifest",
+    "yes": "Yes",
+    "no": "No",
+    "started": "Started",
+    "finished": "Finished",
+    "unlisted": "{{count}} file(s) in the archive are not in the manifest.",
+    "error": "Failed to load this import."
+  },
+  "statusPanel": {
+    "draft": { "title": "Waiting to start", "description": "The import is queued. If this lasts several minutes, tell an administrator that the queue worker may not be running." },
+    "preparing": { "title": "Unpacking the archive", "description": "This page updates by itself." },
+    "validating": { "title": "Checking every file", "description": "Nothing is imported yet." },
+    "ready": { "title": "Ready to import", "description": "Nothing is imported until you press Start import. Review the rows below first." },
+    "committing": { "title": "Creating documents", "description": "You can leave this page; the import continues in the background." },
+    "rolling_back": { "title": "Rolling back", "description": "Removing what this import created." },
+    "completed": { "title": "Import completed", "description": "All rows were imported." },
+    "completed_errors": { "title": "Completed with errors", "description": "Some rows failed. Retry them, or download the list of problems." },
+    "failed": { "title": "The archive could not be read", "description": "Create a new import." },
+    "rolled_back": { "title": "Rolled back", "description": "What this import created was removed." }
+  },
+  "stats": {
+    "total": "Rows",
+    "valid": "Valid",
+    "invalid": "Invalid",
+    "committed": "Imported",
+    "failed": "Failed",
+    "documents": "Documents created",
+    "versions": "Versions created"
+  },
+  "rows": {
+    "title": "Rows",
+    "searchPlaceholder": "Search by file, title or reference...",
+    "empty": "No rows match.",
+    "error": "Failed to load the rows.",
+    "columns": {
+      "number": "#",
+      "file": "File",
+      "ref": "Reference",
+      "status": "Status",
+      "problem": "Problem"
+    }
+  },
+  "actions": {
+    "commit": "Start import",
+    "retry": "Retry failed rows",
+    "rollback": "Roll back",
+    "downloadProblems": "Download problems"
+  },
+  "confirm": {
+    "commit": {
+      "title": "Start the import?",
+      "description": "{{count}} valid row(s) of “{{name}}” will be imported as documents.",
+      "confirm": "Start import"
+    },
+    "rollback": {
+      "title": "Roll back this import?",
+      "description": "The documents and versions created by “{{name}}” ({{count}}) will be removed with their files. Documents changed since the import are kept.",
+      "confirm": "Roll back"
+    }
+  },
+  "notice": {
+    "commit": "Import started.",
+    "retry": "Retrying the failed rows.",
+    "rollback": "Rollback started.",
+    "actionFailed": "That action failed. Try again."
+  },
+  "states": {
+    "emptyTitle": "No imports found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first import to get started.",
+    "forbiddenTitle": "You can't access imports",
+    "forbiddenDescription": "You don't have permission to view bulk imports.",
+    "notFoundTitle": "Import not found",
+    "notFoundDescription": "It may have been removed, or belongs to another workspace."
+  }
+}

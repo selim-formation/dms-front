@@ -1,0 +1,151 @@
+{
+  "page": {
+    "title": "الإدارات",
+    "subtitle": "نظّم مؤسستك في إدارات وأقسام",
+    "create": "إدارة جديدة",
+    "errorTitle": "تعذّر تحميل الإدارات",
+    "pageOf": "صفحة {{current}} من {{last}}"
+  },
+  "stats": {
+    "total": "الإدارات",
+    "withImage": "بصورة",
+    "trashed": "المحذوفة"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث باسم الإدارة أو القسم...",
+    "deleted": "المحذوفة",
+    "hideDeleted": "النشطة فقط",
+    "includeDeleted": "مع المحذوفة",
+    "onlyDeleted": "المحذوفة فقط",
+    "hasImage": "لها صورة",
+    "createdThisMonth": "أُنشئت هذا الشهر",
+    "sections": "الأقسام",
+    "sectionsCount": "الأقسام ({{count}})",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "title": "العنوان أ–ي",
+      "-title": "العنوان ي–أ",
+      "-updated_at": "الأحدث تعديلاً",
+      "updated_at": "الأقدم تعديلاً"
+    }
+  },
+  "card": {
+    "sections_zero": "لا أقسام",
+    "sections_one": "قسم واحد",
+    "sections_two": "قسمان",
+    "sections_few": "{{count}} أقسام",
+    "sections_many": "{{count}} قسماً",
+    "sections_other": "{{count}} قسم",
+    "noSections": "لا أقسام",
+    "moreSections": "+{{count}}",
+    "created": "أُنشئت {{time}}",
+    "updated": "حُدّثت {{time}}",
+    "deleted": "محذوفة",
+    "select": "تحديد {{title}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{title}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "bulk": {
+    "selected_zero": "لا عناصر محددة",
+    "selected_one": "تم تحديد عنصر واحد",
+    "selected_two": "تم تحديد عنصرين",
+    "selected_few": "تم تحديد {{count}} عناصر",
+    "selected_many": "تم تحديد {{count}} عنصراً",
+    "selected_other": "تم تحديد {{count}} عنصر",
+    "clear": "إلغاء التحديد",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي",
+    "selectAll": "تحديد كل عناصر الصفحة"
+  },
+  "form": {
+    "createTitle": "إدارة جديدة",
+    "editTitle": "تعديل الإدارة",
+    "createDescription": "أضف إدارة جديدة، ويمكنك اختيارياً إسناد أقسام موجودة إليها.",
+    "editDescription": "حدّث بيانات هذه الإدارة.",
+    "title": "العنوان",
+    "titlePlaceholder": "مثال: المالية",
+    "image": "الصورة",
+    "imageHint": "JPEG أو PNG أو GIF · الحد الأقصى 2 ميجابايت",
+    "imageChoose": "اختيار صورة",
+    "imageReplace": "استبدال",
+    "imageRemove": "إزالة",
+    "imageTooBig": "يجب ألا يتجاوز حجم الصورة 2 ميجابايت.",
+    "imageBadType": "يجب أن تكون الصورة بصيغة jpeg أو png أو jpg أو gif.",
+    "sections": "الأقسام",
+    "sectionsHint": "سيتم نقل الأقسام المحددة إلى هذه الإدارة.",
+    "sectionsSearch": "ابحث في الأقسام...",
+    "sectionsEmpty": "لا توجد أقسام",
+    "sectionsSelected": "تم تحديد {{count}}",
+    "titleRequired": "عنوان الإدارة مطلوب.",
+    "titleTooLong": "يجب ألا يزيد العنوان عن 255 حرفاً.",
+    "noChanges": "لا توجد تغييرات للحفظ.",
+    "create": "إنشاء الإدارة",
+    "save": "حفظ التغييرات"
+  },
+  "details": {
+    "title": "تفاصيل الإدارة",
+    "sections": "الأقسام",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث",
+    "noImage": "لا توجد صورة"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف الإدارة؟",
+      "description": "سيتم نقل «{{title}}» إلى قائمة المحذوفات مع الاحتفاظ بالأقسام. يمكنك استعادتها لاحقاً.",
+      "confirm": "حذف"
+    },
+    "restore": {
+      "title": "استعادة الإدارة؟",
+      "description": "ستصبح «{{title}}» نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "forceDelete": {
+      "title": "حذف نهائي؟",
+      "description": "سيتم حذف «{{title}}» وجميع الأقسام نهائياً. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الإدارات؟",
+      "description": "سيتم نقل الإدارات المحددة إلى قائمة المحذوفات.",
+      "confirm": "حذف"
+    },
+    "bulkRestore": {
+      "title": "استعادة {{count}} من الإدارات؟",
+      "description": "ستصبح الإدارات المحددة نشطة من جديد.",
+      "confirm": "استعادة"
+    },
+    "bulkForceDelete": {
+      "title": "حذف {{count}} من الإدارات نهائياً؟",
+      "description": "سيتم حذف الإدارات المحددة وجميع الأقسام نهائياً. لا يمكن التراجع عن ذلك.",
+      "confirm": "حذف نهائي"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء الإدارة بنجاح.",
+    "updated": "تم تحديث الإدارة بنجاح.",
+    "deleted": "تم حذف الإدارة.",
+    "restored": "تمت استعادة الإدارة.",
+    "forceDeleted": "تم حذف الإدارة نهائياً.",
+    "bulkDone": "تمت معالجة {{processed}} من {{total}} إدارة.",
+    "bulkSkipped": "تمت معالجة {{processed}} من {{total}} إدارة وتم تخطي الباقي.",
+    "notFound": "هذه الإدارة لم تعد موجودة. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد إدارات",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل الفلاتر.",
+    "emptyCreate": "أنشئ أول إدارة للبدء.",
+    "viewError": "تعذّر تحميل هذه الإدارة."
+  }
+}

@@ -15,6 +15,15 @@ import enTasks from './locales/en/tasks.json';
 import enTeams from './locales/en/teams.json';
 import enDashboard from './locales/en/dashboard.json';
 import enProfile from './locales/en/profile.json';
+import enDepartments from './locales/en/departments.json';
+import enTypes from './locales/en/types.json';
+import enEntities from './locales/en/entities.json';
+import enSections from './locales/en/sections.json';
+import enProjects from './locales/en/projects.json';
+import enEmployees from './locales/en/employees.json';
+import enRoles from './locales/en/roles.json';
+import enImports from './locales/en/imports.json';
+import enManagement from './locales/en/management.json';
 
 import arCommon from './locales/ar/common.json';
 import arAuth from './locales/ar/auth.json';
@@ -24,6 +33,15 @@ import arTasks from './locales/ar/tasks.json';
 import arTeams from './locales/ar/teams.json';
 import arDashboard from './locales/ar/dashboard.json';
 import arProfile from './locales/ar/profile.json';
+import arDepartments from './locales/ar/departments.json';
+import arTypes from './locales/ar/types.json';
+import arEntities from './locales/ar/entities.json';
+import arSections from './locales/ar/sections.json';
+import arProjects from './locales/ar/projects.json';
+import arEmployees from './locales/ar/employees.json';
+import arRoles from './locales/ar/roles.json';
+import arImports from './locales/ar/imports.json';
+import arManagement from './locales/ar/management.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ar'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
@@ -48,6 +66,15 @@ i18n
         teams: enTeams,
         dashboard: enDashboard,
         profile: enProfile,
+        departments: enDepartments,
+        types: enTypes,
+        entities: enEntities,
+        sections: enSections,
+        projects: enProjects,
+        employees: enEmployees,
+        roles: enRoles,
+        imports: enImports,
+        management: enManagement,
       },
       ar: {
         common: arCommon,
@@ -58,12 +85,21 @@ i18n
         teams: arTeams,
         dashboard: arDashboard,
         profile: arProfile,
+        departments: arDepartments,
+        types: arTypes,
+        entities: arEntities,
+        sections: arSections,
+        projects: arProjects,
+        employees: arEmployees,
+        roles: arRoles,
+        imports: arImports,
+        management: arManagement,
       },
     },
     supportedLngs: SUPPORTED_LANGUAGES,
     fallbackLng: 'en',
     defaultNS: DEFAULT_NAMESPACE,
-    ns: ['common', 'auth', 'home', 'documents', 'tasks', 'teams', 'dashboard', 'profile'],
+    ns: ['common', 'auth', 'home', 'documents', 'tasks', 'teams', 'dashboard', 'profile', 'departments', 'types', 'entities', 'sections', 'projects', 'employees', 'roles', 'imports', 'management'],
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: LANGUAGE_STORAGE_KEY,

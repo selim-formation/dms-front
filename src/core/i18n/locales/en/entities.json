@@ -1,0 +1,115 @@
+{
+  "page": {
+    "title": "Entities",
+    "subtitle": "Organisations and parties your documents relate to",
+    "create": "New entity",
+    "errorTitle": "Failed to load entities"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by title in any language...",
+    "deleted": "Deleted",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "-updated_at": "Recently updated",
+      "updated_at": "Least recently updated"
+    },
+    "hasImage": "Has image",
+    "createdThisMonth": "Created this month"
+  },
+  "card": {
+    "untitled": "Untitled",
+    "created": "Created {{time}}",
+    "updated": "Updated {{time}}",
+    "deleted": "Deleted",
+    "select": "Select {{title}}"
+  },
+  "actions": {
+    "menu": "Actions for {{title}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "form": {
+    "createTitle": "New entity",
+    "editTitle": "Edit entity",
+    "createDescription": "Add a title in every language and an optional image.",
+    "editDescription": "Update the titles or image of this entity.",
+    "titleLabel": "Title ({{language}})",
+    "titlePlaceholder": "e.g. Contract",
+    "titleRequired": "The title in this language is required.",
+    "titleTooLong": "The title may not be longer than 255 characters.",
+    "image": "Image",
+    "tabHasError": "This language has errors",
+    "create": "Create entity",
+    "save": "Save changes"
+  },
+  "details": {
+    "title": "Entity details",
+    "titles": "Titles",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete entity?",
+      "description": "“{{title}}” will be moved to the deleted list. Its documents keep the link and you can restore it later.",
+      "confirm": "Delete"
+    },
+    "restore": {
+      "title": "Restore entity?",
+      "description": "“{{title}}” will become active again.",
+      "confirm": "Restore"
+    },
+    "forceDelete": {
+      "title": "Delete permanently?",
+      "description": "“{{title}}” will be permanently removed and documents will lose this entity. This cannot be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulkDelete": {
+      "title": "Delete {{count}} entities?",
+      "description": "The selected entities will be moved to the deleted list.",
+      "confirm": "Delete"
+    },
+    "bulkRestore": {
+      "title": "Restore {{count}} entities?",
+      "description": "The selected entities will become active again.",
+      "confirm": "Restore"
+    },
+    "bulkForceDelete": {
+      "title": "Permanently delete {{count}} entities?",
+      "description": "The selected entities will be permanently removed and documents will lose them. This cannot be undone.",
+      "confirm": "Delete permanently"
+    }
+  },
+  "notice": {
+    "created": "Entity created successfully.",
+    "updated": "Entity updated successfully.",
+    "deleted": "Entity deleted.",
+    "restored": "Entity restored.",
+    "forceDeleted": "Entity permanently deleted.",
+    "bulkDone": "{{processed}} of {{total}} entities processed.",
+    "bulkSkipped": "{{processed}} of {{total}} entities processed; the rest were skipped.",
+    "notFound": "That entity no longer exists. The list was refreshed.",
+    "forbidden": "You don't have permission to do that."
+  },
+  "states": {
+    "emptyTitle": "No entities found",
+    "emptyDescription": "Try a different search or adjust the filters.",
+    "emptyCreate": "Create your first entity to get started.",
+    "viewError": "Failed to load this entity."
+  },
+  "stats": {
+    "total": "Entities",
+    "withImage": "With image",
+    "trashed": "Deleted"
+  }
+}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { navItems } from "./NavbarLinks";
+import { useVisibleNavItems } from "@/shared/hooks/useVisibleNavItems";
 
 interface MobileNavMenuProps {
   tenantId: string;
@@ -14,6 +14,7 @@ interface MobileNavMenuProps {
  */
 export function MobileNavMenu({ tenantId }: MobileNavMenuProps) {
   const { t } = useTranslation("common");
+  const visibleItems = useVisibleNavItems();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,7 +45,7 @@ export function MobileNavMenu({ tenantId }: MobileNavMenuProps) {
             onClick={() => setIsOpen(false)}
           />
           <nav className="absolute inset-x-0 top-full z-50 mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-border bg-card p-2 shadow-lg">
-            {navItems.map((item) => {
+            {visibleItems.map((item) => {
               const active = isActive(item.to);
               return (
                 <Link

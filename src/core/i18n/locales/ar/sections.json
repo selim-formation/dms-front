@@ -1,0 +1,99 @@
+{
+  "page": {
+    "title": "الأقسام",
+    "subtitle": "الوحدات الفرعية التابعة لإداراتك",
+    "create": "قسم جديد",
+    "errorTitle": "تعذّر تحميل الأقسام"
+  },
+  "stats": {
+    "total": "الأقسام",
+    "withImage": "بصورة"
+  },
+  "filters": {
+    "searchPlaceholder": "ابحث باسم القسم أو الإدارة...",
+    "hasImage": "لها صورة",
+    "createdThisMonth": "أُنشئت هذا الشهر",
+    "departments": "الإدارات",
+    "departmentsCount": "الإدارات ({{count}})",
+    "departmentsSearch": "ابحث في الإدارات...",
+    "departmentsEmpty": "لا توجد إدارات",
+    "sort": "الترتيب",
+    "clear": "مسح الفلاتر",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "name": "الاسم أ–ي",
+      "-name": "الاسم ي–أ",
+      "department": "الإدارة أ–ي",
+      "-department": "الإدارة ي–أ"
+    }
+  },
+  "card": {
+    "noDepartment": "بدون إدارة",
+    "created": "أُنشئ {{time}}",
+    "select": "تحديد {{name}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف"
+  },
+  "form": {
+    "createTitle": "قسم جديد",
+    "editTitle": "تعديل القسم",
+    "createDescription": "أضف قسماً إلى إدارة.",
+    "editDescription": "حدّث بيانات هذا القسم.",
+    "name": "الاسم",
+    "namePlaceholder": "مثال: الرواتب",
+    "nameRequired": "اسم القسم مطلوب.",
+    "nameTooLong": "يجب ألا يزيد الاسم عن 255 حرفاً.",
+    "department": "الإدارة",
+    "departmentPlaceholder": "اختر إدارة",
+    "departmentRequired": "الإدارة مطلوبة.",
+    "description": "الوصف",
+    "descriptionPlaceholder": "ملاحظات اختيارية عن هذا القسم",
+    "descriptionCounter": "{{count}} / {{max}}",
+    "descriptionTooLong": "يجب ألا يزيد الوصف عن 1000 حرف.",
+    "image": "الصورة",
+    "create": "إنشاء القسم",
+    "save": "حفظ التغييرات"
+  },
+  "details": {
+    "title": "تفاصيل القسم",
+    "id": "المعرّف",
+    "department": "الإدارة",
+    "documents": "المستندات",
+    "description": "الوصف",
+    "noDescription": "لا يوجد وصف",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث"
+  },
+  "confirm": {
+    "delete": {
+      "title": "حذف القسم؟",
+      "description": "سيتم حذف «{{name}}». يبقى اسمه محجوزاً داخل إدارته لأنه لا يمكن استعادة الأقسام.",
+      "confirm": "حذف"
+    },
+    "bulkDelete": {
+      "title": "حذف {{count}} من الأقسام؟",
+      "description": "سيتم حذف الأقسام المحددة. لا يمكن استعادة الأقسام.",
+      "confirm": "حذف"
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء القسم بنجاح.",
+    "updated": "تم تحديث القسم بنجاح.",
+    "deleted": "تم حذف القسم.",
+    "bulkDone": "تم حذف {{processed}} من {{total}} قسم.",
+    "bulkSkipped": "تم حذف {{processed}} من {{total}} قسم وتم تخطي الباقي.",
+    "notFound": "هذا القسم لم يعد موجوداً. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك."
+  },
+  "states": {
+    "emptyTitle": "لا توجد أقسام",
+    "emptyDescription": "جرّب بحثاً مختلفاً أو عدّل الفلاتر.",
+    "emptyCreate": "أنشئ أول قسم للبدء.",
+    "viewError": "تعذّر تحميل هذا القسم."
+  }
+}
