@@ -18,13 +18,23 @@ import { Route as ProtectedTenantIndexRouteImport } from './routes/_protected/$t
 import { Route as ProtectedTenantProfileRouteImport } from './routes/_protected/$tenant/profile'
 import { Route as ProtectedTenantRegisterRouteImport } from './routes/_protected/$tenant/register'
 import { Route as ProtectedTenantTasksRouteImport } from './routes/_protected/$tenant/tasks'
+import { Route as ProtectedTenantDepartmentsIndexRouteImport } from './routes/_protected/$tenant/departments/index'
+import { Route as ProtectedTenantDocumentImportsIndexRouteImport } from './routes/_protected/$tenant/document-imports/index'
+import { Route as ProtectedTenantDocumentImportsImportIdRouteImport } from './routes/_protected/$tenant/document-imports/$importId'
+import { Route as ProtectedTenantDocumentManagementIndexRouteImport } from './routes/_protected/$tenant/document-management/index'
 import { Route as ProtectedTenantDocumentSharesIndexRouteImport } from './routes/_protected/$tenant/document-shares/index'
 import { Route as ProtectedTenantDocumentsIndexRouteImport } from './routes/_protected/$tenant/documents/index'
 import { Route as ProtectedTenantDocumentsIdRouteImport } from './routes/_protected/$tenant/documents/$id'
+import { Route as ProtectedTenantEmployeesIndexRouteImport } from './routes/_protected/$tenant/employees/index'
+import { Route as ProtectedTenantEntitiesIndexRouteImport } from './routes/_protected/$tenant/entities/index'
 import { Route as ProtectedTenantFavoritesIndexRouteImport } from './routes/_protected/$tenant/favorites/index'
 import { Route as ProtectedTenantPinnedDocumentsIndexRouteImport } from './routes/_protected/$tenant/pinned-documents/index'
+import { Route as ProtectedTenantProjectsIndexRouteImport } from './routes/_protected/$tenant/projects/index'
+import { Route as ProtectedTenantRolesIndexRouteImport } from './routes/_protected/$tenant/roles/index'
+import { Route as ProtectedTenantSectionsIndexRouteImport } from './routes/_protected/$tenant/sections/index'
 import { Route as ProtectedTenantTasksIndexRouteImport } from './routes/_protected/$tenant/tasks/index'
 import { Route as ProtectedTenantTeamsIndexRouteImport } from './routes/_protected/$tenant/teams/index'
+import { Route as ProtectedTenantTypesIndexRouteImport } from './routes/_protected/$tenant/types/index'
 
 const GuestRoute = GuestRouteImport.update({
   id: '/_guest',
@@ -69,6 +79,30 @@ const ProtectedTenantTasksRoute = ProtectedTenantTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => ProtectedTenantRouteRoute,
 } as any)
+const ProtectedTenantDepartmentsIndexRoute =
+  ProtectedTenantDepartmentsIndexRouteImport.update({
+    id: '/departments/',
+    path: '/departments/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentImportsIndexRoute =
+  ProtectedTenantDocumentImportsIndexRouteImport.update({
+    id: '/document-imports/',
+    path: '/document-imports/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentImportsImportIdRoute =
+  ProtectedTenantDocumentImportsImportIdRouteImport.update({
+    id: '/document-imports/$importId',
+    path: '/document-imports/$importId',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentManagementIndexRoute =
+  ProtectedTenantDocumentManagementIndexRouteImport.update({
+    id: '/document-management/',
+    path: '/document-management/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 const ProtectedTenantDocumentSharesIndexRoute =
   ProtectedTenantDocumentSharesIndexRouteImport.update({
     id: '/document-shares/',
@@ -87,6 +121,18 @@ const ProtectedTenantDocumentsIdRoute =
     path: '/documents/$id',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
+const ProtectedTenantEmployeesIndexRoute =
+  ProtectedTenantEmployeesIndexRouteImport.update({
+    id: '/employees/',
+    path: '/employees/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantEntitiesIndexRoute =
+  ProtectedTenantEntitiesIndexRouteImport.update({
+    id: '/entities/',
+    path: '/entities/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 const ProtectedTenantFavoritesIndexRoute =
   ProtectedTenantFavoritesIndexRouteImport.update({
     id: '/favorites/',
@@ -97,6 +143,24 @@ const ProtectedTenantPinnedDocumentsIndexRoute =
   ProtectedTenantPinnedDocumentsIndexRouteImport.update({
     id: '/pinned-documents/',
     path: '/pinned-documents/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantProjectsIndexRoute =
+  ProtectedTenantProjectsIndexRouteImport.update({
+    id: '/projects/',
+    path: '/projects/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantRolesIndexRoute =
+  ProtectedTenantRolesIndexRouteImport.update({
+    id: '/roles/',
+    path: '/roles/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantSectionsIndexRoute =
+  ProtectedTenantSectionsIndexRouteImport.update({
+    id: '/sections/',
+    path: '/sections/',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
 const ProtectedTenantTasksIndexRoute =
@@ -111,6 +175,12 @@ const ProtectedTenantTeamsIndexRoute =
     path: '/teams/',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
+const ProtectedTenantTypesIndexRoute =
+  ProtectedTenantTypesIndexRouteImport.update({
+    id: '/types/',
+    path: '/types/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof ProtectedIndexRoute
@@ -120,13 +190,23 @@ export interface FileRoutesByFullPath {
   '/$tenant/register': typeof ProtectedTenantRegisterRoute
   '/$tenant/tasks': typeof ProtectedTenantTasksRouteWithChildren
   '/$tenant/': typeof ProtectedTenantIndexRoute
+  '/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
   '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/$tenant/departments/': typeof ProtectedTenantDepartmentsIndexRoute
+  '/$tenant/document-imports/': typeof ProtectedTenantDocumentImportsIndexRoute
+  '/$tenant/document-management/': typeof ProtectedTenantDocumentManagementIndexRoute
   '/$tenant/document-shares/': typeof ProtectedTenantDocumentSharesIndexRoute
   '/$tenant/documents/': typeof ProtectedTenantDocumentsIndexRoute
+  '/$tenant/employees/': typeof ProtectedTenantEmployeesIndexRoute
+  '/$tenant/entities/': typeof ProtectedTenantEntitiesIndexRoute
   '/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
   '/$tenant/pinned-documents/': typeof ProtectedTenantPinnedDocumentsIndexRoute
+  '/$tenant/projects/': typeof ProtectedTenantProjectsIndexRoute
+  '/$tenant/roles/': typeof ProtectedTenantRolesIndexRoute
+  '/$tenant/sections/': typeof ProtectedTenantSectionsIndexRoute
   '/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
   '/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
+  '/$tenant/types/': typeof ProtectedTenantTypesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof ProtectedIndexRoute
@@ -134,13 +214,23 @@ export interface FileRoutesByTo {
   '/$tenant/profile': typeof ProtectedTenantProfileRoute
   '/$tenant/register': typeof ProtectedTenantRegisterRoute
   '/$tenant': typeof ProtectedTenantIndexRoute
+  '/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
   '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/$tenant/departments': typeof ProtectedTenantDepartmentsIndexRoute
+  '/$tenant/document-imports': typeof ProtectedTenantDocumentImportsIndexRoute
+  '/$tenant/document-management': typeof ProtectedTenantDocumentManagementIndexRoute
   '/$tenant/document-shares': typeof ProtectedTenantDocumentSharesIndexRoute
   '/$tenant/documents': typeof ProtectedTenantDocumentsIndexRoute
+  '/$tenant/employees': typeof ProtectedTenantEmployeesIndexRoute
+  '/$tenant/entities': typeof ProtectedTenantEntitiesIndexRoute
   '/$tenant/favorites': typeof ProtectedTenantFavoritesIndexRoute
   '/$tenant/pinned-documents': typeof ProtectedTenantPinnedDocumentsIndexRoute
+  '/$tenant/projects': typeof ProtectedTenantProjectsIndexRoute
+  '/$tenant/roles': typeof ProtectedTenantRolesIndexRoute
+  '/$tenant/sections': typeof ProtectedTenantSectionsIndexRoute
   '/$tenant/tasks': typeof ProtectedTenantTasksIndexRoute
   '/$tenant/teams': typeof ProtectedTenantTeamsIndexRoute
+  '/$tenant/types': typeof ProtectedTenantTypesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -153,13 +243,23 @@ export interface FileRoutesById {
   '/_protected/$tenant/register': typeof ProtectedTenantRegisterRoute
   '/_protected/$tenant/tasks': typeof ProtectedTenantTasksRouteWithChildren
   '/_protected/$tenant/': typeof ProtectedTenantIndexRoute
+  '/_protected/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
   '/_protected/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/_protected/$tenant/departments/': typeof ProtectedTenantDepartmentsIndexRoute
+  '/_protected/$tenant/document-imports/': typeof ProtectedTenantDocumentImportsIndexRoute
+  '/_protected/$tenant/document-management/': typeof ProtectedTenantDocumentManagementIndexRoute
   '/_protected/$tenant/document-shares/': typeof ProtectedTenantDocumentSharesIndexRoute
   '/_protected/$tenant/documents/': typeof ProtectedTenantDocumentsIndexRoute
+  '/_protected/$tenant/employees/': typeof ProtectedTenantEmployeesIndexRoute
+  '/_protected/$tenant/entities/': typeof ProtectedTenantEntitiesIndexRoute
   '/_protected/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
   '/_protected/$tenant/pinned-documents/': typeof ProtectedTenantPinnedDocumentsIndexRoute
+  '/_protected/$tenant/projects/': typeof ProtectedTenantProjectsIndexRoute
+  '/_protected/$tenant/roles/': typeof ProtectedTenantRolesIndexRoute
+  '/_protected/$tenant/sections/': typeof ProtectedTenantSectionsIndexRoute
   '/_protected/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
   '/_protected/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
+  '/_protected/$tenant/types/': typeof ProtectedTenantTypesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,13 +271,23 @@ export interface FileRouteTypes {
     | '/$tenant/register'
     | '/$tenant/tasks'
     | '/$tenant/'
+    | '/$tenant/document-imports/$importId'
     | '/$tenant/documents/$id'
+    | '/$tenant/departments/'
+    | '/$tenant/document-imports/'
+    | '/$tenant/document-management/'
     | '/$tenant/document-shares/'
     | '/$tenant/documents/'
+    | '/$tenant/employees/'
+    | '/$tenant/entities/'
     | '/$tenant/favorites/'
     | '/$tenant/pinned-documents/'
+    | '/$tenant/projects/'
+    | '/$tenant/roles/'
+    | '/$tenant/sections/'
     | '/$tenant/tasks/'
     | '/$tenant/teams/'
+    | '/$tenant/types/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -185,13 +295,23 @@ export interface FileRouteTypes {
     | '/$tenant/profile'
     | '/$tenant/register'
     | '/$tenant'
+    | '/$tenant/document-imports/$importId'
     | '/$tenant/documents/$id'
+    | '/$tenant/departments'
+    | '/$tenant/document-imports'
+    | '/$tenant/document-management'
     | '/$tenant/document-shares'
     | '/$tenant/documents'
+    | '/$tenant/employees'
+    | '/$tenant/entities'
     | '/$tenant/favorites'
     | '/$tenant/pinned-documents'
+    | '/$tenant/projects'
+    | '/$tenant/roles'
+    | '/$tenant/sections'
     | '/$tenant/tasks'
     | '/$tenant/teams'
+    | '/$tenant/types'
   id:
     | '__root__'
     | '/_guest'
@@ -203,13 +323,23 @@ export interface FileRouteTypes {
     | '/_protected/$tenant/register'
     | '/_protected/$tenant/tasks'
     | '/_protected/$tenant/'
+    | '/_protected/$tenant/document-imports/$importId'
     | '/_protected/$tenant/documents/$id'
+    | '/_protected/$tenant/departments/'
+    | '/_protected/$tenant/document-imports/'
+    | '/_protected/$tenant/document-management/'
     | '/_protected/$tenant/document-shares/'
     | '/_protected/$tenant/documents/'
+    | '/_protected/$tenant/employees/'
+    | '/_protected/$tenant/entities/'
     | '/_protected/$tenant/favorites/'
     | '/_protected/$tenant/pinned-documents/'
+    | '/_protected/$tenant/projects/'
+    | '/_protected/$tenant/roles/'
+    | '/_protected/$tenant/sections/'
     | '/_protected/$tenant/tasks/'
     | '/_protected/$tenant/teams/'
+    | '/_protected/$tenant/types/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -282,6 +412,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantTasksRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/departments/': {
+      id: '/_protected/$tenant/departments/'
+      path: '/departments'
+      fullPath: '/$tenant/departments/'
+      preLoaderRoute: typeof ProtectedTenantDepartmentsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-imports/': {
+      id: '/_protected/$tenant/document-imports/'
+      path: '/document-imports'
+      fullPath: '/$tenant/document-imports/'
+      preLoaderRoute: typeof ProtectedTenantDocumentImportsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-imports/$importId': {
+      id: '/_protected/$tenant/document-imports/$importId'
+      path: '/document-imports/$importId'
+      fullPath: '/$tenant/document-imports/$importId'
+      preLoaderRoute: typeof ProtectedTenantDocumentImportsImportIdRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-management/': {
+      id: '/_protected/$tenant/document-management/'
+      path: '/document-management'
+      fullPath: '/$tenant/document-management/'
+      preLoaderRoute: typeof ProtectedTenantDocumentManagementIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/document-shares/': {
       id: '/_protected/$tenant/document-shares/'
       path: '/document-shares'
@@ -303,6 +461,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantDocumentsIdRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/employees/': {
+      id: '/_protected/$tenant/employees/'
+      path: '/employees'
+      fullPath: '/$tenant/employees/'
+      preLoaderRoute: typeof ProtectedTenantEmployeesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/entities/': {
+      id: '/_protected/$tenant/entities/'
+      path: '/entities'
+      fullPath: '/$tenant/entities/'
+      preLoaderRoute: typeof ProtectedTenantEntitiesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/favorites/': {
       id: '/_protected/$tenant/favorites/'
       path: '/favorites'
@@ -317,6 +489,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantPinnedDocumentsIndexRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/projects/': {
+      id: '/_protected/$tenant/projects/'
+      path: '/projects'
+      fullPath: '/$tenant/projects/'
+      preLoaderRoute: typeof ProtectedTenantProjectsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/roles/': {
+      id: '/_protected/$tenant/roles/'
+      path: '/roles'
+      fullPath: '/$tenant/roles/'
+      preLoaderRoute: typeof ProtectedTenantRolesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/sections/': {
+      id: '/_protected/$tenant/sections/'
+      path: '/sections'
+      fullPath: '/$tenant/sections/'
+      preLoaderRoute: typeof ProtectedTenantSectionsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/tasks/': {
       id: '/_protected/$tenant/tasks/'
       path: '/'
@@ -329,6 +522,13 @@ declare module '@tanstack/react-router' {
       path: '/teams'
       fullPath: '/$tenant/teams/'
       preLoaderRoute: typeof ProtectedTenantTeamsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/types/': {
+      id: '/_protected/$tenant/types/'
+      path: '/types'
+      fullPath: '/$tenant/types/'
+      preLoaderRoute: typeof ProtectedTenantTypesIndexRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
   }
@@ -360,12 +560,22 @@ interface ProtectedTenantRouteRouteChildren {
   ProtectedTenantRegisterRoute: typeof ProtectedTenantRegisterRoute
   ProtectedTenantTasksRoute: typeof ProtectedTenantTasksRouteWithChildren
   ProtectedTenantIndexRoute: typeof ProtectedTenantIndexRoute
+  ProtectedTenantDocumentImportsImportIdRoute: typeof ProtectedTenantDocumentImportsImportIdRoute
   ProtectedTenantDocumentsIdRoute: typeof ProtectedTenantDocumentsIdRoute
+  ProtectedTenantDepartmentsIndexRoute: typeof ProtectedTenantDepartmentsIndexRoute
+  ProtectedTenantDocumentImportsIndexRoute: typeof ProtectedTenantDocumentImportsIndexRoute
+  ProtectedTenantDocumentManagementIndexRoute: typeof ProtectedTenantDocumentManagementIndexRoute
   ProtectedTenantDocumentSharesIndexRoute: typeof ProtectedTenantDocumentSharesIndexRoute
   ProtectedTenantDocumentsIndexRoute: typeof ProtectedTenantDocumentsIndexRoute
+  ProtectedTenantEmployeesIndexRoute: typeof ProtectedTenantEmployeesIndexRoute
+  ProtectedTenantEntitiesIndexRoute: typeof ProtectedTenantEntitiesIndexRoute
   ProtectedTenantFavoritesIndexRoute: typeof ProtectedTenantFavoritesIndexRoute
   ProtectedTenantPinnedDocumentsIndexRoute: typeof ProtectedTenantPinnedDocumentsIndexRoute
+  ProtectedTenantProjectsIndexRoute: typeof ProtectedTenantProjectsIndexRoute
+  ProtectedTenantRolesIndexRoute: typeof ProtectedTenantRolesIndexRoute
+  ProtectedTenantSectionsIndexRoute: typeof ProtectedTenantSectionsIndexRoute
   ProtectedTenantTeamsIndexRoute: typeof ProtectedTenantTeamsIndexRoute
+  ProtectedTenantTypesIndexRoute: typeof ProtectedTenantTypesIndexRoute
 }
 
 const ProtectedTenantRouteRouteChildren: ProtectedTenantRouteRouteChildren = {
@@ -373,14 +583,27 @@ const ProtectedTenantRouteRouteChildren: ProtectedTenantRouteRouteChildren = {
   ProtectedTenantRegisterRoute: ProtectedTenantRegisterRoute,
   ProtectedTenantTasksRoute: ProtectedTenantTasksRouteWithChildren,
   ProtectedTenantIndexRoute: ProtectedTenantIndexRoute,
+  ProtectedTenantDocumentImportsImportIdRoute:
+    ProtectedTenantDocumentImportsImportIdRoute,
   ProtectedTenantDocumentsIdRoute: ProtectedTenantDocumentsIdRoute,
+  ProtectedTenantDepartmentsIndexRoute: ProtectedTenantDepartmentsIndexRoute,
+  ProtectedTenantDocumentImportsIndexRoute:
+    ProtectedTenantDocumentImportsIndexRoute,
+  ProtectedTenantDocumentManagementIndexRoute:
+    ProtectedTenantDocumentManagementIndexRoute,
   ProtectedTenantDocumentSharesIndexRoute:
     ProtectedTenantDocumentSharesIndexRoute,
   ProtectedTenantDocumentsIndexRoute: ProtectedTenantDocumentsIndexRoute,
+  ProtectedTenantEmployeesIndexRoute: ProtectedTenantEmployeesIndexRoute,
+  ProtectedTenantEntitiesIndexRoute: ProtectedTenantEntitiesIndexRoute,
   ProtectedTenantFavoritesIndexRoute: ProtectedTenantFavoritesIndexRoute,
   ProtectedTenantPinnedDocumentsIndexRoute:
     ProtectedTenantPinnedDocumentsIndexRoute,
+  ProtectedTenantProjectsIndexRoute: ProtectedTenantProjectsIndexRoute,
+  ProtectedTenantRolesIndexRoute: ProtectedTenantRolesIndexRoute,
+  ProtectedTenantSectionsIndexRoute: ProtectedTenantSectionsIndexRoute,
   ProtectedTenantTeamsIndexRoute: ProtectedTenantTeamsIndexRoute,
+  ProtectedTenantTypesIndexRoute: ProtectedTenantTypesIndexRoute,
 }
 
 const ProtectedTenantRouteRouteWithChildren =
