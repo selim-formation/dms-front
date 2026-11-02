@@ -1,0 +1,31 @@
+import { useQuery } from '@tanstack/react-query';
+import { managementApiService } from '../api/managementApi';
+import { managementKeys } from '../api/managementKeys';
+import { useTenantId } from '@/core/tenant/hooks/useTenant';
+
+/** Lazy single-document fetch (approvals + latest version). Pass `null` to stay idle. */
+export function useManagedDocumentDetail(id: number | null) {
+    const tenant = useTenantId();
+
+    const query = useQuery({
+        queryKey: tenant && id !== null ? managementKeys.detail(tenant, id) : ['document-management', 'detail', 'pending'],
+        queryFn: ({ signal }) => {
+            if (!tenant || id === null) throw new Error('Tenant and id are required');
+            return managementApiService.fetchOne(tenant, id, signal);
+        },
+        enabled: !!tenant && id !== null,
+        staleTime: 10 * 1000,
+        retry: (count, error) => {
+            const status = (error as { status?: number })?.status;
+            return status !== 403 && status !== 404 && count < 2;
+        },
+    });
+
+    return {
+        document: query.data ?? null,
+        isLoading: query.isLoading,
+        isError: query.isError,
+        error: query.error,
+        refetch: query.refetch,
+    };
+}
