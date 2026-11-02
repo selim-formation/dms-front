@@ -42,7 +42,7 @@ function RevokeShareDialog({ share, open, onOpenChange, onRevoked }: RevokeShare
                     </DialogTitle>
                     <DialogDescription>
                         {t('documentShares.revoke.description', {
-                            name: share.shared_with.name,
+                            name: share.target.name,
                             title: share.document.title,
                         })}
                     </DialogDescription>

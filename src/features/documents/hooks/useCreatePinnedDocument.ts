@@ -63,12 +63,27 @@ export function useCreatePinnedDocument(
         onSuccess: (data) => {
             log.info('Pin document mutation successful', { data });
 
-            // Invalidate all pinned documents queries (list + last),
-            // so the home page preview reflects the change without a manual reload
             if (tenant) {
-                queryClient.invalidateQueries({
-                    queryKey: pinnedDocumentsKeys.all(tenant),
-                });
+                if (data) {
+                    // Patch cached lists first so every pin icon flips immediately
+                    // instead of waiting on (or losing to) a refetch round-trip.
+                    queryClient.setQueriesData<PinnedDocumentData[]>(
+                        { queryKey: pinnedDocumentsKeys.lists(tenant) },
+                        (old) => {
+                            if (!Array.isArray(old)) return old;
+                            if (old.some((p) => p.document.id === data.document.id)) return old;
+                            return [data, ...old];
+                        }
+                    );
+                    queryClient.invalidateQueries({
+                        queryKey: pinnedDocumentsKeys.lists(tenant),
+                        refetchType: 'none',
+                    });
+                    queryClient.invalidateQueries({ queryKey: pinnedDocumentsKeys.lasts(tenant) });
+                } else {
+                    // null = already pinned server-side: resync from the server
+                    queryClient.invalidateQueries({ queryKey: pinnedDocumentsKeys.all(tenant) });
+                }
             }
             queryClient.invalidateQueries({ queryKey: profileKeys.all });
 

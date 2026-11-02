@@ -5,7 +5,9 @@
 
 import { documentSharesApiService } from './documentSharesApi';
 import type {
+    BulkCreateDocumentSharePayload,
     CreateDocumentSharePayload,
+    DocumentShareLinkData,
     DocumentShareData,
     DocumentSharesListParams,
     DocumentSharesPaginatedData,
@@ -35,6 +37,21 @@ export async function createShare(
     payload: CreateDocumentSharePayload
 ): Promise<DocumentShareData> {
     return documentSharesApiService.create(tenant, payload);
+}
+
+export async function createBulkShares(
+    tenant: string,
+    payload: BulkCreateDocumentSharePayload
+): Promise<DocumentShareData[]> {
+    return documentSharesApiService.createBulk(tenant, payload);
+}
+
+export async function getShareLink(
+    tenant: string,
+    shareId: number,
+    versionId?: number
+): Promise<DocumentShareLinkData> {
+    return documentSharesApiService.fetchLink(tenant, shareId, versionId);
 }
 
 export async function updateShare(

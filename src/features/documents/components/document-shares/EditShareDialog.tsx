@@ -81,7 +81,7 @@ function EditShareDialog({ share, open, onOpenChange, onUpdated }: EditShareDial
                     </DialogTitle>
                     <DialogDescription>
                         {t('documentShares.form.editDescription', {
-                            name: share.shared_with.name,
+                            name: share.target.name,
                             title: share.document.title,
                         })}
                     </DialogDescription>

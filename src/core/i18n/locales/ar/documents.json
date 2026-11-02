@@ -309,7 +309,7 @@
   },
   "documentShares": {
     "pageTitle": "مشاركات المستندات",
-    "pageSubtitle": "إدارة المستندات التي شاركتها مع مستخدمين آخرين، ومعرفة ما تمت مشاركته معك.",
+    "pageSubtitle": "إدارة المستندات التي شاركتها مع مستخدمين وإدارات وأقسام، ومعرفة ما تمت مشاركته معك.",
     "errorTitle": "فشل تحميل المشاركات",
     "sharedWith": "تمت المشاركة مع {{name}}",
     "sharedBy": "شاركه {{name}}",
@@ -333,14 +333,14 @@
     },
     "empty": {
       "givenTitle": "لم تشارك أي مستندات بعد",
-      "givenDescription": "شارك مستندًا من صفحة تفاصيله لمنح شخص خارج قسمك حق العرض أو التنزيل.",
+      "givenDescription": "شارك مستندًا من صفحة تفاصيله لمنح مستخدمين أو إدارات أو أقسام حق العرض أو التنزيل.",
       "receivedTitle": "لم تتم مشاركة أي شيء معك",
       "receivedDescription": "ستظهر هنا المستندات التي يشاركها معك الآخرون."
     },
     "form": {
       "createTitle": "مشاركة المستند",
-      "createDescription": "امنح مستخدمًا آخر حق العرض أو التنزيل لهذا المستند.",
-      "createDescriptionWithTitle": "امنح مستخدمًا آخر حق العرض أو التنزيل لـ \"{{title}}\".",
+      "createDescription": "امنح مستخدمين أو إدارات أو أقسامًا حق العرض أو التنزيل لهذا المستند.",
+      "createDescriptionWithTitle": "امنح مستخدمين أو إدارات أو أقسامًا حق العرض أو التنزيل لـ \"{{title}}\".",
       "editTitle": "تعديل المشاركة",
       "editDescription": "تحديث صلاحيات {{name}} على \"{{title}}\".",
       "recipientLabel": "المشاركة مع",
@@ -358,7 +358,15 @@
       "expiresAt": "تاريخ الانتهاء",
       "expiresAtHint": "اتركه فارغًا حتى لا ينتهي إلا بالإلغاء.",
       "expiresAfterStarts": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.",
-      "submitShare": "مشاركة"
+      "submitShare": "مشاركة",
+      "selectedTargets": "المستلمون المحددون",
+      "removeTarget": "إزالة {{name}}",
+      "departmentSearchPlaceholder": "تصفية الإدارات...",
+      "departmentNoResults": "لا توجد إدارات",
+      "sectionSearchPlaceholder": "تصفية الأقسام...",
+      "sectionNoResults": "لا توجد أقسام",
+      "sectionLoadError": "تعذر تحميل الأقسام. حاول مرة أخرى.",
+      "tooManyTargets": "يمكنك اختيار {{max}} مستخدمًا و{{max}} إدارة و{{max}} قسمًا كحد أقصى في المرة الواحدة."
     },
     "revoke": {
       "action": "إلغاء",
@@ -366,6 +374,16 @@
       "description": "سيفقد {{name}} الوصول فورًا إلى \"{{title}}\". لا يمكن التراجع عن هذا، لكن يمكنك مشاركة المستند مرة أخرى لاحقًا.",
       "confirm": "إلغاء الوصول"
     },
-    "downloadFailed": "تعذر تنزيل هذا الملف. حاول مرة أخرى."
+    "downloadFailed": "تعذر تنزيل هذا الملف. حاول مرة أخرى.",
+    "targetType": {
+      "user": "مستخدم",
+      "department": "قسم رئيسي",
+      "section": "قسم فرعي"
+    },
+    "targetTypePlural": {
+      "user": "المستخدمون",
+      "department": "الإدارات",
+      "section": "الأقسام"
+    }
   }
 }

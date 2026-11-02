@@ -38,6 +38,8 @@ interface DocumentCardGridProps {
   onDownload?: () => void;
   downloadDisabled?: boolean;
   isDownloading?: boolean;
+  /** Rendered in the top-start corner of the card header (e.g. a share target-type badge). */
+  headerBadge?: ReactNode;
   /** Extra controls rendered below the view/download row (e.g. granter-only edit/revoke). */
   footerActions?: ReactNode;
 }
@@ -90,6 +92,7 @@ export default function DocumentCardGrid({
   onDownload,
   downloadDisabled = false,
   isDownloading = false,
+  headerBadge,
   footerActions,
 }: DocumentCardGridProps) {
   const importanceMode = importanceStyles[importance];
@@ -144,6 +147,7 @@ export default function DocumentCardGrid({
       {/* Card Header */}
       <div className="relative h-32 bg-gradient-to-br from-muted to-muted flex items-center justify-center border-b border-border">
         <div className="text-6xl opacity-50">{icon}</div>
+        {headerBadge && <div className="absolute top-3 start-3">{headerBadge}</div>}
         <div className="absolute top-3 end-3 flex items-center gap-1 bg-card/80 rounded-lg backdrop-blur-sm">
           <DocumentIconToggleButton
             icon={Star}

@@ -10,6 +10,7 @@ import { favoritesKeys } from '../api/favoritesKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
 import { profileKeys } from '@/features/profile/api/profileKeys';
+import type { FavoritesPaginatedData } from '../types/favorites.types';
 
 const log = logger.createScoped('useDeleteFavorite');
 
@@ -44,11 +45,26 @@ export function useDeleteFavorite(
             log.info('Starting delete favorite mutation', { favoriteId, tenant });
             return deleteFavorite(tenant, favoriteId);
         },
-        onSuccess: () => {
+        onSuccess: (_result, favoriteId) => {
             log.info('Delete favorite mutation successful');
 
             if (tenant) {
-                queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
+                queryClient.setQueriesData<FavoritesPaginatedData>(
+                    { queryKey: favoritesKeys.lists(tenant) },
+                    (old) => {
+                        if (!old || !old.data.some((f) => f.id === favoriteId)) return old;
+                        return {
+                            ...old,
+                            data: old.data.filter((f) => f.id !== favoriteId),
+                            meta: { ...old.meta, total: Math.max(0, old.meta.total - 1) },
+                        };
+                    }
+                );
+                queryClient.invalidateQueries({
+                    queryKey: favoritesKeys.lists(tenant),
+                    refetchType: 'none',
+                });
+                queryClient.invalidateQueries({ queryKey: favoritesKeys.lasts(tenant) });
             }
             queryClient.invalidateQueries({ queryKey: profileKeys.all });
 

@@ -10,7 +10,7 @@ import { favoritesKeys } from '../api/favoritesKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
 import { profileKeys } from '@/features/profile/api/profileKeys';
-import type { FavoriteData } from '../types/favorites.types';
+import type { FavoriteData, FavoritesPaginatedData } from '../types/favorites.types';
 import type { ApiError } from '@/core/api/types';
 
 const log = logger.createScoped('useCreateFavorite');
@@ -50,10 +50,28 @@ export function useCreateFavorite(
         onSuccess: (data) => {
             log.info('Create favorite mutation successful', { data });
 
-            // Invalidate all favorites queries (list + last),
-            // so any preview reflects the change without a manual reload
             if (tenant) {
-                queryClient.invalidateQueries({ queryKey: favoritesKeys.all(tenant) });
+                // Patch cached lists first so every star icon flips immediately
+                // instead of waiting on (or losing to) a refetch round-trip.
+                queryClient.setQueriesData<FavoritesPaginatedData>(
+                    { queryKey: favoritesKeys.lists(tenant) },
+                    (old) => {
+                        if (!old || !data?.document) return old;
+                        if (old.data.some((f) => f.document.id === data.document.id)) return old;
+                        return {
+                            ...old,
+                            data: [data, ...old.data],
+                            meta: { ...old.meta, total: old.meta.total + 1 },
+                        };
+                    }
+                );
+                // Lists are already patched: mark stale for next mount only.
+                queryClient.invalidateQueries({
+                    queryKey: favoritesKeys.lists(tenant),
+                    refetchType: 'none',
+                });
+                // "Last" previews are server-ordered subsets: refetch them.
+                queryClient.invalidateQueries({ queryKey: favoritesKeys.lasts(tenant) });
             }
             queryClient.invalidateQueries({ queryKey: profileKeys.all });
 

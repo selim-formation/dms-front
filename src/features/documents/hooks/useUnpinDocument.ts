@@ -11,6 +11,7 @@ import { pinnedDocumentsKeys } from '../api/pinnedDocumentsKeys';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
 import { profileKeys } from '@/features/profile/api/profileKeys';
+import type { PinnedDocumentData } from '../types/pinned.types';
 
 const log = logger.createScoped('useUnpinDocument');
 
@@ -57,15 +58,20 @@ export function useUnpinDocument(
             log.info('Starting unpin document mutation', { pinnedDocumentId, tenant });
             return unpinDocument(tenant, pinnedDocumentId);
         },
-        onSuccess: () => {
+        onSuccess: (_result, pinnedDocumentId) => {
             log.info('Unpin document mutation successful');
-            
-            // Invalidate all pinned documents queries (list + last),
-            // so the home page preview reflects the change without a manual reload
+
             if (tenant) {
+                queryClient.setQueriesData<PinnedDocumentData[]>(
+                    { queryKey: pinnedDocumentsKeys.lists(tenant) },
+                    (old) =>
+                        Array.isArray(old) ? old.filter((p) => p.id !== pinnedDocumentId) : old
+                );
                 queryClient.invalidateQueries({
-                    queryKey: pinnedDocumentsKeys.all(tenant),
+                    queryKey: pinnedDocumentsKeys.lists(tenant),
+                    refetchType: 'none',
                 });
+                queryClient.invalidateQueries({ queryKey: pinnedDocumentsKeys.lasts(tenant) });
             }
             queryClient.invalidateQueries({ queryKey: profileKeys.all });
 

@@ -1,7 +1,6 @@
-import { Upload } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/shared/components/ui/button";
+import { useProfile } from "@/features/profile/hooks/useProfile";
 import patternImage from "@/assets/ramadan_pattern_transparent.png";
 
 interface Props {
@@ -15,10 +14,11 @@ export default function HeroSection({
   greeting,
   firstName,
   logo,
-  tenant,
 }: Props) {
   void logo;
   const { t } = useTranslation(["home", "common"]);
+  const { profile } = useProfile();
+  const departments = profile?.user.departments;
   return (
     <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 px-8 py-10 text-primary-foreground z-10">
       {/* Decorative circles */}
@@ -52,18 +52,22 @@ export default function HeroSection({
             {t("home:heroSection.description")}
           </p>
 
-          <p className="mt-1 text-sm text-primary-foreground/60">
-            {t("home:heroSection.meta")}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <Link to="/$tenant/documents" params={{ tenant }}>
-            <Button className="bg-accent text-primary-foreground/90 hover:bg-accent/90 font-semibold rounded-full px-6 gap-2">
-              <Upload className="h-4 w-4" />{" "}
-              {t("common:actions.uploadDocument")}
-            </Button>
-          </Link>
+          {departments && departments.length > 0 && (
+            <ul
+              className="mt-3 flex flex-wrap gap-2"
+              aria-label={t("home:heroSection.departments")}
+            >
+              {departments.map((d) => (
+                <li
+                  key={d.id}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-primary-foreground backdrop-blur-sm"
+                >
+                  <Building2 className="h-3.5 w-3.5" aria-hidden />
+                  {d.title}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </section>

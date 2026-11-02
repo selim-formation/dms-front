@@ -169,7 +169,8 @@
   "heroSection": {
     "greeting": "{{greeting}}, {{firstName}}",
     "description": "Your document management system is ready to help you organize, review, and manage your files efficiently.",
-    "meta": "Marketing Department · 24 Documents · 3 Pending"
+    "meta": "Marketing Department · 24 Documents · 3 Pending",
+    "departments": "Your departments"
   },
   "homeHero": {
     "title": "What are you looking for?",
@@ -318,5 +319,61 @@
   "homePage": {
     "greeting": "Welcome back",
     "ramadanGreeting": "Ramadan Kareem"
+  },
+  "insights": {
+    "error": "Couldn't load this chart",
+    "retry": "Retry",
+    "empty": "No data yet",
+    "cards": {
+      "byType": {
+        "title": "Documents by Type",
+        "subtitle": "Distribution across document types"
+      },
+      "byDepartment": {
+        "title": "Documents by Department",
+        "subtitle": "Distribution across departments"
+      },
+      "byCategory": {
+        "title": "Documents by Establishment & Operational",
+        "subtitle": "Establishment vs operational documents"
+      },
+      "byRenewalType": {
+        "title": "Documents by Renewal & One-Time",
+        "subtitle": "Document renewal classification per type"
+      },
+      "byImportance": {
+        "title": "Documents by Importance",
+        "subtitle": "Degree of importance distribution"
+      },
+      "expiredByDepartment": {
+        "title": "Expired Documents by Department",
+        "subtitle": "Approved documents past their expiry date"
+      },
+      "byStatus": {
+        "title": "Documents by Status"
+      },
+      "expiryRisk": {
+        "title": "Expiry Risk Overview",
+        "subtitle": "{{percentage}}% of near-expiry documents have no active reminder"
+      },
+      "byDepartmentOwn": {
+        "title": "Documents by Your Departments",
+        "subtitle": "Distribution across your departments"
+      },
+      "expiredByDepartmentOwn": {
+        "title": "Expired Documents in Your Departments",
+        "subtitle": "Your approved documents past their expiry date"
+      }
+    },
+    "renewal": {
+      "oneTime": "One-Time",
+      "renewal": "Renewal"
+    },
+    "importance": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    }
   }
 }

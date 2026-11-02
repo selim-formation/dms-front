@@ -309,7 +309,7 @@
   },
   "documentShares": {
     "pageTitle": "Document Shares",
-    "pageSubtitle": "Manage documents you've shared with other users, and see what's been shared with you.",
+    "pageSubtitle": "Manage documents you've shared with users, departments and sections, and see what's been shared with you.",
     "errorTitle": "Failed to load shares",
     "sharedWith": "Shared with {{name}}",
     "sharedBy": "Shared by {{name}}",
@@ -333,14 +333,14 @@
     },
     "empty": {
       "givenTitle": "You haven't shared any documents",
-      "givenDescription": "Share a document from its detail page to grant view or download access to someone outside your department.",
+      "givenDescription": "Share a document from its detail page to grant view or download access to users, departments or sections.",
       "receivedTitle": "Nothing has been shared with you",
       "receivedDescription": "Documents other people share with you will show up here."
     },
     "form": {
       "createTitle": "Share document",
-      "createDescription": "Grant another user view or download access to this document.",
-      "createDescriptionWithTitle": "Grant another user view or download access to \"{{title}}\".",
+      "createDescription": "Grant users, departments or sections view or download access to this document.",
+      "createDescriptionWithTitle": "Grant users, departments or sections view or download access to \"{{title}}\".",
       "editTitle": "Edit share",
       "editDescription": "Update access for {{name}} on \"{{title}}\".",
       "recipientLabel": "Share with",
@@ -358,7 +358,15 @@
       "expiresAt": "Expires at",
       "expiresAtHint": "Leave empty to never expire until revoked.",
       "expiresAfterStarts": "Expiry date must be after the start date.",
-      "submitShare": "Share"
+      "submitShare": "Share",
+      "selectedTargets": "Selected recipients",
+      "removeTarget": "Remove {{name}}",
+      "departmentSearchPlaceholder": "Filter departments...",
+      "departmentNoResults": "No departments found",
+      "sectionSearchPlaceholder": "Filter sections...",
+      "sectionNoResults": "No sections found",
+      "sectionLoadError": "Couldn't load sections. Try again.",
+      "tooManyTargets": "You can pick at most {{max}} users, {{max}} departments and {{max}} sections at once."
     },
     "revoke": {
       "action": "Revoke",
@@ -366,6 +374,16 @@
       "description": "{{name}} will immediately lose access to \"{{title}}\". This can't be undone, but you can share the document again later.",
       "confirm": "Revoke access"
     },
-    "downloadFailed": "Couldn't download this file. Try again."
+    "downloadFailed": "Couldn't download this file. Try again.",
+    "targetType": {
+      "user": "User",
+      "department": "Department",
+      "section": "Section"
+    },
+    "targetTypePlural": {
+      "user": "Users",
+      "department": "Departments",
+      "section": "Sections"
+    }
   }
 }

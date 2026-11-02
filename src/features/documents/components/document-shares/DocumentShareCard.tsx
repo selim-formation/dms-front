@@ -1,8 +1,10 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pencil, Trash2 } from 'lucide-react';
 import DocumentCardGrid from '../DocumentCardGrid';
 import { Button } from '@/shared/components/ui/button';
+import ShareTargetBadge from './ShareTargetBadge';
+import { useDownloadDocumentShare } from '../../hooks/useDownloadDocumentShare';
 import type { DocumentShareData, DocumentShareDirection } from '../../types/documentShare.types';
 
 interface DocumentShareCardProps {
@@ -33,8 +35,20 @@ const STATUS_IMPORTANCE: Record<DocumentShareData['status'], 'Critical' | 'High'
  */
 function DocumentShareCard({ share, direction, onEdit, onRevoke }: DocumentShareCardProps) {
     const { t } = useTranslation(['documents', 'common']);
-    const counterpart = direction === 'given' ? share.shared_with : share.shared_by;
+    // Given: show who it reaches (user/department/section). Received: show who shared it.
+    const isGiven = direction === 'given';
+    const counterpartName = isGiven ? share.target.name : share.shared_by.name;
+    const counterpartDetail = isGiven
+        ? share.target.type === 'user'
+            ? (share.shared_with?.email ?? '')
+            : t(`documentShares.targetType.${share.target.type}`)
+        : share.shared_by.email;
     const isActionable = direction === 'received' && share.status === 'active';
+    const { download, isDownloading } = useDownloadDocumentShare();
+    const handleDownload = useCallback(
+        () => download({ shareId: share.id, filename: share.document.title }),
+        [download, share.id, share.document.title],
+    );
     const canManage = direction === 'given' && !share.revoked_at;
     const expires = formatDate(share.expires_at);
 
@@ -50,8 +64,8 @@ function DocumentShareCard({ share, direction, onEdit, onRevoke }: DocumentShare
         <DocumentCardGrid
             id={String(share.document.id)}
             name={share.document.title}
-            department={counterpart.name}
-            entity={counterpart.email}
+            department={counterpartName}
+            entity={counterpartDetail}
             renewal={share.can_download ? 'Renewable' : 'One-Time'}
             renewalLabel={accessLabel}
             importance={STATUS_IMPORTANCE[share.status]}
@@ -60,6 +74,9 @@ function DocumentShareCard({ share, direction, onEdit, onRevoke }: DocumentShare
             status={share.status === 'expired' || share.status === 'revoked' ? 'Expired' : 'Expires'}
             category=""
             downloadDisabled={!isActionable || !share.can_download}
+            onDownload={handleDownload}
+            isDownloading={isDownloading}
+            headerBadge={<ShareTargetBadge type={share.target.type} />}
             footerActions={
                 canManage ? (
                     <>

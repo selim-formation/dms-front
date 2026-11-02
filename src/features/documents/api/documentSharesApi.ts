@@ -7,7 +7,11 @@ import { apiClient } from '@/core/api/client';
 import { apiEndpoints, buildApiUrl } from '@/config/api.config';
 import { logger } from '@/shared/utils/logger';
 import type {
+    BulkCreateDocumentShareApiResponse,
+    BulkCreateDocumentSharePayload,
     CreateDocumentShareApiResponse,
+    DocumentShareLinkData,
+    GetDocumentShareLinkApiResponse,
     CreateDocumentSharePayload,
     DocumentShareData,
     DocumentSharesListParams,
@@ -103,7 +107,7 @@ export class DocumentSharesApiService {
         }
     }
 
-    /** Grant access. Re-POSTing the same document_id + shared_with pair updates/reactivates the existing share. */
+    /** Grant access to one target. Re-POSTing the same document + target updates/reactivates the existing share. */
     public async create(
         tenant: string,
         payload: CreateDocumentSharePayload
@@ -116,6 +120,40 @@ export class DocumentSharesApiService {
             return response.data.data;
         } catch (error) {
             log.error('Failed to create share', { error });
+            throw error;
+        }
+    }
+
+    /** Share with many users/departments/sections at once. Returns one share per target. */
+    public async createBulk(
+        tenant: string,
+        payload: BulkCreateDocumentSharePayload
+    ): Promise<DocumentShareData[]> {
+        try {
+            log.info(`Creating bulk shares for tenant: ${tenant}`, { payload });
+            const url = buildApiUrl(this.endpoints.documentShares.bulk, { tenant });
+            const response = await this.client.post<BulkCreateDocumentShareApiResponse>(url, payload);
+            return response.data.data ?? [];
+        } catch (error) {
+            log.error('Failed to create bulk shares', { error });
+            throw error;
+        }
+    }
+
+    /** Temporary signed URL (≤ 2h and ≤ share expiry). Needs an active share + can_download. */
+    public async fetchLink(
+        tenant: string,
+        shareId: number,
+        versionId?: number
+    ): Promise<DocumentShareLinkData> {
+        try {
+            const url = buildApiUrl(this.endpoints.documentShares.link, { tenant, id: shareId });
+            const response = await this.client.get<GetDocumentShareLinkApiResponse>(url, {
+                params: versionId ? { version_id: versionId } : undefined,
+            });
+            return response.data.data;
+        } catch (error) {
+            log.error('Failed to fetch share link', { error });
             throw error;
         }
     }
