@@ -82,7 +82,7 @@ export function UserMenu() {
 
         <DropdownMenuItem asChild>
           <a
-            href="https://dms.test/admin/login"
+            href="https://dms.formation-obs.com/admin/login"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center cursor-pointer"

@@ -24,6 +24,11 @@ import enEmployees from './locales/en/employees.json';
 import enRoles from './locales/en/roles.json';
 import enImports from './locales/en/imports.json';
 import enManagement from './locales/en/management.json';
+import enStorage from './locales/en/storage.json';
+import enTaskManagement from './locales/en/taskManagement.json';
+import enGalleries from './locales/en/galleries.json';
+import enUsers from './locales/en/users.json';
+import enCompanies from './locales/en/companies.json';
 
 import arCommon from './locales/ar/common.json';
 import arAuth from './locales/ar/auth.json';
@@ -42,6 +47,11 @@ import arEmployees from './locales/ar/employees.json';
 import arRoles from './locales/ar/roles.json';
 import arImports from './locales/ar/imports.json';
 import arManagement from './locales/ar/management.json';
+import arStorage from './locales/ar/storage.json';
+import arTaskManagement from './locales/ar/taskManagement.json';
+import arGalleries from './locales/ar/galleries.json';
+import arUsers from './locales/ar/users.json';
+import arCompanies from './locales/ar/companies.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ar'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
@@ -75,6 +85,11 @@ i18n
         roles: enRoles,
         imports: enImports,
         management: enManagement,
+        storage: enStorage,
+        taskManagement: enTaskManagement,
+        galleries: enGalleries,
+        users: enUsers,
+        companies: enCompanies,
       },
       ar: {
         common: arCommon,
@@ -94,12 +109,17 @@ i18n
         roles: arRoles,
         imports: arImports,
         management: arManagement,
+        storage: arStorage,
+        taskManagement: arTaskManagement,
+        galleries: arGalleries,
+        users: arUsers,
+        companies: arCompanies,
       },
     },
     supportedLngs: SUPPORTED_LANGUAGES,
     fallbackLng: 'en',
     defaultNS: DEFAULT_NAMESPACE,
-    ns: ['common', 'auth', 'home', 'documents', 'tasks', 'teams', 'dashboard', 'profile', 'departments', 'types', 'entities', 'sections', 'projects', 'employees', 'roles', 'imports', 'management'],
+    ns: ['common', 'auth', 'home', 'documents', 'tasks', 'teams', 'dashboard', 'profile', 'departments', 'types', 'entities', 'sections', 'projects', 'employees', 'roles', 'imports', 'management', 'storage', 'taskManagement', 'galleries', 'users', 'companies'],
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: LANGUAGE_STORAGE_KEY,

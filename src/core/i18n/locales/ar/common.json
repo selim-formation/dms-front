@@ -14,6 +14,20 @@
     },
     "dismiss": "إغلاق"
   },
+  "navGroups": {
+    "overview": "نظرة عامة",
+    "documents": "المستندات",
+    "workspace": "مساحة العمل",
+    "organization": "الهيكل التنظيمي",
+    "administration": "الإدارة"
+  },
+  "sidebar": {
+    "label": "التنقل الرئيسي",
+    "open": "فتح القائمة",
+    "close": "إغلاق القائمة",
+    "collapse": "طيّ الشريط الجانبي",
+    "expand": "توسيع الشريط الجانبي"
+  },
   "nav": {
     "home": "الرئيسية",
     "documents": "المستندات",
@@ -27,12 +41,16 @@
     "projects": "المشاريع",
     "employees": "الموظفون",
     "roles": "الأدوار",
+    "users": "المستخدمون",
+    "companies": "الشركات",
     "documentImports": "الاستيراد الجماعي",
     "documentManagement": "إدارة المستندات",
     "dashboard": "لوحة التحكم",
     "profile": "عرض الملف الشخصي",
     "documentShares": "المشاركات",
-    "pinnedDocuments": "المثبَّتة"
+    "pinnedDocuments": "المثبَّتة",
+    "storageConnections": "التخزين",
+    "galleries": "المعارض"
   },
   "actions": {
     "save": "حفظ",

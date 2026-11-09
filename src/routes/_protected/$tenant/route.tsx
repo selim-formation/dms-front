@@ -5,6 +5,7 @@
  */
 
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { AppShell } from "@/shared/components/layout/AppShell";
 import {
   validateTenant,
   tenantValidateQueryKey,
@@ -77,5 +78,9 @@ export const Route = createFileRoute("/_protected/$tenant")({
 
     return markValid();
   },
-  component: () => <Outlet />,
+  component: () => (
+    <AppShell>
+      <Outlet />
+    </AppShell>
+  ),
 });
