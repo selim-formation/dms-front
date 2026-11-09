@@ -1,0 +1,179 @@
+{
+  "page": {
+    "title": "Storage connections",
+    "subtitle": "Where your company's document files are kept.",
+    "create": "New connection",
+    "errorTitle": "Failed to load storage connections."
+  },
+  "status": {
+    "pending": "Pending",
+    "active": "Active",
+    "disabled": "Disabled",
+    "error": "Error"
+  },
+  "provider": {
+    "s3_compatible": "S3-compatible",
+    "sharepoint": "SharePoint",
+    "local": "Server folder"
+  },
+  "expiry": {
+    "expired": "Expired",
+    "soon": "Expires soon"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name…",
+    "status": "Status",
+    "provider": "Provider",
+    "sort": "Sort",
+    "clear": "Clear",
+    "allStatuses": "All statuses",
+    "allProviders": "All providers",
+    "sortOptions": {
+      "default": "Default first",
+      "name": "Name (A–Z)",
+      "-name": "Name (Z–A)",
+      "-last_tested_at": "Recently tested",
+      "last_tested_at": "Least recently tested",
+      "status": "Status",
+      "provider": "Provider",
+      "-created_at": "Newest"
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Name",
+      "provider": "Provider",
+      "status": "Status",
+      "lastTested": "Last tested",
+      "expires": "Credentials expire",
+      "actions": "Actions"
+    },
+    "default": "Default",
+    "defaultHint": "New files go here",
+    "noCredentials": "No credentials stored",
+    "neverTested": "Never tested"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "edit": "Edit",
+    "test": "Test connection",
+    "testCooling": "Test limit reached, wait a minute",
+    "makeDefault": "Make default",
+    "replaceCredentials": "Replace credentials",
+    "disable": "Disable",
+    "delete": "Delete"
+  },
+  "fields": {
+    "name": "Name",
+    "provider": "Provider",
+    "bucket": "Bucket",
+    "region": "Region",
+    "endpoint": "Endpoint",
+    "root": "Folder",
+    "access_key": "Access key",
+    "secret_key": "Secret key",
+    "drive_id": "Drive ID",
+    "azure_tenant_id": "Azure tenant ID",
+    "client_id": "Client ID",
+    "client_secret": "Client secret",
+    "directory": "Folder name",
+    "credentials_expires_at": "Credentials expire on"
+  },
+  "fieldHints": {
+    "endpoint": "Optional. Must be an https URL.",
+    "root": "Optional folder inside the bucket.",
+    "directory": "Letters, digits, dots, dashes and underscores only.",
+    "credentials_expires_at": "Optional. You'll be warned 30 days before."
+  },
+  "form": {
+    "createTitle": "New storage connection",
+    "createDescription": "Saving only checks the format. Test the connection afterwards to make it usable.",
+    "editTitle": "Edit connection",
+    "editDescription": "Change the name or where it points. Secrets have their own action.",
+    "settings": "Settings",
+    "credentials": "Credentials",
+    "credentialsHint": "Secrets are stored securely and are never shown again.",
+    "localHint": "A server folder has no credentials. The server decides where it really lives.",
+    "providerLocked": "The provider can't be changed. Create a new connection instead.",
+    "movesWarning": "Changing where it points sends the connection back to Pending until it passes a new test.",
+    "movesDefaultWarning": "This is the default connection. Changing where it points sends it back to Pending and it stops being the default until it passes a new test.",
+    "create": "Create connection",
+    "save": "Save changes",
+    "failed": "Could not save this connection.",
+    "errors": {
+      "required": "This field is required.",
+      "tooLong": "This value is too long.",
+      "https": "Must be an https URL.",
+      "directory": "Use letters, digits, dots, dashes and underscores only.",
+      "expiryFuture": "Must be a future date.",
+      "controlChars": "The name can't contain control characters."
+    }
+  },
+  "credentials": {
+    "title": "Replace credentials",
+    "description": "Enter the full new set of credentials for “{{name}}”.",
+    "warning": "The connection goes back to Pending and must pass a new test before it can receive files.",
+    "warningDefault": "This is the default connection. It goes back to Pending and stops being the default until it passes a new test.",
+    "expiryReplaced": "The expiry date is replaced too: leave it empty and it is cleared.",
+    "save": "Replace credentials"
+  },
+  "test": {
+    "title": "Connection test",
+    "description": "Writes a small probe file to “{{name}}”, reads it back, compares and deletes it.",
+    "running": "Testing the connection…",
+    "passed": "Connection test passed",
+    "notPassed": "Connection test failed",
+    "steps": {
+      "write": "Write the probe file",
+      "size": "Check its size",
+      "read": "Read it back",
+      "compare": "Compare the content",
+      "delete": "Delete the probe file"
+    },
+    "ok": "Passed",
+    "fail": "Failed",
+    "nextPassed": "The connection is now active. You can make it the default.",
+    "nextFailed": "Fix the cause, then test again. Until it passes, it can't receive files.",
+    "runAgain": "Run again",
+    "rateLimited": "Too many tests. You can test 5 times a minute; try again shortly.",
+    "failed": "The test could not be run."
+  },
+  "confirm": {
+    "default": {
+      "title": "Make this the default?",
+      "description": "New files will be stored in “{{name}}”. The current default is replaced.",
+      "confirm": "Make default"
+    },
+    "disable": {
+      "title": "Disable this connection?",
+      "description": "“{{name}}” will stop receiving new files. Existing files stay readable. This cannot be undone: a disabled connection can't be enabled again, you'd create a new one.",
+      "confirm": "Disable",
+      "defaultWarning": "It is the default: until another active connection is made the default, uploads will fail."
+    },
+    "delete": {
+      "title": "Delete this connection?",
+      "description": "“{{name}}” will be deleted. This cannot be undone.",
+      "confirm": "Delete",
+      "suggestDisable": "Disable it instead."
+    }
+  },
+  "notice": {
+    "created": "Connection created. Test it before it can receive files.",
+    "updated": "Connection updated. Test it again if you changed where it points.",
+    "credentialsReplaced": "Credentials replaced. Test the connection before it can receive files.",
+    "default": "Default connection changed.",
+    "disable": "Connection disabled. Existing files stay readable.",
+    "delete": "Connection deleted.",
+    "forbidden": "You don't have permission to do that.",
+    "notFound": "This connection no longer exists.",
+    "failed": "Something went wrong. Please try again."
+  },
+  "states": {
+    "emptyTitle": "No storage connections",
+    "emptyFiltered": "No connection matches these filters.",
+    "emptyCreate": "Create one to choose where files are kept.",
+    "emptyDescription": "No storage connection has been set up yet.",
+    "forbiddenTitle": "You can't manage storage",
+    "forbiddenDescription": "You don't have permission to view this screen."
+  }
+}
