@@ -1,0 +1,289 @@
+{
+  "page": {
+    "title": "المعارض",
+    "subtitle": "مجموعات مسمّاة من الصور: فعاليات وفرق ومشاريع…",
+    "errorTitle": "تعذّر تحميل المعارض",
+    "create": "معرض جديد"
+  },
+  "tabs": {
+    "label": "عرض المعارض",
+    "all": "الكل",
+    "trash": "المحذوفات"
+  },
+  "imageTabs": {
+    "label": "عرض الصور",
+    "live": "الصور",
+    "trash": "المحذوفات"
+  },
+  "type": {
+    "employees": "الموظفون",
+    "customers": "العملاء",
+    "suppliers": "الموردون",
+    "others": "أخرى",
+    "managers": "المديرون",
+    "events": "الفعاليات",
+    "projects": "المشاريع"
+  },
+  "imagesCount_zero": "لا صور",
+  "imagesCount_one": "صورة واحدة",
+  "imagesCount_two": "صورتان",
+  "imagesCount_few": "{{count}} صور",
+  "imagesCount_many": "{{count}} صورة",
+  "imagesCount_other": "{{count}} صورة",
+  "filters": {
+    "searchPlaceholder": "ابحث بالاسم أو المدير أو الوصف...",
+    "type": "النوع",
+    "hasImages": "الصور",
+    "allTypes": "كل الأنواع",
+    "anyImages": "بصور أو بدونها",
+    "withImages": "بها صور",
+    "empty": "فارغة",
+    "sort": "الترتيب",
+    "clear": "مسح التصفية",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "name": "الاسم أ–ي",
+      "-name": "الاسم ي–أ",
+      "-time_period": "الفترة: الأحدث",
+      "time_period": "الفترة: الأقدم",
+      "-images_count": "الأكثر صوراً",
+      "images_count": "الأقل صوراً",
+      "type": "النوع أ–ي"
+    }
+  },
+  "imageFilters": {
+    "searchPlaceholder": "ابحث في الصور بالعنوان...",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "title": "العنوان أ–ي",
+      "-title": "العنوان ي–أ"
+    }
+  },
+  "table": {
+    "select": "تحديد {{name}}",
+    "selectColumn": "تحديد",
+    "columns": {
+      "name": "المعرض",
+      "type": "النوع",
+      "manager": "المدير",
+      "period": "الفترة",
+      "images": "الصور",
+      "created": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    }
+  },
+  "imageTable": {
+    "select": "تحديد {{name}}"
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "imageMenu": "إجراءات الصورة {{name}}",
+    "open": "فتح المعرض",
+    "edit": "تعديل",
+    "editImage": "تعديل الصورة",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي",
+    "addImages": "إضافة صور"
+  },
+  "details": {
+    "inTrash": "في المحذوفات",
+    "manager": "المدير",
+    "period": "الفترة"
+  },
+  "detail": {
+    "back": "العودة إلى المعارض",
+    "imagesSection": "الصور"
+  },
+  "states": {
+    "emptyTitle": "لا توجد معارض",
+    "emptyTrash": "سلة المحذوفات فارغة",
+    "emptyDescription": "جرّب تبويباً أو بحثاً أو تصفية مختلفة.",
+    "forbiddenTitle": "لا يمكنك عرض المعارض",
+    "forbiddenDescription": "ليست لديك صلاحية لعرض هذه الشاشة.",
+    "notFound": "هذا المعرض لم يعد موجوداً أو غير متاح لك.",
+    "viewError": "تعذّر تحميل هذا المعرض."
+  },
+  "imageStates": {
+    "emptyTitle": "لا توجد صور بعد",
+    "emptyTrash": "لا توجد صور في المحذوفات",
+    "emptyDescription": "الصور التي تضيفها إلى هذا المعرض تظهر هنا.",
+    "errorTitle": "تعذّر تحميل الصور"
+  },
+  "upload": {
+    "pick": "اختر صورة",
+    "replace": "استبدال الصورة",
+    "limit": "JPG أو PNG أو WebP أو GIF · حتى {{size}}",
+    "remove": "إزالة الصورة",
+    "progress": "تقدّم الرفع",
+    "uploading": "جارٍ رفع {{sent}} من {{total}}",
+    "assembling": "جارٍ المعالجة…",
+    "done": "تم الرفع",
+    "failed": "فشل الرفع",
+    "problem": {
+      "extension": "يُقبل فقط JPG وJPEG وPNG وWebP وGIF.",
+      "empty": "هذا الملف فارغ.",
+      "tooLarge": "حجم الصورة أكبر من 10 ميغابايت."
+    }
+  },
+  "form": {
+    "createTitle": "معرض جديد",
+    "createSubtitle": "صِف المعرض وأضف أولى صوره.",
+    "editTitle": "تعديل المعرض",
+    "editSubtitle": "الحفظ يستبدل كل الحقول: أي حقل تفرّغه يُحذف. الصور لا تتأثر.",
+    "stepsLabel": "خطوات النموذج",
+    "steps": {
+      "details": "التفاصيل",
+      "images": "الصور"
+    },
+    "name": "الاسم",
+    "namePlaceholder": "مثال: صور الفريق",
+    "type": "النوع",
+    "choose": "اختر…",
+    "period": "الفترة الزمنية",
+    "periodHint": "اختياري. التاريخ الذي يتناوله المعرض.",
+    "manager": "المدير",
+    "managerPlaceholder": "اختياري",
+    "description": "الوصف",
+    "descriptionPlaceholder": "عمّ يتحدث هذا المعرض؟",
+    "descriptionHint": "{{count}} / {{max}}",
+    "imagesHint": "اختياري. تُرفع كل صورة فور اختيارها، ويُحفظ كل شيء معاً، وإذا رُفضت صورة واحدة لا يُنشأ شيء.",
+    "imageN": "الصورة {{n}}",
+    "file": "الملف",
+    "imageTitle": "العنوان",
+    "imageTitlePlaceholder": "مثال: المدخل الرئيسي",
+    "removeImage": "إزالة الصورة",
+    "noImagesYet": "لا توجد صور بعد. يمكنك أيضاً إضافتها لاحقاً من صفحة المعرض.",
+    "addImage": "إضافة صورة",
+    "imagesLimit": "تم بلوغ حد {{max}} صورة",
+    "cancel": "إلغاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "create": "إنشاء المعرض",
+    "save": "حفظ التغييرات",
+    "uploadingFiles": "جارٍ الرفع…",
+    "errors": {
+      "nameRequired": "المعرض يحتاج إلى اسم.",
+      "nameTooLong": "لا يمكن أن يتجاوز الاسم 255 حرفاً.",
+      "typeRequired": "اختر نوع المعرض.",
+      "descriptionTooLong": "لا يمكن أن يتجاوز الوصف 5000 حرف.",
+      "managerTooLong": "لا يمكن أن يتجاوز اسم المدير 255 حرفاً.",
+      "uploadPending": "انتظر حتى ينتهي الرفع.",
+      "fileRequired": "اختر صورة.",
+      "imageTitleRequired": "أعطِ الصورة عنواناً.",
+      "imageTitleTooLong": "لا يمكن أن يتجاوز العنوان 255 حرفاً.",
+      "imagesRequired": "أضف صورة واحدة على الأقل.",
+      "generic": "تعذّر حفظ المعرض. حاول مرة أخرى."
+    }
+  },
+  "addImages": {
+    "title": "إضافة صور",
+    "description": "حتى 20 صورة دفعة واحدة. إذا رُفضت واحدة لا تُضاف أي صورة.",
+    "submit": "إضافة الصور"
+  },
+  "editImage": {
+    "title": "تعديل الصورة",
+    "description": "غيّر العنوان أو استبدل الصورة.",
+    "fileHint": "اختياري. الملف المرفوض لا يغيّر شيئاً."
+  },
+  "confirm": {
+    "delete": {
+      "title": "نقل إلى المحذوفات؟",
+      "description": "سيتم نقل «{{name}}» إلى المحذوفات. يمكنك استعادته لاحقاً.",
+      "confirm": "نقل إلى المحذوفات"
+    },
+    "restore": {
+      "title": "استعادة المعرض؟",
+      "description": "ستتم إعادة «{{name}}» من المحذوفات.",
+      "confirm": "استعادة"
+    },
+    "force_delete": {
+      "title": "حذف نهائي؟",
+      "description": "سيُزال «{{name}}» وكل صوره، بما فيها المحذوفة، وملفاتها المخزّنة نهائياً. لا يمكن التراجع.",
+      "confirm": "حذف نهائي"
+    },
+    "image": {
+      "delete": {
+        "title": "نقل الصورة إلى المحذوفات؟",
+        "description": "سيتم نقل «{{name}}» إلى المحذوفات. يمكنك استعادتها لاحقاً.",
+        "confirm": "نقل إلى المحذوفات"
+      },
+      "restore": {
+        "title": "استعادة الصورة؟",
+        "description": "ستتم إعادة «{{name}}» من المحذوفات.",
+        "confirm": "استعادة"
+      },
+      "force_delete": {
+        "title": "حذف الصورة نهائياً؟",
+        "description": "ستُزال «{{name}}» وملفها المخزّن نهائياً. لا يمكن التراجع.",
+        "confirm": "حذف نهائي"
+      }
+    },
+    "bulk": {
+      "delete": {
+        "title": "نقل {{count}} معرض إلى المحذوفات؟",
+        "description": "إذا تعذّر حذف أي معرض محدد فلن يتغيّر شيء.",
+        "confirm": "نقل إلى المحذوفات"
+      },
+      "restore": {
+        "title": "استعادة {{count}} معرض؟",
+        "description": "إذا تعذّرت استعادة أي معرض محدد فلن يتغيّر شيء.",
+        "confirm": "استعادة"
+      },
+      "force_delete": {
+        "title": "حذف {{count}} معرض نهائياً؟",
+        "description": "ستُزال صورها وملفاتها المخزّنة نهائياً ولا يمكن التراجع. إذا تعذّر حذف أي منها فلن يتغيّر شيء.",
+        "confirm": "حذف نهائي"
+      }
+    },
+    "imageBulk": {
+      "delete": {
+        "title": "نقل {{count}} صورة إلى المحذوفات؟",
+        "description": "إذا تعذّر حذف أي صورة محددة فلن يتغيّر شيء.",
+        "confirm": "نقل إلى المحذوفات"
+      },
+      "restore": {
+        "title": "استعادة {{count}} صورة؟",
+        "description": "إذا تعذّرت استعادة أي صورة محددة فلن يتغيّر شيء.",
+        "confirm": "استعادة"
+      },
+      "force_delete": {
+        "title": "حذف {{count}} صورة نهائياً؟",
+        "description": "ستُزال ملفاتها المخزّنة نهائياً ولا يمكن التراجع. إذا تعذّر حذف أي منها فلن يتغيّر شيء.",
+        "confirm": "حذف نهائي"
+      }
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء المعرض.",
+    "updated": "تم تحديث المعرض.",
+    "delete": "تم نقل المعرض إلى المحذوفات.",
+    "restore": "تمت استعادة المعرض.",
+    "force_delete": "تم حذف المعرض نهائياً.",
+    "image_delete": "تم نقل الصورة إلى المحذوفات.",
+    "image_restore": "تمت استعادة الصورة.",
+    "image_force_delete": "تم حذف الصورة نهائياً.",
+    "imagesAdded_zero": "لم تُضف صور.",
+    "imagesAdded_one": "تمت إضافة صورة واحدة.",
+    "imagesAdded_two": "تمت إضافة صورتين.",
+    "imagesAdded_few": "تمت إضافة {{count}} صور.",
+    "imagesAdded_many": "تمت إضافة {{count}} صورة.",
+    "imagesAdded_other": "تمت إضافة {{count}} صورة.",
+    "imageUpdated": "تم تحديث الصورة.",
+    "bulk": {
+      "delete": "تم نقل {{count}} معرض إلى المحذوفات.",
+      "restore": "تمت استعادة {{count}} معرض.",
+      "force_delete": "تم حذف {{count}} معرض نهائياً."
+    },
+    "imageBulk": {
+      "delete": "تم نقل {{count}} صورة إلى المحذوفات.",
+      "restore": "تمت استعادة {{count}} صورة.",
+      "force_delete": "تم حذف {{count}} صورة نهائياً."
+    },
+    "notFound": "هذا العنصر لم يعد موجوداً أو غير متاح لك. تم تحديث البيانات.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك.",
+    "failed": "فشل الإجراء. حاول مرة أخرى."
+  }
+}

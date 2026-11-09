@@ -1,0 +1,281 @@
+{
+  "page": {
+    "title": "Galleries",
+    "subtitle": "Named collections of pictures: events, teams, projects…",
+    "errorTitle": "Failed to load galleries",
+    "create": "New gallery"
+  },
+  "tabs": {
+    "label": "Gallery view",
+    "all": "All",
+    "trash": "Trash"
+  },
+  "imageTabs": {
+    "label": "Picture view",
+    "live": "Pictures",
+    "trash": "Trash"
+  },
+  "type": {
+    "employees": "Employees",
+    "customers": "Customers",
+    "suppliers": "Suppliers",
+    "others": "Others",
+    "managers": "Managers",
+    "events": "Events",
+    "projects": "Projects"
+  },
+  "imagesCount_one": "{{count}} picture",
+  "imagesCount_other": "{{count}} pictures",
+  "filters": {
+    "searchPlaceholder": "Search by name, manager or description...",
+    "type": "Type",
+    "hasImages": "Pictures",
+    "allTypes": "All types",
+    "anyImages": "With or without pictures",
+    "withImages": "With pictures",
+    "empty": "Empty",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "-time_period": "Period: latest",
+      "time_period": "Period: earliest",
+      "-images_count": "Most pictures",
+      "images_count": "Fewest pictures",
+      "type": "Type A–Z"
+    }
+  },
+  "imageFilters": {
+    "searchPlaceholder": "Search pictures by title...",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "title": "Title A–Z",
+      "-title": "Title Z–A"
+    }
+  },
+  "table": {
+    "select": "Select {{name}}",
+    "selectColumn": "Select",
+    "columns": {
+      "name": "Gallery",
+      "type": "Type",
+      "manager": "Manager",
+      "period": "Period",
+      "images": "Pictures",
+      "created": "Created",
+      "actions": "Actions"
+    }
+  },
+  "imageTable": {
+    "select": "Select {{name}}"
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "imageMenu": "Actions for picture {{name}}",
+    "open": "Open gallery",
+    "edit": "Edit",
+    "editImage": "Edit picture",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently",
+    "addImages": "Add pictures"
+  },
+  "details": {
+    "inTrash": "In trash",
+    "manager": "Manager",
+    "period": "Period"
+  },
+  "detail": {
+    "back": "Back to galleries",
+    "imagesSection": "Pictures"
+  },
+  "states": {
+    "emptyTitle": "No galleries found",
+    "emptyTrash": "The trash is empty",
+    "emptyDescription": "Try a different tab, search or filter.",
+    "forbiddenTitle": "You can't view galleries",
+    "forbiddenDescription": "You don't have permission to view this screen.",
+    "notFound": "This gallery no longer exists or isn't available to you.",
+    "viewError": "Failed to load this gallery."
+  },
+  "imageStates": {
+    "emptyTitle": "No pictures yet",
+    "emptyTrash": "No pictures in the trash",
+    "emptyDescription": "Pictures you add to this gallery appear here.",
+    "errorTitle": "Failed to load pictures"
+  },
+  "upload": {
+    "pick": "Choose a picture",
+    "replace": "Replace the picture",
+    "limit": "JPG, PNG, WebP or GIF · up to {{size}}",
+    "remove": "Remove picture",
+    "progress": "Upload progress",
+    "uploading": "Uploading {{sent}} of {{total}}",
+    "assembling": "Processing…",
+    "done": "Uploaded",
+    "failed": "Upload failed",
+    "problem": {
+      "extension": "Only JPG, JPEG, PNG, WebP or GIF pictures are accepted.",
+      "empty": "This file is empty.",
+      "tooLarge": "The picture is larger than 10 MB."
+    }
+  },
+  "form": {
+    "createTitle": "New gallery",
+    "createSubtitle": "Describe the gallery and add its first pictures.",
+    "editTitle": "Edit gallery",
+    "editSubtitle": "Saving replaces every field: anything you clear is removed. Pictures are not touched.",
+    "stepsLabel": "Form steps",
+    "steps": {
+      "details": "Details",
+      "images": "Pictures"
+    },
+    "name": "Name",
+    "namePlaceholder": "e.g. Team photos",
+    "type": "Type",
+    "choose": "Choose…",
+    "period": "Time period",
+    "periodHint": "Optional. The date the gallery is about.",
+    "manager": "Manager",
+    "managerPlaceholder": "Optional",
+    "description": "Description",
+    "descriptionPlaceholder": "What is this gallery about?",
+    "descriptionHint": "{{count}} / {{max}}",
+    "imagesHint": "Optional. Each picture uploads as soon as you choose it; everything is saved together, and if one is refused none is created.",
+    "imageN": "Picture {{n}}",
+    "file": "File",
+    "imageTitle": "Title",
+    "imageTitlePlaceholder": "e.g. Front entrance",
+    "removeImage": "Remove picture",
+    "noImagesYet": "No pictures yet. You can also add them later from the gallery page.",
+    "addImage": "Add a picture",
+    "imagesLimit": "Limit of {{max}} pictures reached",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "create": "Create gallery",
+    "save": "Save changes",
+    "uploadingFiles": "Uploading…",
+    "errors": {
+      "nameRequired": "The gallery needs a name.",
+      "nameTooLong": "The name can't be longer than 255 characters.",
+      "typeRequired": "Choose the gallery type.",
+      "descriptionTooLong": "The description can't be longer than 5000 characters.",
+      "managerTooLong": "The manager name can't be longer than 255 characters.",
+      "uploadPending": "Wait for the upload to finish.",
+      "fileRequired": "Choose a picture.",
+      "imageTitleRequired": "Give the picture a title.",
+      "imageTitleTooLong": "The title can't be longer than 255 characters.",
+      "imagesRequired": "Add at least one picture.",
+      "generic": "The gallery could not be saved. Try again."
+    }
+  },
+  "addImages": {
+    "title": "Add pictures",
+    "description": "Up to 20 pictures at once. If one is refused, none is added.",
+    "submit": "Add pictures"
+  },
+  "editImage": {
+    "title": "Edit picture",
+    "description": "Change the title or replace the picture.",
+    "fileHint": "Optional. A refused file changes nothing."
+  },
+  "confirm": {
+    "delete": {
+      "title": "Move to trash?",
+      "description": "“{{name}}” will be moved to the trash. You can restore it later.",
+      "confirm": "Move to trash"
+    },
+    "restore": {
+      "title": "Restore gallery?",
+      "description": "“{{name}}” will be brought back from the trash.",
+      "confirm": "Restore"
+    },
+    "force_delete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” and ALL its pictures, including trashed ones, and their stored files will be removed for good. This can't be undone.",
+      "confirm": "Delete permanently"
+    },
+    "image": {
+      "delete": {
+        "title": "Move picture to trash?",
+        "description": "“{{name}}” will be moved to the trash. You can restore it later.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore picture?",
+        "description": "“{{name}}” will be brought back from the trash.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Delete picture permanently?",
+        "description": "“{{name}}” and its stored file will be removed for good. This can't be undone.",
+        "confirm": "Delete permanently"
+      }
+    },
+    "bulk": {
+      "delete": {
+        "title": "Move {{count}} galleries to the trash?",
+        "description": "If any selected gallery can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} galleries?",
+        "description": "If any selected gallery can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} galleries?",
+        "description": "Their pictures and stored files are removed for good and this can't be undone. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    },
+    "imageBulk": {
+      "delete": {
+        "title": "Move {{count}} pictures to the trash?",
+        "description": "If any selected picture can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} pictures?",
+        "description": "If any selected picture can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} pictures?",
+        "description": "Their stored files are removed for good and this can't be undone. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    }
+  },
+  "notice": {
+    "created": "Gallery created.",
+    "updated": "Gallery updated.",
+    "delete": "Gallery moved to the trash.",
+    "restore": "Gallery restored.",
+    "force_delete": "Gallery permanently deleted.",
+    "image_delete": "Picture moved to the trash.",
+    "image_restore": "Picture restored.",
+    "image_force_delete": "Picture permanently deleted.",
+    "imagesAdded_one": "{{count}} picture added.",
+    "imagesAdded_other": "{{count}} pictures added.",
+    "imageUpdated": "Picture updated.",
+    "bulk": {
+      "delete": "{{count}} galleries moved to the trash.",
+      "restore": "{{count}} galleries restored.",
+      "force_delete": "{{count}} galleries permanently deleted."
+    },
+    "imageBulk": {
+      "delete": "{{count}} pictures moved to the trash.",
+      "restore": "{{count}} pictures restored.",
+      "force_delete": "{{count}} pictures permanently deleted."
+    },
+    "notFound": "That item no longer exists or isn't available to you. The data was refreshed.",
+    "forbidden": "You don't have permission to do that.",
+    "failed": "That action failed. Try again."
+  }
+}
