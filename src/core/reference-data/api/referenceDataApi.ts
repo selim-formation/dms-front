@@ -10,7 +10,7 @@
 import { apiClient } from '@/core/api/client';
 import { apiEndpoints, buildApiUrl } from '@/config/api.config';
 import { logger } from '@/shared/utils/logger';
-import type { PermissionItem, ReferenceItem, ReferenceListApiResponse } from '../types/referenceData.types';
+import type { PermissionItem, UserItem, ReferenceItem, ReferenceListApiResponse } from '../types/referenceData.types';
 
 const log = logger.createScoped('ReferenceDataApi');
 
@@ -60,4 +60,27 @@ export async function getPermissions(tenant: string): Promise<PermissionItem[]> 
     const payload = response.data.data;
     const items = Array.isArray(payload) ? payload : (payload?.data ?? []);
     return items.map(({ id, name }) => ({ id, name }));
+}
+
+type Raw = Record<string, unknown>;
+const names = (v: unknown): string[] =>
+    Array.isArray(v) ? v.map((r) => (typeof r === 'string' ? r : String((r as Raw)?.name ?? ''))).filter(Boolean) : [];
+const ids = (v: unknown): number[] =>
+    Array.isArray(v) ? v.map((d) => (typeof d === 'number' ? d : Number((d as Raw)?.id))).filter(Number.isFinite) : [];
+
+/**
+ * Tenant users for pickers. Accepts a flat array or a paginated payload and
+ * normalises `roles` / `departments` whichever shape the backend returns.
+ */
+export async function getUsers(tenant: string): Promise<UserItem[]> {
+    const url = buildApiUrl(apiEndpoints.users.list, { tenant });
+    const response = await apiClient.getInstance().get<{ data: Raw[] | { data: Raw[] } }>(url, { params: { per_page: 100 } });
+    const payload = response.data.data;
+    const list = (Array.isArray(payload) ? payload : (payload?.data ?? [])) as Raw[];
+    return list.map((u) => ({
+        id: Number(u.id),
+        name: String(u.name ?? ''),
+        roles: names(u.roles),
+        department_ids: ids(u.departments ?? u.department_ids),
+    }));
 }

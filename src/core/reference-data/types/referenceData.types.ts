@@ -9,6 +9,8 @@ export interface ReferenceItem {
     title: string;
     /** Some lists (e.g. sections) expose `name` instead of / alongside `title`. */
     name?: string;
+    /** Sections only: the department they belong to. */
+    department_id?: number | null;
     /** Temporary signed Wasabi URL (2h expiry), not a static path — don't persist across sessions. */
     image: string | null;
     tenant_id: string;
@@ -25,4 +27,12 @@ export interface ReferenceListApiResponse {
 export interface PermissionItem {
     id: number;
     name: string;
+}
+
+/** A tenant user as needed by pickers (responsible / cc). Roles and departments are best-effort. */
+export interface UserItem {
+    id: number;
+    name: string;
+    roles: string[];
+    department_ids: number[];
 }

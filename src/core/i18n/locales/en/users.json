@@ -1,0 +1,192 @@
+{
+  "page": {
+    "title": "Users",
+    "subtitle": "Manage the people of this company: roles, departments, sections and status",
+    "errorTitle": "Failed to load users",
+    "create": "New user"
+  },
+  "tabs": {
+    "label": "User view",
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive",
+    "trash": "Trash"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "unknown": "Unknown",
+    "trashed": "In trash"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name or email...",
+    "role": "Role",
+    "department": "Department",
+    "allRoles": "All roles",
+    "allDepartments": "All departments",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "email": "Email A–Z",
+      "-email": "Email Z–A",
+      "-updated_at": "Recently updated",
+      "updated_at": "Least recently updated",
+      "-email_verified_at": "Verified most recently",
+      "email_verified_at": "Verified longest ago"
+    }
+  },
+  "table": {
+    "select": "Select {{name}}",
+    "selectColumn": "Select",
+    "you": "You",
+    "notVerified": "Not verified",
+    "columns": {
+      "user": "User",
+      "status": "Status",
+      "roles": "Roles",
+      "departments": "Departments",
+      "sections": "Sections",
+      "verified": "Verified",
+      "created": "Created",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "view": "View",
+    "edit": "Edit",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "details": {
+    "title": "User details",
+    "roles": "Roles",
+    "departments": "Departments",
+    "sections": "Sections",
+    "verified": "Email verified",
+    "created": "Created",
+    "updated": "Updated",
+    "deleted": "Deleted"
+  },
+  "form": {
+    "createTitle": "New user",
+    "createDescription": "Add a person to this company with at least one role.",
+    "editTitle": "Edit user",
+    "editDescription": "Only the fields you change are saved.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Sara Ali",
+    "email": "Email",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "newPassword": "New password",
+    "passwordHint": "8 to 255 characters.",
+    "passwordEditHint": "Leave empty to keep the current password. Changing it signs the person out of their other sessions.",
+    "currentPassword": "Current password",
+    "currentPasswordHint": "Needed only when you change your own password.",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "roles": "Roles",
+    "rolesHint": "You can only give roles whose permissions you hold yourself.",
+    "departments": "Departments",
+    "sections": "Sections",
+    "search": "Search…",
+    "noOptions": "Nothing to choose from.",
+    "noSections": "The chosen departments have no sections.",
+    "sectionsNeedDepartment": "Choose a department first.",
+    "selected": "Selected: {{count}}",
+    "selfLocked": "You can't change your own roles, departments or sections.",
+    "optionsError": "Could not load the list. Tap to retry.",
+    "create": "Create user",
+    "save": "Save changes",
+    "errors": {
+      "nameRequired": "The name is required.",
+      "nameTooLong": "The name can't be longer than 255 characters.",
+      "emailRequired": "The email is required.",
+      "emailInvalid": "Enter a valid email address.",
+      "emailTooLong": "The email can't be longer than 255 characters.",
+      "passwordRequired": "The password is required.",
+      "passwordTooShort": "The password must be at least {{min}} characters.",
+      "passwordTooLong": "The password can't be longer than 255 characters.",
+      "currentPasswordRequired": "Enter your current password to change it.",
+      "rolesRequired": "Choose at least one role.",
+      "rolesTooMany": "Choose at most {{max}} roles."
+    }
+  },
+  "confirm": {
+    "activate": {
+      "title": "Activate user?",
+      "description": "“{{name}}” will be able to use this company again.",
+      "confirm": "Activate"
+    },
+    "deactivate": {
+      "title": "Deactivate user?",
+      "description": "“{{name}}” will be blocked from this company. Their data is kept and you can activate them again.",
+      "confirm": "Deactivate"
+    },
+    "delete": {
+      "title": "Move to trash?",
+      "description": "“{{name}}” will be signed out and moved to the trash. You can restore them later.",
+      "confirm": "Move to trash"
+    },
+    "restore": {
+      "title": "Restore user?",
+      "description": "“{{name}}” will be brought back from the trash.",
+      "confirm": "Restore"
+    },
+    "force_delete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” will be removed for good and this can't be undone. Their documents, versions and tasks must be moved or deleted first.",
+      "confirm": "Delete permanently"
+    },
+    "bulk": {
+      "delete": {
+        "title": "Move {{count}} users to the trash?",
+        "description": "They will be signed out. If any selected user can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} users?",
+        "description": "If any selected user can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} users?",
+        "description": "They are removed for good and this can't be undone. Their documents and tasks must be moved first. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    }
+  },
+  "notice": {
+    "created": "User created.",
+    "updated": "User updated.",
+    "activate": "User activated.",
+    "deactivate": "User deactivated.",
+    "delete": "User moved to the trash.",
+    "restore": "User restored.",
+    "force_delete": "User permanently deleted.",
+    "bulk": {
+      "delete": "{{count}} users moved to the trash.",
+      "restore": "{{count}} users restored.",
+      "force_delete": "{{count}} users permanently deleted."
+    },
+    "notFound": "That user no longer exists or isn't available to you. The list was refreshed.",
+    "forbidden": "You don't have permission to do that.",
+    "failed": "That action failed. Try again."
+  },
+  "states": {
+    "emptyTitle": "No users found",
+    "emptyTrash": "The trash is empty",
+    "emptyDescription": "Try a different tab, search or filter.",
+    "forbiddenTitle": "You can't view users",
+    "forbiddenDescription": "You don't have permission to view this screen.",
+    "notFound": "This user no longer exists or isn't available to you.",
+    "viewError": "Failed to load this user."
+  }
+}
