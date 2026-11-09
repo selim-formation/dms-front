@@ -1,0 +1,169 @@
+{
+  "page": {
+    "title": "Companies",
+    "subtitle": "The companies you belong to: features, logo and lifecycle",
+    "errorTitle": "Failed to load companies",
+    "create": "New company"
+  },
+  "tabs": {
+    "label": "Company view",
+    "all": "Companies",
+    "trash": "Trash"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name, slug, id or domain...",
+    "feature": "Feature",
+    "anyFeature": "Any feature",
+    "sort": "Sort",
+    "hasLogo": "Has logo",
+    "createdThisMonth": "Created this month",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "name": "Name A–Z",
+      "-name": "Name Z–A",
+      "id": "System id A–Z",
+      "-id": "System id Z–A",
+      "-updated_at": "Recently updated",
+      "updated_at": "Least recently updated"
+    }
+  },
+  "table": {
+    "select": "Select {{name}}",
+    "selectColumn": "Select",
+    "current": "Open",
+    "trashed": "In trash",
+    "columns": {
+      "company": "Company",
+      "id": "System id",
+      "domains": "Domains",
+      "members": "Members",
+      "documents": "Documents",
+      "features": "Features",
+      "created": "Created",
+      "updated": "Updated",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently",
+    "copy": "Copy {{value}}",
+    "copied": "Copied"
+  },
+  "details": {
+    "title": "Company details",
+    "inTrash": "In trash",
+    "members": "Members",
+    "documents": "Documents",
+    "features": "Features",
+    "systemId": "System id",
+    "domains": "Domains",
+    "created": "Created",
+    "updated": "Updated",
+    "deleted": "Deleted"
+  },
+  "form": {
+    "createTitle": "New company",
+    "createDescription": "Create a company and choose the features it has. You become its first member.",
+    "editTitle": "Edit company",
+    "editDescription": "Only the features and the logo can change.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Nile Trading",
+    "slug": "Slug",
+    "slugHint": "Lower-case letters, digits and single hyphens.",
+    "systemId": "System id",
+    "systemIdHint": "Defaults to the slug.",
+    "idWarning": "The system id is part of every URL of this company and can't be changed after saving. Names that are not in Latin letters need an explicit slug and id.",
+    "lockedHint": "The name, slug and system id can't be changed after creation.",
+    "logo": "Logo",
+    "logoChoose": "Choose logo",
+    "logoReplace": "Replace logo",
+    "logoRemove": "Remove",
+    "logoHint": "JPG, PNG, WebP or GIF, up to 5 MB. SVG isn't accepted.",
+    "logoBadType": "Use a JPG, PNG, WebP or GIF picture (SVG isn't accepted).",
+    "logoTooBig": "The logo can't be larger than 5 MB.",
+    "logoUploading": "Uploading logo… {{percent}}%",
+    "features": "Features",
+    "featuresHint": "Features are permissions. Removing “can access admin panel” locks the admin panel for everybody in the company.",
+    "featuresSearch": "Search features…",
+    "featuresEmpty": "No features found.",
+    "featuresError": "Could not load the features.",
+    "featuresSelected": "{{count}} of {{total}} selected",
+    "selectAll": "Select all shown",
+    "deselectAll": "Deselect all shown",
+    "create": "Create company",
+    "save": "Save changes",
+    "errors": {
+      "nameRequired": "The company name is required.",
+      "nameTooLong": "The name can't be longer than 255 characters.",
+      "slugRequired": "The slug is required.",
+      "slugInvalid": "Use lower-case letters, digits and single hyphens (up to {{max}} characters).",
+      "idRequired": "The system id is required.",
+      "permissionsRequired": "Choose at least one feature."
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "Move to trash?",
+      "description": "“{{name}}” will be locked for everybody in it until it is restored.",
+      "confirm": "Move to trash"
+    },
+    "restore": {
+      "title": "Restore company?",
+      "description": "“{{name}}” will be brought back and its members can use it again.",
+      "confirm": "Restore"
+    },
+    "force_delete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” and everything in it will be removed for good. This only works for an empty company: no documents, departments, projects, employees, roles or other data, and nobody else as a member. You leave with it.",
+      "confirm": "Delete permanently"
+    },
+    "bulk": {
+      "delete": {
+        "title": "Move {{count}} companies to the trash?",
+        "description": "They are locked for everybody in them. If any selected company can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} companies?",
+        "description": "If any selected company can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} companies?",
+        "description": "They and everything in them are removed for good. Only empty companies qualify. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    }
+  },
+  "notice": {
+    "created": "Company created. It has no roles yet: create them before others can work in it.",
+    "updated": "Company updated.",
+    "delete": "Company moved to the trash.",
+    "restore": "Company restored.",
+    "force_delete": "Company permanently deleted.",
+    "bulk": {
+      "delete": "{{count}} companies moved to the trash.",
+      "restore": "{{count}} companies restored.",
+      "force_delete": "{{count}} companies permanently deleted."
+    },
+    "notFound": "That company no longer exists or isn't available to you. The list was refreshed.",
+    "forbidden": "You don't have permission to do that.",
+    "failed": "That action failed. Try again."
+  },
+  "states": {
+    "emptyTitle": "No companies found",
+    "emptyTrash": "The trash is empty",
+    "emptyDescription": "Try a different tab, search or filter.",
+    "forbiddenTitle": "You can't view companies",
+    "forbiddenDescription": "You don't have permission to view this screen.",
+    "notFound": "This company no longer exists or isn't available to you.",
+    "viewError": "Failed to load this company."
+  }
+}
