@@ -8,6 +8,7 @@ export function useManagementAccess() {
     return useMemo(
         () => ({
             canRead: can('read_documents'),
+            canCreate: can('create_documents'),
             canDelete: can('delete_documents'),
             canRestore: can('restore_documents'),
             canForceDelete: can('force_delete_documents'),

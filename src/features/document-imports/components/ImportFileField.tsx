@@ -59,7 +59,7 @@ function ImportFileField({ id, kind, file, onFileChange, upload, disabled, inval
                     <UploadCloud className="h-6 w-6 text-muted-foreground" />
                     <span className="text-sm font-medium text-foreground">{t(`form.${kind}Pick`)}</span>
                     <span className="text-xs text-muted-foreground">
-                        {t('form.fileLimit', { ext: FILE_RULES[kind].ext, size: formatBytes(FILE_RULES[kind].maxBytes, i18n.language) })}
+                        {t('form.fileLimit', { ext: FILE_RULES[kind].ext || t('form.anyFile'), size: formatBytes(FILE_RULES[kind].maxBytes, i18n.language) })}
                     </span>
                 </button>
             ) : (

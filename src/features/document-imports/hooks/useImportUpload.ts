@@ -39,6 +39,7 @@ export function useImportUpload(kind: UploadKind) {
     const controller = useRef<AbortController | null>(null);
     const uploadId = useRef<string | null>(null);
     const cache = useRef<{ file: File; upload: ImportUpload } | null>(null);
+    const lastFile = useRef<File | null>(null);
 
     // Leaving mid-upload stops the requests but keeps the upload resumable.
     useEffect(() => () => controller.current?.abort(), []);
@@ -48,6 +49,7 @@ export function useImportUpload(kind: UploadKind) {
             if (!tenant) throw new Error('Tenant is required');
             if (cache.current?.file === file) return cache.current.upload;
 
+            lastFile.current = file;
             const ctrl = new AbortController();
             controller.current = ctrl;
             dispatch({ type: 'patch', phase: 'uploading', sent: 0, total: file.size, error: null, status: undefined });
@@ -88,8 +90,8 @@ export function useImportUpload(kind: UploadKind) {
         controller.current?.abort();
         const id = uploadId.current;
         if (tenant && id && !cache.current) {
-            importUploadsApiService.cancel(tenant, id).catch(() => undefined);
-            clearStoredUpload(tenant, kind);
+            importUploadsApiService.cancel(tenant, kind, id).catch(() => undefined);
+            clearStoredUpload(tenant, kind, lastFile.current ?? undefined);
         }
         uploadId.current = null;
         dispatch({ type: 'reset' });
@@ -104,7 +106,7 @@ export function useImportUpload(kind: UploadKind) {
 
     /** Called once an import exists: the upload is consumed. */
     const forget = useCallback(() => {
-        if (tenant) clearStoredUpload(tenant, kind);
+        if (tenant) clearStoredUpload(tenant, kind, lastFile.current ?? undefined);
         cache.current = null;
     }, [tenant, kind]);
 

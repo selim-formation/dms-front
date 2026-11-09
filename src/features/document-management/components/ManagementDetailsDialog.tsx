@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Check, Loader2, X } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Check, Layers, Loader2, Pencil, X } from 'lucide-react'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/shared/components/ui/dialog'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
@@ -9,7 +10,9 @@ import { relativeTime } from '@/features/departments/utils/relativeTime'
 import { DocumentStatusBadge, ImportanceBadge } from './DocumentBadges'
 import ApprovalList from './ApprovalList'
 import DepartmentChips from './DepartmentChips'
+import { useTenantId } from '@/core/tenant/hooks/useTenant'
 import { useManagedDocumentDetail } from '../hooks/useManagedDocumentDetail'
+import { useVersionAccess } from '../hooks/useVersionAccess'
 import type { ManagedDocument, ReviewDecision } from '../types/management.types'
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -25,11 +28,14 @@ interface ManagementDetailsDialogProps {
     documentId: number | null
     onOpenChange: (open: boolean) => void
     onReview: (doc: ManagedDocument, decision: ReviewDecision) => void
+    onEdit: (doc: ManagedDocument) => void
 }
 
 /** Read-only view with approvals and the latest version; fetches only while open. */
-function ManagementDetailsDialog({ documentId, onOpenChange, onReview }: ManagementDetailsDialogProps) {
+function ManagementDetailsDialog({ documentId, onOpenChange, onReview, onEdit }: ManagementDetailsDialogProps) {
     const { t, i18n } = useTranslation('management')
+    const tenant = useTenantId() ?? ''
+    const { canRead: canVersions } = useVersionAccess()
     const { document: doc, isLoading, isError, error, refetch } = useManagedDocumentDetail(documentId)
     const notFound = isError && errorStatus(error) === 404
     const v = doc?.latest_version
@@ -93,7 +99,7 @@ function ManagementDetailsDialog({ documentId, onOpenChange, onReview }: Managem
                             {v ? (
                                 <dl className="grid grid-cols-2 gap-x-6 gap-y-3 rounded-xl border border-border p-3 text-sm sm:grid-cols-4">
                                     <Row label={t('details.version')}>v{v.version}</Row>
-                                    <Row label={t('details.extension')}><span className="uppercase">{v.extension}</span></Row>
+                                    <Row label={t('details.extension')}><span className="uppercase">{v.extension ?? '—'}</span></Row>
                                     <Row label={t('details.uploadStatus')}>{v.upload_status}</Row>
                                     <Row label={t('details.expires')}>{v.expire_date ? date(v.expire_date) : '—'}</Row>
                                 </dl>
@@ -109,8 +115,22 @@ function ManagementDetailsDialog({ documentId, onOpenChange, onReview }: Managem
                     </div>
                 )}
 
-                {doc && (doc.abilities.approve || doc.abilities.reject) && (
+                {doc && (canVersions || doc.abilities.approve || doc.abilities.reject || doc.abilities.update) && (
                     <DialogFooter>
+                        {canVersions && (
+                            <Button variant="outline" asChild>
+                                <Link to="/$tenant/document-management/$documentId/versions" params={{ tenant, documentId: String(doc.id) }}>
+                                    <Layers className="h-4 w-4" />
+                                    {t('actions.versions')}
+                                </Link>
+                            </Button>
+                        )}
+                        {doc.abilities.update && (
+                            <Button variant="outline" onClick={() => onEdit(doc)}>
+                                <Pencil className="h-4 w-4" />
+                                {t('actions.edit')}
+                            </Button>
+                        )}
                         {doc.abilities.reject && (
                             <Button variant="outline" onClick={() => onReview(doc, 'reject')}>
                                 <X className="h-4 w-4 text-destructive" />

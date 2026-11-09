@@ -76,7 +76,7 @@ export interface ImportRow {
     error: string | null;
 }
 
-export type UploadKind = 'archive' | 'manifest';
+export type UploadKind = 'archive' | 'manifest' | 'document_file';
 export type UploadStatus = 'uploading' | 'assembling' | 'complete' | 'failed' | 'consumed';
 
 export interface ImportUpload {

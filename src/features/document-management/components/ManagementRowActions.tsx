@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Check, Eye, MoreVertical, RotateCcw, Trash2, X, XOctagon } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Check, Eye, Layers, MoreVertical, Pencil, RotateCcw, Trash2, X, XOctagon } from 'lucide-react'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,19 +10,24 @@ import {
     DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu'
 import { Button } from '@/shared/components/ui/button'
+import { useTenantId } from '@/core/tenant/hooks/useTenant'
+import { useVersionAccess } from '../hooks/useVersionAccess'
 import type { ManagedDocument, ReviewDecision } from '../types/management.types'
 
 export interface ManagementRowHandlers {
     onView: (doc: ManagedDocument) => void
+    onEdit: (doc: ManagedDocument) => void
     onReview: (doc: ManagedDocument, decision: ReviewDecision) => void
     onDelete: (doc: ManagedDocument) => void
     onRestore: (doc: ManagedDocument) => void
     onForceDelete: (doc: ManagedDocument) => void
 }
 
-/** Only what `abilities` allows. Edit / manage versions arrive in later phases. */
+/** Only what `abilities` allows; "Manage versions" needs the version read permission. */
 function ManagementRowActions({ doc, ...h }: { doc: ManagedDocument } & ManagementRowHandlers) {
     const { t } = useTranslation('management')
+    const tenant = useTenantId() ?? ''
+    const { canRead: canVersions } = useVersionAccess()
     const a = doc.abilities
     const review = a.approve || a.reject
     const destructive = a.delete || a.restore || a.force_delete
@@ -38,6 +44,20 @@ function ManagementRowActions({ doc, ...h }: { doc: ManagedDocument } & Manageme
                     <Eye className="me-2 h-4 w-4" />
                     {t('actions.view')}
                 </DropdownMenuItem>
+                {a.update && (
+                    <DropdownMenuItem onClick={() => h.onEdit(doc)}>
+                        <Pencil className="me-2 h-4 w-4" />
+                        {t('actions.edit')}
+                    </DropdownMenuItem>
+                )}
+                {canVersions && (
+                    <DropdownMenuItem asChild>
+                        <Link to="/$tenant/document-management/$documentId/versions" params={{ tenant, documentId: String(doc.id) }}>
+                            <Layers className="me-2 h-4 w-4" />
+                            {t('actions.versions')}
+                        </Link>
+                    </DropdownMenuItem>
+                )}
                 {a.approve && (
                     <DropdownMenuItem onClick={() => h.onReview(doc, 'approve')}>
                         <Check className="me-2 h-4 w-4 text-success" />

@@ -11,6 +11,8 @@ import type {
     ApiEnvelope,
     BulkAction,
     BulkResult,
+    CreateDocumentPayload,
+    DocumentPayload,
     DocumentCounts,
     ManagedDocument,
     ManagedDocumentDetail,
@@ -56,6 +58,17 @@ export class ManagementApiService {
 
     public async fetchOne(tenant: string, id: number, signal?: AbortSignal): Promise<ManagedDocumentDetail> {
         const res = await this.client.get<ApiEnvelope<ManagedDocumentDetail>>(this.url(this.endpoints.detail, tenant, id), { signal });
+        return res.data.data;
+    }
+
+    public async create(tenant: string, payload: CreateDocumentPayload): Promise<ManagedDocumentDetail> {
+        const res = await this.client.post<ApiEnvelope<ManagedDocumentDetail>>(this.url(this.endpoints.create, tenant), payload);
+        return res.data.data;
+    }
+
+    /** `versions` are ignored by the server on edit (phase 3). */
+    public async update(tenant: string, id: number, payload: DocumentPayload): Promise<ManagedDocumentDetail> {
+        const res = await this.client.put<ApiEnvelope<ManagedDocumentDetail>>(this.url(this.endpoints.update, tenant, id), payload);
         return res.data.data;
     }
 

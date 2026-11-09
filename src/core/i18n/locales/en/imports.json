@@ -83,9 +83,7 @@
     "fileLimit": "{{ext}} · up to {{size}}",
     "removeFile": "Remove file",
     "file": {
-      "extension": "The file must be a {{ext}} file.",
-      "empty": "The file is empty.",
-      "tooLarge": "The file is too large."
+      "blocked": "Executable file types are not allowed."
     },
     "uploadProgress": "Upload progress",
     "uploading": "Uploading {{sent}} of {{total}}…",
@@ -110,7 +108,9 @@
     "skipInvalidHint": "Invalid rows are left out instead of blocking the import.",
     "submit": "Upload and create import",
     "tooManyUploads": "You have too many unfinished uploads. Finish or cancel one first.",
-    "genericError": "Something went wrong. Try again."
+    "genericError": "Something went wrong. Try again.",
+    "document_filePick": "Choose a file",
+    "anyFile": "Any file type"
   },
   "detail": {
     "back": "Back to imports",
@@ -125,16 +125,46 @@
     "error": "Failed to load this import."
   },
   "statusPanel": {
-    "draft": { "title": "Waiting to start", "description": "The import is queued. If this lasts several minutes, tell an administrator that the queue worker may not be running." },
-    "preparing": { "title": "Unpacking the archive", "description": "This page updates by itself." },
-    "validating": { "title": "Checking every file", "description": "Nothing is imported yet." },
-    "ready": { "title": "Ready to import", "description": "Nothing is imported until you press Start import. Review the rows below first." },
-    "committing": { "title": "Creating documents", "description": "You can leave this page; the import continues in the background." },
-    "rolling_back": { "title": "Rolling back", "description": "Removing what this import created." },
-    "completed": { "title": "Import completed", "description": "All rows were imported." },
-    "completed_errors": { "title": "Completed with errors", "description": "Some rows failed. Retry them, or download the list of problems." },
-    "failed": { "title": "The archive could not be read", "description": "Create a new import." },
-    "rolled_back": { "title": "Rolled back", "description": "What this import created was removed." }
+    "draft": {
+      "title": "Waiting to start",
+      "description": "The import is queued. If this lasts several minutes, tell an administrator that the queue worker may not be running."
+    },
+    "preparing": {
+      "title": "Unpacking the archive",
+      "description": "This page updates by itself."
+    },
+    "validating": {
+      "title": "Checking every file",
+      "description": "Nothing is imported yet."
+    },
+    "ready": {
+      "title": "Ready to import",
+      "description": "Nothing is imported until you press Start import. Review the rows below first."
+    },
+    "committing": {
+      "title": "Creating documents",
+      "description": "You can leave this page; the import continues in the background."
+    },
+    "rolling_back": {
+      "title": "Rolling back",
+      "description": "Removing what this import created."
+    },
+    "completed": {
+      "title": "Import completed",
+      "description": "All rows were imported."
+    },
+    "completed_errors": {
+      "title": "Completed with errors",
+      "description": "Some rows failed. Retry them, or download the list of problems."
+    },
+    "failed": {
+      "title": "The archive could not be read",
+      "description": "Create a new import."
+    },
+    "rolled_back": {
+      "title": "Rolled back",
+      "description": "What this import created was removed."
+    }
   },
   "stats": {
     "total": "Rows",

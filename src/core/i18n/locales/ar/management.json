@@ -2,7 +2,8 @@
   "page": {
     "title": "إدارة المستندات",
     "subtitle": "كل المستندات التي تديرها، أياً كانت حالتها",
-    "errorTitle": "تعذّر تحميل المستندات"
+    "errorTitle": "تعذّر تحميل المستندات",
+    "create": "مستند جديد"
   },
   "tabs": {
     "label": "حالة المستند",
@@ -12,12 +13,23 @@
     "pending": "قيد الانتظار",
     "trash": "المحذوفات"
   },
-  "status": { "pending": "قيد الانتظار", "approved": "معتمد", "rejected": "مرفوض" },
-  "importance": {
-    "critical": "حرجة", "high": "عالية", "medium": "متوسطة",
-    "low": "منخفضة", "informational": "معلوماتية", "archival": "أرشيفية"
+  "status": {
+    "pending": "قيد الانتظار",
+    "approved": "معتمد",
+    "rejected": "مرفوض"
   },
-  "category": { "establishment": "تأسيسي", "operational": "تشغيلي" },
+  "importance": {
+    "critical": "حرجة",
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة",
+    "informational": "معلوماتية",
+    "archival": "أرشيفية"
+  },
+  "category": {
+    "establishment": "تأسيسي",
+    "operational": "تشغيلي"
+  },
   "filters": {
     "searchPlaceholder": "ابحث بالعنوان أو المنشئ أو الإدارة...",
     "importance": "الأهمية",
@@ -59,7 +71,9 @@
     "reject": "رفض",
     "delete": "حذف",
     "restore": "استعادة",
-    "forceDelete": "حذف نهائي"
+    "forceDelete": "حذف نهائي",
+    "edit": "تعديل",
+    "versions": "إدارة الإصدارات"
   },
   "details": {
     "title": "تفاصيل المستند",
@@ -155,5 +169,203 @@
     "forbiddenDescription": "ليست لديك صلاحية عرض هذه الشاشة.",
     "notFound": "هذا المستند لم يعد موجوداً أو غير متاح لك.",
     "viewError": "تعذّر تحميل هذا المستند."
+  },
+  "form": {
+    "createTitle": "مستند جديد",
+    "createSubtitle": "صف المستند، واختر من يعتمده، وأرفق ملفاته.",
+    "editTitle": "تعديل المستند",
+    "stepsLabel": "خطوات النموذج",
+    "steps": {
+      "details": "التفاصيل",
+      "classification": "التصنيف",
+      "people": "الأشخاص",
+      "versions": "الملفات"
+    },
+    "title": "العنوان",
+    "titlePlaceholder": "مثال: عقد المورد 2026",
+    "description": "الوصف",
+    "descriptionPlaceholder": "ملاحظة قصيرة عن المستند",
+    "importance": "الأهمية",
+    "category": "التصنيف",
+    "choose": "اختر…",
+    "none": "بدون",
+    "origin": "الإدارة الأصلية",
+    "types": "الأنواع",
+    "departments": "الإدارات",
+    "departmentsHint": "يجب أن يكون لإحداها مدير على الأقل: هو من يعتمد المستند.",
+    "sections": "الأقسام",
+    "sectionsHint": "أقسام الإدارات المختارة فقط.",
+    "entities": "الجهات",
+    "responsible": "المسؤول",
+    "responsibleHint": "يجب أن يعمل في إحدى الإدارات المختارة.",
+    "cc": "نسخة إلى (cc)",
+    "ccHint": "مديرو أو رؤساء الإدارات المختارة.",
+    "usersError": "تعذّر تحميل المستخدمين.",
+    "versionsHint": "اختياري. يُرفع كل ملف فور اختياره، ويُمنع الحفظ حتى تنتهي عمليات الرفع.",
+    "noVersions": "لا توجد ملفات بعد.",
+    "addVersion": "إضافة ملف",
+    "removeVersion": "إزالة",
+    "versionN": "الإصدار {{n}}",
+    "file": "الملف",
+    "expireDate": "تاريخ الانتهاء",
+    "reminderBefore": "التذكير قبل (أيام)",
+    "reminderHint": "مطلوب مع تاريخ الانتهاء.",
+    "exportDate": "تاريخ التصدير",
+    "specialNumber": "رقم المستند الخاص",
+    "versionDescription": "ملاحظة الإصدار",
+    "fileProblem": {
+      "extension": "نوع الملف غير مسموح.",
+      "empty": "الملف فارغ.",
+      "tooLarge": "حجم الملف أكبر من 200 ميغابايت.",
+      "blocked": "أنواع الملفات التنفيذية غير مسموحة."
+    },
+    "editReselect": "لا تُحمَّل الأنواع والأقسام والجهات من المستند المحفوظ. اخترها مرة أخرى: التعديل يستبدلها بما ترسله تماماً.",
+    "editReselectCc": "لا تُحمَّل قائمة النسخ (cc) من المستند المحفوظ. اخترها مرة أخرى إن أردت الإبقاء عليها.",
+    "editResubmitHint": "الحفظ يعيد المستند إلى المديرين للاعتماد.",
+    "cancel": "إلغاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "create": "إنشاء المستند",
+    "save": "حفظ التغييرات",
+    "uploadingFiles": "جارٍ رفع الملفات…",
+    "backToList": "العودة إلى المستندات",
+    "cannotEdit": "لا يمكن تعديل هذا المستند: يعدّله منشئه فقط وهو قيد الانتظار.",
+    "errors": {
+      "titleRequired": "يحتاج المستند إلى عنوان.",
+      "titleTooLong": "يجب ألا يزيد العنوان عن 255 حرفاً.",
+      "descriptionTooLong": "يجب ألا يزيد الوصف عن 255 حرفاً.",
+      "importanceRequired": "اختر الأهمية.",
+      "categoryRequired": "اختر التصنيف.",
+      "typesRequired": "اختر نوعاً واحداً على الأقل.",
+      "departmentsRequired": "اختر إدارة واحدة على الأقل.",
+      "entitiesRequired": "اختر جهة واحدة على الأقل.",
+      "responsibleRequired": "اختر المسؤول.",
+      "fileRequired": "اختر ملفاً أو أزل هذا الإصدار.",
+      "uploadPending": "انتظر انتهاء الرفع.",
+      "expiryPair": "تاريخ الانتهاء وأيام التذكير يُدخلان معاً.",
+      "dateInvalid": "استخدم تاريخاً صالحاً.",
+      "reminderRange": "يجب أن يكون التذكير بين 1 و3650 يوماً.",
+      "numberInvalid": "استخدم عدداً صحيحاً 0 أو أكثر.",
+      "versionDescriptionTooLong": "يجب ألا تزيد الملاحظة عن 5000 حرف.",
+      "forbidden": "ليست لديك صلاحية حفظ هذا المستند.",
+      "generic": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "versions": {
+    "title": "الإصدارات",
+    "add": "إضافة إصدار",
+    "inTrash": "هذا المستند في سلة المحذوفات. استعده لتعديل إصداراته.",
+    "emptyTitle": "لا توجد إصدارات بعد",
+    "emptyDescription": "أضف إصدارًا لإرفاق ملف بهذا المستند.",
+    "loadError": "تعذّر تحميل الإصدارات.",
+    "selectColumn": "تحديد",
+    "select": "تحديد الإصدار {{n}}",
+    "specialNumber": "رقم {{n}}",
+    "reminder_zero": "تذكير قبل {{count}} يوم",
+    "reminder_one": "تذكير قبل يوم",
+    "reminder_two": "تذكير قبل يومين",
+    "reminder_few": "تذكير قبل {{count}} أيام",
+    "reminder_many": "تذكير قبل {{count}} يومًا",
+    "reminder_other": "تذكير قبل {{count}} يوم",
+    "columns": {
+      "version": "الإصدار",
+      "file": "الملف",
+      "description": "الوصف",
+      "expires": "تاريخ الانتهاء",
+      "uploadedBy": "رفعه",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "status": {
+      "pending": "في الانتظار",
+      "queued": "في الطابور",
+      "processing": "قيد المعالجة",
+      "completed": "تم التخزين",
+      "failed": "فشل"
+    },
+    "actions": {
+      "menu": "إجراءات الإصدار {{n}}",
+      "preview": "معاينة الملف",
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "form": {
+      "addTitle": "إضافة إصدار",
+      "addDescription": "ارفع الملف الجديد وصِفه. سيأخذ رقم الإصدار التالي.",
+      "editTitle": "تعديل الإصدار {{n}}",
+      "editDescription": "حدّث التفاصيل، ويمكنك استبدال الملف اختياريًا.",
+      "replaceFile": "استبدال الملف (اختياري)",
+      "replaceHint": "اتركه فارغًا للإبقاء على الملف الحالي. الاستبدال يحذف الملف القديم.",
+      "replaceBusy": "الملف الحالي ما زال قيد التخزين. حاول مجددًا بعد دقائق.",
+      "replaceMeta": "الحفظ يستبدل كل التفاصيل: أي حقل فارغ سيُمسح.",
+      "add": "إضافة الإصدار",
+      "save": "حفظ التغييرات",
+      "failed": "تعذّر حفظ هذا الإصدار."
+    },
+    "confirm": {
+      "confirm": "حذف",
+      "one": {
+        "title": "حذف الإصدار {{n}}؟",
+        "description": "سيُزال الإصدار من القائمة. يبقى ملفه في التخزين حتى يُحذف المستند نهائيًا."
+      },
+      "bulk": {
+        "title": "حذف {{count}} إصدارات؟",
+        "description": "ستُزال كل الإصدارات المحددة. إذا تعذّر حذف أحدها فلن يُحذف أي منها."
+      }
+    },
+    "notice": {
+      "added": "تمت إضافة الإصدار. يجري تخزين ملفه.",
+      "updated": "تم تحديث الإصدار.",
+      "deleted": "تم حذف الإصدار.",
+      "bulkDeleted_zero": "تم حذف {{count}} إصدار.",
+      "bulkDeleted_one": "تم حذف إصدار واحد.",
+      "bulkDeleted_two": "تم حذف إصدارين.",
+      "bulkDeleted_few": "تم حذف {{count}} إصدارات.",
+      "bulkDeleted_many": "تم حذف {{count}} إصدارًا.",
+      "bulkDeleted_other": "تم حذف {{count}} إصدار.",
+      "forbidden": "ليس لديك صلاحية لتنفيذ ذلك.",
+      "notFound": "هذا المستند أو الإصدار لم يعد موجودًا.",
+      "failed": "حدث خطأ ما. حاول مرة أخرى.",
+      "previewFailed": "الملف غير متاح بعد."
+    }
+  },
+  "process": {
+    "title": "ملفات الإجراءات",
+    "subtitle": "المستندات التي تشرح كيفية إنشاء هذا المستند وتجديده.",
+    "readOnly": "يمكن لمنشئ المستند فقط تغيير هذه الملفات أثناء انتظار الموافقة.",
+    "create": {
+      "title": "إجراء الإنشاء",
+      "description": "كيف يُنشأ المستند."
+    },
+    "update": {
+      "title": "إجراء التجديد",
+      "description": "كيف يُجدَّد المستند."
+    },
+    "attached": "مرفق",
+    "missing": "غير مرفق",
+    "storing": "قيد التخزين",
+    "storingHint": "يجري تخزين الملف. قد يستغرق ذلك بضع دقائق.",
+    "upload": "رفع",
+    "replace": "استبدال",
+    "preview": "معاينة",
+    "remove": "إزالة",
+    "uploading": "جارٍ الرفع",
+    "uploadFailed": "فشل الرفع.",
+    "loadError": "تعذّر تحميل ملفات الإجراءات.",
+    "problem": {
+      "extension": "الأنواع المسموحة: PDF وWord وExcel وPowerPoint وTXT وRTF وPNG وJPG وGIF وTIFF.",
+      "empty": "هذا الملف فارغ.",
+      "tooLarge": "حجم الملف أكبر من 100 ميغابايت."
+    },
+    "confirm": {
+      "title": "إزالة هذا الملف؟",
+      "description": "سيُحذف ملف «{{name}}» من التخزين فورًا.",
+      "confirm": "إزالة"
+    },
+    "notice": {
+      "attached": "تم رفع الملف. يجري تخزينه.",
+      "removed": "تمت إزالة الملف.",
+      "failed": "حدث خطأ ما. حاول مرة أخرى."
+    }
   }
 }

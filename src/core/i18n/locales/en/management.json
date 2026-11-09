@@ -2,7 +2,8 @@
   "page": {
     "title": "Manage documents",
     "subtitle": "Every document you manage, whatever its status",
-    "errorTitle": "Failed to load documents"
+    "errorTitle": "Failed to load documents",
+    "create": "New document"
   },
   "tabs": {
     "label": "Document status",
@@ -12,12 +13,23 @@
     "pending": "Pending",
     "trash": "Trash"
   },
-  "status": { "pending": "Pending", "approved": "Approved", "rejected": "Rejected" },
-  "importance": {
-    "critical": "Critical", "high": "High", "medium": "Medium",
-    "low": "Low", "informational": "Informational", "archival": "Archival"
+  "status": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
   },
-  "category": { "establishment": "Establishment", "operational": "Operational" },
+  "importance": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "informational": "Informational",
+    "archival": "Archival"
+  },
+  "category": {
+    "establishment": "Establishment",
+    "operational": "Operational"
+  },
   "filters": {
     "searchPlaceholder": "Search by title, creator or department...",
     "importance": "Importance",
@@ -59,7 +71,9 @@
     "reject": "Reject",
     "delete": "Delete",
     "restore": "Restore",
-    "forceDelete": "Delete permanently"
+    "forceDelete": "Delete permanently",
+    "edit": "Edit",
+    "versions": "Manage versions"
   },
   "details": {
     "title": "Document details",
@@ -155,5 +169,195 @@
     "forbiddenDescription": "You don't have permission to view this screen.",
     "notFound": "This document no longer exists or isn't available to you.",
     "viewError": "Failed to load this document."
+  },
+  "form": {
+    "createTitle": "New document",
+    "createSubtitle": "Describe the document, choose who approves it and attach its files.",
+    "editTitle": "Edit document",
+    "stepsLabel": "Form steps",
+    "steps": {
+      "details": "Details",
+      "classification": "Classification",
+      "people": "People",
+      "versions": "Files"
+    },
+    "title": "Title",
+    "titlePlaceholder": "e.g. Supplier contract 2026",
+    "description": "Description",
+    "descriptionPlaceholder": "Short note about the document",
+    "importance": "Importance",
+    "category": "Category",
+    "choose": "Choose…",
+    "none": "None",
+    "origin": "Origin department",
+    "types": "Types",
+    "departments": "Departments",
+    "departmentsHint": "At least one needs a manager: that is who approves the document.",
+    "sections": "Sections",
+    "sectionsHint": "Only sections of the chosen departments.",
+    "entities": "Entities",
+    "responsible": "Responsible person",
+    "responsibleHint": "Must work in one of the chosen departments.",
+    "cc": "Copy (cc)",
+    "ccHint": "Managers or heads of the chosen departments.",
+    "usersError": "Could not load the users.",
+    "versionsHint": "Optional. Each file uploads as soon as you choose it; saving is blocked until uploads finish.",
+    "noVersions": "No files yet.",
+    "addVersion": "Add a file",
+    "removeVersion": "Remove",
+    "versionN": "Version {{n}}",
+    "file": "File",
+    "expireDate": "Expiry date",
+    "reminderBefore": "Remind before (days)",
+    "reminderHint": "Required together with the expiry date.",
+    "exportDate": "Export date",
+    "specialNumber": "Special document number",
+    "versionDescription": "Version note",
+    "fileProblem": {
+      "extension": "This file type is not allowed.",
+      "empty": "The file is empty.",
+      "tooLarge": "The file is larger than 200 MB.",
+      "blocked": "Executable file types are not allowed."
+    },
+    "editReselect": "Types, sections and entities are not loaded from the saved document. Choose them again: editing replaces them with exactly what you send.",
+    "editReselectCc": "The cc list is not loaded from the saved document. Choose it again if you want to keep it.",
+    "editResubmitHint": "Saving sends the document back to the managers for approval.",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "create": "Create document",
+    "save": "Save changes",
+    "uploadingFiles": "Uploading files…",
+    "backToList": "Back to documents",
+    "cannotEdit": "This document can't be edited: only its creator can, while it is pending.",
+    "errors": {
+      "titleRequired": "The document needs a title.",
+      "titleTooLong": "The title may not be longer than 255 characters.",
+      "descriptionTooLong": "The description may not be longer than 255 characters.",
+      "importanceRequired": "Choose the importance.",
+      "categoryRequired": "Choose the category.",
+      "typesRequired": "Choose at least one type.",
+      "departmentsRequired": "Choose at least one department.",
+      "entitiesRequired": "Choose at least one entity.",
+      "responsibleRequired": "Choose the responsible person.",
+      "fileRequired": "Choose a file or remove this version.",
+      "uploadPending": "Wait for the upload to finish.",
+      "expiryPair": "Expiry date and reminder days go together.",
+      "dateInvalid": "Use a valid date.",
+      "reminderRange": "Reminder must be between 1 and 3650 days.",
+      "numberInvalid": "Use a whole number, 0 or more.",
+      "versionDescriptionTooLong": "The note may not be longer than 5000 characters.",
+      "forbidden": "You don't have permission to save this document.",
+      "generic": "Something went wrong. Try again."
+    }
+  },
+  "versions": {
+    "title": "Versions",
+    "add": "Add version",
+    "inTrash": "This document is in the trash. Restore it to change its versions.",
+    "emptyTitle": "No versions yet",
+    "emptyDescription": "Add a version to attach a file to this document.",
+    "loadError": "Failed to load the versions.",
+    "selectColumn": "Select",
+    "select": "Select version {{n}}",
+    "specialNumber": "No. {{n}}",
+    "reminder_one": "Reminder {{count}} day before",
+    "reminder_other": "Reminder {{count}} days before",
+    "columns": {
+      "version": "Version",
+      "file": "File",
+      "description": "Description",
+      "expires": "Expires",
+      "uploadedBy": "Uploaded by",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "pending": "Waiting",
+      "queued": "Queued",
+      "processing": "Processing",
+      "completed": "Stored",
+      "failed": "Failed"
+    },
+    "actions": {
+      "menu": "Actions for version {{n}}",
+      "preview": "Preview file",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "addTitle": "Add a version",
+      "addDescription": "Upload the new file and describe it. It becomes the next version number.",
+      "editTitle": "Edit version {{n}}",
+      "editDescription": "Update the details, and optionally replace the file.",
+      "replaceFile": "Replace the file (optional)",
+      "replaceHint": "Leave empty to keep the current file. Replacing removes the old one.",
+      "replaceBusy": "The current file is still being stored. Try again in a few minutes.",
+      "replaceMeta": "Saving replaces all details: anything left empty is cleared.",
+      "add": "Add version",
+      "save": "Save changes",
+      "failed": "Could not save this version."
+    },
+    "confirm": {
+      "confirm": "Delete",
+      "one": {
+        "title": "Delete version {{n}}?",
+        "description": "The version is removed from the list. Its file stays in storage until the document is permanently deleted."
+      },
+      "bulk": {
+        "title": "Delete {{count}} versions?",
+        "description": "All selected versions are removed. If one of them can't be deleted, none are."
+      }
+    },
+    "notice": {
+      "added": "Version added. Its file is being stored.",
+      "updated": "Version updated.",
+      "deleted": "Version deleted.",
+      "bulkDeleted_one": "{{count}} version deleted.",
+      "bulkDeleted_other": "{{count}} versions deleted.",
+      "forbidden": "You don't have permission to do that.",
+      "notFound": "This document or version no longer exists.",
+      "failed": "Something went wrong. Please try again.",
+      "previewFailed": "The file isn't available yet."
+    }
+  },
+  "process": {
+    "title": "Procedure files",
+    "subtitle": "The documents describing how this document is created and renewed.",
+    "readOnly": "Only the creator can change these files while the document is pending.",
+    "create": {
+      "title": "Creation procedure",
+      "description": "How the document is created."
+    },
+    "update": {
+      "title": "Renewal procedure",
+      "description": "How the document is renewed."
+    },
+    "attached": "Attached",
+    "missing": "Not attached",
+    "storing": "Storing",
+    "storingHint": "The file is being stored. This can take a few minutes.",
+    "upload": "Upload",
+    "replace": "Replace",
+    "preview": "Preview",
+    "remove": "Remove",
+    "uploading": "Uploading",
+    "uploadFailed": "Upload failed.",
+    "loadError": "Failed to load the procedure files.",
+    "problem": {
+      "extension": "Allowed types: PDF, Word, Excel, PowerPoint, TXT, RTF, PNG, JPG, GIF, TIFF.",
+      "empty": "This file is empty.",
+      "tooLarge": "The file is larger than 100 MB."
+    },
+    "confirm": {
+      "title": "Remove this file?",
+      "description": "The {{name}} file is removed from storage immediately.",
+      "confirm": "Remove"
+    },
+    "notice": {
+      "attached": "File uploaded. It is being stored.",
+      "removed": "File removed.",
+      "failed": "Something went wrong. Please try again."
+    }
   }
 }

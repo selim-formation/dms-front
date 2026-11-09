@@ -23,13 +23,23 @@ export const UPLOAD_MAX_ATTEMPTS = 4;
 export const FILE_RULES: Record<UploadKind, { ext: string; maxBytes: number; accept: string }> = {
     archive: { ext: '.zip', maxBytes: 20 * 1024 ** 3, accept: '.zip,application/zip' },
     manifest: { ext: '.csv', maxBytes: 20 * 1024 ** 2, accept: '.csv,text/csv' },
+    /** Any extension except ones a web server executes; 200 MB each. */
+    document_file: { ext: '', maxBytes: 200 * 1024 ** 2, accept: '' },
 };
 
-export type FileProblem = 'extension' | 'empty' | 'tooLarge';
+/** Client-side mirror of the server's block list (also catches `shell.php.jpg`). */
+const EXECUTABLE_EXTENSIONS = new Set([
+    'php', 'phtml', 'php3', 'php4', 'php5', 'php7', 'phps', 'phar', 'asp', 'aspx', 'ashx', 'jsp', 'jspx', 'cgi', 'pl',
+]);
+export const hasExecutableExtension = (name: string): boolean =>
+    name.toLowerCase().split('.').slice(1).some((part) => EXECUTABLE_EXTENSIONS.has(part));
+
+export type FileProblem = 'extension' | 'empty' | 'tooLarge' | 'blocked';
 
 export function validateFile(kind: UploadKind, file: File): FileProblem | null {
     const rule = FILE_RULES[kind];
-    if (!file.name.toLowerCase().endsWith(rule.ext)) return 'extension';
+    if (kind === 'document_file' && hasExecutableExtension(file.name)) return 'blocked';
+    if (rule.ext && !file.name.toLowerCase().endsWith(rule.ext)) return 'extension';
     if (file.size < 1) return 'empty';
     if (file.size > rule.maxBytes) return 'tooLarge';
     return null;

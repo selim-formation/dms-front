@@ -39,7 +39,7 @@ function sleep(ms: number, signal?: AbortSignal): Promise<void> {
 async function open(tenant: string, o: UploadFileOptions): Promise<ImportUpload> {
     if (o.resumeId) {
         try {
-            const prev = await api.get(tenant, o.resumeId, o.signal);
+            const prev = await api.get(tenant, o.kind, o.resumeId, o.signal);
             const same = prev.size === o.file.size && prev.file_name === o.file.name && prev.kind === o.kind;
             if (same && ['uploading', 'assembling', 'complete'].includes(prev.status)) return prev;
         } catch (e) {
@@ -54,7 +54,7 @@ async function sendWithRetry(tenant: string, upload: ImportUpload, file: File, i
     const blob = file.slice(start, Math.min(file.size, start + upload.chunk_size));
     for (let attempt = 1; ; attempt++) {
         try {
-            await api.sendChunk(tenant, upload.id, index, blob, signal);
+            await api.sendChunk(tenant, upload.kind, upload.id, index, blob, signal);
             return blob.size;
         } catch (e) {
             const status = errorStatus(e);
@@ -98,13 +98,13 @@ export async function uploadFile(tenant: string, o: UploadFileOptions): Promise<
             o.signal?.removeEventListener('abort', forward);
         }
 
-        await api.complete(tenant, upload.id, o.signal);
+        await api.complete(tenant, upload.kind, upload.id, o.signal);
     }
 
     o.onAssembling?.();
     do {
         await sleep(UPLOAD_POLL_MS, o.signal);
-        upload = await api.get(tenant, upload.id, o.signal);
+        upload = await api.get(tenant, upload.kind, upload.id, o.signal);
     } while (upload.status === 'assembling' || upload.status === 'uploading');
 
     if (upload.status !== 'complete') throw new Error(upload.error ?? errorMessage(null) ?? 'Upload failed');

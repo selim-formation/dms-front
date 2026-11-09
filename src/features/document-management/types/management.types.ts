@@ -66,10 +66,11 @@ export interface DocumentApproval {
 
 export interface LatestVersion {
     version: number;
-    extension: string;
-    size: string;
+    /** Null until the file has been moved into storage (`upload_status` completed). */
+    extension: string | null;
+    size: string | null;
     expire_date: string | null;
-    reminder_before: number | null;
+    reminder_before: string | null;
     upload_status: string;
     created_at: string;
 }
@@ -119,3 +120,35 @@ export interface BulkResult {
 
 /** Same tones as the shared status badge. */
 export type StatusToneAlias = 'success' | 'info' | 'warning' | 'danger' | 'neutral';
+
+/** Body for edit (and the base of create). All ids are plain JSON whole numbers. */
+export interface DocumentPayload {
+    title: string;
+    description?: string;
+    importance: Importance;
+    category: DocumentCategory;
+    origin_department_id?: number;
+    types: number[];
+    departments: number[];
+    sections?: number[];
+    entities: number[];
+    responsible: number;
+    cc?: number[];
+}
+
+export interface VersionPayload {
+    /** Id of a finished `document_file` upload; each upload can be used once. */
+    upload_id: string;
+    special_document_number?: number;
+    expire_date?: string;
+    reminder_before?: number;
+    export_date?: string;
+    version_description?: string;
+}
+
+export interface CreateDocumentPayload extends DocumentPayload {
+    versions?: VersionPayload[];
+}
+
+/** upload_status values that mean "the server is still moving the file". */
+export const UPLOAD_IN_PROGRESS: ReadonlySet<string> = new Set(['queued', 'processing']);

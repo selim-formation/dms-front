@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import Navbar from '@/shared/components/layout/Navbar'
 import DepartmentBulkBar from '@/features/departments/components/DepartmentBulkBar'
@@ -8,6 +9,7 @@ import DepartmentConfirmDialog from '@/features/departments/components/Departmen
 import { DepartmentErrorState } from '@/features/departments/components/DepartmentStates'
 import { useDepartmentSelection } from '@/features/departments/hooks/useDepartmentSelection'
 import { errorMessage, errorStatus } from '@/features/departments/utils/departmentErrors'
+import { useTenantId } from '@/core/tenant/hooks/useTenant'
 import { errorList } from '@/features/roles/utils/roleErrors'
 import ManagementPageHeader from '../components/ManagementPageHeader'
 import ManagementTabs from '../components/ManagementTabs'
@@ -34,6 +36,9 @@ type ConfirmState = { kind: 'row'; action: RowAction; doc: ManagedDocument } | {
 export default function DocumentManagementPage() {
     const { t } = useTranslation('management')
     const access = useManagementAccess()
+    const tenant = useTenantId() ?? ''
+    const navigate = useNavigate()
+    const { view } = useSearch({ from: '/_protected/$tenant/document-management/' })
     const state = useManagementFilterState()
     const { documents, meta, isLoading, isFetching, isError, error, refetch } = useManagedDocuments(state.filters)
 
@@ -50,7 +55,11 @@ export default function DocumentManagementPage() {
     )
     const selection = useDepartmentSelection(JSON.stringify(state.filters), selectableIds)
 
-    const [viewId, setViewId] = useState<number | null>(null)
+    // `?view=ID` (after create / edit) opens that document's details once, then is stripped.
+    const [viewId, setViewId] = useState<number | null>(view ?? null)
+    useEffect(() => {
+        if (view !== undefined) navigate({ to: '.', search: {}, replace: true })
+    }, [view, navigate])
     const [review, setReview] = useState<ReviewTarget>(null)
     const [confirm, setConfirm] = useState<ConfirmState>(null)
     const [confirmError, setConfirmError] = useState<string | null>(null)
@@ -81,6 +90,11 @@ export default function DocumentManagementPage() {
 
     // Stable row callbacks (rows are memoised)
     const handleView = useCallback((d: ManagedDocument) => setViewId(d.id), [])
+    const handleEdit = useCallback(
+        (d: ManagedDocument) =>
+            navigate({ to: '/$tenant/document-management/$documentId/edit', params: { tenant, documentId: String(d.id) } }),
+        [navigate, tenant],
+    )
     const handleReview = useCallback((doc: ManagedDocument, decision: ReviewDecision) => setReview({ doc, decision }), [])
     // From the View dialog: close it, then open the review dialog.
     const handleReviewFromView = useCallback((doc: ManagedDocument, decision: ReviewDecision) => {
@@ -199,7 +213,7 @@ export default function DocumentManagementPage() {
                     <ManagementForbiddenState />
                 ) : (
                     <div className="space-y-6">
-                        <ManagementPageHeader />
+                        <ManagementPageHeader canCreate={access.canCreate} tenant={tenant} />
                         <ManagementTabs value={state.tab} onChange={state.setTab} />
 
                         <ManagementFilterBar
@@ -243,6 +257,7 @@ export default function DocumentManagementPage() {
                                     selectedIds={selection.selectedIds}
                                     onToggleSelect={selection.toggle}
                                     onView={handleView}
+                                    onEdit={handleEdit}
                                     onReview={handleReview}
                                     onDelete={handleDelete}
                                     onRestore={handleRestore}
@@ -260,7 +275,7 @@ export default function DocumentManagementPage() {
                 )}
             </main>
 
-            <ManagementDetailsDialog documentId={viewId} onOpenChange={closeView} onReview={handleReviewFromView} />
+            <ManagementDetailsDialog documentId={viewId} onOpenChange={closeView} onReview={handleReviewFromView} onEdit={handleEdit} />
 
             {review && (
                 <ReviewDialog

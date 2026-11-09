@@ -11,4 +11,6 @@ export const managementKeys = {
     counts: (tenant: string) => [...managementKeys.all(tenant), 'counts'] as const,
     details: (tenant: string) => [...managementKeys.all(tenant), 'detail'] as const,
     detail: (tenant: string, id: number) => [...managementKeys.details(tenant), id] as const,
+    versions: (tenant: string, documentId: number) => [...managementKeys.all(tenant), 'versions', documentId] as const,
+    processFiles: (tenant: string, documentId: number) => [...managementKeys.all(tenant), 'process-files', documentId] as const,
 };
