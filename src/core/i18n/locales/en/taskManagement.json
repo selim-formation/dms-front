@@ -1,0 +1,222 @@
+{
+  "page": {
+    "title": "Tasks",
+    "subtitle": "Tasks you created or were assigned",
+    "errorTitle": "Failed to load tasks",
+    "create": "New task"
+  },
+  "tabs": {
+    "label": "Task status",
+    "all": "All",
+    "todo": "To do",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "blocked": "Blocked",
+    "cancelled": "Cancelled",
+    "overdue": "Overdue",
+    "trash": "Trash"
+  },
+  "status": {
+    "TODO": "To do",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "BLOCKED": "Blocked",
+    "CANCELLED": "Cancelled"
+  },
+  "priority": {
+    "LOW": "Low",
+    "MEDIUM": "Medium",
+    "HIGH": "High",
+    "URGENT": "Urgent"
+  },
+  "type": {
+    "CREATE_DOCUMENT": "Create document",
+    "UPDATE_DOCUMENT": "Update document",
+    "REVIEW_DOCUMENT": "Review document",
+    "APPROVE_DOCUMENT": "Approve document",
+    "UPLOAD_VERSION": "Upload version",
+    "ARCHIVE_DOCUMENT": "Archive document",
+    "DELETE_DOCUMENT": "Delete document",
+    "RESTORE_DOCUMENT": "Restore document"
+  },
+  "scope": {
+    "mine": "Created or assigned",
+    "created": "Created by me",
+    "assigned": "Assigned to me"
+  },
+  "overdue": "Overdue",
+  "filters": {
+    "searchPlaceholder": "Search by title or description...",
+    "priority": "Priority",
+    "scope": "Scope",
+    "allPriorities": "All priorities",
+    "allScopes": "All my tasks",
+    "sort": "Sort",
+    "clear": "Clear filters",
+    "sortOptions": {
+      "-created_at": "Newest first",
+      "created_at": "Oldest first",
+      "due_date": "Due soonest",
+      "-due_date": "Due latest",
+      "priority": "Priority low → urgent",
+      "-priority": "Priority urgent → low",
+      "status": "Status (workflow order)",
+      "-status": "Status (reverse)",
+      "title": "Title A–Z",
+      "-title": "Title Z–A"
+    }
+  },
+  "table": {
+    "select": "Select {{name}}",
+    "selectColumn": "Select",
+    "columns": {
+      "title": "Title",
+      "status": "Status",
+      "priority": "Priority",
+      "type": "Type",
+      "assignee": "Assignee",
+      "creator": "Creator",
+      "due": "Due",
+      "created": "Created",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "menu": "Actions for {{name}}",
+    "changeStatus": "Change status of {{name}}",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "forceDelete": "Delete permanently"
+  },
+  "details": {
+    "title": "Task details",
+    "inTrash": "In trash",
+    "type": "Type",
+    "dueDate": "Due date",
+    "assignee": "Assignee",
+    "creator": "Creator",
+    "department": "Department",
+    "document": "Document",
+    "documentHidden": "A document you can't see",
+    "tags": "Tags",
+    "created": "Created",
+    "updated": "Updated",
+    "completed": "Completed",
+    "deleted": "Deleted"
+  },
+  "form": {
+    "createTitle": "New task",
+    "createSubtitle": "Describe the task, plan it and link it to a document.",
+    "editTitle": "Edit task",
+    "editSubtitle": "Saving replaces every field: anything you clear is removed.",
+    "stepsLabel": "Form steps",
+    "steps": {
+      "basics": "Basics",
+      "planning": "Planning",
+      "links": "Links",
+      "tags": "Tags"
+    },
+    "title": "Title",
+    "titlePlaceholder": "e.g. Review the supplier contract",
+    "description": "Description",
+    "descriptionPlaceholder": "What needs to be done?",
+    "descriptionHint": "{{count}} / {{max}}",
+    "priority": "Priority",
+    "type": "Task type",
+    "choose": "Choose…",
+    "none": "None",
+    "dueDate": "Due date",
+    "dueDateHint": "Optional. A task due today is not overdue yet.",
+    "assignee": "Assignee",
+    "department": "Department",
+    "document": "Document",
+    "documentSearch": "Search documents…",
+    "documentHidden": "Document #{{id}} (not visible to you)",
+    "clearDocument": "Remove the document link",
+    "documentsError": "Could not load documents.",
+    "noDocuments": "No documents found.",
+    "version": "Document version",
+    "versionHint": "Optional. Versions of the chosen document.",
+    "tags": "Tags",
+    "tagsHint": "Press Enter or comma to add. Up to {{max}} tags.",
+    "tagsPlaceholder": "Add a tag…",
+    "tagsLimit": "Limit of {{max}} tags reached",
+    "removeTag": "Remove tag {{tag}}",
+    "editReplaceHint": "Saving replaces the whole task. Status and the document link are kept unless you change them.",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "create": "Create task",
+    "save": "Save changes",
+    "errors": {
+      "titleRequired": "The task needs a title.",
+      "titleTooLong": "The title can't be longer than 255 characters.",
+      "descriptionTooLong": "The description can't be longer than 2000 characters.",
+      "typeRequired": "Choose the task type.",
+      "dueDateRange": "Choose a date between 1970-01-02 and 2038-01-18.",
+      "documentRequired": "Choose the document this version belongs to.",
+      "tagsTooMany": "Use at most 20 tags.",
+      "generic": "The task could not be saved. Try again."
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "Move to trash?",
+      "description": "“{{name}}” will be moved to the trash. You can restore it later.",
+      "confirm": "Move to trash"
+    },
+    "restore": {
+      "title": "Restore task?",
+      "description": "“{{name}}” will be brought back from the trash.",
+      "confirm": "Restore"
+    },
+    "force_delete": {
+      "title": "Delete permanently?",
+      "description": "“{{name}}” will be removed for good. This can't be undone.",
+      "confirm": "Delete permanently"
+    },
+    "bulk": {
+      "delete": {
+        "title": "Move {{count}} tasks to the trash?",
+        "description": "If any selected task can't be deleted, nothing is changed.",
+        "confirm": "Move to trash"
+      },
+      "restore": {
+        "title": "Restore {{count}} tasks?",
+        "description": "If any selected task can't be restored, nothing is changed.",
+        "confirm": "Restore"
+      },
+      "force_delete": {
+        "title": "Permanently delete {{count}} tasks?",
+        "description": "They are removed for good and this can't be undone. If any can't be deleted, nothing is changed.",
+        "confirm": "Delete permanently"
+      }
+    }
+  },
+  "notice": {
+    "created": "Task created.",
+    "updated": "Task updated.",
+    "delete": "Task moved to the trash.",
+    "restore": "Task restored.",
+    "force_delete": "Task permanently deleted.",
+    "bulk": {
+      "delete": "{{count}} tasks moved to the trash.",
+      "restore": "{{count}} tasks restored.",
+      "force_delete": "{{count}} tasks permanently deleted."
+    },
+    "notFound": "That task no longer exists or isn't available to you. The list was refreshed.",
+    "forbidden": "You don't have permission to do that.",
+    "failed": "That action failed. Try again."
+  },
+  "states": {
+    "emptyTitle": "No tasks found",
+    "emptyTrash": "The trash is empty",
+    "emptyDescription": "Try a different tab, search or filter.",
+    "forbiddenTitle": "You can't view tasks",
+    "forbiddenDescription": "You don't have permission to view this screen.",
+    "notFound": "This task no longer exists or isn't available to you.",
+    "viewError": "Failed to load this task."
+  }
+}

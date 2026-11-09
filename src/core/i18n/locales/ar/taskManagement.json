@@ -1,0 +1,222 @@
+{
+  "page": {
+    "title": "المهام",
+    "subtitle": "المهام التي أنشأتها أو أُسندت إليك",
+    "errorTitle": "تعذّر تحميل المهام",
+    "create": "مهمة جديدة"
+  },
+  "tabs": {
+    "label": "حالة المهمة",
+    "all": "الكل",
+    "todo": "للتنفيذ",
+    "in_progress": "قيد التنفيذ",
+    "completed": "مكتملة",
+    "blocked": "متوقفة",
+    "cancelled": "ملغاة",
+    "overdue": "متأخرة",
+    "trash": "المحذوفات"
+  },
+  "status": {
+    "TODO": "للتنفيذ",
+    "IN_PROGRESS": "قيد التنفيذ",
+    "COMPLETED": "مكتملة",
+    "BLOCKED": "متوقفة",
+    "CANCELLED": "ملغاة"
+  },
+  "priority": {
+    "LOW": "منخفضة",
+    "MEDIUM": "متوسطة",
+    "HIGH": "عالية",
+    "URGENT": "عاجلة"
+  },
+  "type": {
+    "CREATE_DOCUMENT": "إنشاء مستند",
+    "UPDATE_DOCUMENT": "تحديث مستند",
+    "REVIEW_DOCUMENT": "مراجعة مستند",
+    "APPROVE_DOCUMENT": "اعتماد مستند",
+    "UPLOAD_VERSION": "رفع إصدار",
+    "ARCHIVE_DOCUMENT": "أرشفة مستند",
+    "DELETE_DOCUMENT": "حذف مستند",
+    "RESTORE_DOCUMENT": "استعادة مستند"
+  },
+  "scope": {
+    "mine": "أنشأتها أو أُسندت إليّ",
+    "created": "أنشأتها أنا",
+    "assigned": "مسندة إليّ"
+  },
+  "overdue": "متأخرة",
+  "filters": {
+    "searchPlaceholder": "ابحث بالعنوان أو الوصف...",
+    "priority": "الأولوية",
+    "scope": "النطاق",
+    "allPriorities": "كل الأولويات",
+    "allScopes": "كل مهامي",
+    "sort": "الترتيب",
+    "clear": "مسح التصفية",
+    "sortOptions": {
+      "-created_at": "الأحدث أولاً",
+      "created_at": "الأقدم أولاً",
+      "due_date": "الأقرب استحقاقاً",
+      "-due_date": "الأبعد استحقاقاً",
+      "priority": "الأولوية: من المنخفضة إلى العاجلة",
+      "-priority": "الأولوية: من العاجلة إلى المنخفضة",
+      "status": "الحالة (ترتيب سير العمل)",
+      "-status": "الحالة (عكسي)",
+      "title": "العنوان أ–ي",
+      "-title": "العنوان ي–أ"
+    }
+  },
+  "table": {
+    "select": "تحديد {{name}}",
+    "selectColumn": "تحديد",
+    "columns": {
+      "title": "العنوان",
+      "status": "الحالة",
+      "priority": "الأولوية",
+      "type": "النوع",
+      "assignee": "المسؤول",
+      "creator": "المنشئ",
+      "due": "الاستحقاق",
+      "created": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    }
+  },
+  "actions": {
+    "menu": "إجراءات {{name}}",
+    "changeStatus": "تغيير حالة {{name}}",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "restore": "استعادة",
+    "forceDelete": "حذف نهائي"
+  },
+  "details": {
+    "title": "تفاصيل المهمة",
+    "inTrash": "في المحذوفات",
+    "type": "النوع",
+    "dueDate": "تاريخ الاستحقاق",
+    "assignee": "المسؤول",
+    "creator": "المنشئ",
+    "department": "القسم",
+    "document": "المستند",
+    "documentHidden": "مستند لا يمكنك رؤيته",
+    "tags": "الوسوم",
+    "created": "تاريخ الإنشاء",
+    "updated": "آخر تحديث",
+    "completed": "تاريخ الإكمال",
+    "deleted": "تاريخ الحذف"
+  },
+  "form": {
+    "createTitle": "مهمة جديدة",
+    "createSubtitle": "صِف المهمة وخطّط لها واربطها بمستند.",
+    "editTitle": "تعديل المهمة",
+    "editSubtitle": "الحفظ يستبدل كل الحقول: أي حقل تفرّغه يُحذف.",
+    "stepsLabel": "خطوات النموذج",
+    "steps": {
+      "basics": "الأساسيات",
+      "planning": "التخطيط",
+      "links": "الروابط",
+      "tags": "الوسوم"
+    },
+    "title": "العنوان",
+    "titlePlaceholder": "مثال: مراجعة عقد المورّد",
+    "description": "الوصف",
+    "descriptionPlaceholder": "ما المطلوب إنجازه؟",
+    "descriptionHint": "{{count}} / {{max}}",
+    "priority": "الأولوية",
+    "type": "نوع المهمة",
+    "choose": "اختر…",
+    "none": "بدون",
+    "dueDate": "تاريخ الاستحقاق",
+    "dueDateHint": "اختياري. المهمة المستحقة اليوم لا تُعدّ متأخرة بعد.",
+    "assignee": "المسؤول",
+    "department": "القسم",
+    "document": "المستند",
+    "documentSearch": "ابحث في المستندات…",
+    "documentHidden": "المستند رقم {{id}} (غير ظاهر لك)",
+    "clearDocument": "إزالة ربط المستند",
+    "documentsError": "تعذّر تحميل المستندات.",
+    "noDocuments": "لا توجد مستندات.",
+    "version": "إصدار المستند",
+    "versionHint": "اختياري. إصدارات المستند المختار.",
+    "tags": "الوسوم",
+    "tagsHint": "اضغط Enter أو الفاصلة للإضافة. حتى {{max}} وسماً.",
+    "tagsPlaceholder": "أضف وسماً…",
+    "tagsLimit": "تم بلوغ حد {{max}} وسماً",
+    "removeTag": "إزالة الوسم {{tag}}",
+    "editReplaceHint": "الحفظ يستبدل المهمة بالكامل. تبقى الحالة وربط المستند كما هما ما لم تغيّرهما.",
+    "cancel": "إلغاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "create": "إنشاء المهمة",
+    "save": "حفظ التغييرات",
+    "errors": {
+      "titleRequired": "المهمة تحتاج إلى عنوان.",
+      "titleTooLong": "لا يمكن أن يتجاوز العنوان 255 حرفاً.",
+      "descriptionTooLong": "لا يمكن أن يتجاوز الوصف 2000 حرف.",
+      "typeRequired": "اختر نوع المهمة.",
+      "dueDateRange": "اختر تاريخاً بين 1970-01-02 و2038-01-18.",
+      "documentRequired": "اختر المستند الذي ينتمي إليه هذا الإصدار.",
+      "tagsTooMany": "استخدم 20 وسماً كحدّ أقصى.",
+      "generic": "تعذّر حفظ المهمة. حاول مرة أخرى."
+    }
+  },
+  "confirm": {
+    "delete": {
+      "title": "نقل إلى المحذوفات؟",
+      "description": "سيتم نقل «{{name}}» إلى المحذوفات. يمكنك استعادتها لاحقاً.",
+      "confirm": "نقل إلى المحذوفات"
+    },
+    "restore": {
+      "title": "استعادة المهمة؟",
+      "description": "ستتم إعادة «{{name}}» من المحذوفات.",
+      "confirm": "استعادة"
+    },
+    "force_delete": {
+      "title": "حذف نهائي؟",
+      "description": "ستُزال «{{name}}» نهائياً ولا يمكن التراجع.",
+      "confirm": "حذف نهائي"
+    },
+    "bulk": {
+      "delete": {
+        "title": "نقل {{count}} مهمة إلى المحذوفات؟",
+        "description": "إذا تعذّر حذف أي مهمة محددة فلن يتغيّر شيء.",
+        "confirm": "نقل إلى المحذوفات"
+      },
+      "restore": {
+        "title": "استعادة {{count}} مهمة؟",
+        "description": "إذا تعذّرت استعادة أي مهمة محددة فلن يتغيّر شيء.",
+        "confirm": "استعادة"
+      },
+      "force_delete": {
+        "title": "حذف {{count}} مهمة نهائياً؟",
+        "description": "ستُزال نهائياً ولا يمكن التراجع. إذا تعذّر حذف أي منها فلن يتغيّر شيء.",
+        "confirm": "حذف نهائي"
+      }
+    }
+  },
+  "notice": {
+    "created": "تم إنشاء المهمة.",
+    "updated": "تم تحديث المهمة.",
+    "delete": "تم نقل المهمة إلى المحذوفات.",
+    "restore": "تمت استعادة المهمة.",
+    "force_delete": "تم حذف المهمة نهائياً.",
+    "bulk": {
+      "delete": "تم نقل {{count}} مهمة إلى المحذوفات.",
+      "restore": "تمت استعادة {{count}} مهمة.",
+      "force_delete": "تم حذف {{count}} مهمة نهائياً."
+    },
+    "notFound": "هذه المهمة لم تعد موجودة أو غير متاحة لك. تم تحديث القائمة.",
+    "forbidden": "ليست لديك صلاحية لتنفيذ ذلك.",
+    "failed": "فشل الإجراء. حاول مرة أخرى."
+  },
+  "states": {
+    "emptyTitle": "لا توجد مهام",
+    "emptyTrash": "سلة المحذوفات فارغة",
+    "emptyDescription": "جرّب تبويباً أو بحثاً أو تصفية مختلفة.",
+    "forbiddenTitle": "لا يمكنك عرض المهام",
+    "forbiddenDescription": "ليست لديك صلاحية لعرض هذه الشاشة.",
+    "notFound": "هذه المهمة لم تعد موجودة أو غير متاحة لك.",
+    "viewError": "تعذّر تحميل هذه المهمة."
+  }
+}
