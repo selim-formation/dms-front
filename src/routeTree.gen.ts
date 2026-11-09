@@ -18,23 +18,32 @@ import { Route as ProtectedTenantIndexRouteImport } from './routes/_protected/$t
 import { Route as ProtectedTenantProfileRouteImport } from './routes/_protected/$tenant/profile'
 import { Route as ProtectedTenantRegisterRouteImport } from './routes/_protected/$tenant/register'
 import { Route as ProtectedTenantTasksRouteImport } from './routes/_protected/$tenant/tasks'
+import { Route as ProtectedTenantCompaniesIndexRouteImport } from './routes/_protected/$tenant/companies/index'
 import { Route as ProtectedTenantDepartmentsIndexRouteImport } from './routes/_protected/$tenant/departments/index'
 import { Route as ProtectedTenantDocumentImportsIndexRouteImport } from './routes/_protected/$tenant/document-imports/index'
 import { Route as ProtectedTenantDocumentImportsImportIdRouteImport } from './routes/_protected/$tenant/document-imports/$importId'
 import { Route as ProtectedTenantDocumentManagementIndexRouteImport } from './routes/_protected/$tenant/document-management/index'
+import { Route as ProtectedTenantDocumentManagementNewRouteImport } from './routes/_protected/$tenant/document-management/new'
 import { Route as ProtectedTenantDocumentSharesIndexRouteImport } from './routes/_protected/$tenant/document-shares/index'
 import { Route as ProtectedTenantDocumentsIndexRouteImport } from './routes/_protected/$tenant/documents/index'
 import { Route as ProtectedTenantDocumentsIdRouteImport } from './routes/_protected/$tenant/documents/$id'
 import { Route as ProtectedTenantEmployeesIndexRouteImport } from './routes/_protected/$tenant/employees/index'
 import { Route as ProtectedTenantEntitiesIndexRouteImport } from './routes/_protected/$tenant/entities/index'
 import { Route as ProtectedTenantFavoritesIndexRouteImport } from './routes/_protected/$tenant/favorites/index'
+import { Route as ProtectedTenantGalleriesIndexRouteImport } from './routes/_protected/$tenant/galleries/index'
+import { Route as ProtectedTenantGalleriesGalleryIdRouteImport } from './routes/_protected/$tenant/galleries/$galleryId'
 import { Route as ProtectedTenantPinnedDocumentsIndexRouteImport } from './routes/_protected/$tenant/pinned-documents/index'
 import { Route as ProtectedTenantProjectsIndexRouteImport } from './routes/_protected/$tenant/projects/index'
 import { Route as ProtectedTenantRolesIndexRouteImport } from './routes/_protected/$tenant/roles/index'
 import { Route as ProtectedTenantSectionsIndexRouteImport } from './routes/_protected/$tenant/sections/index'
+import { Route as ProtectedTenantStorageConnectionsIndexRouteImport } from './routes/_protected/$tenant/storage-connections/index'
+import { Route as ProtectedTenantTaskManagementIndexRouteImport } from './routes/_protected/$tenant/task-management/index'
 import { Route as ProtectedTenantTasksIndexRouteImport } from './routes/_protected/$tenant/tasks/index'
 import { Route as ProtectedTenantTeamsIndexRouteImport } from './routes/_protected/$tenant/teams/index'
 import { Route as ProtectedTenantTypesIndexRouteImport } from './routes/_protected/$tenant/types/index'
+import { Route as ProtectedTenantUsersIndexRouteImport } from './routes/_protected/$tenant/users/index'
+import { Route as ProtectedTenantDocumentManagementDocumentIdEditRouteImport } from './routes/_protected/$tenant/document-management/$documentId/edit'
+import { Route as ProtectedTenantDocumentManagementDocumentIdVersionsRouteImport } from './routes/_protected/$tenant/document-management/$documentId/versions'
 
 const GuestRoute = GuestRouteImport.update({
   id: '/_guest',
@@ -79,6 +88,12 @@ const ProtectedTenantTasksRoute = ProtectedTenantTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => ProtectedTenantRouteRoute,
 } as any)
+const ProtectedTenantCompaniesIndexRoute =
+  ProtectedTenantCompaniesIndexRouteImport.update({
+    id: '/companies/',
+    path: '/companies/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 const ProtectedTenantDepartmentsIndexRoute =
   ProtectedTenantDepartmentsIndexRouteImport.update({
     id: '/departments/',
@@ -101,6 +116,12 @@ const ProtectedTenantDocumentManagementIndexRoute =
   ProtectedTenantDocumentManagementIndexRouteImport.update({
     id: '/document-management/',
     path: '/document-management/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentManagementNewRoute =
+  ProtectedTenantDocumentManagementNewRouteImport.update({
+    id: '/document-management/new',
+    path: '/document-management/new',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
 const ProtectedTenantDocumentSharesIndexRoute =
@@ -139,6 +160,18 @@ const ProtectedTenantFavoritesIndexRoute =
     path: '/favorites/',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
+const ProtectedTenantGalleriesIndexRoute =
+  ProtectedTenantGalleriesIndexRouteImport.update({
+    id: '/galleries/',
+    path: '/galleries/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantGalleriesGalleryIdRoute =
+  ProtectedTenantGalleriesGalleryIdRouteImport.update({
+    id: '/galleries/$galleryId',
+    path: '/galleries/$galleryId',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 const ProtectedTenantPinnedDocumentsIndexRoute =
   ProtectedTenantPinnedDocumentsIndexRouteImport.update({
     id: '/pinned-documents/',
@@ -163,6 +196,18 @@ const ProtectedTenantSectionsIndexRoute =
     path: '/sections/',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
+const ProtectedTenantStorageConnectionsIndexRoute =
+  ProtectedTenantStorageConnectionsIndexRouteImport.update({
+    id: '/storage-connections/',
+    path: '/storage-connections/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantTaskManagementIndexRoute =
+  ProtectedTenantTaskManagementIndexRouteImport.update({
+    id: '/task-management/',
+    path: '/task-management/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 const ProtectedTenantTasksIndexRoute =
   ProtectedTenantTasksIndexRouteImport.update({
     id: '/',
@@ -181,6 +226,24 @@ const ProtectedTenantTypesIndexRoute =
     path: '/types/',
     getParentRoute: () => ProtectedTenantRouteRoute,
   } as any)
+const ProtectedTenantUsersIndexRoute =
+  ProtectedTenantUsersIndexRouteImport.update({
+    id: '/users/',
+    path: '/users/',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentManagementDocumentIdEditRoute =
+  ProtectedTenantDocumentManagementDocumentIdEditRouteImport.update({
+    id: '/document-management/$documentId/edit',
+    path: '/document-management/$documentId/edit',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
+const ProtectedTenantDocumentManagementDocumentIdVersionsRoute =
+  ProtectedTenantDocumentManagementDocumentIdVersionsRouteImport.update({
+    id: '/document-management/$documentId/versions',
+    path: '/document-management/$documentId/versions',
+    getParentRoute: () => ProtectedTenantRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof ProtectedIndexRoute
@@ -191,7 +254,10 @@ export interface FileRoutesByFullPath {
   '/$tenant/tasks': typeof ProtectedTenantTasksRouteWithChildren
   '/$tenant/': typeof ProtectedTenantIndexRoute
   '/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
+  '/$tenant/document-management/new': typeof ProtectedTenantDocumentManagementNewRoute
   '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/$tenant/galleries/$galleryId': typeof ProtectedTenantGalleriesGalleryIdRoute
+  '/$tenant/companies/': typeof ProtectedTenantCompaniesIndexRoute
   '/$tenant/departments/': typeof ProtectedTenantDepartmentsIndexRoute
   '/$tenant/document-imports/': typeof ProtectedTenantDocumentImportsIndexRoute
   '/$tenant/document-management/': typeof ProtectedTenantDocumentManagementIndexRoute
@@ -200,13 +266,19 @@ export interface FileRoutesByFullPath {
   '/$tenant/employees/': typeof ProtectedTenantEmployeesIndexRoute
   '/$tenant/entities/': typeof ProtectedTenantEntitiesIndexRoute
   '/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
+  '/$tenant/galleries/': typeof ProtectedTenantGalleriesIndexRoute
   '/$tenant/pinned-documents/': typeof ProtectedTenantPinnedDocumentsIndexRoute
   '/$tenant/projects/': typeof ProtectedTenantProjectsIndexRoute
   '/$tenant/roles/': typeof ProtectedTenantRolesIndexRoute
   '/$tenant/sections/': typeof ProtectedTenantSectionsIndexRoute
+  '/$tenant/storage-connections/': typeof ProtectedTenantStorageConnectionsIndexRoute
+  '/$tenant/task-management/': typeof ProtectedTenantTaskManagementIndexRoute
   '/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
   '/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
   '/$tenant/types/': typeof ProtectedTenantTypesIndexRoute
+  '/$tenant/users/': typeof ProtectedTenantUsersIndexRoute
+  '/$tenant/document-management/$documentId/edit': typeof ProtectedTenantDocumentManagementDocumentIdEditRoute
+  '/$tenant/document-management/$documentId/versions': typeof ProtectedTenantDocumentManagementDocumentIdVersionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof ProtectedIndexRoute
@@ -215,7 +287,10 @@ export interface FileRoutesByTo {
   '/$tenant/register': typeof ProtectedTenantRegisterRoute
   '/$tenant': typeof ProtectedTenantIndexRoute
   '/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
+  '/$tenant/document-management/new': typeof ProtectedTenantDocumentManagementNewRoute
   '/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/$tenant/galleries/$galleryId': typeof ProtectedTenantGalleriesGalleryIdRoute
+  '/$tenant/companies': typeof ProtectedTenantCompaniesIndexRoute
   '/$tenant/departments': typeof ProtectedTenantDepartmentsIndexRoute
   '/$tenant/document-imports': typeof ProtectedTenantDocumentImportsIndexRoute
   '/$tenant/document-management': typeof ProtectedTenantDocumentManagementIndexRoute
@@ -224,13 +299,19 @@ export interface FileRoutesByTo {
   '/$tenant/employees': typeof ProtectedTenantEmployeesIndexRoute
   '/$tenant/entities': typeof ProtectedTenantEntitiesIndexRoute
   '/$tenant/favorites': typeof ProtectedTenantFavoritesIndexRoute
+  '/$tenant/galleries': typeof ProtectedTenantGalleriesIndexRoute
   '/$tenant/pinned-documents': typeof ProtectedTenantPinnedDocumentsIndexRoute
   '/$tenant/projects': typeof ProtectedTenantProjectsIndexRoute
   '/$tenant/roles': typeof ProtectedTenantRolesIndexRoute
   '/$tenant/sections': typeof ProtectedTenantSectionsIndexRoute
+  '/$tenant/storage-connections': typeof ProtectedTenantStorageConnectionsIndexRoute
+  '/$tenant/task-management': typeof ProtectedTenantTaskManagementIndexRoute
   '/$tenant/tasks': typeof ProtectedTenantTasksIndexRoute
   '/$tenant/teams': typeof ProtectedTenantTeamsIndexRoute
   '/$tenant/types': typeof ProtectedTenantTypesIndexRoute
+  '/$tenant/users': typeof ProtectedTenantUsersIndexRoute
+  '/$tenant/document-management/$documentId/edit': typeof ProtectedTenantDocumentManagementDocumentIdEditRoute
+  '/$tenant/document-management/$documentId/versions': typeof ProtectedTenantDocumentManagementDocumentIdVersionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -244,7 +325,10 @@ export interface FileRoutesById {
   '/_protected/$tenant/tasks': typeof ProtectedTenantTasksRouteWithChildren
   '/_protected/$tenant/': typeof ProtectedTenantIndexRoute
   '/_protected/$tenant/document-imports/$importId': typeof ProtectedTenantDocumentImportsImportIdRoute
+  '/_protected/$tenant/document-management/new': typeof ProtectedTenantDocumentManagementNewRoute
   '/_protected/$tenant/documents/$id': typeof ProtectedTenantDocumentsIdRoute
+  '/_protected/$tenant/galleries/$galleryId': typeof ProtectedTenantGalleriesGalleryIdRoute
+  '/_protected/$tenant/companies/': typeof ProtectedTenantCompaniesIndexRoute
   '/_protected/$tenant/departments/': typeof ProtectedTenantDepartmentsIndexRoute
   '/_protected/$tenant/document-imports/': typeof ProtectedTenantDocumentImportsIndexRoute
   '/_protected/$tenant/document-management/': typeof ProtectedTenantDocumentManagementIndexRoute
@@ -253,13 +337,19 @@ export interface FileRoutesById {
   '/_protected/$tenant/employees/': typeof ProtectedTenantEmployeesIndexRoute
   '/_protected/$tenant/entities/': typeof ProtectedTenantEntitiesIndexRoute
   '/_protected/$tenant/favorites/': typeof ProtectedTenantFavoritesIndexRoute
+  '/_protected/$tenant/galleries/': typeof ProtectedTenantGalleriesIndexRoute
   '/_protected/$tenant/pinned-documents/': typeof ProtectedTenantPinnedDocumentsIndexRoute
   '/_protected/$tenant/projects/': typeof ProtectedTenantProjectsIndexRoute
   '/_protected/$tenant/roles/': typeof ProtectedTenantRolesIndexRoute
   '/_protected/$tenant/sections/': typeof ProtectedTenantSectionsIndexRoute
+  '/_protected/$tenant/storage-connections/': typeof ProtectedTenantStorageConnectionsIndexRoute
+  '/_protected/$tenant/task-management/': typeof ProtectedTenantTaskManagementIndexRoute
   '/_protected/$tenant/tasks/': typeof ProtectedTenantTasksIndexRoute
   '/_protected/$tenant/teams/': typeof ProtectedTenantTeamsIndexRoute
   '/_protected/$tenant/types/': typeof ProtectedTenantTypesIndexRoute
+  '/_protected/$tenant/users/': typeof ProtectedTenantUsersIndexRoute
+  '/_protected/$tenant/document-management/$documentId/edit': typeof ProtectedTenantDocumentManagementDocumentIdEditRoute
+  '/_protected/$tenant/document-management/$documentId/versions': typeof ProtectedTenantDocumentManagementDocumentIdVersionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -272,7 +362,10 @@ export interface FileRouteTypes {
     | '/$tenant/tasks'
     | '/$tenant/'
     | '/$tenant/document-imports/$importId'
+    | '/$tenant/document-management/new'
     | '/$tenant/documents/$id'
+    | '/$tenant/galleries/$galleryId'
+    | '/$tenant/companies/'
     | '/$tenant/departments/'
     | '/$tenant/document-imports/'
     | '/$tenant/document-management/'
@@ -281,13 +374,19 @@ export interface FileRouteTypes {
     | '/$tenant/employees/'
     | '/$tenant/entities/'
     | '/$tenant/favorites/'
+    | '/$tenant/galleries/'
     | '/$tenant/pinned-documents/'
     | '/$tenant/projects/'
     | '/$tenant/roles/'
     | '/$tenant/sections/'
+    | '/$tenant/storage-connections/'
+    | '/$tenant/task-management/'
     | '/$tenant/tasks/'
     | '/$tenant/teams/'
     | '/$tenant/types/'
+    | '/$tenant/users/'
+    | '/$tenant/document-management/$documentId/edit'
+    | '/$tenant/document-management/$documentId/versions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -296,7 +395,10 @@ export interface FileRouteTypes {
     | '/$tenant/register'
     | '/$tenant'
     | '/$tenant/document-imports/$importId'
+    | '/$tenant/document-management/new'
     | '/$tenant/documents/$id'
+    | '/$tenant/galleries/$galleryId'
+    | '/$tenant/companies'
     | '/$tenant/departments'
     | '/$tenant/document-imports'
     | '/$tenant/document-management'
@@ -305,13 +407,19 @@ export interface FileRouteTypes {
     | '/$tenant/employees'
     | '/$tenant/entities'
     | '/$tenant/favorites'
+    | '/$tenant/galleries'
     | '/$tenant/pinned-documents'
     | '/$tenant/projects'
     | '/$tenant/roles'
     | '/$tenant/sections'
+    | '/$tenant/storage-connections'
+    | '/$tenant/task-management'
     | '/$tenant/tasks'
     | '/$tenant/teams'
     | '/$tenant/types'
+    | '/$tenant/users'
+    | '/$tenant/document-management/$documentId/edit'
+    | '/$tenant/document-management/$documentId/versions'
   id:
     | '__root__'
     | '/_guest'
@@ -324,7 +432,10 @@ export interface FileRouteTypes {
     | '/_protected/$tenant/tasks'
     | '/_protected/$tenant/'
     | '/_protected/$tenant/document-imports/$importId'
+    | '/_protected/$tenant/document-management/new'
     | '/_protected/$tenant/documents/$id'
+    | '/_protected/$tenant/galleries/$galleryId'
+    | '/_protected/$tenant/companies/'
     | '/_protected/$tenant/departments/'
     | '/_protected/$tenant/document-imports/'
     | '/_protected/$tenant/document-management/'
@@ -333,13 +444,19 @@ export interface FileRouteTypes {
     | '/_protected/$tenant/employees/'
     | '/_protected/$tenant/entities/'
     | '/_protected/$tenant/favorites/'
+    | '/_protected/$tenant/galleries/'
     | '/_protected/$tenant/pinned-documents/'
     | '/_protected/$tenant/projects/'
     | '/_protected/$tenant/roles/'
     | '/_protected/$tenant/sections/'
+    | '/_protected/$tenant/storage-connections/'
+    | '/_protected/$tenant/task-management/'
     | '/_protected/$tenant/tasks/'
     | '/_protected/$tenant/teams/'
     | '/_protected/$tenant/types/'
+    | '/_protected/$tenant/users/'
+    | '/_protected/$tenant/document-management/$documentId/edit'
+    | '/_protected/$tenant/document-management/$documentId/versions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -412,6 +529,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantTasksRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/companies/': {
+      id: '/_protected/$tenant/companies/'
+      path: '/companies'
+      fullPath: '/$tenant/companies/'
+      preLoaderRoute: typeof ProtectedTenantCompaniesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/departments/': {
       id: '/_protected/$tenant/departments/'
       path: '/departments'
@@ -438,6 +562,13 @@ declare module '@tanstack/react-router' {
       path: '/document-management'
       fullPath: '/$tenant/document-management/'
       preLoaderRoute: typeof ProtectedTenantDocumentManagementIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-management/new': {
+      id: '/_protected/$tenant/document-management/new'
+      path: '/document-management/new'
+      fullPath: '/$tenant/document-management/new'
+      preLoaderRoute: typeof ProtectedTenantDocumentManagementNewRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
     '/_protected/$tenant/document-shares/': {
@@ -482,6 +613,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantFavoritesIndexRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/galleries/': {
+      id: '/_protected/$tenant/galleries/'
+      path: '/galleries'
+      fullPath: '/$tenant/galleries/'
+      preLoaderRoute: typeof ProtectedTenantGalleriesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/galleries/$galleryId': {
+      id: '/_protected/$tenant/galleries/$galleryId'
+      path: '/galleries/$galleryId'
+      fullPath: '/$tenant/galleries/$galleryId'
+      preLoaderRoute: typeof ProtectedTenantGalleriesGalleryIdRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/pinned-documents/': {
       id: '/_protected/$tenant/pinned-documents/'
       path: '/pinned-documents'
@@ -510,6 +655,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedTenantSectionsIndexRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
+    '/_protected/$tenant/storage-connections/': {
+      id: '/_protected/$tenant/storage-connections/'
+      path: '/storage-connections'
+      fullPath: '/$tenant/storage-connections/'
+      preLoaderRoute: typeof ProtectedTenantStorageConnectionsIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/task-management/': {
+      id: '/_protected/$tenant/task-management/'
+      path: '/task-management'
+      fullPath: '/$tenant/task-management/'
+      preLoaderRoute: typeof ProtectedTenantTaskManagementIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
     '/_protected/$tenant/tasks/': {
       id: '/_protected/$tenant/tasks/'
       path: '/'
@@ -529,6 +688,27 @@ declare module '@tanstack/react-router' {
       path: '/types'
       fullPath: '/$tenant/types/'
       preLoaderRoute: typeof ProtectedTenantTypesIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/users/': {
+      id: '/_protected/$tenant/users/'
+      path: '/users'
+      fullPath: '/$tenant/users/'
+      preLoaderRoute: typeof ProtectedTenantUsersIndexRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-management/$documentId/edit': {
+      id: '/_protected/$tenant/document-management/$documentId/edit'
+      path: '/document-management/$documentId/edit'
+      fullPath: '/$tenant/document-management/$documentId/edit'
+      preLoaderRoute: typeof ProtectedTenantDocumentManagementDocumentIdEditRouteImport
+      parentRoute: typeof ProtectedTenantRouteRoute
+    }
+    '/_protected/$tenant/document-management/$documentId/versions': {
+      id: '/_protected/$tenant/document-management/$documentId/versions'
+      path: '/document-management/$documentId/versions'
+      fullPath: '/$tenant/document-management/$documentId/versions'
+      preLoaderRoute: typeof ProtectedTenantDocumentManagementDocumentIdVersionsRouteImport
       parentRoute: typeof ProtectedTenantRouteRoute
     }
   }
@@ -561,7 +741,10 @@ interface ProtectedTenantRouteRouteChildren {
   ProtectedTenantTasksRoute: typeof ProtectedTenantTasksRouteWithChildren
   ProtectedTenantIndexRoute: typeof ProtectedTenantIndexRoute
   ProtectedTenantDocumentImportsImportIdRoute: typeof ProtectedTenantDocumentImportsImportIdRoute
+  ProtectedTenantDocumentManagementNewRoute: typeof ProtectedTenantDocumentManagementNewRoute
   ProtectedTenantDocumentsIdRoute: typeof ProtectedTenantDocumentsIdRoute
+  ProtectedTenantGalleriesGalleryIdRoute: typeof ProtectedTenantGalleriesGalleryIdRoute
+  ProtectedTenantCompaniesIndexRoute: typeof ProtectedTenantCompaniesIndexRoute
   ProtectedTenantDepartmentsIndexRoute: typeof ProtectedTenantDepartmentsIndexRoute
   ProtectedTenantDocumentImportsIndexRoute: typeof ProtectedTenantDocumentImportsIndexRoute
   ProtectedTenantDocumentManagementIndexRoute: typeof ProtectedTenantDocumentManagementIndexRoute
@@ -570,12 +753,18 @@ interface ProtectedTenantRouteRouteChildren {
   ProtectedTenantEmployeesIndexRoute: typeof ProtectedTenantEmployeesIndexRoute
   ProtectedTenantEntitiesIndexRoute: typeof ProtectedTenantEntitiesIndexRoute
   ProtectedTenantFavoritesIndexRoute: typeof ProtectedTenantFavoritesIndexRoute
+  ProtectedTenantGalleriesIndexRoute: typeof ProtectedTenantGalleriesIndexRoute
   ProtectedTenantPinnedDocumentsIndexRoute: typeof ProtectedTenantPinnedDocumentsIndexRoute
   ProtectedTenantProjectsIndexRoute: typeof ProtectedTenantProjectsIndexRoute
   ProtectedTenantRolesIndexRoute: typeof ProtectedTenantRolesIndexRoute
   ProtectedTenantSectionsIndexRoute: typeof ProtectedTenantSectionsIndexRoute
+  ProtectedTenantStorageConnectionsIndexRoute: typeof ProtectedTenantStorageConnectionsIndexRoute
+  ProtectedTenantTaskManagementIndexRoute: typeof ProtectedTenantTaskManagementIndexRoute
   ProtectedTenantTeamsIndexRoute: typeof ProtectedTenantTeamsIndexRoute
   ProtectedTenantTypesIndexRoute: typeof ProtectedTenantTypesIndexRoute
+  ProtectedTenantUsersIndexRoute: typeof ProtectedTenantUsersIndexRoute
+  ProtectedTenantDocumentManagementDocumentIdEditRoute: typeof ProtectedTenantDocumentManagementDocumentIdEditRoute
+  ProtectedTenantDocumentManagementDocumentIdVersionsRoute: typeof ProtectedTenantDocumentManagementDocumentIdVersionsRoute
 }
 
 const ProtectedTenantRouteRouteChildren: ProtectedTenantRouteRouteChildren = {
@@ -585,7 +774,12 @@ const ProtectedTenantRouteRouteChildren: ProtectedTenantRouteRouteChildren = {
   ProtectedTenantIndexRoute: ProtectedTenantIndexRoute,
   ProtectedTenantDocumentImportsImportIdRoute:
     ProtectedTenantDocumentImportsImportIdRoute,
+  ProtectedTenantDocumentManagementNewRoute:
+    ProtectedTenantDocumentManagementNewRoute,
   ProtectedTenantDocumentsIdRoute: ProtectedTenantDocumentsIdRoute,
+  ProtectedTenantGalleriesGalleryIdRoute:
+    ProtectedTenantGalleriesGalleryIdRoute,
+  ProtectedTenantCompaniesIndexRoute: ProtectedTenantCompaniesIndexRoute,
   ProtectedTenantDepartmentsIndexRoute: ProtectedTenantDepartmentsIndexRoute,
   ProtectedTenantDocumentImportsIndexRoute:
     ProtectedTenantDocumentImportsIndexRoute,
@@ -597,13 +791,23 @@ const ProtectedTenantRouteRouteChildren: ProtectedTenantRouteRouteChildren = {
   ProtectedTenantEmployeesIndexRoute: ProtectedTenantEmployeesIndexRoute,
   ProtectedTenantEntitiesIndexRoute: ProtectedTenantEntitiesIndexRoute,
   ProtectedTenantFavoritesIndexRoute: ProtectedTenantFavoritesIndexRoute,
+  ProtectedTenantGalleriesIndexRoute: ProtectedTenantGalleriesIndexRoute,
   ProtectedTenantPinnedDocumentsIndexRoute:
     ProtectedTenantPinnedDocumentsIndexRoute,
   ProtectedTenantProjectsIndexRoute: ProtectedTenantProjectsIndexRoute,
   ProtectedTenantRolesIndexRoute: ProtectedTenantRolesIndexRoute,
   ProtectedTenantSectionsIndexRoute: ProtectedTenantSectionsIndexRoute,
+  ProtectedTenantStorageConnectionsIndexRoute:
+    ProtectedTenantStorageConnectionsIndexRoute,
+  ProtectedTenantTaskManagementIndexRoute:
+    ProtectedTenantTaskManagementIndexRoute,
   ProtectedTenantTeamsIndexRoute: ProtectedTenantTeamsIndexRoute,
   ProtectedTenantTypesIndexRoute: ProtectedTenantTypesIndexRoute,
+  ProtectedTenantUsersIndexRoute: ProtectedTenantUsersIndexRoute,
+  ProtectedTenantDocumentManagementDocumentIdEditRoute:
+    ProtectedTenantDocumentManagementDocumentIdEditRoute,
+  ProtectedTenantDocumentManagementDocumentIdVersionsRoute:
+    ProtectedTenantDocumentManagementDocumentIdVersionsRoute,
 }
 
 const ProtectedTenantRouteRouteWithChildren =
