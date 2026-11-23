@@ -84,6 +84,7 @@ export async function authRequestInterceptor(
 export function authResponseErrorInterceptor(
   error: AxiosError,
   axiosInstance: AxiosInstance,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
   // Handle CSRF token mismatch
   if (error.response?.status === 419) {

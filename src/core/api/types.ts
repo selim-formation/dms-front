@@ -49,6 +49,7 @@ export function transformAxiosError(error: AxiosError): ApiError {
 
   if (response) {
     // Server responded with error
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const data = response.data as any;
 
     if (isRawValidationErrors(data)) {

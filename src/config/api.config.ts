@@ -134,6 +134,9 @@ export const apiEndpoints = {
     forceDelete: "api/{tenant}/document-management/{id}/force",
     bulk: "api/{tenant}/document-management/bulk",
   },
+  documentActivities: {
+    list: "api/{tenant}/document-management/{id}/activities",
+  },
   tenantManagement: {
     list: "api/tenant-management",
     detail: "api/tenant-management/{id}",

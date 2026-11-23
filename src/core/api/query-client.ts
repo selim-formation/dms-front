@@ -18,8 +18,10 @@ export function createAppQueryClient(): QueryClient {
   // Log cache events in development
   if (import.meta.env.DEV) {
     // Subscribe to query cache updates
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const queryCache = (queryClient as any).cache;
     if (queryCache && typeof queryCache.subscribe === "function") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       queryCache.subscribe((event: any) => {
         if (event.type === "updated") {
           log.debug("Query updated", {
@@ -30,8 +32,10 @@ export function createAppQueryClient(): QueryClient {
     }
 
     // Subscribe to mutation cache updates
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mutationCache = (queryClient as any).mutationCache;
     if (mutationCache && typeof mutationCache.subscribe === "function") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mutationCache.subscribe((event: any) => {
         if (event.type === "updated") {
           log.debug("Mutation updated", {

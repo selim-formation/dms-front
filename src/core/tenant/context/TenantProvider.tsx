@@ -93,6 +93,7 @@ export function TenantProvider({
    */
   useEffect(() => {
     if (tenantId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       loadTenant(tenantId);
     } else {
       // Clear tenant state

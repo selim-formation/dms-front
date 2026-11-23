@@ -45,4 +45,5 @@ export function AppProviders({ children, initialTenantId }: AppProvidersProps) {
 /**
  * Export query client for use in route loaders
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export { queryClient };

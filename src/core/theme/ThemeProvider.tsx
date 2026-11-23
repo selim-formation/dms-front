@@ -54,6 +54,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [isDark]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsDark(resolveIsDark(theme));
 
     if (theme !== "system" || !window.matchMedia) return;
@@ -83,6 +84,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useThemeContext(): ThemeContextType {
   const ctx = useContext(ThemeContext);
   if (!ctx) throw new Error("useThemeContext must be used within a ThemeProvider");

@@ -46,6 +46,7 @@ export async function validateTenant(
     }>(url, {
       // Skip tenant injection for this specific endpoint
       skipTenantInjection: true,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     const { tenant_exists, has_access } = response.data.data;

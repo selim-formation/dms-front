@@ -12,6 +12,7 @@ export { useParams };
  */
 export function useTenantParam(): string {
   const params = useParams({ strict: false });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (params as any).tenant || "";
 }
 
@@ -20,6 +21,7 @@ export function useTenantParam(): string {
  */
 export function useDocumentIdParam(): string {
   const params = useParams({ strict: false });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (params as any).documentId || "";
 }
 
@@ -28,6 +30,7 @@ export function useDocumentIdParam(): string {
  */
 export function useWorkspaceIdParam(): string {
   const params = useParams({ strict: false });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (params as any).workspaceId || "";
 }
 
@@ -36,6 +39,7 @@ export function useWorkspaceIdParam(): string {
  */
 export function useUserIdParam(): string {
   const params = useParams({ strict: false });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (params as any).userId || "";
 }
 
@@ -44,5 +48,6 @@ export function useUserIdParam(): string {
  */
 export function useTeamIdParam(): string {
   const params = useParams({ strict: false });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (params as any).teamId || "";
 }
