@@ -47,13 +47,13 @@ function ExpiryRiskInsightCardBase({ className, enabled }: ExpiryRiskInsightCard
             })
           : undefined
       }
-      height={300}
+      height={340}
       isLoading={isPending}
       isError={isError && !data}
       isEmpty={!!data && data.total === 0}
       onRetry={refetch}
     >
-      <BarInsightChart rows={rows} orientation="vertical" isRtl={isRtl} />
+      <BarInsightChart rows={rows} orientation="vertical" isRtl={isRtl} splitLabels />
     </InsightCard>
   );
 }

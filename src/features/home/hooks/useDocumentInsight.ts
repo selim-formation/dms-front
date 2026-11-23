@@ -69,8 +69,12 @@ export function useDocumentInsight<M extends InsightMetric>(
     refetchOnWindowFocus: true,
     // Keep old chart on screen while a locale switch refetches.
     placeholderData: keepPreviousData,
-    retry: (count, error) =>
-      (error as { response?: { status?: number } })?.response?.status !== 403 &&
-      count < 2,
+    // 403 (role not allowed) and 422 (bad params) can't fix themselves. The client's error
+    // interceptor flattens the status onto the error; raw axios errors keep it on `response`.
+    retry: (count, error) => {
+      const e = error as { status?: number; response?: { status?: number } };
+      const status = e?.status ?? e?.response?.status;
+      return status !== 403 && status !== 422 && count < 2;
+    },
   });
 }

@@ -13,6 +13,7 @@ export const CHART_COLOR_SEQUENCE = [
   CHART_COLORS.info,
 ] as const;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const chartTooltipStyle = {
   borderRadius: "0.5rem",
   fontSize: "0.7rem",
@@ -20,8 +21,10 @@ export const chartTooltipStyle = {
   background: "hsl(var(--background))",
 } as const;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const chartAxisTick = { fontSize: 10 } as const;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function legendFormatter(labels: Record<string, string>) {
   return (value: string) => (
     <span className="text-[10px] text-muted-foreground capitalize">

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import {
   Bar,
   BarChart,
@@ -17,6 +17,7 @@ import {
   insightGridStroke,
   insightTooltipStyle,
 } from "./insightTheme";
+import { useFlatCategoryTick } from "./useFlatCategoryTick";
 
 interface RenewalInsightChartProps {
   items: RenewalInsightItem[];
@@ -36,8 +37,13 @@ function RenewalInsightChartBase({
   renewalLabel,
   isRtl = false,
 }: RenewalInsightChartProps) {
+  const labels = useMemo(() => items.map((i) => i.label), [items]);
+  const flat = useFlatCategoryTick(labels);
+
   return (
-    <ResponsiveContainer width="100%" height="100%" debounce={100}>
+    <div className="h-full w-full overflow-x-auto overflow-y-hidden">
+    <div className="h-full" style={{ minWidth: flat.minWidth }}>
+    <ResponsiveContainer width="100%" height="100%" debounce={100} onResize={flat.onResize}>
       <BarChart data={items} margin={MARGIN} barGap={2} barCategoryGap="20%">
         <CartesianGrid
           strokeDasharray="3 3"
@@ -46,13 +52,11 @@ function RenewalInsightChartBase({
         />
         <XAxis
           dataKey="label"
-          tick={insightAxisTick}
+          tick={flat.tick}
           axisLine={false}
           tickLine={false}
           interval={0}
-          angle={-45}
-          textAnchor="end"
-          height={64}
+          height={flat.height}
           reversed={isRtl}
         />
         <YAxis
@@ -87,6 +91,8 @@ function RenewalInsightChartBase({
         />
       </BarChart>
     </ResponsiveContainer>
+    </div>
+    </div>
   );
 }
 

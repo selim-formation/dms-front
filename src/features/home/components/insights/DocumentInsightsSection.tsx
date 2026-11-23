@@ -24,7 +24,10 @@ type SlotConfig =
   | { kind: "renewal" }
   | { kind: "expiry-risk" };
 
-/** Module-level + frozen order = zero per-render allocation. 1 col mobile, 2 md, 3 lg; renewal spans 2 on lg. */
+/** Every card shares one chart height so the grid reads as equal tiles. */
+const CHART_HEIGHT = 340;
+
+/** Module-level + frozen order = zero per-render allocation. 1 col mobile, 2 md, 3 lg; every card the same size. */
 const SLOTS: readonly (SlotConfig & {
   id: string;
   placeholderHeight: number;
@@ -36,8 +39,8 @@ const SLOTS: readonly (SlotConfig & {
     metric: "by-type",
     i18nKey: "byType",
     variant: "donut",
-    height: 340,
-    placeholderHeight: 340,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
   {
     id: "by-department",
@@ -46,8 +49,8 @@ const SLOTS: readonly (SlotConfig & {
     i18nKey: "byDepartment",
     ownI18nKey: "byDepartmentOwn",
     variant: "bar-horizontal",
-    height: 340,
-    placeholderHeight: 340,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
   {
     id: "by-category",
@@ -55,14 +58,14 @@ const SLOTS: readonly (SlotConfig & {
     metric: "by-category",
     i18nKey: "byCategory",
     variant: "donut",
-    height: 300,
-    placeholderHeight: 300,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
   {
     id: "by-renewal-type",
     kind: "renewal",
     span: "md:col-span-2 lg:col-span-2",
-    placeholderHeight: 340,
+    placeholderHeight: CHART_HEIGHT,
   },
   {
     id: "by-importance",
@@ -71,8 +74,8 @@ const SLOTS: readonly (SlotConfig & {
     i18nKey: "byImportance",
     variant: "bar-vertical",
     translateKeysFrom: "importance",
-    height: 340,
-    placeholderHeight: 340,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
 
   {
@@ -81,8 +84,8 @@ const SLOTS: readonly (SlotConfig & {
     metric: "by-status",
     i18nKey: "byStatus",
     variant: "donut",
-    height: 300,
-    placeholderHeight: 300,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
 
   {
@@ -93,14 +96,14 @@ const SLOTS: readonly (SlotConfig & {
     ownI18nKey: "expiredByDepartmentOwn",
     variant: "bar-vertical",
     angleLabels: true,
-    height: 340,
-    placeholderHeight: 340,
+    height: CHART_HEIGHT,
+    placeholderHeight: CHART_HEIGHT,
   },
   {
     id: "expiry-risk",
     kind: "expiry-risk",
     span: "md:col-span-2 lg:col-span-1",
-    placeholderHeight: 300,
+    placeholderHeight: CHART_HEIGHT,
   },
 ];
 

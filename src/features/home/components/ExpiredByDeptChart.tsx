@@ -57,6 +57,7 @@ export default function ExpiredByDeptChart() {
           <Bar
             dataKey="count"
             radius={[4, 4, 0, 0]}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             shape={(props: any) => {
               const { x, y, width, height, index } = props;
               const fill = CHART_COLOR_SEQUENCE[index % CHART_COLOR_SEQUENCE.length];

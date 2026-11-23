@@ -65,12 +65,11 @@ function InsightCardBase({
   }
 
   return (
-    <Card className={cn("rounded-xl border-border", className)}>
+    <Card className={cn("flex h-full flex-col rounded-xl border-border", className)}>
       <CardHeader className="pb-2">
         <CardTitle className="text-base font-bold">{title}</CardTitle>
-        {subtitle ? (
-          <p className="text-xs text-muted-foreground">{subtitle}</p>
-        ) : null}
+        {/* Reserved even when empty, so cards with and without a subtitle line up */}
+        <p className="min-h-4 text-xs text-muted-foreground">{subtitle ?? null}</p>
       </CardHeader>
       <CardContent>
         <div style={{ height }} className="w-full" aria-busy={isLoading}>

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import {
   Bar,
   BarChart,
@@ -11,18 +11,19 @@ import {
 } from "recharts";
 import { InsightTooltip } from "./InsightTooltip";
 import type { InsightRow } from "./insightRows";
-import {
-  insightAxisTick,
-  insightGridStroke,
-} from "./insightTheme";
+import { insightAxisTick, insightGridStroke } from "./insightTheme";
+import { TwoLineTick } from "./insightTicks";
+import { useFlatCategoryTick } from "./useFlatCategoryTick";
 
 interface BarInsightChartProps {
   rows: InsightRow[];
   /** `horizontal` = bars grow left→right (category axis on Y), else classic columns */
   orientation?: "horizontal" | "vertical";
   isRtl?: boolean;
-  /** Slanted category labels for long names (e.g. departments) */
+  /** Straight, wrapped category labels for long names (e.g. departments) */
   angleLabels?: boolean;
+  /** Split "Month 2026" labels over two lines instead of slanting them */
+  splitLabels?: boolean;
 }
 
 const TOOLTIP_CONTENT = <InsightTooltip />;
@@ -36,11 +37,18 @@ function BarInsightChartBase({
   orientation = "vertical",
   isRtl = false,
   angleLabels = false,
+  splitLabels = false,
 }: BarInsightChartProps) {
   const horizontal = orientation === "horizontal";
+  const labels = useMemo(() => rows.map((r) => r.label), [rows]);
+  const flat = useFlatCategoryTick(labels);
+  // Straight labels get a minimum slot per bar; narrower screens scroll sideways instead of overlapping.
+  const scrolls = !horizontal && angleLabels;
 
   return (
-    <ResponsiveContainer width="100%" height="100%" debounce={100}>
+    <div className="h-full w-full overflow-x-auto overflow-y-hidden">
+    <div className="h-full" style={scrolls ? { minWidth: flat.minWidth } : undefined}>
+    <ResponsiveContainer width="100%" height="100%" debounce={100} onResize={flat.onResize}>
       <BarChart
         data={rows}
         layout={horizontal ? "vertical" : "horizontal"}
@@ -78,13 +86,11 @@ function BarInsightChartBase({
           <>
             <XAxis
               dataKey="label"
-              tick={insightAxisTick}
+              tick={splitLabels ? <TwoLineTick /> : angleLabels ? flat.tick : insightAxisTick}
               axisLine={false}
               tickLine={false}
               interval={0}
-              angle={angleLabels ? -45 : 0}
-              textAnchor={angleLabels ? "end" : "middle"}
-              height={angleLabels ? 80 : 30}
+              height={angleLabels || splitLabels ? flat.height : 30}
               reversed={isRtl}
             />
             <YAxis
@@ -109,6 +115,8 @@ function BarInsightChartBase({
         </Bar>
       </BarChart>
     </ResponsiveContainer>
+    </div>
+    </div>
   );
 }
 

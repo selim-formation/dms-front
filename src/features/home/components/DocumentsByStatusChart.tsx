@@ -15,6 +15,7 @@ const STATUSES = [
   { key: "underReview", value: 17, color: "hsl(var(--primary))" },
 ] as const;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const renderCustomLabel = ({ cx, cy, midAngle, outerRadius, value }: any) => {
   const RADIAN = Math.PI / 180;
   const x = cx + (outerRadius + 22) * Math.cos(-midAngle * RADIAN);

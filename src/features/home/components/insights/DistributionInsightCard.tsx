@@ -5,6 +5,7 @@ import type { InsightMetricMap } from "../../types/insights.types";
 import { BarInsightChart } from "./BarInsightChart";
 import { DonutInsightChart } from "./DonutInsightChart";
 import { InsightCard } from "./InsightCard";
+import { RankedBarList } from "./RankedBarList";
 import { toRows } from "./insightRows";
 import { useIsRtl } from "./useIsRtl";
 
@@ -89,10 +90,12 @@ function DistributionInsightCardBase({
     >
       {variant === "donut" ? (
         <DonutInsightChart rows={rows} />
+      ) : variant === "bar-horizontal" ? (
+        <RankedBarList rows={rows} />
       ) : (
         <BarInsightChart
           rows={rows}
-          orientation={variant === "bar-horizontal" ? "horizontal" : "vertical"}
+          orientation="vertical"
           isRtl={isRtl}
           angleLabels={angleLabels}
         />

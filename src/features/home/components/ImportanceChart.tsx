@@ -49,6 +49,7 @@ export default function ImportanceChart() {
                             <Bar
                                 dataKey="count"
                                 radius={[4, 4, 0, 0]}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 shape={(props: any) => {
                                     const { x, y, width, height, payload } = props;
                                     const fill = COLORS[payload.key as (typeof KEYS)[number]] || 'hsl(var(--primary))';
