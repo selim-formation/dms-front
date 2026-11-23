@@ -17,7 +17,7 @@ function SidebarNav({ tenantId, collapsed, onNavigate }: SidebarNavProps) {
   const pathname = useLocation({ select: (l) => l.pathname });
 
   return (
-    <nav aria-label={t("sidebar.label")} className="flex-1 overflow-y-auto overflow-x-hidden px-3 pb-4 pt-2">
+    <nav aria-label={t("sidebar.label")} className="flex-1 overflow-y-auto overflow-x-hidden px-2.5 pb-3 pt-1">
       {groups.map((group) => (
         <SidebarNavGroup
           key={group.key}

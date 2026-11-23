@@ -27,9 +27,9 @@ function SidebarNavItem({ item, tenantId, active, collapsed, onNavigate }: Sideb
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "group relative flex items-center gap-3 rounded-2xl border py-3 text-sm font-medium transition-colors",
+        "group relative flex items-center gap-2.5 rounded-xl border py-2 text-sm font-medium transition-colors",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        collapsed ? "justify-center px-0" : "px-4",
+        collapsed ? "justify-center px-0" : "px-3",
         active
           ? "border-primary/30 bg-primary/10 text-primary"
           : "border-border/60 text-muted-foreground hover:border-border hover:bg-accent hover:text-foreground",

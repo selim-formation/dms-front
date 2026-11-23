@@ -15,15 +15,15 @@ function SidebarNavGroup({ group, tenantId, pathname, collapsed, onNavigate }: S
   const { t } = useTranslation("common");
 
   return (
-    <section aria-label={t(group.labelKey)} className="space-y-2">
+    <section aria-label={t(group.labelKey)} className="space-y-1">
       {collapsed ? (
-        <div className="mx-3 my-2 h-px bg-border" aria-hidden="true" />
+        <div className="mx-3 my-1.5 h-px bg-border" aria-hidden="true" />
       ) : (
-        <h2 className="px-4 pb-1 pt-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/70">
+        <h2 className="px-3 pb-1 pt-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/70">
           {t(group.labelKey)}
         </h2>
       )}
-      <ul className="space-y-2">
+      <ul className="space-y-1">
         {group.items.map((item) => (
           <li key={item.to}>
             <SidebarNavItem

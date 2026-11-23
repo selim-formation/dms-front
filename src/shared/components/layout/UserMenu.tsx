@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useNavigate, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, LogOut, User as UserIcon } from "lucide-react";
+import { LogOut, User as UserIcon } from "lucide-react";
 import { useAuth } from "@/core/auth/hooks/useAuth";
 import { useTenant } from "@/core/tenant/hooks/useTenant";
 import {
@@ -78,18 +78,6 @@ export function UserMenu() {
             <UserIcon className="me-2 h-4 w-4" />
             {t("nav.profile")}
           </Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem asChild>
-          <a
-            href="https://dms.formation-obs.com/admin/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center cursor-pointer"
-          >
-            <LayoutDashboard className="me-2 h-4 w-4" />
-            {t("nav.dashboard")}
-          </a>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
