@@ -20,7 +20,7 @@ function TypeTitleTabs({ titles, errors, activeLocale, onActiveChange, onTitleCh
     const { t } = useTranslation('types')
 
     return (
-        <Tabs value={activeLocale} onValueChange={(v) => onActiveChange(v as TypeLocale)}>
+        <Tabs value={activeLocale} onValueChange={(v: string) => onActiveChange(v as TypeLocale)}>
             <TabsList>
                 {TYPE_LOCALES.map((lang) => (
                     <TabsTrigger key={lang} value={lang} className="gap-1.5">

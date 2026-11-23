@@ -20,7 +20,7 @@ function EntityTitleTabs({ titles, errors, activeLocale, onActiveChange, onTitle
     const { t } = useTranslation('entities')
 
     return (
-        <Tabs value={activeLocale} onValueChange={(v) => onActiveChange(v as EntityLocale)}>
+        <Tabs value={activeLocale} onValueChange={(v: string) => onActiveChange(v as EntityLocale)}>
             <TabsList>
                 {ENTITY_LOCALES.map((lang) => (
                     <TabsTrigger key={lang} value={lang} className="gap-1.5">

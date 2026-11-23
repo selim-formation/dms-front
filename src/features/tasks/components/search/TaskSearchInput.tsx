@@ -79,6 +79,7 @@ export function TaskSearchInput({
 
   // Update local value when prop changes (parent control)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocalValue(value);
   }, [value]);
 

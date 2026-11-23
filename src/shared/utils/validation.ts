@@ -44,7 +44,7 @@ export const urlSchema = z.string().url("Invalid URL");
  */
 export const phoneSchema = z
   .string()
-  .regex(/^[\d\s\-\+\(\)]+$/, "Invalid phone number");
+  .regex(/^[\d\s\-+()]+$/, "Invalid phone number");
 
 /**
  * File validation schema

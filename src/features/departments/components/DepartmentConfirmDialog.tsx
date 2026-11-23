@@ -38,7 +38,7 @@ function DepartmentConfirmDialog({
     const { t } = useTranslation('common')
 
     return (
-        <Dialog open={open} onOpenChange={(next) => !isPending && onOpenChange(next)}>
+        <Dialog open={open} onOpenChange={(next: boolean) => !isPending && onOpenChange(next)}>
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle

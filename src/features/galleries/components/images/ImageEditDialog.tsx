@@ -56,7 +56,7 @@ function ImageEditDialog({ image, onOpenChange, onSaved, onBlocked }: ImageEditD
     }
 
     return (
-        <Dialog open onOpenChange={(open) => !mutation.isPending && onOpenChange(open)}>
+        <Dialog open onOpenChange={(open: boolean) => !mutation.isPending && onOpenChange(open)}>
             <DialogContent className="max-w-lg">
                 <DialogHeader>
                     <DialogTitle>{t('editImage.title')}</DialogTitle>

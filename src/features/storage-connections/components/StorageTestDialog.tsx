@@ -37,7 +37,7 @@ function StorageTestDialog({ name, isPending, result, error, cooling, onRunAgain
         : null
 
     return (
-        <Dialog open onOpenChange={(open) => !open && !isPending && onOpenChange(false)}>
+        <Dialog open onOpenChange={(open: boolean) => !open && !isPending && onOpenChange(false)}>
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">

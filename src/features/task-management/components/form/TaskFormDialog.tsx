@@ -113,7 +113,7 @@ export default function TaskFormDialog({ task, onOpenChange, onSaved, onBlocked 
     const step = FORM_STEPS[current]
 
     return (
-        <Dialog open onOpenChange={(open) => !isPending && onOpenChange(open)}>
+        <Dialog open onOpenChange={(open: boolean) => !isPending && onOpenChange(open)}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>{t(isEdit ? 'form.editTitle' : 'form.createTitle')}</DialogTitle>

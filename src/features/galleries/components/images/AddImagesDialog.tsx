@@ -56,7 +56,7 @@ function AddImagesDialog({ galleryId, onOpenChange, onSaved, onBlocked }: AddIma
     }
 
     return (
-        <Dialog open onOpenChange={(open) => !mutation.isPending && onOpenChange(open)}>
+        <Dialog open onOpenChange={(open: boolean) => !mutation.isPending && onOpenChange(open)}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>{t('addImages.title')}</DialogTitle>

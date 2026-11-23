@@ -93,6 +93,7 @@ export function TaskSearchPage() {
   // Handle search error
   useEffect(() => {
     if (error) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowError(true);
     }
   }, [error]);

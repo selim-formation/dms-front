@@ -101,7 +101,7 @@ function SectionFormDialog({ section, open, onOpenChange, onSaved }: SectionForm
     }
 
     return (
-        <Dialog open={open} onOpenChange={(next) => !isPending && onOpenChange(next)}>
+        <Dialog open={open} onOpenChange={(next: boolean) => !isPending && onOpenChange(next)}>
             <DialogContent className="max-w-xl">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
