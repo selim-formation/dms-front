@@ -36,6 +36,7 @@ export function useShareRecipientSearch(): UseShareRecipientSearchResult {
     abortRef.current?.abort();
 
     if (!tenant || debouncedQuery.trim().length < MIN_QUERY_LENGTH) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([]);
       setIsError(false);
       setIsLoading(false);

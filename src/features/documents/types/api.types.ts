@@ -80,7 +80,8 @@ export interface ApiDocument {
   entities: Entity[];
   departments: Department[];
   types: DocumentType[];
-  document_activities: DocumentActivity[];
+  /** Removed from the view endpoint: use the activities API. */
+  document_activities?: DocumentActivity[];
   created_at: string;
   updated_at: string;
 }
@@ -324,6 +325,9 @@ export interface DocumentViewData {
   origin_department: string | null;
   manual: boolean | null;
   details: string | null;
+  /** Signed, time-limited links; null when no procedure file is attached. */
+  creation_process?: string | null;
+  renewal_process?: string | null;
   version_history: DocumentVersionEntry[];
   uploaded_by: UserInfo;
   responsible: string | null;
@@ -331,7 +335,8 @@ export interface DocumentViewData {
   entities: Entity[];
   departments: Department[];
   types: DocumentType[];
-  document_activities: ApiDocumentActivity[];
+  /** Removed from the view endpoint: use the activities API. */
+  document_activities?: ApiDocumentActivity[];
   created_at: string;
   updated_at: string;
 }

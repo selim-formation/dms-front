@@ -131,7 +131,8 @@
     "reminder": "Reminder"
   },
   "documentListHeader": {
-    "subtitle": "Browse and manage your business documents"
+    "subtitle": "Browse and manage your business documents",
+    "create": "New document"
   },
   "documentPermissions": {
     "title": "Access Control",
@@ -168,13 +169,31 @@
       "activity": "Activity",
       "versions": "Versions",
       "permissions": "Permissions"
+    },
+    "actions": {
+      "view": "viewed the document",
+      "download": "downloaded the document",
+      "edit": "edited the document",
+      "comment": "commented",
+      "share": "shared the document",
+      "create": "created the document",
+      "delete": "deleted the document",
+      "restore": "restored the document",
+      "approve": "approved the document",
+      "reject": "rejected the document"
     }
   },
   "documentVersions": {
     "versionLabel": "v{{version}}",
     "current": "Current",
     "view": "View",
-    "download": "Download"
+    "download": "Download",
+    "heading": "Version history",
+    "title": "Version {{version}}",
+    "noNote": "No description",
+    "count_one": "{{count}} version",
+    "count_other": "{{count}} versions",
+    "empty": "No file has been uploaded for this document yet."
   },
   "documentViewModeTabs": {
     "types": "Types"
@@ -385,5 +404,60 @@
       "department": "Departments",
       "section": "Sections"
     }
+  },
+  "activityPanel": {
+    "heading": "Activity log",
+    "total_one": "{{count}} entry",
+    "total_other": "{{count}} entries",
+    "pageLabel": "Page {{current}} of {{last}}",
+    "actions": {
+      "view": "Viewed",
+      "download": "Downloaded"
+    },
+    "deletedUser": "Deleted account",
+    "source": "Source",
+    "ip": "IP address",
+    "empty": "No activity yet",
+    "noMatches": "No activity matches these filters",
+    "noMatchesHint": "Try a different date range or clear the filters.",
+    "error": "Couldn't load the activity log.",
+    "retry": "Try again",
+    "filters": {
+      "searchPlaceholder": "Search by person name…",
+      "action": "Action",
+      "allActions": "All actions",
+      "version": "Version",
+      "allVersions": "All versions",
+      "sortLabel": "Order",
+      "sort": {
+        "-created_at": "Newest first",
+        "created_at": "Oldest first"
+      },
+      "from": "From",
+      "to": "To",
+      "clear": "Clear filters"
+    }
+  },
+  "processFiles": {
+    "title": "Procedure files",
+    "subtitle": "How this document is created and renewed.",
+    "creation": {
+      "title": "Creation procedure",
+      "description": "Steps to create this document."
+    },
+    "renewal": {
+      "title": "Renewal procedure",
+      "description": "Steps to renew this document."
+    },
+    "attached": "Attached",
+    "missing": "Not attached",
+    "preview": "Preview"
+  },
+  "documentScope": {
+    "label": "Documents view",
+    "browse": "Browse",
+    "manage": "Manage",
+    "imports": "Bulk import",
+    "shares": "Shared"
   }
 }

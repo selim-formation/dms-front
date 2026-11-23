@@ -33,7 +33,9 @@ const DocumentHeaderMeta: React.FC<DocumentHeaderMetaProps> = ({
           {title}
         </h1>
         <div className="flex flex-wrap items-center gap-3">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <StatusBadge status={status as any} />
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <ImportanceBadge importance={importance as any} />
           <Badge
             variant="outline"

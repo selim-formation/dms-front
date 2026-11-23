@@ -6,18 +6,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/shared/components/ui/tabs";
-import DocumentActivity from "./DocumentActivity";
+import DocumentActivityPanel from "./activity/DocumentActivityPanel";
+import { useActivityTotals } from "../hooks/useActivityTotals";
 import DocumentVersions from "./DocumentVersions";
 import DocumentPermissions from "./DocumentPermissions";
-import {
-  Eye,
-  Pencil,
-  MessageSquare,
-  Share2,
-  FileText,
-  FileIcon,
-} from "lucide-react";
+import { FileIcon } from "lucide-react";
 import { format, parse } from "date-fns";
+import { ar, enUS } from "date-fns/locale";
 import type { DocumentViewData } from "../types/api.types";
 import DocumentDetailsContent from "./DocumentDetailsContent";
 
@@ -38,60 +33,12 @@ interface TabContainerProps {
   onDetailsRender?: (content: React.ReactNode) => void;
 }
 
-const activityIcons: Record<
-  string,
-  React.ComponentType<{ className: string }>
-> = {
-  edit: Pencil,
-  view: Eye,
-  comment: MessageSquare,
-  share: Share2,
-  create: FileText,
-};
-
 const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
-  const { t } = useTranslation(["documents", "common"]);
+  const { t, i18n } = useTranslation(["documents", "common"]);
+  const dateLocale = i18n.language?.startsWith("ar") ? ar : enUS;
   const notAvailableLabel = t("documentTabsContainer.notAvailable");
-  const formattedActivities = useMemo(() => {
-    // Map real API activities to the format needed by DocumentActivity
-    return (doc.document_activities || []).map((activity) => {
-      let formattedDate = notAvailableLabel;
-      try {
-        const dateStr = activity.created_at?.trim() || "";
-        let parsedDate: Date;
-
-        if (dateStr.includes("T")) {
-          // ISO format: "2026-03-17T12:05:18.000000Z"
-          parsedDate = new Date(dateStr);
-        } else if (dateStr.includes("/")) {
-          // DD/MM/YYYY format: "17/03/2026"
-          parsedDate = parse(dateStr, "dd/MM/yyyy", new Date());
-        } else if (dateStr.includes("-")) {
-          // ISO date only: "2026-03-17"
-          parsedDate = new Date(dateStr);
-        } else {
-          throw new Error("Unrecognized date format");
-        }
-
-        if (!isNaN(parsedDate.getTime())) {
-          formattedDate = format(parsedDate, "MMM d, yyyy · h:mm a");
-        }
-      } catch (error) {
-        console.warn(`Failed to parse date: ${activity.created_at}`, error);
-        formattedDate = activity.created_at || notAvailableLabel;
-      }
-
-      return {
-        id: String(activity.id),
-        user: t("documentTabsContainer.userLabel", { id: activity.user_id }),
-        action: activity.action,
-        date: formattedDate,
-        icon: React.createElement(activityIcons[activity.action] || Eye, {
-          className: "h-4 w-4 text-muted-foreground",
-        }),
-      };
-    });
-  }, [doc.document_activities, notAvailableLabel, t]);
+  // 403 = not the creator / a manager / a head: the log is off limits, so the tab goes away.
+  const { forbidden: activityForbidden } = useActivityTotals(doc.id);
 
   const formatVersionDate = (dateStr: string | undefined | null): string => {
     const trimmed = dateStr?.trim() || "";
@@ -110,7 +57,7 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
         throw new Error("Unrecognized date format");
       }
       if (!isNaN(parsedDate.getTime())) {
-        return format(parsedDate, "MMM d, yyyy");
+        return format(parsedDate, "MMM d, yyyy", { locale: dateLocale });
       }
     } catch (error) {
       console.warn(`Failed to parse date: ${dateStr}`, error);
@@ -146,8 +93,10 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
       isCurrent: false,
     }));
 
-    return [current, ...history];
-  }, [doc.id, doc.version, doc.uploaded_by, doc.updated_at, doc.size, doc.path, doc.version_history, notAvailableLabel, t]);
+    // No file yet (version is null): there is no current version to list or download.
+    return doc.version == null ? history : [current, ...history];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [doc.id, doc.version, doc.uploaded_by, doc.updated_at, doc.size, doc.path, doc.version_history, notAvailableLabel, dateLocale, t]);
 
   const accessControl = useMemo(() => {
     // Build access control from API data
@@ -200,12 +149,14 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
         >
           {t("documentTabsContainer.tabs.details")}
         </TabsTrigger>
-        <TabsTrigger
-          value="activity"
-          className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 pb-3 pt-2 text-sm"
-        >
-          {t("documentTabsContainer.tabs.activity")}
-        </TabsTrigger>
+        {!activityForbidden && (
+          <TabsTrigger
+            value="activity"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 pb-3 pt-2 text-sm"
+          >
+            {t("documentTabsContainer.tabs.activity")}
+          </TabsTrigger>
+        )}
         <TabsTrigger
           value="versions"
           className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 pb-3 pt-2 text-sm"
@@ -228,9 +179,11 @@ const DocumentTabsContainer: React.FC<TabContainerProps> = ({ doc }) => {
         />
       </TabsContent>
 
+      {!activityForbidden && (
       <TabsContent value="activity" className="py-6">
-        <DocumentActivity activities={formattedActivities} />
+        <DocumentActivityPanel documentId={doc.id} versionHistory={doc.version_history} />
       </TabsContent>
+      )}
 
       <TabsContent value="versions" className="py-6">
         <DocumentVersions versions={formattedVersions} documentId={doc.id} documentTitle={doc.title} />

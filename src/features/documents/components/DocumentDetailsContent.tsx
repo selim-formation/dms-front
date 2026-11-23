@@ -25,7 +25,9 @@ import {
 import { format, parse } from "date-fns";
 import { useDocumentComments } from "../hooks/useDocumentComments";
 import { usePermissions } from "@/core/auth/hooks/usePermissions";
+import ProcessFilesCard from "./ProcessFilesCard";
 import CreateShareDialog from "./document-shares/CreateShareDialog";
+import { useActivityTotals } from "../hooks/useActivityTotals";
 import type { DocumentViewData } from "../types/api.types";
 
 interface DocumentDetailsContentProps {
@@ -62,20 +64,12 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
   // comments actually came back — perPage:1 would always read back "1".
   const { meta: commentsMeta } = useDocumentComments(doc.id, { perPage: 20 });
 
-  // Views/downloads have no dedicated count endpoint yet — derived from the activity log
-  const engagementMetrics = useMemo(() => {
-    const viewCount =
-      doc.document_activities?.filter((a) => a.action === "view").length || 0;
-    const downloadCount =
-      doc.document_activities?.filter((a) => a.action === "download").length ||
-      0;
-
-    return {
-      views: viewCount,
-      comments: commentsMeta?.totalCount ?? 0,
-      downloads: downloadCount,
-    };
-  }, [doc.document_activities, commentsMeta?.totalCount]);
+  // Views / downloads: totals of the activity log (null while loading or when the log is off limits).
+  const totals = useActivityTotals(doc.id);
+  const engagementMetrics = useMemo(
+    () => ({ views: totals.views ?? "—", comments: commentsMeta?.totalCount ?? 0, downloads: totals.downloads ?? "—" }),
+    [totals.views, totals.downloads, commentsMeta?.totalCount],
+  );
 
   // Format created/updated dates safely
   const formatDateSafe = (dateStr: string | null | undefined): string => {
@@ -106,28 +100,30 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Info */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Document Preview Placeholder */}
-          <Card className="border-dashed">
-            <CardContent className="flex flex-col items-center justify-center py-16 gap-3">
-              <div
-                className={`h-16 w-16 rounded-2xl ${fileColorClass} flex items-center justify-center`}
-              >
-                {fileIcon}
-              </div>
-              <p className="text-muted-foreground text-sm">
-                {t("documentDetails.preview")}
-              </p>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={!doc.path}
-                onClick={handleOpenInViewer}
-              >
-                <ExternalLink className="me-2 h-4 w-4" />{" "}
-                {t("documentDetails.openInViewer")}
-              </Button>
-            </CardContent>
-          </Card>
+          {/* Preview: only when the document has a file */}
+          {doc.version != null && (
+            <Card className="border-dashed">
+              <CardContent className="flex flex-col items-center justify-center py-16 gap-3">
+                <div
+                  className={`h-16 w-16 rounded-2xl ${fileColorClass} flex items-center justify-center`}
+                >
+                  {fileIcon}
+                </div>
+                <p className="text-muted-foreground text-sm">
+                  {t("documentDetails.preview")}
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={!doc.path}
+                  onClick={handleOpenInViewer}
+                >
+                  <ExternalLink className="me-2 h-4 w-4" />{" "}
+                  {t("documentDetails.openInViewer")}
+                </Button>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Description */}
           <Card>
@@ -142,6 +138,9 @@ const DocumentDetailsContent: React.FC<DocumentDetailsContentProps> = ({
               </p>
             </CardContent>
           </Card>
+
+          {/* Creation / renewal procedure files */}
+          <ProcessFilesCard creationProcess={doc.creation_process} renewalProcess={doc.renewal_process} />
 
           {/* Document Types/Categories */}
           {doc.types && doc.types.length > 0 && (

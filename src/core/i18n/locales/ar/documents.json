@@ -117,7 +117,7 @@
     "establishment": "تأسيسي"
   },
   "renewalType": {
-    "renewable": "قابل للتجديد",
+    "renewable": "يجب التجديد",
     "oneTime": "لمرة واحدة"
   },
   "documentInfoSection": {
@@ -131,7 +131,8 @@
     "reminder": "تذكير"
   },
   "documentListHeader": {
-    "subtitle": "تصفح وإدارة مستندات عملك"
+    "subtitle": "تصفح وإدارة مستندات عملك",
+    "create": "مستند جديد"
   },
   "documentPermissions": {
     "title": "التحكم في الوصول",
@@ -150,7 +151,7 @@
   },
   "documentRow": {
     "new": "جديد",
-    "renewable": "قابل للتجديد",
+    "renewable": "يجب التجديد",
     "oneTime": "لمرة واحدة"
   },
   "documentSearchBar": {
@@ -168,13 +169,35 @@
       "activity": "النشاط",
       "versions": "الإصدارات",
       "permissions": "الصلاحيات"
+    },
+    "actions": {
+      "view": "اطّلع على المستند",
+      "download": "قام بتنزيل المستند",
+      "edit": "قام بتعديل المستند",
+      "comment": "أضاف تعليقاً",
+      "share": "شارك المستند",
+      "create": "أنشأ المستند",
+      "delete": "حذف المستند",
+      "restore": "استعاد المستند",
+      "approve": "اعتمد المستند",
+      "reject": "رفض المستند"
     }
   },
   "documentVersions": {
     "versionLabel": "الإصدار {{version}}",
     "current": "الحالي",
     "view": "عرض",
-    "download": "تنزيل"
+    "download": "تنزيل",
+    "heading": "سجل الإصدارات",
+    "title": "الإصدار {{version}}",
+    "noNote": "لا يوجد وصف",
+    "count_zero": "لا إصدارات",
+    "count_one": "إصدار واحد",
+    "count_two": "إصداران",
+    "count_few": "{{count}} إصدارات",
+    "count_many": "{{count}} إصداراً",
+    "count_other": "{{count}} إصدار",
+    "empty": "لم يتم رفع أي ملف لهذا المستند بعد."
   },
   "documentViewModeTabs": {
     "types": "الأنواع"
@@ -234,7 +257,7 @@
     "emptyState": "لم يتم العثور على مستندات لهذا النوع",
     "establishmentDocuments": "مستندات التأسيس",
     "operationalDocuments": "المستندات التشغيلية",
-    "renewable": "قابل للتجديد",
+    "renewable": "يجب التجديد",
     "oneTime": "لمرة واحدة",
     "establishmentRenewableDescription": "مستندات التأسيس التي تتطلب تجديدًا",
     "establishmentOneTimeDescription": "مستندات تأسيس لمرة واحدة",
@@ -385,5 +408,64 @@
       "department": "الإدارات",
       "section": "الأقسام"
     }
+  },
+  "activityPanel": {
+    "heading": "سجل النشاط",
+    "total_zero": "لا سجلات",
+    "total_one": "سجل واحد",
+    "total_two": "سجلان",
+    "total_few": "{{count}} سجلات",
+    "total_many": "{{count}} سجلاً",
+    "total_other": "{{count}} سجل",
+    "pageLabel": "صفحة {{current}} من {{last}}",
+    "actions": {
+      "view": "اطّلع",
+      "download": "قام بالتنزيل"
+    },
+    "deletedUser": "حساب محذوف",
+    "source": "المصدر",
+    "ip": "عنوان IP",
+    "empty": "لا يوجد نشاط بعد",
+    "noMatches": "لا نشاط يطابق هذه التصفية",
+    "noMatchesHint": "جرّب نطاق تاريخ مختلفاً أو امسح عوامل التصفية.",
+    "error": "تعذّر تحميل سجل النشاط.",
+    "retry": "حاول مرة أخرى",
+    "filters": {
+      "searchPlaceholder": "ابحث باسم الشخص…",
+      "action": "الإجراء",
+      "allActions": "كل الإجراءات",
+      "version": "الإصدار",
+      "allVersions": "كل الإصدارات",
+      "sortLabel": "الترتيب",
+      "sort": {
+        "-created_at": "الأحدث أولاً",
+        "created_at": "الأقدم أولاً"
+      },
+      "from": "من",
+      "to": "إلى",
+      "clear": "مسح التصفية"
+    }
+  },
+  "processFiles": {
+    "title": "ملفات الإجراءات",
+    "subtitle": "كيفية إنشاء هذا المستند وتجديده.",
+    "creation": {
+      "title": "إجراء الإنشاء",
+      "description": "خطوات إنشاء هذا المستند."
+    },
+    "renewal": {
+      "title": "إجراء التجديد",
+      "description": "خطوات تجديد هذا المستند."
+    },
+    "attached": "مرفق",
+    "missing": "غير مرفق",
+    "preview": "معاينة"
+  },
+  "documentScope": {
+    "label": "عرض المستندات",
+    "browse": "استعراض",
+    "manage": "إدارة",
+    "imports": "الاستيراد الجماعي",
+    "shares": "المشاركات"
   }
 }

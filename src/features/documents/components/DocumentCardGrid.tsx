@@ -140,9 +140,30 @@ export default function DocumentCardGrid({
     Expired: t("common:status.expired"),
     Active: t("common:status.active"),
   };
+  const handleView =
+    onView ?? (() => navigate({ to: `/${tenant}/documents/${id}` }));
+
+  // The whole card opens the document; its own controls (pin, star, buttons,
+  // footer actions) keep their behaviour and never bubble into a navigation.
+  const isInteractiveTarget = (target: EventTarget | null) =>
+    target instanceof Element &&
+    !!target.closest("button, a, input, select, textarea, [role='button']");
+
   return (
     <div
-      className={`rounded-2xl border border-border overflow-hidden hover:shadow-md hover:border-border transition-all duration-300 ${importanceMode.bg}`}
+      role="link"
+      tabIndex={0}
+      aria-label={name}
+      onClick={(e) => {
+        if (!isInteractiveTarget(e.target)) handleView();
+      }}
+      onKeyDown={(e) => {
+        if (e.target === e.currentTarget && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          handleView();
+        }
+      }}
+      className={`cursor-pointer rounded-2xl border border-border overflow-hidden hover:shadow-md hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-all duration-300 ${importanceMode.bg}`}
     >
       {/* Card Header */}
       <div className="relative h-32 bg-gradient-to-br from-muted to-muted flex items-center justify-center border-b border-border">
@@ -255,9 +276,7 @@ export default function DocumentCardGrid({
         {/* Action Buttons */}
         <div className="pt-2 flex gap-2">
           <button
-            onClick={
-              onView ?? (() => navigate({ to: `/${tenant}/documents/${id}` }))
-            }
+            onClick={handleView}
             className="flex-1 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
           >
             {t("documentCardGrid.view")}

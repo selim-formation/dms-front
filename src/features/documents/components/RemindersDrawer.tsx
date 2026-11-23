@@ -257,14 +257,15 @@ const ReminderTabContent = memo(function ReminderTabContent({
  * endpoint exists) so it's always empty by design; "Reminders" is
  * GET /documents/reminder (configured, not necessarily firing);
  * "Active Reminders" is GET /documents/active-reminders (firing now
- * or overdue). Each tab's query only runs once that tab is open.
+ * or overdue). Both queries run on mount so badges are ready before the
+ * drawer opens.
  */
 const RemindersDrawerComponent = memo(function RemindersDrawer({
   className = "",
 }: RemindersDrawerProps) {
   const { t } = useTranslation(["documents", "common"]);
   const [isOpen, setIsOpen] = useState(false);
-  const [tab, setTab] = useState<"all" | "reminders" | "active">("all");
+  const [tab, setTab] = useState<"all" | "reminders" | "active">("active");
   const navigate = useNavigate();
   const tenant = useTenant();
 
@@ -274,7 +275,7 @@ const RemindersDrawerComponent = memo(function RemindersDrawer({
     isError: remindersError,
     error: remindersErrorObj,
     refetch: refetchReminders,
-  } = useDocumentReminders({ enabled: isOpen && tab === "reminders" });
+  } = useDocumentReminders({ enabled: true });
 
   const {
     documents: activeDocs,
@@ -282,7 +283,7 @@ const RemindersDrawerComponent = memo(function RemindersDrawer({
     isError: activeError,
     error: activeErrorObj,
     refetch: refetchActive,
-  } = useActiveDocumentReminders({ enabled: isOpen && tab === "active" });
+  } = useActiveDocumentReminders({ enabled: true });
 
   const handleSelect = useCallback(
     (documentId: number) => {
@@ -325,7 +326,7 @@ const RemindersDrawerComponent = memo(function RemindersDrawer({
           </DrawerHeader>
 
           <div className="flex-1 overflow-hidden flex flex-col">
-            <Tabs value={tab} onValueChange={(v) => setTab(v as typeof tab)} className="flex flex-col flex-1 h-full">
+            <Tabs value={tab} onValueChange={(v: string) => setTab(v as typeof tab)} className="flex flex-col flex-1 h-full">
               <TabsList className="grid w-full grid-cols-3 bg-muted/50 border-b border-border/50 rounded-none">
                 <TabsTrigger value="all">{t("common:common.all")}</TabsTrigger>
                 <TabsTrigger value="reminders">

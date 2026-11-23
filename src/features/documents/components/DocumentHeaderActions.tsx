@@ -7,6 +7,7 @@ import {
   Pin,
   Share2,
   Download,
+  Loader2,
 //   Pencil,
 //   MoreHorizontal,
 } from "lucide-react";
@@ -18,6 +19,11 @@ interface DocumentHeaderActionsProps {
   documentId: number;
   onShare?: () => void;
   onDownload?: () => void;
+  isDownloading?: boolean;
+  /** False when the document has no file (no version yet): no download button. */
+  hasFile?: boolean;
+  /** Extra buttons (e.g. management actions) shown before Share. */
+  extraActions?: React.ReactNode;
   onEdit?: () => void;
   onMore?: () => void;
 }
@@ -26,6 +32,9 @@ const DocumentHeaderActions: React.FC<DocumentHeaderActionsProps> = ({
   documentId,
   onShare,
   onDownload,
+  isDownloading = false,
+  hasFile = true,
+  extraActions,
 //   onEdit,
 //   onMore,
 }) => {
@@ -44,7 +53,7 @@ const DocumentHeaderActions: React.FC<DocumentHeaderActionsProps> = ({
   const canShare = can("create_document_shares");
 
   return (
-    <div className="flex items-center gap-2 flex-shrink-0">
+    <div className="flex flex-wrap items-center gap-2 md:justify-end">
       <Button
         variant="ghost"
         size="icon"
@@ -83,14 +92,17 @@ const DocumentHeaderActions: React.FC<DocumentHeaderActionsProps> = ({
         <Pin className="h-4 w-4" fill={isPinned ? "currentColor" : "none"} />
       </Button>
       <Separator orientation="vertical" className="h-6" />
+      {extraActions}
       {canShare && (
         <Button variant="outline" size="sm" onClick={onShare}>
           <Share2 className="me-2 h-4 w-4" /> {t("common:actions.share")}
         </Button>
       )}
-      <Button variant="outline" size="sm" onClick={onDownload}>
-        <Download className="me-2 h-4 w-4" /> {t("common:actions.download")}
-      </Button>
+      {hasFile && (
+        <Button variant="outline" size="sm" onClick={onDownload} disabled={isDownloading}>
+          {isDownloading ? <Loader2 className="me-2 h-4 w-4 animate-spin" /> : <Download className="me-2 h-4 w-4" />} {t("common:actions.download")}
+        </Button>
+      )}
       
       {/* <Button
         variant="ghost"

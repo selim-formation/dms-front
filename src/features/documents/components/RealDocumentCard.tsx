@@ -26,6 +26,7 @@ function RealDocumentCard({ document }: RealDocumentCardProps) {
       expiryDate={card.expiryDate}
       status={card.status}
       category={card.category}
+      downloadDisabled={document.version == null}
     />
   );
 }

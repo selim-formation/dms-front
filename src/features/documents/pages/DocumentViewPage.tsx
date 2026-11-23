@@ -20,7 +20,10 @@ import DocumentHeaderMeta from "../components/DocumentHeaderMeta";
 import DocumentHeaderActions from "../components/DocumentHeaderActions";
 import { CommentsPanel } from "../components/comments";
 import DocumentTabsContainer from "../components/DocumentTabsContainer";
+import DocumentManageActions from "@/features/document-management/components/DocumentManageActions";
+import DocumentApprovalsCard from "@/features/document-management/components/DocumentApprovalsCard";
 import CreateShareDialog from "../components/document-shares/CreateShareDialog";
+import { useDownloadDocument } from "../hooks/useDownloadDocument";
 
 function formatFileSize(
   bytes: string | number | null,
@@ -64,6 +67,8 @@ export default function DocumentViewPage() {
   const { id } = useParams({ from: "/_protected/$tenant/documents/$id" });
   const numId = Number(id);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [downloadFailed, setDownloadFailed] = useState(false);
+  const { download, isDownloading } = useDownloadDocument({ onError: () => setDownloadFailed(true) });
 
   const {
     data: doc,
@@ -143,18 +148,33 @@ export default function DocumentViewPage() {
                 <DocumentHeaderActions
                   documentId={numId}
                   onShare={() => setIsShareOpen(true)}
-                  onDownload={() => console.log("Download")}
+                  onDownload={() => {
+                    setDownloadFailed(false);
+                    download({ documentId: numId, filename: fileExt ? `${doc.title}.${fileExt}` : doc.title });
+                  }}
+                  isDownloading={isDownloading}
+                  hasFile={doc.version != null}
+                  extraActions={<DocumentManageActions documentId={numId} />}
                   // onEdit={() => console.log("Edit")}
                   // onMore={() => console.log("More")}
                 />
               </div>
             </div>
 
+            {downloadFailed && (
+              <p role="alert" className="px-6 pb-2 text-sm text-destructive">
+                {t("documents:documentShares.downloadFailed")}
+              </p>
+            )}
+
             {/* Tabs Section */}
             <div className="px-6">
               <DocumentTabsContainer doc={doc} onDetailsRender={() => {}} />
             </div>
           </Card>
+
+          {/* Approval workflow (only for documents the user manages) */}
+          <DocumentApprovalsCard documentId={numId} />
 
           {/* Comments Section */}
           <CommentsPanel documentId={numId} />

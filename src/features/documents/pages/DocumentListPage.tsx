@@ -9,6 +9,12 @@ import DocumentResultsSummary from "@/features/documents/components/DocumentResu
 import DocumentsGridSection from "@/features/documents/components/DocumentsGridSection";
 import DocumentFiltersPanel from "@/features/documents/components/DocumentFiltersPanel";
 import MobileFilterDrawer from "@/features/documents/components/MobileFilterDrawer";
+import DocumentScopeSwitch, { type DocumentScope } from "@/features/documents/components/DocumentScopeSwitch";
+import DocumentManagementPanel from "@/features/document-management/components/DocumentManagementPanel";
+import DocumentSharesPanel from "../components/document-shares/DocumentSharesPanel";
+import DocumentImportsPanel from "@/features/document-imports/components/DocumentImportsPanel";
+import { useImportAccess } from "@/features/document-imports/hooks/useImportAccess";
+import { usePermissions } from "@/core/auth/hooks/usePermissions";
 import PaginationControl from "@/shared/components/ui/PaginationControl";
 import { useDocumentsList } from "../hooks/useDocumentsList";
 import { useDocumentsByTypes } from "../hooks/useDocumentsByTypes";
@@ -60,6 +66,14 @@ function refineDocuments(
 }
 
 export default function DocumentListPage(): React.ReactElement {
+  const { can } = usePermissions();
+  const [scope, setScope] = useState<DocumentScope>("browse");
+  const canManage = can("read_documents");
+  const importAccess = useImportAccess();
+  const scopes = useMemo<DocumentScope[]>(
+    () => ["browse", "shares", ...(canManage ? (["manage"] as const) : []), ...(importAccess.canRead ? (["imports"] as const) : [])],
+    [canManage, importAccess.canRead],
+  );
   const { t, i18n } = useTranslation(["documents", "common"]);
   const [viewMode, setViewMode] = useState<ViewMode>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -129,12 +143,14 @@ export default function DocumentListPage(): React.ReactElement {
   // Default the type/department chip selection to the first group once loaded.
   useEffect(() => {
     if (!selectedTypeTab && byTypes.groups.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedTypeTab(byTypes.groups[0].type);
     }
   }, [byTypes.groups, selectedTypeTab]);
 
   useEffect(() => {
     if (!selectedDeptTab && byDepartments.groups.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedDeptTab(byDepartments.groups[0].department);
     }
   }, [byDepartments.groups, selectedDeptTab]);
@@ -284,8 +300,6 @@ export default function DocumentListPage(): React.ReactElement {
     i18n.language,
   ]);
 
-  console.log(selectedTypeTab, "sadasd");
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -293,13 +307,28 @@ export default function DocumentListPage(): React.ReactElement {
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
           <DocumentListHeader />
-          <DocumentSearchBar
-            searchQuery={searchQuery}
-            onSearchChange={handleSearchChange}
-            onFilterToggle={handleFilterToggle}
-          />
+          {scopes.length > 1 && (
+            <div className="mb-5">
+              <DocumentScopeSwitch value={scope} onChange={setScope} scopes={scopes} />
+            </div>
+          )}
+          {scope === "browse" && (
+            <DocumentSearchBar
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
+              onFilterToggle={handleFilterToggle}
+            />
+          )}
         </div>
 
+        {scope === "manage" && canManage ? (
+          <DocumentManagementPanel showHeader={false} />
+        ) : scope === "shares" ? (
+          <DocumentSharesPanel />
+        ) : scope === "imports" && importAccess.canRead ? (
+          <DocumentImportsPanel />
+        ) : (
+          <>
         <DocumentViewModeTabs
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
@@ -389,6 +418,8 @@ export default function DocumentListPage(): React.ReactElement {
             departmentOptions={deptTabsWithCounts}
           />
         </div>
+          </>
+        )}
       </main>
     </div>
   );

@@ -39,6 +39,8 @@ export function useActiveDocumentReminders(
         },
         enabled: enabledProp && !!tenant,
         staleTime: 20 * 1000,
+        refetchInterval: 60 * 1000,
+        refetchOnWindowFocus: true,
         gcTime: 10 * 60 * 1000,
         retry: 2,
     });

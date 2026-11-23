@@ -5,7 +5,9 @@
  * 403s server-side if the caller has no real download rights.
  */
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { documentKeys } from '../api/documentKeys';
+import { documentActivityKeys } from '../api/documentActivityKeys';
 import { downloadDocumentFile } from '../api/documentDownload-api';
 import { useTenantId } from '@/core/tenant/hooks/useTenant';
 import { logger } from '@/shared/utils/logger';
@@ -32,6 +34,7 @@ interface UseDownloadDocumentResult {
 
 export function useDownloadDocument(options: UseDownloadDocumentOptions = {}): UseDownloadDocumentResult {
     const tenant = useTenantId();
+    const queryClient = useQueryClient();
     const { onError: onErrorCallback } = options;
 
     const mutation = useMutation({
@@ -41,6 +44,13 @@ export function useDownloadDocument(options: UseDownloadDocumentOptions = {}): U
                 throw new Error('Tenant is required to download a document');
             }
             return downloadDocumentFile(tenant, documentId, filename, versionId);
+        },
+        // A download is logged server-side: refresh the view page so activity (and counts) show it.
+        onSuccess: (_data, { documentId }) => {
+            if (!tenant) return;
+            queryClient.invalidateQueries({ queryKey: documentKeys.detail(tenant, documentId) });
+            // The download is a new row on page 1 (and moves the header totals).
+            queryClient.invalidateQueries({ queryKey: documentActivityKeys.all(tenant, documentId) });
         },
         onError: (error: Error) => {
             log.error('Document download failed', { error });
