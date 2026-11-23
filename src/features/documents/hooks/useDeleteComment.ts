@@ -66,7 +66,14 @@ export function useDeleteComment(options: UseDeleteCommentOptions) {
     },
     onSuccess: () => onSuccess?.(),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: commentKeys.documentLists(tenant ?? '', documentId) });
+      // The list endpoint is server-cached (~30s), so an immediate refetch returns
+      // the pre-mutation list and wipes the optimistic/confirmed entry. The cache
+      // is already correct from onMutate/onSuccess; just mark it stale so the next
+      // mount/focus after the TTL pulls fresh data (refetchType: 'none').
+      queryClient.invalidateQueries({
+        queryKey: commentKeys.documentLists(tenant ?? '', documentId),
+        refetchType: 'none',
+      });
     },
   });
 
