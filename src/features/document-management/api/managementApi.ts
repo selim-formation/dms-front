@@ -66,7 +66,7 @@ export class ManagementApiService {
         return res.data.data;
     }
 
-    /** `versions` are ignored by the server on edit (phase 3). */
+    /** `versions` are ignored by the server on edit. */
     public async update(tenant: string, id: number, payload: DocumentPayload): Promise<ManagedDocumentDetail> {
         const res = await this.client.put<ApiEnvelope<ManagedDocumentDetail>>(this.url(this.endpoints.update, tenant, id), payload);
         return res.data.data;

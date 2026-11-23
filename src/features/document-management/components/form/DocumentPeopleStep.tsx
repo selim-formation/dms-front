@@ -1,6 +1,8 @@
 import { memo, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import DepartmentFormField from '@/features/departments/components/DepartmentFormField'
+import { UserCheck, Users } from 'lucide-react'
+import FormSection from './FormSection'
+import SectionField from './SectionField'
 import ImportReferencePicker from '@/features/document-imports/components/ImportReferencePicker'
 import PickerField from './PickerField'
 import ReferenceSelect, { type SelectOption } from './ReferenceSelect'
@@ -16,12 +18,11 @@ interface DocumentPeopleStepProps {
     onIds: (field: string, ids: number[]) => void
     /** Edit: the current responsible, so the select still shows them before the users load. */
     responsibleFallback?: PersonRef | null
-    isEdit: boolean
     disabled?: boolean
 }
 
 /** Step 3: responsible (works in a chosen department) and cc (managers / heads of them). */
-function DocumentPeopleStep({ values, errors, onScalar, onIds, responsibleFallback, isEdit, disabled }: DocumentPeopleStepProps) {
+function DocumentPeopleStep({ values, errors, onScalar, onIds, responsibleFallback, disabled }: DocumentPeopleStepProps) {
     const { t } = useTranslation('management')
     const { users, leaders, isLoading, isError } = useDepartmentUsers(values.departments)
 
@@ -36,37 +37,43 @@ function DocumentPeopleStep({ values, errors, onScalar, onIds, responsibleFallba
 
     return (
         <div className="space-y-6">
-            {isEdit && (
-                <p className="rounded-lg bg-amber-500/10 px-3 py-2 text-sm text-amber-700 dark:text-amber-400" role="note">
-                    {t('form.editReselectCc')}
-                </p>
-            )}
             {isError && <p className="text-sm text-destructive">{t('form.usersError')}</p>}
 
-            <DepartmentFormField label={t('form.responsible')} htmlFor="doc-responsible" hint={t('form.responsibleHint')} error={formErrorText(t, errors.responsible)}>
-                <ReferenceSelect
-                    id="doc-responsible"
-                    value={values.responsible}
-                    options={responsibleOptions}
-                    onChange={handleResponsible}
-                    placeholder={t('form.choose')}
-                    invalid={!!errors.responsible}
-                    isLoading={isLoading}
-                    disabled={disabled}
-                />
-            </DepartmentFormField>
+            <FormSection icon={Users} title={t('form.cards.peopleStep.title')} subtitle={t('form.cards.peopleStep.subtitle')}>
+                <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+                    <SectionField
+                        label={t('form.responsible')}
+                        htmlFor="doc-responsible"
+                        required
+                        hint={t('form.responsibleHint')}
+                        icon={UserCheck}
+                        error={formErrorText(t, errors.responsible)}
+                    >
+                        <ReferenceSelect
+                            id="doc-responsible"
+                            value={values.responsible}
+                            options={responsibleOptions}
+                            onChange={handleResponsible}
+                            placeholder={t('form.choose')}
+                            invalid={!!errors.responsible}
+                            isLoading={isLoading}
+                            disabled={disabled}
+                        />
+                    </SectionField>
 
-            <PickerField hint={t('form.ccHint')} error={formErrorText(t, errors.cc)}>
-                <ImportReferencePicker
-                    field="cc"
-                    label={t('form.cc')}
-                    options={ccOptions}
-                    selectedIds={values.cc}
-                    onChange={onIds}
-                    isLoading={isLoading}
-                    disabled={disabled}
-                />
-            </PickerField>
+                    <PickerField hint={t('form.ccHint')} error={formErrorText(t, errors.cc)}>
+                        <ImportReferencePicker
+                            field="cc"
+                            label={t('form.cc')}
+                            options={ccOptions}
+                            selectedIds={values.cc}
+                            onChange={onIds}
+                            isLoading={isLoading}
+                            disabled={disabled}
+                        />
+                    </PickerField>
+                </div>
+            </FormSection>
         </div>
     )
 }

@@ -47,7 +47,7 @@ function ReviewDialog({ doc, decision, onOpenChange, onDone, onBlocked }: Review
     }
 
     return (
-        <Dialog open onOpenChange={(next) => !review.isPending && onOpenChange(next)}>
+        <Dialog open onOpenChange={(next: boolean) => !review.isPending && onOpenChange(next)}>
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">

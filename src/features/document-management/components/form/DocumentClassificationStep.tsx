@@ -2,7 +2,9 @@ import { memo, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDepartments } from '@/core/reference-data/hooks/useDepartments'
 import { useSections } from '@/core/reference-data/hooks/useSections'
-import DepartmentFormField from '@/features/departments/components/DepartmentFormField'
+import { Building2, Layers } from 'lucide-react'
+import FormSection from './FormSection'
+import SectionField from './SectionField'
 import PickerField from './PickerField'
 import ReferenceSelect from './ReferenceSelect'
 import { DepartmentsPicker, EntitiesPicker, SectionsPicker, TypesPicker } from './DocumentLookupPickers'
@@ -15,12 +17,11 @@ interface DocumentClassificationStepProps {
     errors: FormErrors
     onScalar: (field: 'origin_department_id', value: number | null) => void
     onIds: (field: string, ids: number[]) => void
-    isEdit: boolean
     disabled?: boolean
 }
 
 /** Step 2: origin department, types, departments, sections (of the chosen departments), entities. */
-function DocumentClassificationStep({ values, errors, onScalar, onIds, isEdit, disabled }: DocumentClassificationStepProps) {
+function DocumentClassificationStep({ values, errors, onScalar, onIds, disabled }: DocumentClassificationStepProps) {
     const { t } = useTranslation('management')
     const { departments, isLoading } = useDepartments()
     const { sections } = useSections()
@@ -44,43 +45,52 @@ function DocumentClassificationStep({ values, errors, onScalar, onIds, isEdit, d
 
     return (
         <div className="space-y-6">
-            {isEdit && (
-                <p className="rounded-lg bg-amber-500/10 px-3 py-2 text-sm text-amber-700 dark:text-amber-400" role="note">
-                    {t('form.editReselect')}
-                </p>
-            )}
 
-            <DepartmentFormField label={t('form.origin')} htmlFor="doc-origin" error={formErrorText(t, errors.origin_department_id)}>
-                <ReferenceSelect
-                    id="doc-origin"
-                    value={values.origin_department_id}
-                    options={departmentOptions}
-                    onChange={handleOrigin}
-                    placeholder={t('form.none')}
-                    isLoading={isLoading}
-                    disabled={disabled}
-                />
-            </DepartmentFormField>
+            <FormSection icon={Layers} title={t('form.cards.classificationStep.title')} subtitle={t('form.cards.classificationStep.subtitle')}>
+                <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+                    <div className="md:col-span-2">
+                        <SectionField
+                            label={t('form.origin')}
+                            htmlFor="doc-origin"
+                            hint={t('form.cards.originHint')}
+                            icon={Building2}
+                            error={formErrorText(t, errors.origin_department_id)}
+                        >
+                            <ReferenceSelect
+                                id="doc-origin"
+                                value={values.origin_department_id}
+                                options={departmentOptions}
+                                onChange={handleOrigin}
+                                placeholder={t('form.none')}
+                                isLoading={isLoading}
+                                disabled={disabled}
+                            />
+                        </SectionField>
+                    </div>
+                    <PickerField error={formErrorText(t, errors.types)}>
+                        <TypesPicker selectedIds={values.types} onChange={onIds} disabled={disabled} />
+                    </PickerField>
+                    <PickerField error={formErrorText(t, errors.entities)}>
+                        <EntitiesPicker selectedIds={values.entities} onChange={onIds} disabled={disabled} />
+                    </PickerField>
+                </div>
+            </FormSection>
 
-            <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
-                <PickerField error={formErrorText(t, errors.types)}>
-                    <TypesPicker selectedIds={values.types} onChange={onIds} disabled={disabled} />
-                </PickerField>
-                <PickerField error={formErrorText(t, errors.entities)}>
-                    <EntitiesPicker selectedIds={values.entities} onChange={onIds} disabled={disabled} />
-                </PickerField>
-                <PickerField hint={t('form.departmentsHint')} error={formErrorText(t, errors.departments)}>
-                    <DepartmentsPicker selectedIds={values.departments} onChange={handleIds} disabled={disabled} />
-                </PickerField>
-                <PickerField hint={t('form.sectionsHint')} error={formErrorText(t, errors.sections)}>
-                    <SectionsPicker
-                        selectedIds={values.sections}
-                        departmentIds={values.departments}
-                        onChange={onIds}
-                        disabled={disabled || values.departments.length === 0}
-                    />
-                </PickerField>
-            </div>
+            <FormSection icon={Building2} title={t('form.cards.departmentsStep.title')} subtitle={t('form.cards.departmentsStep.subtitle')}>
+                <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+                    <PickerField hint={t('form.departmentsHint')} error={formErrorText(t, errors.departments)}>
+                        <DepartmentsPicker selectedIds={values.departments} onChange={handleIds} disabled={disabled} />
+                    </PickerField>
+                    <PickerField hint={t('form.sectionsHint')} error={formErrorText(t, errors.sections)}>
+                        <SectionsPicker
+                            selectedIds={values.sections}
+                            departmentIds={values.departments}
+                            onChange={onIds}
+                            disabled={disabled || values.departments.length === 0}
+                        />
+                    </PickerField>
+                </div>
+            </FormSection>
         </div>
     )
 }

@@ -110,7 +110,9 @@
     "tooManyUploads": "You have too many unfinished uploads. Finish or cancel one first.",
     "genericError": "Something went wrong. Try again.",
     "document_filePick": "Choose a file",
-    "anyFile": "Any file type"
+    "anyFile": "Any file type",
+    "selectAll": "Select all",
+    "clearAll": "Clear all"
   },
   "detail": {
     "back": "Back to imports",

@@ -63,4 +63,4 @@ export interface PreviewLink {
 /** Creation / renewal procedure files. */
 export type ProcessKind = 'create' | 'update';
 
-export type ProcessFilesState = Record<ProcessKind, { exists: boolean }>;
+export type ProcessFilesState = Record<ProcessKind, { exists: boolean; status?: 'stored' | 'processing' | 'none' }>;

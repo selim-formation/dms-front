@@ -85,15 +85,12 @@ function ProcessFileCard({ kind, exists, storing, canEdit, previewing, onAttach,
             {storing && <p className="text-xs text-muted-foreground">{t('process.storingHint')}</p>}
 
             <div className="flex flex-wrap items-center gap-2">
-                {canEdit && (
-                    <>
-                        <input ref={inputRef} type="file" accept={PROCESS_FILE_ACCEPT} className="sr-only" onChange={handlePick} aria-label={t(`process.${kind}.title`)} />
-                        <Button type="button" size="sm" variant="outline" disabled={working || storing} onClick={() => inputRef.current?.click()}>
-                            {working ? <Loader2 className="h-4 w-4 animate-spin" /> : <UploadCloud className="h-4 w-4" />}
-                            {exists ? t('process.replace') : t('process.upload')}
-                        </Button>
-                    </>
-                )}
+                {/* Always visible so the slot is discoverable; the server rule (creator + pending) decides if it is enabled. */}
+                <input ref={inputRef} type="file" accept={PROCESS_FILE_ACCEPT} className="sr-only" onChange={handlePick} disabled={!canEdit} aria-label={t(`process.${kind}.title`)} />
+                <Button type="button" size="sm" variant="outline" disabled={!canEdit || working || storing} onClick={() => inputRef.current?.click()}>
+                    {working ? <Loader2 className="h-4 w-4 animate-spin" /> : <UploadCloud className="h-4 w-4" />}
+                    {exists ? t('process.replace') : t('process.upload')}
+                </Button>
                 {exists && (
                     <Button type="button" size="sm" variant="ghost" disabled={previewing} onClick={() => onPreview(kind)}>
                         {previewing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Eye className="h-4 w-4" />}

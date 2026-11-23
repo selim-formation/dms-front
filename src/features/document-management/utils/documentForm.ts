@@ -20,6 +20,7 @@ import type {
     ManagedDocumentDetail,
     VersionPayload,
 } from '../types/management.types';
+import type { ProcessKind } from '../types/version.types';
 
 export const TITLE_MAX = 255;
 export const DESCRIPTION_MAX = 255;
@@ -27,7 +28,7 @@ export const MAX_VERSIONS = 50;
 
 export { REMINDER_MAX, REMINDER_MIN, VERSION_DESCRIPTION_MAX };
 
-export type FormStep = 'details' | 'classification' | 'people' | 'versions';
+export type FormStep = 'details' | 'classification' | 'people' | 'process' | 'versions';
 
 export interface VersionDraft extends VersionMetaValues {
     key: string;
@@ -35,6 +36,15 @@ export interface VersionDraft extends VersionMetaValues {
     fileName: string | null;
     uploading: boolean;
 }
+
+/** A procedure file picked on the form; sent with the document as `*_process_upload_id`. */
+export interface ProcessDraft {
+    uploadId: string | null;
+    fileName: string | null;
+    uploading: boolean;
+}
+
+export const EMPTY_PROCESS: ProcessDraft = { uploadId: null, fileName: null, uploading: false };
 
 export interface DocumentFormValues {
     title: string;
@@ -48,6 +58,7 @@ export interface DocumentFormValues {
     entities: number[];
     responsible: number | null;
     cc: number[];
+    process: Record<ProcessKind, ProcessDraft>;
     versions: VersionDraft[];
 }
 
@@ -72,13 +83,11 @@ export const EMPTY_VALUES: DocumentFormValues = {
     entities: [],
     responsible: null,
     cc: [],
+    process: { create: EMPTY_PROCESS, update: EMPTY_PROCESS },
     versions: [],
 };
 
-/**
- * Edit prefill. The detail endpoint does not return types, sections, entities or
- * cc, so those start empty and must be chosen again (edit replaces them as sent).
- */
+/** Edit prefill: the detail answer carries every relation the form needs. */
 export function valuesFromDocument(doc: ManagedDocumentDetail): DocumentFormValues {
     return {
         ...EMPTY_VALUES,
@@ -88,6 +97,10 @@ export function valuesFromDocument(doc: ManagedDocumentDetail): DocumentFormValu
         category: doc.category,
         origin_department_id: doc.origin_department?.id ?? null,
         departments: doc.departments.map((d) => d.id),
+        types: (doc.types ?? []).map((x) => x.id),
+        entities: (doc.entities ?? []).map((x) => x.id),
+        sections: (doc.sections ?? []).map((x) => x.id),
+        cc: (doc.cc ?? []).map((x) => x.id),
         responsible: doc.responsible?.id ?? null,
     };
 }
@@ -112,6 +125,11 @@ export function validateStep(step: FormStep, v: DocumentFormValues): FormErrors 
     if (step === 'people') {
         if (v.responsible === null) e.responsible = 'responsibleRequired';
     }
+    if (step === 'process') {
+        (['create', 'update'] as const).forEach((kind) => {
+            if (v.process[kind].uploading) e[`process.${kind}`] = 'uploadPending';
+        });
+    }
     if (step === 'versions') {
         v.versions.forEach((ver, i) => {
             const p = `versions.${i}.`;
@@ -127,6 +145,7 @@ export const STEP_FIELDS: Record<FormStep, string[]> = {
     details: ['title', 'description', 'importance', 'category'],
     classification: ['origin_department_id', 'types', 'departments', 'sections', 'entities'],
     people: ['responsible', 'cc'],
+    process: ['process'],
     versions: ['versions'],
 };
 
@@ -153,6 +172,9 @@ export function buildDocumentPayload(v: DocumentFormValues): DocumentPayload {
     };
     if (v.description.trim()) payload.description = v.description.trim();
     if (v.origin_department_id !== null) payload.origin_department_id = v.origin_department_id;
+    // Same request as the document; on edit a missing field keeps the current file.
+    if (v.process.create.uploadId) payload.create_process_upload_id = v.process.create.uploadId;
+    if (v.process.update.uploadId) payload.update_process_upload_id = v.process.update.uploadId;
     return payload;
 }
 
@@ -170,7 +192,11 @@ export function serverFieldErrors(error: unknown): FormErrors {
     const out: FormErrors = {};
     if (!errors) return out;
     for (const [key, messages] of Object.entries(errors)) {
-        const field = key.startsWith('versions.') ? key : key.split('.')[0];
+        const field = key.startsWith('versions.')
+            ? key
+            : key === 'create_process_upload_id' ? 'process.create'
+            : key === 'update_process_upload_id' ? 'process.update'
+            : key.split('.')[0];
         if (!out[field] && messages?.[0]) out[field] = messages[0];
     }
     return out;

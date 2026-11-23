@@ -9,6 +9,7 @@ import FormStepper, { type StepperItem } from './FormStepper'
 import DocumentDetailsStep from './DocumentDetailsStep'
 import DocumentClassificationStep from './DocumentClassificationStep'
 import DocumentPeopleStep from './DocumentPeopleStep'
+import DocumentProcessStep from './DocumentProcessStep'
 import DocumentVersionsStep from './DocumentVersionsStep'
 import { useDocumentForm } from '../../hooks/useDocumentForm'
 import { useCreateDocument, useUpdateDocument } from '../../hooks/useSaveDocument'
@@ -22,30 +23,33 @@ import {
     type FormErrors,
     type FormStep,
 } from '../../utils/documentForm'
-import type { PersonRef } from '../../types/management.types'
+import type { PersonRef, ProcessFileState } from '../../types/management.types'
+import type { ProcessKind } from '../../types/version.types'
 
 interface DocumentFormViewProps {
     initial: DocumentFormValues
     /** Present in edit mode. */
     documentId?: number
     responsibleFallback?: PersonRef | null
+    /** Edit: what is stored now, shown next to each procedure slot. */
+    processState?: Record<ProcessKind, ProcessFileState>
 }
 
-const CREATE_STEPS: FormStep[] = ['details', 'classification', 'people', 'versions']
-const EDIT_STEPS: FormStep[] = ['details', 'classification', 'people'] // versions: phase 3
+const CREATE_STEPS: FormStep[] = ['details', 'classification', 'people', 'process', 'versions']
+const EDIT_STEPS: FormStep[] = ['details', 'classification', 'people', 'process'] // versions have their own page
 
 /**
  * Create / edit wizard. Each step is a memoised component fed by stable setters;
  * errors are local codes or server sentences, and a 422 jumps to the step that owns the field.
  */
-export default function DocumentFormView({ initial, documentId, responsibleFallback }: DocumentFormViewProps) {
+export default function DocumentFormView({ initial, documentId, responsibleFallback, processState }: DocumentFormViewProps) {
     const { t } = useTranslation('management')
     const navigate = useNavigate()
     const tenant = useTenantId() ?? ''
     const isEdit = documentId !== undefined
     const steps = isEdit ? EDIT_STEPS : CREATE_STEPS
 
-    const { values, setScalar, setIds, addVersion, removeVersion, patchVersion } = useDocumentForm(initial)
+    const { values, setScalar, setIds, addVersion, removeVersion, patchVersion, patchProcess } = useDocumentForm(initial)
     const [current, setCurrent] = useState(0)
     const [errors, setErrors] = useState<FormErrors>({})
     const [submitError, setSubmitError] = useState<string | null>(null)
@@ -53,7 +57,7 @@ export default function DocumentFormView({ initial, documentId, responsibleFallb
     const create = useCreateDocument()
     const update = useUpdateDocument()
     const isPending = create.isPending || update.isPending
-    const uploading = values.versions.some((v) => v.uploading)
+    const uploading = values.versions.some((v) => v.uploading) || values.process.create.uploading || values.process.update.uploading
 
     const stepperItems = useMemo<StepperItem[]>(() => steps.map((key) => ({ key, label: t(`form.steps.${key}`) })), [steps, t])
 
@@ -101,7 +105,9 @@ export default function DocumentFormView({ initial, documentId, responsibleFallb
         }
         setErrors({})
 
-        const onSuccess = (saved: { id: number }) => navigate({ to: '/$tenant/document-management', params: { tenant }, search: { view: saved.id } })
+        // Procedure files travel with the document; the detail page polls until they are stored.
+        const onSuccess = (saved: { id: number }) =>
+            navigate({ to: '/$tenant/document-management', params: { tenant }, search: { view: saved.id } })
         const onError = (err: unknown) => {
             const fields = serverFieldErrors(err)
             if (Object.keys(fields).length) {
@@ -135,7 +141,6 @@ export default function DocumentFormView({ initial, documentId, responsibleFallb
                         errors={errors}
                         onScalar={handleScalar}
                         onIds={handleIds}
-                        isEdit={isEdit}
                         disabled={isPending}
                     />
                 )}
@@ -146,10 +151,10 @@ export default function DocumentFormView({ initial, documentId, responsibleFallb
                         onScalar={handleScalar}
                         onIds={handleIds}
                         responsibleFallback={responsibleFallback}
-                        isEdit={isEdit}
                         disabled={isPending}
                     />
                 )}
+                {step === 'process' && <DocumentProcessStep errors={errors} onPatch={patchProcess} current={processState} disabled={isPending} />}
                 {step === 'versions' && (
                     <DocumentVersionsStep
                         versions={values.versions}

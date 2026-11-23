@@ -2,7 +2,9 @@ import { memo, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Trash2 } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
-import DepartmentFormField from '@/features/departments/components/DepartmentFormField'
+import { FileStack, Paperclip } from 'lucide-react'
+import FormSection from './FormSection'
+import SectionField from './SectionField'
 import ImportFileField from '@/features/document-imports/components/ImportFileField'
 import { useImportUpload } from '@/features/document-imports/hooks/useImportUpload'
 import { validateFile } from '@/features/document-imports/utils/importPayload'
@@ -73,13 +75,12 @@ function VersionRow({ draft, index, errors, disabled, onPatch, onRemove }: Versi
     const handleMeta = useCallback((field: VersionMetaField, value: string) => onPatch(key, { [field]: value }), [onPatch, key])
 
     return (
-        <fieldset className="space-y-4 rounded-xl border border-border p-4" disabled={disabled}>
-            <legend className="flex items-center gap-2 px-1 text-sm font-semibold text-foreground">
-                {t('form.versionN', { n: index + 1 })}
-            </legend>
+        <FormSection icon={FileStack} title={t('form.versionN', { n: index + 1 })} subtitle={t('form.cards.versionSubtitle')}>
+          <fieldset className="space-y-5" disabled={disabled}>
 
-            <DepartmentFormField
+            <SectionField
                 label={t('form.file')}
+                icon={Paperclip}
                 htmlFor={`ver-file-${key}`}
                 error={fileProblem ? t(`form.fileProblem.${fileProblem}`) : formErrorText(t, own.upload_id)}
             >
@@ -92,7 +93,7 @@ function VersionRow({ draft, index, errors, disabled, onPatch, onRemove }: Versi
                     disabled={disabled}
                     invalid={!!own.upload_id || !!fileProblem}
                 />
-            </DepartmentFormField>
+            </SectionField>
 
             <VersionMetaFields idPrefix={`ver-${key}`} values={draft} errors={own} onChange={handleMeta} />
 
@@ -102,7 +103,8 @@ function VersionRow({ draft, index, errors, disabled, onPatch, onRemove }: Versi
                     {t('form.removeVersion')}
                 </Button>
             </div>
-        </fieldset>
+          </fieldset>
+        </FormSection>
     )
 }
 

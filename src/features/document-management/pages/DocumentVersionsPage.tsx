@@ -1,4 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { documentActivityKeys } from '@/features/documents/api/documentActivityKeys'
 import { Link, useParams } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, Loader2, Plus } from 'lucide-react'
@@ -35,6 +37,7 @@ export default function DocumentVersionsPage() {
     const { tenant, documentId } = useParams({ from: '/_protected/$tenant/document-management/$documentId/versions' })
     const id = Number(documentId)
     const tenantId = useTenantId() ?? tenant
+    const queryClient = useQueryClient()
     const access = useVersionAccess()
     const { invalidate } = useManagementCache()
 
@@ -79,8 +82,14 @@ export default function DocumentVersionsPage() {
     const previewingId = loadingKey?.startsWith('version-') ? Number(loadingKey.slice(8)) : null
 
     const handlePreview = useCallback(
-        (v: DocumentVersion) => openPreview(`version-${v.id}`, () => versionsApiService.preview(tenantId, id, v.id)),
-        [openPreview, tenantId, id],
+        (v: DocumentVersion) =>
+            openPreview(`version-${v.id}`, async () => {
+                const link = await versionsApiService.preview(tenantId, id, v.id)
+                // A preview is logged as a `view` of that version.
+                queryClient.invalidateQueries({ queryKey: documentActivityKeys.all(tenantId, id) })
+                return link
+            }),
+        [openPreview, tenantId, id, queryClient],
     )
     const handleAdd = useCallback(() => setForm({ version: null }), [])
     const handleEdit = useCallback((v: DocumentVersion) => setForm({ version: v }), [])

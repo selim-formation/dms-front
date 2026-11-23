@@ -1,7 +1,8 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/shared/components/ui/input'
-import DepartmentFormField from '@/features/departments/components/DepartmentFormField'
+import { Bell, CalendarClock, CalendarDays, FileText, Hash } from 'lucide-react'
+import SectionField from './SectionField'
 import { formErrorText } from './formErrorText'
 import {
     REMINDER_MAX,
@@ -29,10 +30,11 @@ function VersionMetaFields({ idPrefix, values, errors, onChange }: VersionMetaFi
     return (
         <>
             <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2">
-                <DepartmentFormField label={t('form.expireDate')} htmlFor={`${idPrefix}-exp`} error={formErrorText(t, errors.expire_date)}>
+                <SectionField label={t('form.expireDate')} icon={CalendarClock} htmlFor={`${idPrefix}-exp`} error={formErrorText(t, errors.expire_date)}>
                     <Input id={`${idPrefix}-exp`} type="date" value={values.expire_date} onChange={handle('expire_date')} />
-                </DepartmentFormField>
-                <DepartmentFormField
+                </SectionField>
+                <SectionField
+                    icon={Bell}
                     label={t('form.reminderBefore')}
                     htmlFor={`${idPrefix}-rem`}
                     hint={t('form.reminderHint')}
@@ -47,11 +49,12 @@ function VersionMetaFields({ idPrefix, values, errors, onChange }: VersionMetaFi
                         value={values.reminder_before}
                         onChange={handle('reminder_before')}
                     />
-                </DepartmentFormField>
-                <DepartmentFormField label={t('form.exportDate')} htmlFor={`${idPrefix}-exp2`} error={formErrorText(t, errors.export_date)}>
+                </SectionField>
+                <SectionField label={t('form.exportDate')} icon={CalendarDays} htmlFor={`${idPrefix}-exp2`} error={formErrorText(t, errors.export_date)}>
                     <Input id={`${idPrefix}-exp2`} type="date" value={values.export_date} onChange={handle('export_date')} />
-                </DepartmentFormField>
-                <DepartmentFormField
+                </SectionField>
+                <SectionField
+                    icon={Hash}
                     label={t('form.specialNumber')}
                     htmlFor={`${idPrefix}-num`}
                     error={formErrorText(t, errors.special_document_number)}
@@ -64,10 +67,11 @@ function VersionMetaFields({ idPrefix, values, errors, onChange }: VersionMetaFi
                         value={values.special_document_number}
                         onChange={handle('special_document_number')}
                     />
-                </DepartmentFormField>
+                </SectionField>
             </div>
 
-            <DepartmentFormField
+            <SectionField
+                icon={FileText}
                 label={t('form.versionDescription')}
                 htmlFor={`${idPrefix}-desc`}
                 error={formErrorText(t, errors.version_description)}
@@ -81,7 +85,7 @@ function VersionMetaFields({ idPrefix, values, errors, onChange }: VersionMetaFi
                     dir="auto"
                     className="w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
                 />
-            </DepartmentFormField>
+            </SectionField>
         </>
     )
 }

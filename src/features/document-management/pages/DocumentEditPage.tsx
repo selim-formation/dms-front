@@ -61,7 +61,7 @@ export default function DocumentEditPage() {
                                 </Button>
                             )}
                         </div>
-                        <DocumentFormView key={doc.id} initial={initial} documentId={doc.id} responsibleFallback={doc.responsible} />
+                        <DocumentFormView key={doc.id} initial={initial} documentId={doc.id} responsibleFallback={doc.responsible} processState={doc.process_files} />
                     </>
                 )}
             </main>

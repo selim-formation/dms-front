@@ -1,6 +1,6 @@
 /**
  * Document management contracts — /api/{tenant}/document-management
- * (phase 1: list, view, review, delete / restore / force delete, bulk).
+ * (list, view, create / edit, review, delete / restore / force delete, bulk).
  * Separate from features/documents, which is the read-only browsing API.
  */
 
@@ -75,9 +75,26 @@ export interface LatestVersion {
     created_at: string;
 }
 
+export interface TitleRef {
+    id: number;
+    title: string | null;
+}
+
+/** `processing`: a new file was handed over and is being moved into storage. */
+export interface ProcessFileState {
+    exists: boolean;
+    status: 'stored' | 'processing' | 'none';
+}
+
 export interface ManagedDocumentDetail extends ManagedDocument {
     approvals: DocumentApproval[];
     latest_version: LatestVersion | null;
+    /** Edit-form prefill: ids go back in the PUT body. */
+    types: TitleRef[];
+    entities: TitleRef[];
+    sections: TitleRef[];
+    cc: PersonRef[];
+    process_files: { create: ProcessFileState; update: ProcessFileState };
 }
 
 export interface DocumentCounts {
@@ -134,6 +151,9 @@ export interface DocumentPayload {
     entities: number[];
     responsible: number;
     cc?: number[];
+    /** Finished `document_file` upload. On edit, omit to keep the current file. */
+    create_process_upload_id?: string;
+    update_process_upload_id?: string;
 }
 
 export interface VersionPayload {
@@ -149,6 +169,10 @@ export interface VersionPayload {
 export interface CreateDocumentPayload extends DocumentPayload {
     versions?: VersionPayload[];
 }
+
+/** True while the server is still moving a version or process file into storage. */
+export const isStoring = (d: ManagedDocumentDetail | undefined | null): boolean =>
+    !!d && (UPLOAD_IN_PROGRESS.has(d.latest_version?.upload_status ?? '') || d.process_files?.create.status === 'processing' || d.process_files?.update.status === 'processing');
 
 /** upload_status values that mean "the server is still moving the file". */
 export const UPLOAD_IN_PROGRESS: ReadonlySet<string> = new Set(['queued', 'processing']);

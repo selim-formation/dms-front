@@ -1,5 +1,6 @@
 import { useCallback, useReducer } from 'react';
-import { newVersionDraft, type DocumentFormValues, type VersionDraft } from '../utils/documentForm';
+import { newVersionDraft, type DocumentFormValues, type ProcessDraft, type VersionDraft } from '../utils/documentForm';
+import type { ProcessKind } from '../types/version.types';
 
 type IdField = 'types' | 'departments' | 'sections' | 'entities' | 'cc';
 type ScalarField = 'title' | 'description' | 'importance' | 'category' | 'origin_department_id' | 'responsible';
@@ -7,6 +8,7 @@ type ScalarField = 'title' | 'description' | 'importance' | 'category' | 'origin
 type Action =
     | { type: 'scalar'; field: ScalarField; value: DocumentFormValues[ScalarField] }
     | { type: 'ids'; field: IdField; ids: number[] }
+    | { type: 'patchProcess'; kind: ProcessKind; patch: Partial<ProcessDraft> }
     | { type: 'addVersion' }
     | { type: 'removeVersion'; key: string }
     | { type: 'patchVersion'; key: string; patch: Partial<VersionDraft> };
@@ -17,6 +19,8 @@ function reducer(state: DocumentFormValues, action: Action): DocumentFormValues 
             return { ...state, [action.field]: action.value };
         case 'ids':
             return { ...state, [action.field]: action.ids };
+        case 'patchProcess':
+            return { ...state, process: { ...state.process, [action.kind]: { ...state.process[action.kind], ...action.patch } } };
         case 'addVersion':
             return { ...state, versions: [...state.versions, newVersionDraft()] };
         case 'removeVersion':
@@ -43,5 +47,7 @@ export function useDocumentForm(initial: DocumentFormValues) {
     const removeVersion = useCallback((key: string) => dispatch({ type: 'removeVersion', key }), []);
     const patchVersion = useCallback((key: string, patch: Partial<VersionDraft>) => dispatch({ type: 'patchVersion', key, patch }), []);
 
-    return { values, setScalar, setIds, addVersion, removeVersion, patchVersion };
+    const patchProcess = useCallback((kind: ProcessKind, patch: Partial<ProcessDraft>) => dispatch({ type: 'patchProcess', kind, patch }), []);
+
+    return { values, setScalar, setIds, addVersion, removeVersion, patchVersion, patchProcess };
 }

@@ -174,11 +174,46 @@
     "createTitle": "New document",
     "createSubtitle": "Describe the document, choose who approves it and attach its files.",
     "editTitle": "Edit document",
+    "cards": {
+      "classificationStep": {
+        "title": "Classification",
+        "subtitle": "Choose the origin, types and entities of the document"
+      },
+      "departmentsStep": {
+        "title": "Departments & Sections",
+        "subtitle": "Choose who the document belongs to and who approves it"
+      },
+      "peopleStep": {
+        "title": "People",
+        "subtitle": "Choose the responsible person and who is copied"
+      },
+      "originHint": "Optional: where the document comes from",
+      "versionSubtitle": "Upload the file and its dates",
+      "titleHint": "Enter a descriptive title for your document",
+      "descriptionHint": "Brief description of the document purpose",
+      "importanceHint": "Select the importance level of this document",
+      "categoryHint": "Choose the document category",
+      "details": {
+        "title": "Document Details",
+        "subtitle": "Enter the basic information about your document"
+      },
+      "classification": {
+        "title": "Classification & Priority",
+        "subtitle": "Define the importance and category of your document"
+      },
+      "process": {
+        "title": "Process Documentation",
+        "subtitle": "Upload documents related to creation and update processes",
+        "createHint": "Upload process creation documents",
+        "updateHint": "Upload process update documents"
+      }
+    },
     "stepsLabel": "Form steps",
     "steps": {
       "details": "Details",
       "classification": "Classification",
       "people": "People",
+      "process": "Procedure files",
       "versions": "Files"
     },
     "title": "Title",
@@ -201,6 +236,7 @@
     "cc": "Copy (cc)",
     "ccHint": "Managers or heads of the chosen departments.",
     "usersError": "Could not load the users.",
+    "processHint": "Optional. Each file uploads as soon as you choose it and is saved together with the document.",
     "versionsHint": "Optional. Each file uploads as soon as you choose it; saving is blocked until uploads finish.",
     "noVersions": "No files yet.",
     "addVersion": "Add a file",
@@ -219,8 +255,6 @@
       "tooLarge": "The file is larger than 200 MB.",
       "blocked": "Executable file types are not allowed."
     },
-    "editReselect": "Types, sections and entities are not loaded from the saved document. Choose them again: editing replaces them with exactly what you send.",
-    "editReselectCc": "The cc list is not loaded from the saved document. Choose it again if you want to keep it.",
     "editResubmitHint": "Saving sends the document back to the managers for approval.",
     "cancel": "Cancel",
     "back": "Back",
@@ -249,6 +283,11 @@
       "versionDescriptionTooLong": "The note may not be longer than 5000 characters.",
       "forbidden": "You don't have permission to save this document.",
       "generic": "Something went wrong. Try again."
+    },
+    "processState": {
+      "stored": "A file is stored. Choose a new one to replace it.",
+      "processing": "A file is being stored. Wait a moment before replacing it.",
+      "none": "No file yet."
     }
   },
   "versions": {
